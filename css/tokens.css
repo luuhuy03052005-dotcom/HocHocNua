@@ -144,6 +144,55 @@
   }
 }
 
+/* Explicit overrides keep manual theme switching working on Safari/iOS 16,
+   which does not support light-dark() and would otherwise follow only the
+   device-level prefers-color-scheme value. */
+:root[data-theme="light"] {
+  --bg-canvas: var(--bg-canvas-light);
+  --bg-surface: var(--bg-surface-light);
+  --bg-subtle: var(--bg-subtle-light);
+  --bg-hover: var(--bg-hover-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --text-muted: var(--text-muted-light);
+  --border-hairline: var(--border-hairline-light);
+  --border-control: var(--border-control-light);
+  --color-accent: var(--accent-light);
+  --color-accent-contrast: var(--accent-contrast-light);
+  --color-accent-soft: var(--accent-soft-light);
+  --color-success: var(--success-light);
+  --color-success-soft: var(--success-soft-light);
+  --color-danger: var(--danger-light);
+  --color-danger-soft: var(--danger-soft-light);
+  --color-warning: var(--warning-light);
+  --color-warning-soft: var(--warning-soft-light);
+  --scrollbar-thumb: var(--scroll-thumb-light);
+  --scrollbar-track: var(--scroll-track-light);
+}
+
+:root[data-theme="dark"] {
+  --bg-canvas: var(--bg-canvas-dark);
+  --bg-surface: var(--bg-surface-dark);
+  --bg-subtle: var(--bg-subtle-dark);
+  --bg-hover: var(--bg-hover-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --text-muted: var(--text-muted-dark);
+  --border-hairline: var(--border-hairline-dark);
+  --border-control: var(--border-control-dark);
+  --color-accent: var(--accent-dark);
+  --color-accent-contrast: var(--accent-contrast-dark);
+  --color-accent-soft: var(--accent-soft-dark);
+  --color-success: var(--success-dark);
+  --color-success-soft: var(--success-soft-dark);
+  --color-danger: var(--danger-dark);
+  --color-danger-soft: var(--danger-soft-dark);
+  --color-warning: var(--warning-dark);
+  --color-warning-soft: var(--warning-soft-dark);
+  --scrollbar-thumb: var(--scroll-thumb-dark);
+  --scrollbar-track: var(--scroll-track-dark);
+}
+
 :root:has(> head > meta[name="color-scheme"][content="dark"]),
 :root[data-theme="dark"] { color-scheme: dark; }
 
