@@ -1,0 +1,11 @@
+# Local source material and extraction tools are not needed by the static site.
+SEMESTER_5_SWT301*.html
+scripts/
+data/ocr_cache.json
+data/extraction_report.json
+
+# Local/browser artifacts
+.DS_Store
+Thumbs.db
+*.log
+.tmp-*

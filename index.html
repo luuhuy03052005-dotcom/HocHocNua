@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="text-scale" content="scale">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    try {
+      const saved = localStorage.getItem("color-scheme") || (JSON.parse(localStorage.getItem("swt301_progress_v1") || "{}").prefs || {}).theme;
+      if (saved === "light" || saved === "dark") {
+        document.querySelector('meta[name="color-scheme"]').content = saved;
+        document.documentElement.dataset.theme = saved;
+      }
+    } catch (_) {}
+  </script>
+  <title>SWT301 — Ôn Tập &amp; Thi Thử EOS</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script defer src="data/questions.js"></script>
+  <script defer src="js/storage.js"></script>
+  <script defer src="js/practice.js"></script>
+  <script defer src="js/exam.js"></script>
+  <script defer src="js/keyword.js"></script>
+  <script defer src="js/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1 class="app-title">SWT301</h1>
+      <span class="app-subtitle">Software Testing — Semester 5</span>
+    </div>
+    <div class="progress-pill" aria-label="Tiến độ ôn tập">
+      <span class="stat-item">Đã thuộc <strong id="stat-mastered">0/0</strong></span>
+      <span class="stat-item">Hay sai <strong id="stat-mistakes">0</strong></span>
+      <span class="stat-item">Chính xác <strong id="stat-accuracy">0%</strong></span>
+      <div class="progress-track" aria-hidden="true"><div id="mastery-progress-fill" class="progress-fill"></div></div>
+    </div>
+    <div class="topbar-actions">
+      <button type="button" id="theme-toggle" class="btn btn-ghost" aria-label="Đổi giao diện sáng tối" title="Đổi giao diện sáng / tối">
+        <svg class="icon-svg icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+        <svg class="icon-svg icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <span>Giao diện</span>
+      </button>
+      <button type="button" id="open-shortcuts-btn" class="btn btn-ghost" command="show-modal" commandfor="help-dialog">
+        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 13h.01M18 13h.01M9 15h6"/></svg>
+        <span>Phím tắt</span>
+      </button>
+      <button type="button" id="reset-progress-btn" class="btn btn-ghost btn-danger-subtle" command="show-modal" commandfor="reset-dialog">
+        <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        <span>Đặt lại</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="tabs-bar" role="tablist" focusgroup="tablist nomemory" aria-label="Chế độ học SWT301">
+    <button type="button" role="tab" id="tab-practice" data-panel="panel-practice" aria-selected="true" focusgroupstart>Luyện nhanh</button>
+    <button type="button" role="tab" id="tab-flashcard" data-panel="panel-flashcard" aria-selected="false">Flashcard</button>
+    <button type="button" role="tab" id="tab-exam" data-panel="panel-exam" aria-selected="false">Thi thử EOS</button>
+    <button type="button" role="tab" id="tab-keyword" data-panel="panel-keyword" aria-selected="false">Keyword</button>
+    <button type="button" role="tab" id="tab-bank" data-panel="panel-bank" aria-selected="false">Ngân hàng câu hỏi</button>
+  </div>
+
+  <main class="workspace-main">
+    <section id="panel-practice" class="tab-panel" role="tabpanel" aria-labelledby="tab-practice">
+      <div class="panel-inner">
+        <div class="toolbar">
+          <label for="practice-filter-mode" class="sr-only">Chế độ lọc câu hỏi</label>
+          <select id="practice-filter-mode">
+            <option value="all">Tất cả câu hỏi</option>
+            <option value="unmastered">Chưa thuộc</option>
+            <option value="mistakes">Câu hay sai</option>
+            <option value="starred">Đã đánh dấu</option>
+            <option value="unseen">Chưa làm</option>
+          </select>
+          <label for="practice-filter-topic" class="sr-only">Chủ đề</label>
+          <select id="practice-filter-topic"><option value="all">Tất cả chủ đề</option></select>
+          <label class="switch-control"><input type="checkbox" id="practice-shuffle-questions" switch> Trộn câu</label>
+          <label class="switch-control"><input type="checkbox" id="practice-shuffle-options" switch> Trộn đáp án</label>
+          <label class="switch-control"><input type="checkbox" id="practice-instant-next" switch> Tự qua câu đúng</label>
+          <div class="toolbar-spacer">
+            <label for="practice-jump-input" class="sr-only">Nhảy tới câu số</label>
+            <input type="number" id="practice-jump-input" min="1" placeholder="Câu #" title="Nhập số thứ tự câu để nhảy nhanh">
+          </div>
+        </div>
+
+        <article class="card" aria-label="Câu hỏi luyện tập">
+          <div class="question-meta">
+            <span id="practice-counter" class="counter-pill">0 / 0</span>
+            <span id="practice-slide-badge" class="badge">Slide -</span>
+            <span id="practice-topic-badge" class="badge">SWT301</span>
+            <span id="practice-multi-badge" class="badge badge-accent" hidden>Chọn nhiều đáp án</span>
+            <button type="button" id="practice-star-btn" class="btn btn-ghost btn-sm icon-toggle" aria-pressed="false" title="Đánh dấu câu hỏi (S)">
+              <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              <span>Đánh dấu</span>
+            </button>
+          </div>
+          <div id="practice-stem" class="question-stem">Đang tải bộ câu hỏi SWT301...</div>
+          <div id="practice-images" class="question-images" hidden></div>
+          <div id="practice-options" class="options-list" role="group" aria-label="Các lựa chọn trả lời"></div>
+          <div><button type="button" id="practice-submit-multi-btn" class="btn btn-primary" hidden>Chốt đáp án (Enter)</button></div>
+          <div id="practice-feedback" class="feedback-box" role="status" aria-live="polite" hidden></div>
+          <div class="action-bar">
+            <button type="button" id="practice-prev-btn" class="btn btn-secondary">Câu trước</button>
+            <div class="action-group">
+              <button type="button" id="practice-reveal-btn" class="btn btn-ghost">Xem đáp án (R)</button>
+              <button type="button" id="practice-next-btn" class="btn btn-primary">Câu tiếp</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="panel-flashcard" class="tab-panel" role="tabpanel" aria-labelledby="tab-flashcard" hidden="until-found">
+      <div class="panel-inner">
+        <div class="toolbar">
+          <label for="fc-filter-topic" class="sr-only">Chủ đề Flashcard</label>
+          <select id="fc-filter-topic"><option value="all">Tất cả chủ đề</option></select>
+          <label class="switch-control"><input type="checkbox" id="fc-only-unmastered" switch checked> Chỉ câu chưa thuộc</label>
+          <div class="toolbar-spacer"><span id="fc-counter" class="counter-pill">0 / 0</span></div>
+        </div>
+        <article id="fc-card" class="card" data-flipped="false" aria-label="Thẻ ghi nhớ">
+          <div id="fc-stem" class="question-stem">Đang tải thẻ ghi nhớ...</div>
+          <div id="fc-images" class="question-images" hidden></div>
+          <div id="fc-options-preview" class="fc-options-list"></div>
+          <div id="fc-answer-box" role="status" aria-live="polite"></div>
+        </article>
+        <div class="toolbar">
+          <button type="button" id="fc-flip-btn" class="btn btn-secondary">Lật thẻ / Hiện đáp án (Space)</button>
+          <div class="toolbar-spacer">
+            <button type="button" id="fc-grade-hard" class="btn btn-grade-hard">[1] Khó — lặp sau 3 thẻ</button>
+            <button type="button" id="fc-grade-good" class="btn btn-grade-good">[2] Tạm nhớ — cuối xấp</button>
+            <button type="button" id="fc-grade-easy" class="btn btn-grade-easy">[3] Đã thuộc</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-exam" class="tab-panel" role="tabpanel" aria-labelledby="tab-exam" hidden="until-found">
+      <div class="panel-inner">
+        <div id="exam-setup" class="card">
+          <h2>Cấu hình đề thi thử EOS — SWT301</h2>
+          <div class="setup-grid">
+            <div class="field-group">Phạm vi câu hỏi
+              <button type="button" id="exam-range-btn" class="range-picker-btn" command="show-modal" commandfor="exam-range-dialog" aria-haspopup="dialog">
+                <span id="exam-range-summary" class="range-picker-title">Câu 1 – 50</span>
+                <span id="exam-range-count" class="range-picker-meta">50 câu</span>
+              </button>
+            </div>
+            <label class="field-group">Thời gian (phút)
+              <input type="number" id="exam-duration-input" min="5" max="180" value="60">
+            </label>
+            <label class="field-group">Nguồn câu hỏi
+              <select id="exam-source-select">
+                <option value="all">Tất cả câu hỏi</option>
+                <option value="unmastered">Câu chưa thuộc</option>
+                <option value="mistakes">Câu hay sai</option>
+                <option value="starred">Câu đã đánh dấu</option>
+              </select>
+            </label>
+            <label class="field-group">Chủ đề
+              <select id="exam-topic-select"><option value="all">Tất cả chủ đề</option></select>
+            </label>
+            <div><button type="button" id="exam-start-btn" class="btn btn-primary">Bắt đầu làm bài</button></div>
+          </div>
+        </div>
+
+        <div id="exam-active" class="panel-stack" hidden>
+          <div class="exam-header">
+            <div class="action-group">
+              <span id="exam-timer" aria-live="off">60:00</span>
+              <span id="exam-progress-text" class="counter-pill">0 / 50</span>
+            </div>
+            <button type="button" id="exam-submit-btn" class="btn btn-primary">Nộp bài chấm điểm</button>
+          </div>
+          <div class="exam-workspace">
+            <article class="card">
+              <div id="exam-stem" class="question-stem"></div>
+              <div id="exam-images" class="question-images" hidden></div>
+              <div id="exam-options" class="options-list" role="group" aria-label="Lựa chọn bài thi"></div>
+              <div class="action-bar">
+                <button type="button" id="exam-prev-btn" class="btn btn-secondary">Câu trước</button>
+                <button type="button" id="exam-flag-btn" class="btn btn-ghost icon-toggle" aria-pressed="false">
+                  <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+                  <span>Đặt cờ xem lại</span>
+                </button>
+                <button type="button" id="exam-next-btn" class="btn btn-primary">Câu tiếp</button>
+              </div>
+            </article>
+            <aside class="card palette-card" aria-label="Bảng câu hỏi">
+              <h3>Danh sách câu</h3>
+              <div class="palette-legend"><span>Viền đậm: Đang mở</span><span>Nền màu: Đã chọn</span><span>Chấm vàng: Đặt cờ</span></div>
+              <div id="exam-palette" class="palette-grid"></div>
+            </aside>
+          </div>
+        </div>
+
+        <div id="exam-result" class="card" hidden>
+          <div id="exam-score-summary" class="score-summary"></div>
+          <div class="action-group">
+            <button type="button" id="exam-retry-wrong-btn" class="btn btn-primary">Luyện ngay các câu sai</button>
+            <button type="button" id="exam-new-btn" class="btn btn-secondary">Tạo đề thi mới</button>
+          </div>
+          <div id="exam-review-list" class="review-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-keyword" class="tab-panel" role="tabpanel" aria-labelledby="tab-keyword" hidden="until-found">
+      <div class="panel-inner keyword-panel-inner">
+        <div class="keyword-intro card">
+          <div>
+            <span class="badge badge-accent">Học bằng liên kết thuật ngữ</span>
+            <h2>Question keyword → Answer keyword</h2>
+            <p>Nhìn keyword được tô trong câu hỏi, liên tưởng đến keyword được tô trong đáp án sáng màu.</p>
+          </div>
+          <div class="keyword-total-box">
+            <strong id="keyword-total-count">0</strong>
+            <span>câu hỏi</span>
+          </div>
+        </div>
+
+        <div class="toolbar keyword-toolbar">
+          <label for="keyword-search-input" class="sr-only">Tìm keyword hoặc nội dung câu hỏi</label>
+          <input type="search" id="keyword-search-input" placeholder="Tìm keyword, câu hỏi hoặc đáp án...">
+          <label for="keyword-topic-select" class="sr-only">Lọc keyword theo chủ đề</label>
+          <select id="keyword-topic-select"><option value="all">Tất cả chủ đề</option></select>
+          <div class="toolbar-spacer"><span id="keyword-result-count" class="counter-pill">0 câu</span></div>
+        </div>
+
+        <div id="keyword-list" class="keyword-list" aria-live="polite"></div>
+        <div id="keyword-load-more-wrap" class="load-more-wrap" hidden>
+          <button type="button" id="keyword-load-more-btn" class="btn btn-secondary">Hiển thị thêm câu hỏi</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-bank" class="tab-panel" role="tabpanel" aria-labelledby="tab-bank" hidden="until-found">
+      <div class="panel-inner">
+        <div class="toolbar">
+          <label for="bank-search-input" class="sr-only">Tìm kiếm câu hỏi</label>
+          <input type="search" id="bank-search-input" placeholder="Tìm từ khóa câu hỏi, đáp án, số slide...">
+          <label for="bank-topic-select" class="sr-only">Lọc chủ đề</label>
+          <select id="bank-topic-select"><option value="all">Tất cả chủ đề</option></select>
+          <label for="bank-status-select" class="sr-only">Lọc trạng thái</label>
+          <select id="bank-status-select">
+            <option value="all">Mọi trạng thái</option>
+            <option value="unmastered">Chưa thuộc</option>
+            <option value="mastered">Đã thuộc</option>
+            <option value="learning">Đang nhớ</option>
+            <option value="mistakes">Câu hay sai</option>
+            <option value="starred">Đã đánh dấu</option>
+            <option value="unseen">Chưa làm</option>
+          </select>
+          <label class="switch-control"><input type="checkbox" id="bank-show-answers" switch checked> Hiện đáp án đúng</label>
+          <div class="toolbar-spacer"><span id="bank-result-count" class="counter-pill">0 câu</span></div>
+        </div>
+
+        <div tabindex="0" role="region" class="table-wrapper" aria-label="Danh sách câu hỏi SWT301">
+          <table class="data-table bank-table">
+            <thead>
+              <tr><th scope="col">Câu</th><th scope="col">Chủ đề</th><th scope="col">Nội dung &amp; Đáp án</th><th scope="col">Trạng thái</th><th scope="col">Thao tác</th></tr>
+            </thead>
+            <tbody id="bank-list"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="exam-range-dialog" closedby="any" aria-labelledby="exam-range-dialog-title">
+    <div class="dialog-header">
+      <div>
+        <h2 id="exam-range-dialog-title">Chọn phạm vi đề thi</h2>
+        <p class="dialog-subtitle">Chọn câu bắt đầu và câu kết thúc để tạo đề trắc nghiệm.</p>
+      </div>
+      <button type="button" class="btn btn-ghost btn-sm" command="close" commandfor="exam-range-dialog" aria-label="Đóng hộp thoại">Đóng</button>
+    </div>
+    <div class="question-bank-total" aria-live="polite">
+      <span>Tổng số câu hỏi trong ngân hàng</span>
+      <strong id="exam-total-question-count">0</strong>
+    </div>
+    <div class="range-select-grid">
+      <label class="field-group" for="exam-start-question">Start Question
+        <select id="exam-start-question"></select>
+      </label>
+      <span class="range-arrow" aria-hidden="true">→</span>
+      <label class="field-group" for="exam-end-question">End Question
+        <select id="exam-end-question"></select>
+      </label>
+    </div>
+    <div id="exam-range-preview" class="range-preview" role="status" aria-live="polite"></div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" command="close" commandfor="exam-range-dialog">Hủy</button>
+      <button type="button" id="exam-apply-range-btn" class="btn btn-primary">Dùng phạm vi này</button>
+    </div>
+  </dialog>
+
+  <dialog id="help-dialog" closedby="any" aria-labelledby="help-dialog-title">
+    <div class="dialog-header">
+      <h2 id="help-dialog-title">Phím tắt ôn tập nhanh</h2>
+      <button type="button" class="btn btn-ghost btn-sm" command="close" commandfor="help-dialog" autofocus>Đóng</button>
+    </div>
+    <div tabindex="0" role="region" class="table-wrapper" aria-labelledby="help-dialog-title">
+      <table class="data-table">
+        <thead><tr><th scope="col">Phím</th><th scope="col">Tác dụng</th></tr></thead>
+        <tbody>
+          <tr><th scope="row"><kbd>1</kbd>–<kbd>6</kbd> / <kbd>A</kbd>–<kbd>F</kbd></th><td>Chọn đáp án tương ứng (hoặc chấm Flashcard <kbd>1</kbd> Khó / <kbd>2</kbd> Tạm nhớ / <kbd>3</kbd> Đã thuộc)</td></tr>
+          <tr><th scope="row"><kbd>Space</kbd> / <kbd>Enter</kbd></th><td>Chốt câu nhiều đáp án, lật thẻ Flashcard hoặc sang câu tiếp theo</td></tr>
+          <tr><th scope="row"><kbd>ArrowLeft</kbd> / <kbd>ArrowRight</kbd></th><td>Lùi câu trước / Sang câu tiếp theo</td></tr>
+          <tr><th scope="row"><kbd>R</kbd></th><td>Hiện ngay đáp án đúng &amp; giải thích (Luyện nhanh / Flashcard)</td></tr>
+          <tr><th scope="row"><kbd>S</kbd></th><td>Đánh dấu / bỏ đánh dấu câu hỏi cần xem lại</td></tr>
+          <tr><th scope="row"><kbd>Esc</kbd></th><td>Đóng hộp thoại đang mở</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </dialog>
+
+  <dialog id="reset-dialog" closedby="any" aria-labelledby="reset-dialog-title">
+    <div class="dialog-header"><h2 id="reset-dialog-title">Đặt lại toàn bộ tiến độ học?</h2></div>
+    <p>Toàn bộ lịch sử trả lời, danh sách câu sai, mức độ thuộc bài và đánh dấu sẽ bị xóa khỏi trình duyệt này.</p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" command="close" commandfor="reset-dialog" autofocus>Hủy</button>
+      <button type="button" id="confirm-reset-btn" class="btn btn-danger">Xóa tiến độ</button>
+    </div>
+  </dialog>
+</body>
+</html>
