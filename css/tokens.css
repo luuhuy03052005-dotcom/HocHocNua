@@ -68,52 +68,6 @@
   --scrollbar-thumb: var(--scroll-thumb-light);
   --scrollbar-track: var(--scroll-track-light);
 
-  @media (prefers-color-scheme: dark) {
-    --bg-canvas: var(--bg-canvas-dark);
-    --bg-surface: var(--bg-surface-dark);
-    --bg-subtle: var(--bg-subtle-dark);
-    --bg-hover: var(--bg-hover-dark);
-    --text-primary: var(--text-primary-dark);
-    --text-secondary: var(--text-secondary-dark);
-    --text-muted: var(--text-muted-dark);
-    --border-hairline: var(--border-hairline-dark);
-    --border-control: var(--border-control-dark);
-    --color-accent: var(--accent-dark);
-    --color-accent-contrast: var(--accent-contrast-dark);
-    --color-accent-soft: var(--accent-soft-dark);
-    --color-success: var(--success-dark);
-    --color-success-soft: var(--success-soft-dark);
-    --color-danger: var(--danger-dark);
-    --color-danger-soft: var(--danger-soft-dark);
-    --color-warning: var(--warning-dark);
-    --color-warning-soft: var(--warning-soft-dark);
-    --scrollbar-thumb: var(--scroll-thumb-dark);
-    --scrollbar-track: var(--scroll-track-dark);
-  }
-
-  @supports (color: light-dark(white, black)) {
-    --bg-canvas: light-dark(var(--bg-canvas-light), var(--bg-canvas-dark));
-    --bg-surface: light-dark(var(--bg-surface-light), var(--bg-surface-dark));
-    --bg-subtle: light-dark(var(--bg-subtle-light), var(--bg-subtle-dark));
-    --bg-hover: light-dark(var(--bg-hover-light), var(--bg-hover-dark));
-    --text-primary: light-dark(var(--text-primary-light), var(--text-primary-dark));
-    --text-secondary: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
-    --text-muted: light-dark(var(--text-muted-light), var(--text-muted-dark));
-    --border-hairline: light-dark(var(--border-hairline-light), var(--border-hairline-dark));
-    --border-control: light-dark(var(--border-control-light), var(--border-control-dark));
-    --color-accent: light-dark(var(--accent-light), var(--accent-dark));
-    --color-accent-contrast: light-dark(var(--accent-contrast-light), var(--accent-contrast-dark));
-    --color-accent-soft: light-dark(var(--accent-soft-light), var(--accent-soft-dark));
-    --color-success: light-dark(var(--success-light), var(--success-dark));
-    --color-success-soft: light-dark(var(--success-soft-light), var(--success-soft-dark));
-    --color-danger: light-dark(var(--danger-light), var(--danger-dark));
-    --color-danger-soft: light-dark(var(--danger-soft-light), var(--danger-soft-dark));
-    --color-warning: light-dark(var(--warning-light), var(--warning-dark));
-    --color-warning-soft: light-dark(var(--warning-soft-light), var(--warning-soft-dark));
-    --scrollbar-thumb: light-dark(var(--scroll-thumb-light), var(--scroll-thumb-dark));
-    --scrollbar-track: light-dark(var(--scroll-track-light), var(--scroll-track-dark));
-  }
-
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "Cascadia Code", Consolas, monospace;
 
@@ -138,14 +92,60 @@
   color-scheme: light dark;
   accent-color: var(--color-accent);
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
 
-  &:has(> head > meta[name="color-scheme"][content="dark"]),
-  &[data-theme="dark"] {
-    color-scheme: dark;
-  }
-
-  &:has(> head > meta[name="color-scheme"][content="light"]),
-  &[data-theme="light"] {
-    color-scheme: light;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-canvas: var(--bg-canvas-dark);
+    --bg-surface: var(--bg-surface-dark);
+    --bg-subtle: var(--bg-subtle-dark);
+    --bg-hover: var(--bg-hover-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --text-muted: var(--text-muted-dark);
+    --border-hairline: var(--border-hairline-dark);
+    --border-control: var(--border-control-dark);
+    --color-accent: var(--accent-dark);
+    --color-accent-contrast: var(--accent-contrast-dark);
+    --color-accent-soft: var(--accent-soft-dark);
+    --color-success: var(--success-dark);
+    --color-success-soft: var(--success-soft-dark);
+    --color-danger: var(--danger-dark);
+    --color-danger-soft: var(--danger-soft-dark);
+    --color-warning: var(--warning-dark);
+    --color-warning-soft: var(--warning-soft-dark);
+    --scrollbar-thumb: var(--scroll-thumb-dark);
+    --scrollbar-track: var(--scroll-track-dark);
   }
 }
+
+@supports (color: light-dark(white, black)) {
+  :root {
+    --bg-canvas: light-dark(var(--bg-canvas-light), var(--bg-canvas-dark));
+    --bg-surface: light-dark(var(--bg-surface-light), var(--bg-surface-dark));
+    --bg-subtle: light-dark(var(--bg-subtle-light), var(--bg-subtle-dark));
+    --bg-hover: light-dark(var(--bg-hover-light), var(--bg-hover-dark));
+    --text-primary: light-dark(var(--text-primary-light), var(--text-primary-dark));
+    --text-secondary: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
+    --text-muted: light-dark(var(--text-muted-light), var(--text-muted-dark));
+    --border-hairline: light-dark(var(--border-hairline-light), var(--border-hairline-dark));
+    --border-control: light-dark(var(--border-control-light), var(--border-control-dark));
+    --color-accent: light-dark(var(--accent-light), var(--accent-dark));
+    --color-accent-contrast: light-dark(var(--accent-contrast-light), var(--accent-contrast-dark));
+    --color-accent-soft: light-dark(var(--accent-soft-light), var(--accent-soft-dark));
+    --color-success: light-dark(var(--success-light), var(--success-dark));
+    --color-success-soft: light-dark(var(--success-soft-light), var(--success-soft-dark));
+    --color-danger: light-dark(var(--danger-light), var(--danger-dark));
+    --color-danger-soft: light-dark(var(--danger-soft-light), var(--danger-soft-dark));
+    --color-warning: light-dark(var(--warning-light), var(--warning-dark));
+    --color-warning-soft: light-dark(var(--warning-soft-light), var(--warning-soft-dark));
+    --scrollbar-thumb: light-dark(var(--scroll-thumb-light), var(--scroll-thumb-dark));
+    --scrollbar-track: light-dark(var(--scroll-track-light), var(--scroll-track-dark));
+  }
+}
+
+:root:has(> head > meta[name="color-scheme"][content="dark"]),
+:root[data-theme="dark"] { color-scheme: dark; }
+
+:root:has(> head > meta[name="color-scheme"][content="light"]),
+:root[data-theme="light"] { color-scheme: light; }
