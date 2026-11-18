@@ -1,51 +1,51 @@
 :root {
-  --bg-canvas-light: oklch(98.2% 0.004 255);
-  --bg-canvas-dark: oklch(15.5% 0.01 255);
-  --bg-surface-light: oklch(100% 0 0);
-  --bg-surface-dark: oklch(20.2% 0.012 255);
-  --bg-subtle-light: oklch(95.2% 0.007 255);
-  --bg-subtle-dark: oklch(24.8% 0.014 255);
-  --bg-hover-light: oklch(92.5% 0.01 255);
-  --bg-hover-dark: oklch(28.5% 0.016 255);
+  --bg-canvas-light: #f1f5f9;
+  --bg-canvas-dark: #0b1220;
+  --bg-surface-light: #ffffff;
+  --bg-surface-dark: #172033;
+  --bg-subtle-light: #e8eef6;
+  --bg-subtle-dark: #243149;
+  --bg-hover-light: #dde6f1;
+  --bg-hover-dark: #30405c;
 
-  --text-primary-light: oklch(18% 0.016 255);
-  --text-primary-dark: oklch(95.5% 0.006 255);
-  --text-secondary-light: oklch(39% 0.018 255);
-  --text-secondary-dark: oklch(77% 0.012 255);
-  --text-muted-light: oklch(47% 0.016 255);
-  --text-muted-dark: oklch(69% 0.012 255);
+  --text-primary-light: #111827;
+  --text-primary-dark: #f8fafc;
+  --text-secondary-light: #334155;
+  --text-secondary-dark: #dbe5f1;
+  --text-muted-light: #52647a;
+  --text-muted-dark: #b3c1d4;
 
-  --border-hairline-light: oklch(86% 0.01 255);
-  --border-hairline-dark: oklch(31% 0.014 255);
-  --border-control-light: oklch(55% 0.018 255);
-  --border-control-dark: oklch(58% 0.016 255);
+  --border-hairline-light: #cbd5e1;
+  --border-hairline-dark: #3c4c66;
+  --border-control-light: #94a3b8;
+  --border-control-dark: #64748b;
 
-  --accent-light: oklch(45% 0.175 258);
-  --accent-dark: oklch(74% 0.14 252);
-  --accent-contrast-light: oklch(99% 0.003 255);
-  --accent-contrast-dark: oklch(16% 0.02 255);
-  --accent-soft-light: oklch(94% 0.032 255);
-  --accent-soft-dark: oklch(27% 0.05 255);
+  --accent-light: #1d4ed8;
+  --accent-dark: #60a5fa;
+  --accent-contrast-light: #ffffff;
+  --accent-contrast-dark: #07111f;
+  --accent-soft-light: #dbeafe;
+  --accent-soft-dark: #18375e;
 
-  --success-light: oklch(41% 0.14 152);
-  --success-dark: oklch(77% 0.14 152);
-  --success-soft-light: oklch(94.5% 0.035 152);
-  --success-soft-dark: oklch(26% 0.05 152);
+  --success-light: #15803d;
+  --success-dark: #4ade80;
+  --success-soft-light: #dcfce7;
+  --success-soft-dark: #123d2a;
 
-  --danger-light: oklch(46% 0.185 25);
-  --danger-dark: oklch(75% 0.155 22);
-  --danger-soft-light: oklch(94.5% 0.032 25);
-  --danger-soft-dark: oklch(26.5% 0.055 24);
+  --danger-light: #b91c1c;
+  --danger-dark: #f87171;
+  --danger-soft-light: #fee2e2;
+  --danger-soft-dark: #4a2028;
 
-  --warning-light: oklch(47% 0.135 72);
-  --warning-dark: oklch(81% 0.14 78);
-  --warning-soft-light: oklch(95% 0.04 80);
-  --warning-soft-dark: oklch(27% 0.05 76);
+  --warning-light: #a16207;
+  --warning-dark: #facc15;
+  --warning-soft-light: #fef3c7;
+  --warning-soft-dark: #49360e;
 
-  --scroll-thumb-light: oklch(52% 0.015 255);
-  --scroll-thumb-dark: oklch(60% 0.015 255);
-  --scroll-track-light: oklch(93% 0.006 255);
-  --scroll-track-dark: oklch(19% 0.01 255);
+  --scroll-thumb-light: #64748b;
+  --scroll-thumb-dark: #7f8da3;
+  --scroll-track-light: #e2e8f0;
+  --scroll-track-dark: #111827;
 
   --bg-canvas: var(--bg-canvas-light);
   --bg-surface: var(--bg-surface-light);
