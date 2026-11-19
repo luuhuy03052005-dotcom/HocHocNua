@@ -65,7 +65,7 @@
     const q = deck[index], rec = SWTApp.storage.getRecord(q.id), correctSet = new Set(q.correctKeys || []);
     setText('practice-counter', index + 1 + ' / ' + deck.length);
     setText('practice-slide-badge', q.slideNumber ? 'Slide ' + q.slideNumber : '#' + q.id);
-    setText('practice-topic-badge', q.topic || 'SWT301');
+    setText('practice-topic-badge', q.topic || SWTApp.app?.getCourse().code || 'Môn học');
     setText('practice-stem', q.question);
     setHidden('practice-multi-badge', !q.isMulti);
     if (q.isMulti) setText('practice-multi-badge', 'Chọn ' + q.correctKeys.length + ' đáp án');

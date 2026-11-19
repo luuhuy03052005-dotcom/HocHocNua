@@ -2,9 +2,19 @@
   'use strict';
 
   const SWTApp = (window.SWTApp = window.SWTApp || {});
-  const TAB_IDS = ['tab-practice', 'tab-flashcard', 'tab-exam', 'tab-keyword', 'tab-bank'];
+  const TAB_IDS = ['tab-practice', 'tab-flashcard', 'tab-exam', 'tab-keyword', 'tab-study', 'tab-bank'];
+  const COURSE_CONFIG = {
+    SWT301: { code: 'SWT301', subtitle: 'SWT301 — Software Testing — Semester 5', dataKey: 'SWT301_DATA' },
+    SSG105: { code: 'SSG105', subtitle: 'SSG105 — Communication & Teamwork Skills — Semester 4', dataKey: 'SSG105_DATA' }
+  };
   let questions = [];
   let activeTabId = 'tab-practice';
+  let currentCourse = COURSE_CONFIG.SWT301;
+
+  function requestedCourse() {
+    const value = new URLSearchParams(window.location.search).get('course');
+    return COURSE_CONFIG[String(value || '').toUpperCase()] || COURSE_CONFIG.SWT301;
+  }
 
   function prepareQuestions(rawData) {
     const { normalizeText } = SWTApp.utils;
@@ -25,7 +35,7 @@
         correctKeys,
         isMulti: Boolean(q.isMulti || correctKeys.length > 1),
         explanation: String(q.explanation || ''),
-        topic: String(q.topic || 'SWT301'),
+        topic: String(q.topic || currentCourse.code),
         images: Array.isArray(q.images) ? q.images : [],
         _searchNorm: searchNorm
       };
@@ -228,12 +238,33 @@
     });
   }
 
+  function initCoursePicker(raw) {
+    const { byId, setText } = SWTApp.utils;
+    const picker = byId('course-select');
+    if (picker) {
+      picker.value = currentCourse.code;
+      picker.addEventListener('change', () => {
+        const url = new URL(window.location.href);
+        if (picker.value === 'SWT301') url.searchParams.delete('course');
+        else url.searchParams.set('course', picker.value);
+        window.location.assign(url.toString());
+      });
+    }
+    const subtitle = raw?.meta?.title || currentCourse.subtitle;
+    setText('app-subtitle', subtitle);
+    setText('exam-setup-title', 'Cấu hình đề thi thử — ' + currentCourse.code);
+    document.title = 'Học tập 123 — ' + currentCourse.code;
+    document.querySelector('.tabs-bar')?.setAttribute('aria-label', 'Chế độ học ' + currentCourse.code);
+  }
+
   function boot() {
-    const raw = window.SWT301_DATA || { meta: {}, questions: [] };
+    currentCourse = requestedCourse();
+    const raw = window[currentCourse.dataKey] || { meta: {}, questions: [] };
     questions = prepareQuestions(raw);
 
     applyTheme(SWTApp.storage.getPrefs().theme);
     SWTApp.utils.byId('theme-toggle')?.addEventListener('click', toggleTheme);
+    initCoursePicker(raw);
     populateTopicSelects(raw);
     initTabs();
     initDialogs();
@@ -247,15 +278,16 @@
     SWTApp.practice?.init(questions);
     SWTApp.exam?.init(questions);
     SWTApp.keyword?.init(questions);
+    SWTApp.study?.init(currentCourse.code);
     updateHeaderStats();
 
     if (questions.length === 0) {
-      SWTApp.utils.setText('practice-stem', 'Chưa tìm thấy dữ liệu câu hỏi SWT301 (data/questions.js).');
-      SWTApp.utils.setText('fc-stem', 'Chưa tìm thấy dữ liệu câu hỏi SWT301 (data/questions.js).');
+      SWTApp.utils.setText('practice-stem', 'Chưa tìm thấy dữ liệu câu hỏi ' + currentCourse.code + '.');
+      SWTApp.utils.setText('fc-stem', 'Chưa tìm thấy dữ liệu câu hỏi ' + currentCourse.code + '.');
     }
   }
 
-  SWTApp.app = { selectTab, getQuestions: () => questions.slice() };
+  SWTApp.app = { selectTab, getQuestions: () => questions.slice(), getCourse: () => ({ ...currentCourse }) };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();

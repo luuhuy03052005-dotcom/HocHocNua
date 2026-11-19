@@ -243,7 +243,7 @@
     const meta = el('div', 'question-meta');
     meta.append(
       el('span', 'counter-pill', 'Câu ' + q.id),
-      el('span', 'badge', q.slideNumber ? 'Slide ' + q.slideNumber : 'SWT301'),
+      el('span', 'badge', q.slideNumber ? 'Slide ' + q.slideNumber : (SWTApp.app?.getCourse().code || 'Môn học')),
       el('span', 'badge', q.topic)
     );
     if (q.isMulti) meta.appendChild(el('span', 'badge badge-accent', 'Nhiều đáp án'));

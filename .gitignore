@@ -1,8 +1,11 @@
 # Local source material and extraction tools are not needed by the static site.
 SEMESTER_5_SWT301*.html
+Sever_1_SEMESTER_4_SSG105*.html
+screencapture-*.pdf
 scripts/
 data/ocr_cache.json
 data/extraction_report.json
+data/ssg105/
 
 # Local/browser artifacts
 .DS_Store

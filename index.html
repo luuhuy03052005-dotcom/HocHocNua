@@ -6,28 +6,39 @@
   <meta name="color-scheme" content="light dark">
   <script>
     try {
-      const saved = localStorage.getItem("color-scheme") || (JSON.parse(localStorage.getItem("swt301_progress_v1") || "{}").prefs || {}).theme;
+      const saved = localStorage.getItem("color-scheme");
       if (saved === "light" || saved === "dark") {
         document.querySelector('meta[name="color-scheme"]').content = saved;
         document.documentElement.dataset.theme = saved;
       }
     } catch (_) {}
   </script>
-  <title>SWT301 — Ôn Tập &amp; Thi Thử EOS</title>
-  <link rel="stylesheet" href="css/tokens.css?v=keyword-show-all-5">
-  <link rel="stylesheet" href="css/app.css?v=keyword-show-all-5">
-  <script defer src="data/questions.js"></script>
-  <script defer src="js/storage.js"></script>
-  <script defer src="js/practice.js"></script>
-  <script defer src="js/exam.js"></script>
-  <script defer src="js/keyword.js?v=keyword-show-all-5"></script>
-  <script defer src="js/app.js"></script>
+  <title>Học tập 123 — Ôn tập và thi thử</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-1">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-1">
+  <script defer src="data/questions.js?v=multi-course-1"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-1"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-1"></script>
+  <script defer src="js/storage.js?v=multi-course-1"></script>
+  <script defer src="js/practice.js?v=multi-course-1"></script>
+  <script defer src="js/exam.js?v=multi-course-1"></script>
+  <script defer src="js/keyword.js?v=multi-course-1"></script>
+  <script defer src="js/study.js?v=multi-course-1"></script>
+  <script defer src="js/app.js?v=multi-course-1"></script>
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
-      <h1 class="app-title">SWT301</h1>
-      <span class="app-subtitle">Software Testing — Semester 5</span>
+      <h1 class="app-title">Học tập 123</h1>
+      <span id="app-subtitle" class="app-subtitle">SWT301 — Software Testing</span>
+      <label class="course-picker" for="course-select">
+        <span class="sr-only">Chọn môn học</span>
+        <select id="course-select" aria-label="Chọn môn học">
+          <option value="SWT301">SWT301 — Software Testing</option>
+          <option value="SSG105">SSG105 — Communication &amp; Teamwork Skills</option>
+        </select>
+      </label>
     </div>
     <div class="progress-pill" aria-label="Tiến độ ôn tập">
       <span class="stat-item">Đã thuộc <strong id="stat-mastered">0/0</strong></span>
@@ -52,11 +63,12 @@
     </div>
   </header>
 
-  <div class="tabs-bar" role="tablist" focusgroup="tablist nomemory" aria-label="Chế độ học SWT301">
+  <div class="tabs-bar" role="tablist" focusgroup="tablist nomemory" aria-label="Chế độ học">
     <button type="button" role="tab" id="tab-practice" data-panel="panel-practice" aria-selected="true" focusgroupstart>Luyện nhanh</button>
     <button type="button" role="tab" id="tab-flashcard" data-panel="panel-flashcard" aria-selected="false">Flashcard</button>
-    <button type="button" role="tab" id="tab-exam" data-panel="panel-exam" aria-selected="false">Thi thử EOS</button>
+    <button type="button" role="tab" id="tab-exam" data-panel="panel-exam" aria-selected="false">Thi thử</button>
     <button type="button" role="tab" id="tab-keyword" data-panel="panel-keyword" aria-selected="false">Keyword</button>
+    <button type="button" role="tab" id="tab-study" data-panel="panel-study" aria-selected="false">Ôn tập kiến thức</button>
     <button type="button" role="tab" id="tab-bank" data-panel="panel-bank" aria-selected="false">Ngân hàng câu hỏi</button>
   </div>
 
@@ -87,14 +99,14 @@
           <div class="question-meta">
             <span id="practice-counter" class="counter-pill">0 / 0</span>
             <span id="practice-slide-badge" class="badge">Slide -</span>
-            <span id="practice-topic-badge" class="badge">SWT301</span>
+            <span id="practice-topic-badge" class="badge">Môn học</span>
             <span id="practice-multi-badge" class="badge badge-accent" hidden>Chọn nhiều đáp án</span>
             <button type="button" id="practice-star-btn" class="btn btn-ghost btn-sm icon-toggle" aria-pressed="false" title="Đánh dấu câu hỏi (S)">
               <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
               <span>Đánh dấu</span>
             </button>
           </div>
-          <div id="practice-stem" class="question-stem">Đang tải bộ câu hỏi SWT301...</div>
+          <div id="practice-stem" class="question-stem">Đang tải bộ câu hỏi...</div>
           <div id="practice-images" class="question-images" hidden></div>
           <div id="practice-options" class="options-list" role="group" aria-label="Các lựa chọn trả lời"></div>
           <div><button type="button" id="practice-submit-multi-btn" class="btn btn-primary" hidden>Chốt đáp án (Enter)</button></div>
@@ -138,7 +150,7 @@
     <section id="panel-exam" class="tab-panel" role="tabpanel" aria-labelledby="tab-exam" hidden="until-found">
       <div class="panel-inner">
         <div id="exam-setup" class="card">
-          <h2>Cấu hình đề thi thử EOS — SWT301</h2>
+          <h2 id="exam-setup-title">Cấu hình đề thi thử</h2>
           <div class="setup-grid">
             <div class="field-group">Phạm vi câu hỏi
               <button type="button" id="exam-range-btn" class="range-picker-btn" command="show-modal" commandfor="exam-range-dialog" aria-haspopup="dialog">
@@ -230,7 +242,41 @@
         <div id="keyword-list" class="keyword-list" aria-live="polite"></div>
         <div id="keyword-load-more-wrap" class="load-more-wrap" hidden>
           <button type="button" id="keyword-load-more-btn" class="btn btn-secondary">Hiển thị thêm câu hỏi</button>
-          <button type="button" id="keyword-show-all-btn" class="btn btn-primary">Mở tất cả 367 câu</button>
+          <button type="button" id="keyword-show-all-btn" class="btn btn-primary">Mở tất cả câu hỏi</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-study" class="tab-panel" role="tabpanel" aria-labelledby="tab-study" hidden="until-found">
+      <div class="panel-inner study-panel-inner">
+        <div id="study-unavailable" class="card study-unavailable" hidden>
+          <span class="badge">Ôn tập kiến thức</span>
+          <h2>Tài liệu Lesson hiện có cho môn SSG105</h2>
+          <p>Chọn <strong>SSG105</strong> trong ô chọn môn ở đầu trang để xem 23 Lesson đã được tổng hợp.</p>
+        </div>
+
+        <div id="study-content" hidden>
+          <div class="study-intro card">
+            <div>
+              <span class="badge badge-accent">Ôn theo từng Lesson</span>
+              <h2>Kiến thức trọng tâm SSG105</h2>
+              <p>Mỗi Lesson gồm tóm tắt, các ý cần học và một dòng “Cần nhớ” để ôn nhanh.</p>
+              <small id="study-source-label">Tài liệu môn học</small>
+            </div>
+            <div class="study-total-box"><strong id="study-total-count">0</strong><span>Lesson</span></div>
+          </div>
+
+          <div class="toolbar study-toolbar">
+            <label for="study-search-input" class="sr-only">Tìm trong nội dung ôn tập</label>
+            <input type="search" id="study-search-input" placeholder="Tìm Lesson hoặc thuật ngữ...">
+            <button type="button" id="study-open-all-btn" class="btn btn-secondary">Mở tất cả</button>
+            <button type="button" id="study-close-all-btn" class="btn btn-ghost">Thu gọn</button>
+            <div class="toolbar-spacer"><span id="study-result-count" class="counter-pill">0 Lesson</span></div>
+          </div>
+
+          <nav id="study-lesson-nav" class="study-lesson-nav" aria-label="Đi nhanh đến Lesson"></nav>
+          <div id="study-lesson-list" class="study-lesson-list"></div>
+          <div id="study-empty" class="card study-empty" hidden>Không tìm thấy Lesson phù hợp với từ khóa.</div>
         </div>
       </div>
     </section>
@@ -256,7 +302,7 @@
           <div class="toolbar-spacer"><span id="bank-result-count" class="counter-pill">0 câu</span></div>
         </div>
 
-        <div tabindex="0" role="region" class="table-wrapper" aria-label="Danh sách câu hỏi SWT301">
+        <div tabindex="0" role="region" class="table-wrapper" aria-label="Danh sách câu hỏi">
           <table class="data-table bank-table">
             <thead>
               <tr><th scope="col">Câu</th><th scope="col">Chủ đề</th><th scope="col">Nội dung &amp; Đáp án</th><th scope="col">Trạng thái</th><th scope="col">Thao tác</th></tr>

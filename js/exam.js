@@ -242,7 +242,7 @@
       SWTApp.storage.recordAnswer(q.id, ok);
       if (ok) correctCount += 1; else lastWrongIds.push(q.id);
 
-      const tKey = q.topic || 'SWT301';
+      const tKey = q.topic || SWTApp.app?.getCourse().code || 'Môn học';
       const st = topicMap.get(tKey) || { right: 0, total: 0 };
       st.total += 1;
       if (ok) st.right += 1;
@@ -271,7 +271,7 @@
       summaryEl.replaceChildren();
       const total = examQs.length;
       const pct = Math.round((correctCount / total) * 100);
-      summaryEl.appendChild(el('h2', '', 'Kết quả bài thi thử EOS'));
+      summaryEl.appendChild(el('h2', '', 'Kết quả bài thi thử'));
       const grid = el('div', 'score-grid');
       [['Điểm hệ 10', ((correctCount / total) * 10).toFixed(2) + ' / 10'], ['Số câu đúng', correctCount + ' / ' + total], ['Tỷ lệ đúng', pct + '%'], ['Thời gian làm', formatClock(elapsed)]].forEach(([lbl, val]) => {
         const box = el('div', 'score-stat');
@@ -353,7 +353,7 @@
       btn.type = 'button';
       btn.dataset.practiceId = String(q.id);
       tdAction.appendChild(btn);
-      tr.append(th, el('td', '', q.topic || 'SWT301'), tdContent, tdStatus, tdAction);
+      tr.append(th, el('td', '', q.topic || SWTApp.app?.getCourse().code || 'Môn học'), tdContent, tdStatus, tdAction);
       frag.appendChild(tr);
     });
     listEl.appendChild(frag);
