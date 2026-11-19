@@ -4,7 +4,10 @@
   const SWTApp = (window.SWTApp = window.SWTApp || {});
   let lessons = [];
   let extra = null;
+  let recallData = null;
   let query = '';
+  let recallQuery = '';
+  let recallLesson = 'all';
 
   function normalize(value) {
     return SWTApp.utils.normalizeText(value).replace(/[^a-z0-9]+/g, ' ').trim();
@@ -13,6 +16,7 @@
   function lessonMatches(lesson) {
     if (!query) return true;
     const supplement = extra?.lessonSupplements?.[String(lesson.number)] || {};
+    const recallGroup = recallData?.groups?.find((group) => group.lesson === lesson.number);
     return normalize([
       lesson.number,
       lesson.title,
@@ -21,8 +25,73 @@
       lesson.remember,
       ...(supplement.terms || []).flat(),
       ...(supplement.tips || []),
-      ...(supplement.traps || [])
+      ...(supplement.traps || []),
+      ...(recallGroup?.rules || []).flatMap((rule) => [
+        ...(rule.see || []), rule.ask, rule.remember, rule.choose, rule.avoid
+      ])
     ].join(' ')).includes(query);
+  }
+
+  function createRecallRow(label, text, kind) {
+    const { el } = SWTApp.utils;
+    const row = el('div', 'study-recall-row study-recall-row-' + kind);
+    row.append(el('strong', '', label), el('span', '', text || ''));
+    return row;
+  }
+
+  function recallRuleMatches(group, rule) {
+    if (recallLesson !== 'all' && String(group.lesson) !== recallLesson) return false;
+    if (!recallQuery) return true;
+    return normalize([
+      group.lesson, group.title, ...(rule.see || []), rule.ask,
+      rule.remember, rule.choose, rule.avoid
+    ].join(' ')).includes(recallQuery);
+  }
+
+  function renderRecall() {
+    const { byId, el, setText } = SWTApp.utils;
+    const list = byId('study-recall-list');
+    if (!list || !recallData) return;
+    list.replaceChildren();
+    let visibleRules = 0;
+
+    (recallData.groups || []).forEach((group) => {
+      const rules = (group.rules || []).filter((rule) => recallRuleMatches(group, rule));
+      if (!rules.length) return;
+      visibleRules += rules.length;
+
+      const details = el('details', 'study-recall-group');
+      if (recallQuery || recallLesson !== 'all' || list.childElementCount === 0) details.open = true;
+      const summary = el('summary', 'study-recall-summary');
+      summary.append(
+        el('span', 'study-lesson-number', 'Lesson ' + group.lesson),
+        el('strong', '', group.title),
+        el('span', 'badge', rules.length + ' quy tắc')
+      );
+
+      const grid = el('div', 'study-recall-grid');
+      rules.forEach((rule) => {
+        const card = el('article', 'study-recall-card');
+        const trigger = el('div', 'study-recall-trigger');
+        trigger.appendChild(el('strong', '', 'Khi thấy'));
+        const chips = el('div', 'study-recall-chips');
+        (rule.see || []).forEach((keyword) => chips.appendChild(el('mark', '', keyword)));
+        trigger.appendChild(chips);
+        card.append(
+          trigger,
+          createRecallRow('Câu đang hỏi', rule.ask, 'ask'),
+          createRecallRow('Nhớ ngay', rule.remember, 'remember'),
+          createRecallRow('Chọn đáp án có', rule.choose, 'choose'),
+          createRecallRow('Đừng nhầm', rule.avoid, 'avoid')
+        );
+        grid.appendChild(card);
+      });
+      details.append(summary, grid);
+      list.appendChild(details);
+    });
+
+    setText('study-recall-count', visibleRules + ' quy tắc');
+    byId('study-recall-empty').hidden = visibleRules !== 0;
   }
 
   function createTermList(items, className) {
@@ -108,6 +177,8 @@
       (extra.numberFacts || []).forEach((fact) => {
         const item = el('div', 'study-number-fact');
         item.append(el('span', '', fact.label), el('strong', '', fact.value));
+        const detail = recallData?.numberDetails?.[fact.label];
+        if (detail) item.appendChild(el('small', '', detail));
         facts.appendChild(item);
       });
     }
@@ -139,6 +210,17 @@
         sources.appendChild(link);
       });
     }
+
+    const recallSelect = byId('study-recall-lesson');
+    if (recallSelect && recallSelect.options.length <= 1) {
+      (recallData?.groups || []).forEach((group) => {
+        const option = document.createElement('option');
+        option.value = String(group.lesson);
+        option.textContent = 'Lesson ' + group.lesson + ' — ' + group.title;
+        recallSelect.appendChild(option);
+      });
+    }
+    renderRecall();
   }
 
   function render() {
@@ -170,6 +252,7 @@
     const { byId, setText } = SWTApp.utils;
     const data = courseCode === 'SSG105' ? window.SSG105_STUDY : null;
     extra = courseCode === 'SSG105' ? window.SSG105_STUDY_EXTRA : null;
+    recallData = courseCode === 'SSG105' ? window.SSG105_RECALL : null;
     lessons = data && Array.isArray(data.lessons) ? data.lessons : [];
     const available = lessons.length > 0;
     byId('study-content').hidden = !available;
@@ -184,6 +267,14 @@
     byId('study-search-input')?.addEventListener('input', (event) => {
       query = normalize(event.target.value);
       render();
+    });
+    byId('study-recall-search')?.addEventListener('input', (event) => {
+      recallQuery = normalize(event.target.value);
+      renderRecall();
+    });
+    byId('study-recall-lesson')?.addEventListener('change', (event) => {
+      recallLesson = event.target.value;
+      renderRecall();
     });
     byId('study-open-all-btn')?.addEventListener('click', () => setAll(true));
     byId('study-close-all-btn')?.addEventListener('click', () => setAll(false));

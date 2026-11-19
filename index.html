@@ -15,18 +15,19 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-3">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-3">
-  <script defer src="data/questions.js?v=multi-course-3"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-3"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-3"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-3"></script>
-  <script defer src="js/storage.js?v=multi-course-3"></script>
-  <script defer src="js/practice.js?v=multi-course-3"></script>
-  <script defer src="js/exam.js?v=multi-course-3"></script>
-  <script defer src="js/keyword.js?v=multi-course-3"></script>
-  <script defer src="js/study.js?v=multi-course-3"></script>
-  <script defer src="js/app.js?v=multi-course-3"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-4">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-4">
+  <script defer src="data/questions.js?v=multi-course-4"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-4"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-4"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-4"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-4"></script>
+  <script defer src="js/storage.js?v=multi-course-4"></script>
+  <script defer src="js/practice.js?v=multi-course-4"></script>
+  <script defer src="js/exam.js?v=multi-course-4"></script>
+  <script defer src="js/keyword.js?v=multi-course-4"></script>
+  <script defer src="js/study.js?v=multi-course-4"></script>
+  <script defer src="js/app.js?v=multi-course-4"></script>
 </head>
 <body>
   <header class="topbar">
@@ -283,6 +284,23 @@
               <p>Đọc nhanh nhưng vẫn dựa trên định nghĩa và dấu hiệu trong câu hỏi.</p>
             </div>
             <div id="study-exam-tip-list" class="study-exam-tip-list"></div>
+          </section>
+
+          <section class="study-recall" aria-labelledby="study-recall-title">
+            <div class="study-section-heading card">
+              <span class="badge badge-warning">Nhìn là nhận ra</span>
+              <h2 id="study-recall-title">Gặp từ nào → phải nhớ gì → chọn gì</h2>
+              <p>Không chỉ học định nghĩa. Tìm dấu hiệu trong đề, gọi đúng khái niệm rồi đối chiếu dấu hiệu của đáp án.</p>
+              <div class="study-recall-toolbar">
+                <label for="study-recall-search" class="sr-only">Tìm dấu hiệu hoặc thuật ngữ</label>
+                <input type="search" id="study-recall-search" placeholder="Ví dụ: official position, groupthink, findings...">
+                <label for="study-recall-lesson" class="sr-only">Lọc theo Lesson</label>
+                <select id="study-recall-lesson"><option value="all">Tất cả Lesson</option></select>
+                <span id="study-recall-count" class="counter-pill">0 quy tắc</span>
+              </div>
+            </div>
+            <div id="study-recall-list" class="study-recall-list"></div>
+            <div id="study-recall-empty" class="card study-empty" hidden>Không tìm thấy dấu hiệu phù hợp.</div>
           </section>
 
           <section class="study-guide card" aria-labelledby="study-number-title">
