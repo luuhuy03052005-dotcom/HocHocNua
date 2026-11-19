@@ -15,17 +15,18 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-2">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-2">
-  <script defer src="data/questions.js?v=multi-course-2"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-2"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-2"></script>
-  <script defer src="js/storage.js?v=multi-course-2"></script>
-  <script defer src="js/practice.js?v=multi-course-2"></script>
-  <script defer src="js/exam.js?v=multi-course-2"></script>
-  <script defer src="js/keyword.js?v=multi-course-2"></script>
-  <script defer src="js/study.js?v=multi-course-2"></script>
-  <script defer src="js/app.js?v=multi-course-2"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-3">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-3">
+  <script defer src="data/questions.js?v=multi-course-3"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-3"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-3"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-3"></script>
+  <script defer src="js/storage.js?v=multi-course-3"></script>
+  <script defer src="js/practice.js?v=multi-course-3"></script>
+  <script defer src="js/exam.js?v=multi-course-3"></script>
+  <script defer src="js/keyword.js?v=multi-course-3"></script>
+  <script defer src="js/study.js?v=multi-course-3"></script>
+  <script defer src="js/app.js?v=multi-course-3"></script>
 </head>
 <body>
   <header class="topbar">
@@ -260,11 +261,46 @@
             <div>
               <span class="badge badge-accent">Ôn theo từng Lesson</span>
               <h2>Kiến thức trọng tâm SSG105</h2>
-              <p>Mỗi Lesson gồm tóm tắt, các ý cần học và một dòng “Cần nhớ” để ôn nhanh.</p>
+              <p>Kiến thức nền, thuật ngữ Anh–Việt, mẹo chọn đáp án và bẫy thường gặp được đối chiếu với toàn bộ 474 câu.</p>
               <small id="study-source-label">Tài liệu môn học</small>
             </div>
             <div class="study-total-box"><strong id="study-total-count">0</strong><span>Lesson</span></div>
           </div>
+
+          <section class="study-guide card" aria-labelledby="study-guide-title">
+            <div class="study-section-heading">
+              <span class="badge badge-warning">Học đúng thứ tự</span>
+              <h2 id="study-guide-title">Lộ trình làm chủ bộ 474 câu</h2>
+              <p>Không học thuộc đáp án rời rạc. Hãy đi từ nền tảng → thuật ngữ → luyện nhận diện → thi thử.</p>
+            </div>
+            <ol id="study-path-list" class="study-path-list"></ol>
+          </section>
+
+          <section class="study-guide card" aria-labelledby="study-exam-tips-title">
+            <div class="study-section-heading">
+              <span class="badge badge-accent">Mẹo làm đề</span>
+              <h2 id="study-exam-tips-title">Cách xử lý các dạng câu thường gặp</h2>
+              <p>Đọc nhanh nhưng vẫn dựa trên định nghĩa và dấu hiệu trong câu hỏi.</p>
+            </div>
+            <div id="study-exam-tip-list" class="study-exam-tip-list"></div>
+          </section>
+
+          <section class="study-guide card" aria-labelledby="study-number-title">
+            <div class="study-section-heading">
+              <span class="badge badge-success">Phải nhớ chính xác</span>
+              <h2 id="study-number-title">Số liệu và danh sách dễ ra đề</h2>
+            </div>
+            <div id="study-number-facts" class="study-number-facts"></div>
+          </section>
+
+          <section class="study-foundation" aria-labelledby="study-foundation-title">
+            <div class="study-section-heading card">
+              <span class="badge badge-accent">Bổ sung phần còn thiếu</span>
+              <h2 id="study-foundation-title">5 chuyên đề nền tảng cho bộ câu hỏi</h2>
+              <p>Các chủ đề xuất hiện nhiều trong đề nhưng không nằm trọn trong tên của 23 Lesson.</p>
+            </div>
+            <div id="study-foundation-list" class="study-foundation-list"></div>
+          </section>
 
           <div class="toolbar study-toolbar">
             <label for="study-search-input" class="sr-only">Tìm trong nội dung ôn tập</label>
@@ -277,6 +313,15 @@
           <nav id="study-lesson-nav" class="study-lesson-nav" aria-label="Đi nhanh đến Lesson"></nav>
           <div id="study-lesson-list" class="study-lesson-list"></div>
           <div id="study-empty" class="card study-empty" hidden>Không tìm thấy Lesson phù hợp với từ khóa.</div>
+
+          <section class="study-sources card" aria-labelledby="study-sources-title">
+            <div class="study-section-heading">
+              <span class="badge">Đọc thêm</span>
+              <h2 id="study-sources-title">Nguồn đối chiếu kiến thức</h2>
+              <p>Tài liệu môn học là nguồn chính; các liên kết dưới đây được dùng để làm rõ những khái niệm nền tảng.</p>
+            </div>
+            <div id="study-source-list" class="study-source-list"></div>
+          </section>
         </div>
       </div>
     </section>
