@@ -320,8 +320,10 @@
     const renderedCount = Math.min(visibleKeywordCount, matched.length);
     const loadMoreWrap = byId('keyword-load-more-wrap');
     const loadMoreBtn = byId('keyword-load-more-btn');
+    const showAllBtn = byId('keyword-show-all-btn');
     if (loadMoreWrap) loadMoreWrap.hidden = renderedCount >= matched.length;
     if (loadMoreBtn) loadMoreBtn.textContent = 'Hiển thị thêm ' + Math.min(keywordBatchSize(), matched.length - renderedCount) + ' câu · Đang xem ' + renderedCount + '/' + matched.length;
+    if (showAllBtn) showAllBtn.textContent = 'Mở tất cả ' + matched.length + ' câu';
   }
 
   SWTApp.keyword = {
@@ -333,6 +335,10 @@
       SWTApp.utils.byId('keyword-topic-select')?.addEventListener('change', () => renderKeywordPage(true));
       SWTApp.utils.byId('keyword-load-more-btn')?.addEventListener('click', () => {
         visibleKeywordCount += keywordBatchSize();
+        renderKeywordPage(false);
+      });
+      SWTApp.utils.byId('keyword-show-all-btn')?.addEventListener('click', () => {
+        visibleKeywordCount = allQuestions.length;
         renderKeywordPage(false);
       });
       renderKeywordPage(true);
