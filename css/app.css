@@ -1,15 +1,18 @@
 *, *::before, *::after { box-sizing: border-box; }
 [hidden]:not([hidden="until-found"]) { display: none !important; }
-html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html {
+  inline-size: 100%; max-inline-size: 100%; overflow-x: hidden;
+  -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
+}
 
 body {
-  margin: 0;
+  inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; margin: 0;
   font-family: var(--font-sans);
   line-height: 1.5;
   color: var(--text-primary);
   background: var(--bg-canvas);
   text-align: start;
-  overflow-wrap: break-word;
+  overflow-x: hidden; overflow-wrap: break-word;
 }
 h1, h2, h3, th { text-wrap: balance; margin: 0; }
 p, .question-stem, .feedback-box { text-wrap: pretty; margin: 0; }
@@ -25,12 +28,13 @@ svg.icon-svg { inline-size: 1rem; block-size: 1rem; flex: none; fill: none; stro
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
   gap: var(--space-2) var(--space-4); min-block-size: 2.75rem; padding: var(--space-2) var(--space-4);
   background: var(--bg-surface); border-block-end: 1px solid var(--border-hairline);
+  inline-size: 100%; min-inline-size: 0; max-inline-size: 100%;
 }
 .brand { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); min-inline-size: 0; }
 .app-title { font-size: var(--text-lg); font-weight: 700; letter-spacing: -0.01em; }
 .app-subtitle { font-size: var(--text-xs); color: var(--text-muted); }
 .course-picker { display: inline-flex; min-inline-size: 0; }
-.course-picker select { min-block-size: 2rem; max-inline-size: min(22rem, 42vw); font-weight: 650; }
+.course-picker select { min-inline-size: 0; min-block-size: 2rem; max-inline-size: min(22rem, 42vw); font-weight: 650; }
 
 .progress-pill {
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3);
@@ -54,6 +58,7 @@ svg.icon-svg { inline-size: 1rem; block-size: 1rem; flex: none; fill: none; stro
 .tabs-bar {
   display: flex; overflow-x: auto; scroll-snap-type: inline proximity; scrollbar-width: none;
   padding-inline: var(--space-4); background: var(--bg-surface); border-block-end: 1px solid var(--border-hairline);
+  inline-size: 100%; min-inline-size: 0; max-inline-size: 100%;
 }
 [role="tab"] {
   flex: none; scroll-snap-align: start; position: relative;
@@ -68,8 +73,8 @@ svg.icon-svg { inline-size: 1rem; block-size: 1rem; flex: none; fill: none; stro
 }
 [role="tab"][aria-selected="true"]::after { content: ""; position: absolute; inset: auto 0 0; border-block-end: 3px solid var(--color-accent); }
 
-.workspace-main { display: block; }
-.panel-inner { max-inline-size: 68rem; margin-inline: auto; padding: var(--space-4); display: grid; gap: var(--space-4); }
+.workspace-main, .tab-panel { display: block; inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; }
+.panel-inner { inline-size: 100%; min-inline-size: 0; max-inline-size: 68rem; margin-inline: auto; padding: var(--space-4); display: grid; gap: var(--space-4); }
 
 .toolbar {
   display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3);
@@ -116,6 +121,7 @@ input[type="checkbox"][switch]:focus-visible { outline: 3px solid var(--color-ac
 }
 
 .card {
+  min-inline-size: 0; max-inline-size: 100%;
   background: var(--bg-surface); border: 2px solid var(--border-hairline); border-radius: var(--radius-lg);
   padding: var(--space-5); display: grid; gap: var(--space-4); box-shadow: 0 3px 10px rgb(15 23 42 / 0.08);
 }
@@ -435,27 +441,30 @@ kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 
 
 @media (max-width: 39.999em) {
   html { scroll-padding-block-start: 0; }
-  body { padding-block-end: env(safe-area-inset-bottom, 0); overflow-x: hidden; }
+  body { inline-size: 100%; padding-block-end: env(safe-area-inset-bottom, 0); overflow-x: hidden; }
 
   .topbar {
     position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto;
+    inline-size: 100%; min-inline-size: 0; max-inline-size: 100%;
     gap: var(--space-2); min-block-size: 0; padding: var(--space-2) var(--space-3);
   }
-  .brand { display: grid; grid-template-columns: auto minmax(0, 1fr); min-inline-size: 0; }
+  .brand { display: grid; grid-template-columns: auto minmax(4rem, 1fr); min-inline-size: 0; max-inline-size: 100%; overflow: hidden; }
+  .app-title { white-space: nowrap; }
   .app-subtitle { display: none; }
-  .course-picker { min-inline-size: 0; }
-  .course-picker select { inline-size: 100%; max-inline-size: none; min-block-size: 2.75rem; }
+  .course-picker { inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; overflow: hidden; }
+  .course-picker select { inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; min-block-size: 2.5rem; }
   .progress-pill {
     grid-column: 1 / -1; grid-row: 2; inline-size: 100%; justify-content: space-between;
     gap: var(--space-1) var(--space-2); padding: var(--space-1) var(--space-2); border-radius: var(--radius-md);
   }
   .progress-track { flex: 1 1 4rem; min-inline-size: 3rem; }
   .topbar-actions { grid-column: 2; grid-row: 1; gap: 0; }
-  .topbar-actions .btn { min-inline-size: 2.75rem; inline-size: 2.75rem; min-block-size: 2.75rem; padding: 0; }
+  .topbar-actions .btn { min-inline-size: 2.5rem; inline-size: 2.5rem; min-block-size: 2.5rem; padding: 0; }
   .topbar-actions .btn > span { display: none; }
 
   .tabs-bar {
     display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible;
+    inline-size: 100%; min-inline-size: 0; max-inline-size: 100%;
     gap: 1px; padding: var(--space-2); border-block-start: 1px solid var(--border-hairline);
   }
   [role="tab"] {
@@ -463,7 +472,7 @@ kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 
     padding: var(--space-2); text-align: center; white-space: normal; line-height: 1.2;
   }
 
-  .panel-inner { padding: var(--space-3); gap: var(--space-3); }
+  .panel-inner { inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; padding: var(--space-3); gap: var(--space-3); }
   .card { padding: var(--space-3); gap: var(--space-3); border-radius: var(--radius-md); }
   .toolbar { align-items: stretch; padding: var(--space-2); }
   .toolbar > :is(select, input[type="search"], input[type="text"], input[type="number"]) { inline-size: 100%; max-inline-size: none; }
