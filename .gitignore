@@ -6,7 +6,8 @@ scripts/
 data/ocr_cache.json
 data/extraction_report.json
 data/ssg105/
-
+data/prj301/
+PRJ301_Questions_Answers
 # Local/browser artifacts
 .DS_Store
 Thumbs.db

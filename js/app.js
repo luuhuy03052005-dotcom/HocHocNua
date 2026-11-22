@@ -5,7 +5,8 @@
   const TAB_IDS = ['tab-practice', 'tab-flashcard', 'tab-exam', 'tab-keyword', 'tab-study', 'tab-bank'];
   const COURSE_CONFIG = {
     SWT301: { code: 'SWT301', subtitle: 'SWT301 — Software Testing — Semester 5', dataKey: 'SWT301_DATA' },
-    SSG105: { code: 'SSG105', subtitle: 'SSG105 — Communication & Teamwork Skills — Semester 4', dataKey: 'SSG105_DATA' }
+    SSG105: { code: 'SSG105', subtitle: 'SSG105 — Communication & Teamwork Skills — Semester 4', dataKey: 'SSG105_DATA' },
+    PRJ301: { code: 'PRJ301', subtitle: 'PRJ301 — Java Web Application Development — Semester 4', dataKey: 'PRJ301_DATA' }
   };
   let questions = [];
   let activeTabId = 'tab-practice';

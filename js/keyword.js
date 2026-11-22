@@ -55,7 +55,21 @@
     'reliability', 'maintainability', 'portability', 'efficiency', 'functionality', 'testability',
     'decision directions', 'development phases', 'psychological conflict', 'mutual respect', 'clear objectives',
     'defect resolution', 'process flows', 'behind schedule', 'delivery date', 'quality standards',
-    'traceability', 'coverage', 'risk', 'quality', 'defect', 'failure', 'error', 'fault'
+    'traceability', 'coverage', 'risk', 'quality', 'defect', 'failure', 'error', 'fault',
+    'HttpServletRequest', 'HttpServletResponse', 'HttpSession', 'ServletContext', 'ServletConfig',
+    'RequestDispatcher', 'PreparedStatement', 'CallableStatement', 'DriverManager', 'ResultSet',
+    'ServletContextListener', 'HttpSessionListener', 'HttpSessionBindingEvent', 'SimpleTagSupport',
+    'BodyTagSupport', 'TagSupport', 'PageContext', 'deployment descriptor', 'web.xml', 'servlet-mapping',
+    'url-pattern', 'context-param', 'init-param', 'error-page', 'session-timeout', 'security-constraint',
+    'web-resource-collection', 'filter-mapping', 'encodeRedirectURL', 'encodeURL', 'sendRedirect',
+    'getRequestDispatcher', 'getParameterValues', 'getParameter', 'getInitParameter', 'getAttribute',
+    'setAttribute', 'removeAttribute', 'setMaxInactiveInterval', 'invalidate', 'addCookie', 'getCookies',
+    'setContentType', 'doStartTag', 'doEndTag', 'doAfterBody', 'doFilter', 'doGet', 'doPost',
+    '_jspService', 'jspInit', 'jspDestroy', 'isErrorPage', 'errorPage', 'contentType', 'jsp:useBean',
+    'jsp:setProperty', 'jsp:getProperty', 'jsp:include', 'jsp:forward', 'c:forEach', 'c:choose', 'c:when',
+    'c:otherwise', 'c:if', 'c:set', 'c:out', 'c:catch', 'c:url', 'fmt:formatDate', 'fmt:parseDate',
+    'fmt:formatNumber', 'fmt:setLocale', 'rtexprvalue', 'body-content', 'tag-class', 'Expression Language',
+    'JSTL', 'JavaBean', 'JavaBeans', 'Servlet', 'JDBC', 'MVC', 'Cookie', 'Filter', 'TLD'
   ].sort((a, b) => b.length - a.length);
 
   const SHORT_EXPLANATION_OVERRIDES = new Map([
@@ -181,8 +195,8 @@
   }
 
   function compactExplanation(question, qKeywords, correctAnswers) {
-    if (SHORT_EXPLANATION_OVERRIDES.has(question.id)) return SHORT_EXPLANATION_OVERRIDES.get(question.id);
     const raw = String(question.explanation || '').trim();
+    if (!raw && SHORT_EXPLANATION_OVERRIDES.has(question.id)) return SHORT_EXPLANATION_OVERRIDES.get(question.id);
     let explanation = '';
     const explanationMatch = raw.match(/Giải thích\s*:\s*([\s\S]+)/i);
     if (explanationMatch) explanation = firstShortSentence(explanationMatch[1], 190);

@@ -3,7 +3,8 @@
 
   const SWTApp = (window.SWTApp = window.SWTApp || {});
   const requestedCourse = new URLSearchParams(window.location.search).get('course');
-  const COURSE_KEY = String(requestedCourse || '').toUpperCase() === 'SSG105' ? 'ssg105' : 'swt301';
+  const rawCourse = String(requestedCourse || '').toUpperCase();
+  const COURSE_KEY = rawCourse === 'SSG105' ? 'ssg105' : rawCourse === 'PRJ301' ? 'prj301' : 'swt301';
   const STORAGE_KEY = COURSE_KEY + '_progress_v1';
 
   const DEFAULT_PREFS = {
