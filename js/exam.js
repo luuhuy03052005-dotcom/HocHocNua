@@ -13,6 +13,32 @@
   let lastWrongIds = [];
   let rangeStart = 1;
   let rangeEnd = 1;
+  let orderedPool = [];
+
+  function isRandomEnabled() {
+    return Boolean(SWTApp.utils.byId('exam-random-questions')?.checked);
+  }
+
+  function isInstantAnswerEnabled() {
+    return Boolean(SWTApp.utils.byId('exam-instant-answer')?.checked);
+  }
+
+  function syncExamToggles(randomVal, instantVal) {
+    const { byId } = SWTApp.utils;
+    ['exam-random-questions', 'exam-active-random'].forEach((id) => {
+      const node = byId(id);
+      if (node) node.checked = Boolean(randomVal);
+    });
+    ['exam-instant-answer', 'exam-active-instant'].forEach((id) => {
+      const node = byId(id);
+      if (node) node.checked = Boolean(instantVal);
+    });
+  }
+
+  function isQuestionGradedInActiveExam(q, sel) {
+    if (!isInstantAnswerEnabled() || !q || !(sel instanceof Set) || sel.size === 0) return false;
+    return q.isMulti ? sel.size >= Math.max(1, (q.correctKeys || []).length) : true;
+  }
 
   function stopTimer() {
     if (timerId) { window.clearInterval(timerId); timerId = null; }
@@ -158,7 +184,8 @@
       return;
     }
     setSetupNotice('');
-    examQs = pool;
+    orderedPool = pool.slice();
+    examQs = isRandomEnabled() ? SWTApp.utils.shuffle(orderedPool) : orderedPool.slice();
     currentIdx = 0;
     answers = new Map();
     flagged = new Set();
@@ -188,7 +215,7 @@
   }
 
   function renderExamActive() {
-    const { byId, el, setText, renderImages, createOptionBtn } = SWTApp.utils;
+    const { byId, el, setText, setRichText, renderImages, createOptionBtn } = SWTApp.utils;
     const q = examQs[currentIdx];
     const optsEl = byId('exam-options');
     const palEl = byId('exam-palette');
@@ -198,12 +225,37 @@
     answers.forEach((s) => { if (s.size > 0) answered += 1; });
     setText('exam-progress-text', 'Đã chọn ' + answered + ' / ' + examQs.length);
     const hint = q.isMulti ? ' [Chọn ' + q.correctKeys.length + ' đáp án]' : '';
-    setText('exam-stem', 'Câu ' + (currentIdx + 1) + '/' + examQs.length + hint + ': ' + q.question);
+    setRichText('exam-stem', 'Câu ' + (currentIdx + 1) + '/' + examQs.length + hint + ': ' + q.question);
     renderImages(byId('exam-images'), q.images);
 
     const sel = answers.get(q.id) || new Set();
+    const correctSet = new Set(q.correctKeys || []);
+    const graded = isQuestionGradedInActiveExam(q, sel);
     optsEl.replaceChildren();
-    (q.options || []).forEach((opt) => optsEl.appendChild(createOptionBtn(opt, { selected: sel.has(opt.key) }, () => selectExamOption(opt.key))));
+    (q.options || []).forEach((opt) =>
+      optsEl.appendChild(
+        createOptionBtn(
+          opt,
+          { selected: sel.has(opt.key), graded, isCorrectKey: correctSet.has(opt.key) },
+          () => selectExamOption(opt.key)
+        )
+      )
+    );
+
+    const fbEl = byId('exam-feedback');
+    if (fbEl) {
+      fbEl.replaceChildren();
+      fbEl.hidden = !graded;
+      const isRight = graded && SWTApp.utils.sameKeySet(sel, q.correctKeys);
+      fbEl.classList.toggle('is-correct', isRight);
+      fbEl.classList.toggle('is-wrong', graded && !isRight);
+      if (graded) {
+        const ans = (q.correctKeys || []).join(', ');
+        const msg = isRight ? 'Chính xác (' + ans + ')' : 'Chưa đúng — Đáp án đúng: ' + ans;
+        fbEl.appendChild(el('strong', 'feedback-title', msg));
+        if (q.explanation) fbEl.appendChild(el('p', 'feedback-explanation', q.explanation));
+      }
+    }
 
     const isFlag = flagged.has(q.id);
     const flagBtn = byId('exam-flag-btn');
@@ -217,8 +269,13 @@
       b.type = 'button';
       b.dataset.index = String(idx);
       const itemAns = answers.get(item.id);
+      const hasAns = Boolean(itemAns && itemAns.size > 0);
+      const itemGraded = isQuestionGradedInActiveExam(item, itemAns);
+      const itemRight = itemGraded && SWTApp.utils.sameKeySet(itemAns, item.correctKeys);
       b.classList.toggle('is-current', idx === currentIdx);
-      b.classList.toggle('is-answered', Boolean(itemAns && itemAns.size > 0));
+      b.classList.toggle('is-answered', hasAns && !itemGraded);
+      b.classList.toggle('is-correct', itemGraded && itemRight);
+      b.classList.toggle('is-wrong', itemGraded && !itemRight);
       b.classList.toggle('is-flagged', flagged.has(item.id));
       b.addEventListener('click', () => { currentIdx = idx; renderExamActive(); });
       palEl.appendChild(b);
@@ -260,7 +317,9 @@
         const optsWrap = el('div', 'options-list');
         const rightSet = new Set(q.correctKeys || []);
         (q.options || []).forEach((opt) => optsWrap.appendChild(createOptionBtn(opt, { selected: sel.has(opt.key), graded: true, isCorrectKey: rightSet.has(opt.key), disabled: true })));
-        card.append(head, el('div', 'question-stem', q.question), optsWrap);
+        const stemEl = el('div', 'question-stem');
+        SWTApp.utils.renderRichText(stemEl, q.question);
+        card.append(head, stemEl, optsWrap);
         if (q.explanation) card.appendChild(el('p', 'feedback-box', q.explanation));
         reviewEl.appendChild(card);
       }
@@ -337,9 +396,15 @@
       const tr = el('tr'), th = el('th', '', '#' + q.id + (q.slideNumber ? ' · S' + q.slideNumber : ''));
       th.scope = 'row';
       const tdContent = el('td');
-      tdContent.appendChild(el('div', '', q.question));
+      const stemDiv = el('div');
+      SWTApp.utils.renderRichText(stemDiv, q.question);
+      tdContent.appendChild(stemDiv);
       const ul = el('ul', 'bank-options');
-      (q.options || []).forEach((opt) => ul.appendChild(el('li', 'bank-option' + (rightSet.has(opt.key) ? ' is-correct' : ''), opt.key + '. ' + opt.text)));
+      (q.options || []).forEach((opt) => {
+        const li = el('li', 'bank-option' + (rightSet.has(opt.key) ? ' is-correct' : ''));
+        SWTApp.utils.renderRichText(li, opt.key + '. ' + opt.text);
+        ul.appendChild(li);
+      });
       tdContent.appendChild(ul);
       if (showAns && q.explanation) tdContent.appendChild(el('p', 'bank-explanation', 'Giải thích: ' + q.explanation));
 
@@ -363,6 +428,35 @@
     init(questions) {
       allQuestions = Array.isArray(questions) ? questions : [];
       const { byId, setHidden } = SWTApp.utils;
+      const prefs = SWTApp.storage.getPrefs();
+      syncExamToggles(prefs.examRandom, prefs.examInstantAnswer);
+
+      const handleRandomToggle = (checked) => {
+        syncExamToggles(checked, isInstantAnswerEnabled());
+        SWTApp.storage.setPref('examRandom', checked);
+        if (this.isActive() && examQs.length > 0) {
+          const currentQId = examQs[currentIdx]?.id;
+          const base = orderedPool.length === examQs.length ? orderedPool : examQs;
+          examQs = checked ? SWTApp.utils.shuffle(base) : base.slice();
+          const foundIdx = examQs.findIndex((item) => item.id === currentQId);
+          currentIdx = foundIdx >= 0 ? foundIdx : 0;
+          renderExamActive();
+        }
+      };
+
+      const handleInstantToggle = (checked) => {
+        syncExamToggles(isRandomEnabled(), checked);
+        SWTApp.storage.setPref('examInstantAnswer', checked);
+        if (this.isActive()) renderExamActive();
+      };
+
+      ['exam-random-questions', 'exam-active-random'].forEach((id) => {
+        byId(id)?.addEventListener('change', (e) => handleRandomToggle(Boolean(e.target.checked)));
+      });
+      ['exam-instant-answer', 'exam-active-instant'].forEach((id) => {
+        byId(id)?.addEventListener('change', (e) => handleInstantToggle(Boolean(e.target.checked)));
+      });
+
       const showAnsSwitch = byId('bank-show-answers');
       if (showAnsSwitch) {
         showAnsSwitch.checked = Boolean(SWTApp.storage.getPrefs().bankShowAnswers);

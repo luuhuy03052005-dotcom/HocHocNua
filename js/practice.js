@@ -43,7 +43,7 @@
   }
 
   function renderPractice() {
-    const { byId, el, setText, setHidden, renderImages, createOptionBtn } = SWTApp.utils;
+    const { byId, el, setText, setRichText, setHidden, renderImages, createOptionBtn } = SWTApp.utils;
     const optsEl = byId('practice-options');
     const fbEl = byId('practice-feedback');
     if (!optsEl) return;
@@ -66,7 +66,7 @@
     setText('practice-counter', index + 1 + ' / ' + deck.length);
     setText('practice-slide-badge', q.slideNumber ? 'Slide ' + q.slideNumber : '#' + q.id);
     setText('practice-topic-badge', q.topic || SWTApp.app?.getCourse().code || 'Môn học');
-    setText('practice-stem', q.question);
+    setRichText('practice-stem', q.question);
     setHidden('practice-multi-badge', !q.isMulti);
     if (q.isMulti) setText('practice-multi-badge', 'Chọn ' + q.correctKeys.length + ' đáp án');
 
@@ -157,7 +157,7 @@
   }
 
   function renderFlashcard() {
-    const { byId, el, setText, renderImages } = SWTApp.utils;
+    const { byId, el, setText, setRichText, renderRichText, renderImages } = SWTApp.utils;
     const preview = byId('fc-options-preview'), ansBox = byId('fc-answer-box');
     if (!preview || !ansBox) return;
     preview.replaceChildren();
@@ -178,12 +178,18 @@
     const correctSet = new Set(q.correctKeys || []);
     const tag = preview.tagName === 'UL' || preview.tagName === 'OL' ? 'li' : 'div';
     setText('fc-counter', fcIndex + 1 + ' / ' + fcDeck.length);
-    setText('fc-stem', (q.slideNumber ? '[Slide ' + q.slideNumber + '] ' : '') + q.question);
+    setRichText('fc-stem', (q.slideNumber ? '[Slide ' + q.slideNumber + '] ' : '') + q.question);
     renderImages(byId('fc-images'), q.images);
 
     (q.options || []).forEach((opt) => {
-      preview.appendChild(el(tag, 'fc-option-line', opt.key + '. ' + opt.text));
-      if (correctSet.has(opt.key)) ansBox.appendChild(el('div', 'fc-correct-line is-correct', opt.key + '. ' + opt.text));
+      const optLine = el(tag, 'fc-option-line');
+      renderRichText(optLine, opt.key + '. ' + opt.text);
+      preview.appendChild(optLine);
+      if (correctSet.has(opt.key)) {
+        const correctLine = el('div', 'fc-correct-line is-correct');
+        renderRichText(correctLine, opt.key + '. ' + opt.text);
+        ansBox.appendChild(correctLine);
+      }
     });
     if (q.explanation) ansBox.appendChild(el('p', 'fc-explanation', q.explanation));
   }

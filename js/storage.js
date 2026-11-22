@@ -16,7 +16,9 @@
     bankShowAnswers: true,
     practiceFilterMode: 'all',
     practiceFilterTopic: 'all',
-    fcFilterTopic: 'all'
+    fcFilterTopic: 'all',
+    examRandom: false,
+    examInstantAnswer: false
   };
 
   const DEFAULT_RECORD = {
@@ -43,6 +45,33 @@
     setText(id, text) {
       const node = byId(id);
       if (node) node.textContent = text;
+    },
+    renderRichText(container, text) {
+      if (!container) return;
+      const source = String(text || '');
+      if (!source.includes('```')) {
+        container.textContent = source;
+        return;
+      }
+      container.replaceChildren();
+      const parts = source.split(/```(?:[a-zA-Z0-9_-]*\n)?([\s\S]*?)```/g);
+      parts.forEach((part, idx) => {
+        if (idx % 2 === 1) {
+          const codeText = part.replace(/^\r?\n|\r?\n$/g, '');
+          if (!codeText) return;
+          const pre = el('pre', 'code-block');
+          pre.appendChild(el('code', '', codeText));
+          container.appendChild(pre);
+        } else {
+          const prose = part.replace(/^\r?\n+|\r?\n+$/g, '');
+          if (!prose) return;
+          container.appendChild(el('div', 'rich-text-prose', prose));
+        }
+      });
+    },
+    setRichText(id, text) {
+      const node = byId(id);
+      if (node) utils.renderRichText(node, text);
     },
     setHidden(id, hidden) {
       const node = byId(id);
@@ -101,7 +130,9 @@
       }
       btn.disabled = Boolean(disabled);
       btn.setAttribute('aria-pressed', String(selected));
-      btn.append(el('span', 'option-key', opt.key), el('span', 'option-text', opt.text));
+      const textSpan = el('span', 'option-text');
+      utils.renderRichText(textSpan, opt.text);
+      btn.append(el('span', 'option-key', opt.key), textSpan);
       if (onClick) btn.addEventListener('click', onClick);
       return btn;
     }

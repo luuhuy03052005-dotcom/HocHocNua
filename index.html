@@ -15,20 +15,20 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-4">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-4">
-  <script defer src="data/questions.js?v=multi-course-4"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-4"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-4"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-4"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-4"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-4"></script>
-  <script defer src="js/storage.js?v=multi-course-4"></script>
-  <script defer src="js/practice.js?v=multi-course-4"></script>
-  <script defer src="js/exam.js?v=multi-course-4"></script>
-  <script defer src="js/keyword.js?v=multi-course-4"></script>
-  <script defer src="js/study.js?v=multi-course-4"></script>
-  <script defer src="js/app.js?v=multi-course-4"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-7">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-7">
+  <script defer src="data/questions.js?v=multi-course-7"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-7"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-7"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-7"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-7"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-7"></script>
+  <script defer src="js/storage.js?v=multi-course-7"></script>
+  <script defer src="js/practice.js?v=multi-course-7"></script>
+  <script defer src="js/exam.js?v=multi-course-7"></script>
+  <script defer src="js/keyword.js?v=multi-course-7"></script>
+  <script defer src="js/study.js?v=multi-course-7"></script>
+  <script defer src="js/app.js?v=multi-course-7"></script>
 </head>
 <body>
   <header class="topbar">
@@ -178,6 +178,10 @@
             </label>
             <div><button type="button" id="exam-start-btn" class="btn btn-primary">Bắt đầu làm bài</button></div>
           </div>
+          <div class="exam-toggles">
+            <label class="switch-control"><input type="checkbox" id="exam-random-questions" switch> Random câu hỏi</label>
+            <label class="switch-control"><input type="checkbox" id="exam-instant-answer" switch> Hiện đáp án liền khi chọn</label>
+          </div>
         </div>
 
         <div id="exam-active" class="panel-stack" hidden>
@@ -186,13 +190,18 @@
               <span id="exam-timer" aria-live="off">60:00</span>
               <span id="exam-progress-text" class="counter-pill">0 / 50</span>
             </div>
-            <button type="button" id="exam-submit-btn" class="btn btn-primary">Nộp bài chấm điểm</button>
+            <div class="action-group">
+              <label class="switch-control"><input type="checkbox" id="exam-active-random" switch> Random câu hỏi</label>
+              <label class="switch-control"><input type="checkbox" id="exam-active-instant" switch> Hiện đáp án liền</label>
+              <button type="button" id="exam-submit-btn" class="btn btn-primary">Nộp bài chấm điểm</button>
+            </div>
           </div>
           <div class="exam-workspace">
             <article class="card">
               <div id="exam-stem" class="question-stem"></div>
               <div id="exam-images" class="question-images" hidden></div>
               <div id="exam-options" class="options-list" role="group" aria-label="Lựa chọn bài thi"></div>
+              <div id="exam-feedback" class="feedback-box" role="status" aria-live="polite" hidden></div>
               <div class="action-bar">
                 <button type="button" id="exam-prev-btn" class="btn btn-secondary">Câu trước</button>
                 <button type="button" id="exam-flag-btn" class="btn btn-ghost icon-toggle" aria-pressed="false">

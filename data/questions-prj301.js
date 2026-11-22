@@ -79,7 +79,7 @@ window.PRJ301_DATA = {
     {
       "id": 3,
       "slideNumber": null,
-      "question": "Consider the following tag declaration in a TLD file:\n\n<tag>\n <name>simpleInterest</name>\n <tag-class>SimpleInterestTag</tag-class>\n //1\n</tag>\n\nSimpleInterestTag calculates simple interest for any amount and requires two attributes 'amount' and 'rate'. Which of the following sub elements would you need to add inside the <tag> element in the TLD file as shown above?",
+      "question": "Consider the following tag declaration in a TLD file:\n```\n<tag>\n  <name>simpleInterest</name>\n  <tag-class>SimpleInterestTag</tag-class>\n  //1\n</tag>\n```\nSimpleInterestTag calculates simple interest for any amount and requires two attributes 'amount' and 'rate'. Which of the following sub elements would you need to add inside the <tag> element in the TLD file as shown above?",
       "options": [
         {
           "key": "A",
@@ -143,7 +143,7 @@ window.PRJ301_DATA = {
     {
       "id": 5,
       "slideNumber": null,
-      "question": "What is the result of attempting to access the following JSP page?\n\n<html>\n<body>\n<%! public String methodA() {\n return methodB();\n}\n%>\n<%! public String methodB() {\n return \"JAD Final Test\";\n}\n%>\n<h2><%= methodA() %></h2>\n</body>\n</html>",
+      "question": "What is the result of attempting to access the following JSP page?\n```\n<html>\n<body>\n<%! public String methodA() {\n    return methodB();\n}\n%>\n<%! public String methodB() {\n    return \"JAD Final Test\";\n}\n%>\n<h2><%= methodA() %></h2>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -233,7 +233,7 @@ window.PRJ301_DATA = {
     {
       "id": 8,
       "slideNumber": null,
-      "question": "(Choose 1 answer)\nFollowing is the code for doGet() and doPost() method of TestServlet. Which of the statement is correct?\n\npublic void doGet(HttpServletRequest req, HttpServletResponse res)\n{\n try\n {\n PrintWriter pw = res.getWriter();\n pw.println(\"<html><head></head><body>\");\n String name = req.getParameter(\"name\");\n String[] hobbies = req.getParameterValues(\"hobbies\");\n pw.println(\"Hello, \"+name+\"<br> As I understand, your hobbies are\");\n for(int i=0; i< hobbies.length; i++) pw.println(\"<br>\"+hobbies[i]);\n pw.println(\"</body></html>\");\n }\n catch(Exception e)\n {\n e.printStackTrace();\n }\n}\n\npublic void doPost(HttpServletRequest req, HttpServletResponse res)\n{\n doGet(req, res);\n}",
+      "question": "(Choose 1 answer)\nFollowing is the code for doGet() and doPost() method of TestServlet. Which of the statement is correct?\n```\npublic void doGet(HttpServletRequest req, HttpServletResponse res)\n{\n    try\n    {\n        PrintWriter pw = res.getWriter();\n        pw.println(\"<html><head></head><body>\");\n        String name = req.getParameter(\"name\");\n        String[] hobbies = req.getParameterValues(\"hobbies\");\n        pw.println(\"Hello, \"+name+\"<br> As I understand, your hobbies are\");\n        for(int i=0; i< hobbies.length; i++) pw.println(\"<br>\"+hobbies[i]);\n        pw.println(\"</body></html>\");\n    }\n    catch(Exception e)\n    {\n        e.printStackTrace();\n    }\n}\n\npublic void doPost(HttpServletRequest req, HttpServletResponse res)\n{\n    doGet(req, res);\n}\n```",
       "options": [
         {
           "key": "A",
@@ -357,7 +357,7 @@ window.PRJ301_DATA = {
     {
       "id": 12,
       "slideNumber": null,
-      "question": "Consider the following doGet method code of a servlet:\n\npublic void doGet(HttpServletRequest req, HttpServletResponse res) {\n String command = req.getParameter(\"command\");\n if (\"remove\".equals(command)) {\n HttpSession session = req.getSession();\n // insert code here\n }\n}\n\nIf the command equals remove, you want to remove all the attributes from the session. Which option will you use? (Choose one)",
+      "question": "Consider the following doGet method code of a servlet:\n```\npublic void doGet(HttpServletRequest req, HttpServletResponse res) {\n    String command = req.getParameter(\"command\");\n    if (\"remove\".equals(command)) {\n        HttpSession session = req.getSession();\n        // insert code here\n    }\n}\n```\nIf the command equals remove, you want to remove all the attributes from the session. Which option will you use? (Choose one)",
       "options": [
         {
           "key": "A",
@@ -395,7 +395,7 @@ window.PRJ301_DATA = {
         },
         {
           "key": "B",
-          "text": "The scope in which the Java object is accessible-page, request, session or application. The default is page."
+          "text": "The scope in which the Java object is accessible—page, request, session or application. The default is page."
         },
         {
           "key": "C",
@@ -545,19 +545,19 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "response.sendRedirect(\"some url\");"
+          "text": "```\nresponse.sendRedirect(\"some url\");\n```"
         },
         {
           "key": "B",
-          "text": "RequestDispatcher rd = this.getServletContext().getRequestDispatcher(\"some url\"); rd.forward(request, response);"
+          "text": "```\nRequestDispatcher rd = this.getServletContext().getRequestDispatcher(\"some url\");\nrd.forward(request, response);\n```"
         },
         {
           "key": "C",
-          "text": "RequestDispatcher rd = request.getRequestDispatcher(\"some url\"); rd.forward(request, response);"
+          "text": "```\nRequestDispatcher rd = request.getRequestDispatcher(\"some url\");\nrd.forward(request, response);\n```"
         },
         {
           "key": "D",
-          "text": "request.sendRedirect(\"some url\");"
+          "text": "```\nrequest.sendRedirect(\"some url\");\n```"
         }
       ],
       "correctKeys": [
@@ -691,7 +691,7 @@ window.PRJ301_DATA = {
     {
       "id": 23,
       "slideNumber": null,
-      "question": "Consider the following HTML code. Which method of MyFirstServlet will be invoked when you click on the url shown by the page?\n\n<html>\n<body>\n<a href=\"/myapp/MyFirstServlet\">Click here to make me say Hello World!</a>\n</body>\n</html>",
+      "question": "Consider the following HTML code. Which method of MyFirstServlet will be invoked when you click on the url shown by the page?\n```\n<html>\n<body>\n<a href=\"/myapp/MyFirstServlet\">Click here to make me say Hello World!</a>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -729,7 +729,7 @@ window.PRJ301_DATA = {
     {
       "id": 24,
       "slideNumber": null,
-      "question": "A JSP page called test.jsp is passed a parameter name in the URL using http://localhost/test.jsp?name=\"John\". The test.jsp contains the following code.\n\n<%! String myName = request.getParameter(\"name\"); %>\n<% String test = \"welcome \" + myName; %>\n<%= test %>\n\nWhat is the output?",
+      "question": "A JSP page called test.jsp is passed a parameter name in the URL using http://localhost/test.jsp?name=\"John\". The test.jsp contains the following code.\n```\n<%! String myName = request.getParameter(\"name\"); %>\n<% String test = \"welcome \" + myName; %>\n<%= test %>\n```\nWhat is the output?",
       "options": [
         {
           "key": "A",
@@ -867,7 +867,7 @@ window.PRJ301_DATA = {
     {
       "id": 29,
       "slideNumber": null,
-      "question": "A bean with a property color is loaded using the following statement:\n<jsp:useBean id=\"fruit\" class=\"Fruit\"/>\n\nWhat happens when the following statement is executed? Select the one correct answer.\n<jsp:setProperty name=\"fruit\" property=\"*\"/>",
+      "question": "A bean with a property color is loaded using the following statement:\n```\n<jsp:useBean id=\"fruit\" class=\"Fruit\"/>\n```\nWhat happens when the following statement is executed? Select the one correct answer.\n```\n<jsp:setProperty name=\"fruit\" property=\"*\"/>\n```",
       "options": [
         {
           "key": "A",
@@ -949,7 +949,7 @@ window.PRJ301_DATA = {
     {
       "id": 32,
       "slideNumber": null,
-      "question": "For what reason does the following JSP fail to translate and compile?\n\n<html>\n<body>\n<%! int x; %>\n<%\n public String getDescription() {\n return \"JAD Final Test\";\n }\n%>\n<%=getDescription() %>\n</body>\n</html>",
+      "question": "For what reason does the following JSP fail to translate and compile?\n```\n<html>\n<body>\n<%! int x; %>\n<%\n    public String getDescription() {\n        return \"JAD Final Test\";\n    }\n%>\n<%=getDescription() %>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -1233,7 +1233,7 @@ window.PRJ301_DATA = {
     {
       "id": 42,
       "slideNumber": null,
-      "question": "Consider the code shown in the exhibit for the init() method of a HTTP servlet. Which of the following LOC \"may\" correctly retrieve the DBURL parameter at //1? (Assume that servletcontext is a reference to ServletContext for this servlet.) (Choose one)\n\npublic void init()\n{\n Class.forName(\"sun.jdbc.odbc.JdbcOdbcDriver\");\n // 1 Get DBURL here\n theConnection = DriverManager.getConnection(dbUrl, \"admin\", \"admin\");\n}",
+      "question": "Consider the code shown in the exhibit for the init() method of a HTTP servlet. Which of the following LOC \"may\" correctly retrieve the DBURL parameter at //1? (Assume that servletcontext is a reference to ServletContext for this servlet.) (Choose one)\n```\npublic void init()\n{\n    Class.forName(\"sun.jdbc.odbc.JdbcOdbcDriver\");\n    // 1 Get DBURL here\n    theConnection = DriverManager.getConnection(dbUrl, \"admin\", \"admin\");\n}\n```",
       "options": [
         {
           "key": "A",
@@ -1341,7 +1341,7 @@ window.PRJ301_DATA = {
     {
       "id": 46,
       "slideNumber": null,
-      "question": "See the extract from web.xml of web application \"mywebapp\" on server named myserver, port 8080:\n\n<servlet-mapping>\n <servlet-name>ServletA</servlet-name>\n <url-pattern>/</url-pattern>\n</servlet-mapping>\n<servlet-mapping>\n <servlet-name>ServletB</servlet-name>\n <url-pattern>/bservlet.html</url-pattern>\n</servlet-mapping>\n<servlet-mapping>\n <servlet-name>ServletC</servlet-name>\n <url-pattern>*.servletC</url-pattern>\n</servlet-mapping>\n<servlet-mapping>\n <servlet-name>ServletD</servlet-name>\n <url-pattern>/dservlet/*</url-pattern>\n</servlet-mapping>\n\nGiven that a user enters the following into her browser, which (if any) of the mapped servlets will execute? (Choose one.)\nhttp://myserver:8080/mywebapp",
+      "question": "See the extract from web.xml of web application \"mywebapp\" on server named myserver, port 8080:\n```\n<servlet-mapping>\n    <servlet-name>ServletA</servlet-name>\n    <url-pattern>/</url-pattern>\n</servlet-mapping>\n<servlet-mapping>\n    <servlet-name>ServletB</servlet-name>\n    <url-pattern>/bservlet.html</url-pattern>\n</servlet-mapping>\n<servlet-mapping>\n    <servlet-name>ServletC</servlet-name>\n    <url-pattern>*.servletC</url-pattern>\n</servlet-mapping>\n<servlet-mapping>\n    <servlet-name>ServletD</servlet-name>\n    <url-pattern>/dservlet/*</url-pattern>\n</servlet-mapping>\n```\nGiven that a user enters the following into her browser, which (if any) of the mapped servlets will execute? (Choose one.)\nhttp://myserver:8080/mywebapp",
       "options": [
         {
           "key": "A",
@@ -1495,22 +1495,22 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "<security-constraint>\n <web-resource>\n <web-resource-name>Info</web-resource-name>\n <url-pattern>/info/*</url-pattern>\n <http-method>GET</http-method>\n </web-resource>\n <auth-constraint>\n <role-name>manager</role-name>\n </auth-constraint>\n <user-data-constraint>\n <transport-guarantee>CONFIDENTIAL</transport-guarantee>\n </user-data-constraint>\n</security-constraint>"
+          "text": "```\n<security-constraint>\n  <web-resource>\n    <web-resource-name>Info</web-resource-name>\n    <url-pattern>/info/*</url-pattern>\n    <http-method>GET</http-method>\n  </web-resource>\n  <auth-constraint>\n    <role-name>manager</role-name>\n  </auth-constraint>\n  <user-data-constraint>\n    <transport-guarantee>CONFIDENTIAL</transport-guarantee>\n  </user-data-constraint>\n</security-constraint>\n```"
         },
         {
           "key": "B",
-          "text": "<security-constraint>\n <web-resource-collection>\n <web-resource-name>Info</web-resource-name>\n <url-pattern>/info/*</url-pattern>\n <http-method>GET</http-method>\n </web-resource-collection>\n <auth-constraint>\n <role-name>manager</role-name>\n </auth-constraint>\n</security-constraint>"
+          "text": "```\n<security-constraint>\n  <web-resource-collection>\n    <web-resource-name>Info</web-resource-name>\n    <url-pattern>/info/*</url-pattern>\n    <http-method>GET</http-method>\n  </web-resource-collection>\n  <auth-constraint>\n    <role-name>manager</role-name>\n  </auth-constraint>\n</security-constraint>\n```"
         },
         {
           "key": "C",
-          "text": "<security-constraint>\n <web-resource>\n <web-resource-name>Info</web-resource-name>\n <url-pattern>/info/*</url-pattern>\n <http-method>GET</http-method>\n </web-resource>\n <login-config>\n <auth-method>FORM</auth-method>\n <role-name>manager</role-name>\n </login-config>\n</security-constraint>"
+          "text": "```\n<security-constraint>\n  <web-resource>\n    <web-resource-name>Info</web-resource-name>\n    <url-pattern>/info/*</url-pattern>\n    <http-method>GET</http-method>\n  </web-resource>\n  <login-config>\n    <auth-method>FORM</auth-method>\n    <role-name>manager</role-name>\n  </login-config>\n</security-constraint>\n```"
         }
       ],
       "correctKeys": [
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: B.\nLựa chọn đúng: B. <security-constraint>\n <web-resource-collection>\n <web-resource-name>Info</web-resource-name>\n <url-pattern>/info/*</url-pattern>\n <http-method>GET</http-method>\n </web-resource-collection>\n <auth-constraint>\n <role-name>manager</role-name>\n </auth-constraint>\n</security-constraint>",
+      "explanation": "Đáp án Cộng đồng & FUO AI: B.\nLựa chọn đúng: B. <security-constraint> <web-resource-collection> <web-resource-name>Info</web-resource-name> <url-pattern>/info/*</url-pattern> <http-method>GET</http-method> </web-resource-collection> <auth-constraint> <role-name>manager</role-name> </auth-constraint> </security-constraint>",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
     },
@@ -1715,7 +1715,7 @@ window.PRJ301_DATA = {
     {
       "id": 59,
       "slideNumber": null,
-      "question": "Given the following deployment descriptor:\n\n<web-app>\n <context-param>\n <param-name>jdbcDriver</param-name>\n <param-value>sun.jdbc.odbc.JdbcOdbcDriver</param-value>\n </context-param>\n <servlet>\n <servlet-name>InitParamsServlet</servlet-name>\n <servlet-class>InitParamsServlet</servlet-class>\n </servlet>\n</web-app>\n\nWhat is the outcome of running the following servlet? (Choose one.)\n\npublic class InitParamsServlet extends HttpServlet {\n protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n ServletContext sc = this.getServletContext();\n PrintWriter out = response.getWriter();\n out.write(\"Initialization Parameter is: \" + sc.getInitParameter(\"jdbcDriver\"));\n }\n}",
+      "question": "Given the following deployment descriptor:\n```\n<web-app>\n  <context-param>\n    <param-name>jdbcDriver</param-name>\n    <param-value>sun.jdbc.odbc.JdbcOdbcDriver</param-value>\n  </context-param>\n  <servlet>\n    <servlet-name>InitParamsServlet</servlet-name>\n    <servlet-class>InitParamsServlet</servlet-class>\n  </servlet>\n</web-app>\n```\nWhat is the outcome of running the following servlet? (Choose one.)\n```\npublic class InitParamsServlet extends HttpServlet {\n    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\n        ServletContext sc = this.getServletContext();\n        PrintWriter out = response.getWriter();\n        out.write(\"Initialization Parameter is: \" + sc.getInitParameter(\"jdbcDriver\"));\n    }\n}\n```",
       "options": [
         {
           "key": "A",
@@ -1779,7 +1779,7 @@ window.PRJ301_DATA = {
     {
       "id": 61,
       "slideNumber": null,
-      "question": "Consider the following taglibrary descriptor element:\n\n<tag>\n <name>myTag</name>\n <tag-class>com.abc.MyTag</tag-class>\n <body-content> ___ </body-content>\n</tag>\n\nWhich of the following is NOT a valid value for <body-content> element?",
+      "question": "Consider the following taglibrary descriptor element:\n```\n<tag>\n  <name>myTag</name>\n  <tag-class>com.abc.MyTag</tag-class>\n  <body-content> ___ </body-content>\n</tag>\n```\nWhich of the following is NOT a valid value for <body-content> element?",
       "options": [
         {
           "key": "A",
@@ -1891,30 +1891,30 @@ window.PRJ301_DATA = {
     {
       "id": 65,
       "slideNumber": null,
-      "question": "A JavaBeans component has the following field:\nprivate boolean enabled;\nWhich pairs of method declarations follow the JavaBeans standard for accessing this field?",
+      "question": "A JavaBeans component has the following field:\n```\nprivate boolean enabled;\n```\nWhich pairs of method declarations follow the JavaBeans standard for accessing this field?",
       "options": [
         {
           "key": "A",
-          "text": "public Boolean setEnabled( boolean enabled) public boolean isEnabled()"
+          "text": "public Boolean setEnabled( boolean enabled) ; public boolean isEnabled()"
         },
         {
           "key": "B",
-          "text": "public boolean setEnabled( boolean enabled) public boolean getEnabled()"
+          "text": "public boolean setEnabled( boolean enabled) ; public boolean getEnabled()"
         },
         {
           "key": "C",
-          "text": "public void setEnabled( boolean enabled) public void isEnabled()"
+          "text": "public void setEnabled( boolean enabled) ; public void isEnabled()"
         },
         {
           "key": "D",
-          "text": "public void setEnabled( boolean enabled) public boolean getEnabled()"
+          "text": "public void setEnabled( boolean enabled) ; public boolean getEnabled()"
         }
       ],
       "correctKeys": [
         "D"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: D.\nLựa chọn đúng: D. public void setEnabled( boolean enabled) public boolean getEnabled()",
+      "explanation": "Đáp án Cộng đồng & FUO AI: D.\nLựa chọn đúng: D. public void setEnabled( boolean enabled) ; public boolean getEnabled()",
       "topic": "8. JDBC, Database Connection & JavaBeans",
       "images": []
     },
@@ -1981,7 +1981,7 @@ window.PRJ301_DATA = {
     {
       "id": 68,
       "slideNumber": null,
-      "question": "Consider the code of ReportServlet servlet of a web application. Assuming generateReport() is valid method and have no problems, which of the following statement about these servlet is true?\n\n// In file ReportServlet.java\npublic class ReportServlet extends HttpServlet {\n public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n String userid = req.getSession();\n if (userid != null) generateReport(req, res);\n }\n}",
+      "question": "Consider the code of ReportServlet servlet of a web application. Assuming generateReport() is valid method and have no problems, which of the following statement about these servlet is true?\n```\n// In file ReportServlet.java\npublic class ReportServlet extends HttpServlet {\n    public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n        String userid = req.getSession();\n        if (userid != null) generateReport(req, res);\n    }\n}\n```",
       "options": [
         {
           "key": "A",
@@ -2007,11 +2007,11 @@ window.PRJ301_DATA = {
     {
       "id": 69,
       "slideNumber": null,
-      "question": "A programmer is designing a class to encapsulate the information about an inventory item. A\nJavaBeans component is needed to do this. The InventoryItem class has private instance\nvariables to store the item information:\n10. private int itemId;\n11. private String name;\n12. private String description;\nWhich method signature follows the JavaBeans naming standards for modifying the itemId\ninstance variable?",
+      "question": "A programmer is designing a class to encapsulate the information about an inventory item. A JavaBeans component is needed to do this. The InventoryItem class has private instance variables to store the item information:\n```\n10. private int itemId;\n11. private String name;\n12. private String description;\n```\nWhich method signature follows the JavaBeans naming standards for modifying the itemId instance variable?",
       "options": [
         {
           "key": "A",
-          "text": "mutateItemId(int item ld)"
+          "text": "mutateItemId(int itemId)"
         },
         {
           "key": "B",
@@ -2075,7 +2075,7 @@ window.PRJ301_DATA = {
     {
       "id": 71,
       "slideNumber": null,
-      "question": "For what reason does the following JSP fail to translate and compile?\n\n<html>\n<body>\n<%! int x; %>\n<%=x ; %>\n</body>\n</html>",
+      "question": "For what reason does the following JSP fail to translate and compile?\n```\n<html>\n<body>\n<%! int x; %>\n<%=x ; %>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -3173,7 +3173,7 @@ window.PRJ301_DATA = {
     {
       "id": 110,
       "slideNumber": null,
-      "question": "What is output to the web page on the second access to the same instance of the following JSP?\n\n<html>\n<body>\n<%! int x = 0; %>\n<%= x++ %>\n</body>\n</html>",
+      "question": "What is output to the web page on the second access to the same instance of the following JSP?\n```\n<html>\n<body>\n<%! int x = 0; %>\n<%= x++ %>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -3485,7 +3485,7 @@ window.PRJ301_DATA = {
     {
       "id": 120,
       "slideNumber": null,
-      "question": "Assume that you need to write a JSP page that adds numbers from one to ten, and then print the sum.\n\n<% int sum = 0;\nfor(j = 0; j < 10; j++) { %>\n// XXX --- Add j to sum\n<% } %>\n// YYY --- Display the sum\n\nWhich statement when placed at the location XXX can be used to compute the sum?",
+      "question": "Assume that you need to write a JSP page that adds numbers from one to ten, and then print the sum.\n```\n<% int sum = 0;\nfor(j = 0; j < 10; j++) { %>\n// XXX --- Add j to sum\n<% } %>\n// YYY --- Display the sum\n```\nWhich statement when placed at the location XXX can be used to compute the sum?",
       "options": [
         {
           "key": "A",
@@ -3759,7 +3759,7 @@ window.PRJ301_DATA = {
     {
       "id": 129,
       "slideNumber": null,
-      "question": "The following line of code exists in the doGet method of Servlet:\nString sid = request.getParameter(\"jsessionid\");\nWhich of the option is NOT a standard technique for retrieving the HttpSession associated with the request? (Assume that the session has already been created.)",
+      "question": "The following line of code exists in the doGet method of Servlet:\n```\nString sid = request.getParameter(\"jsessionid\");\n```\nWhich of the option is NOT a standard technique for retrieving the HttpSession associated with the request? (Assume that the session has already been created.)",
       "options": [
         {
           "key": "A",
@@ -3811,7 +3811,7 @@ window.PRJ301_DATA = {
     {
       "id": 131,
       "slideNumber": null,
-      "question": "What gets printed when the following JSP code is invoked in a browser? Select one correct answer.\n\n<% if (Math.random() < 0.5) { %>\n hello\n<% } else { %>\n hi\n<% } %>",
+      "question": "What gets printed when the following JSP code is invoked in a browser? Select one correct answer.\n```\n<% if (Math.random() < 0.5) { %>\n    hello\n<% } else { %>\n    hi\n<% } %>\n```",
       "options": [
         {
           "key": "A",
@@ -3841,7 +3841,7 @@ window.PRJ301_DATA = {
     {
       "id": 132,
       "slideNumber": null,
-      "question": "A JSP page has the following page directives:\n<%@ page isErrorPage='false' %>\n<%@ page errorPage='/jsp/myerror.jsp' %>\nWhich of the following implicit object is NOT available to the jsp page?",
+      "question": "A JSP page has the following page directives:\n```\n<%@ page isErrorPage='false' %>\n<%@ page errorPage='/jsp/myerror.jsp' %>\n```\nWhich of the following implicit object is NOT available to the jsp page?",
       "options": [
         {
           "key": "A",
@@ -3953,7 +3953,7 @@ window.PRJ301_DATA = {
     {
       "id": 136,
       "slideNumber": null,
-      "question": "You have declared a useBean tag as:\n<jsp:useBean id=\"man\" class=\"animal.Human\" scope=\"application\" />\nIn which type of object will this bean be kept?",
+      "question": "You have declared a useBean tag as:\n```\n<jsp:useBean id=\"man\" class=\"animal.Human\" scope=\"application\" />\n```\nIn which type of object will this bean be kept?",
       "options": [
         {
           "key": "A",
@@ -4039,7 +4039,7 @@ window.PRJ301_DATA = {
     {
       "id": 139,
       "slideNumber": null,
-      "question": "A bean with a property color is loaded using the following statement\n<jsp:useBean id=\"fruit\" class=\"Fruit\"/>\nWhich statement may be used to set the color property of the bean.",
+      "question": "A bean with a property color is loaded using the following statement\n```\n<jsp:useBean id=\"fruit\" class=\"Fruit\"/>\n```\nWhich statement may be used to set the color property of the bean.",
       "options": [
         {
           "key": "A",
@@ -4189,7 +4189,7 @@ window.PRJ301_DATA = {
     {
       "id": 144,
       "slideNumber": null,
-      "question": "Consider the Servlet definition in a web.xml file below. (see picture) What will the following line of code return if present in the init() method of TestServlet? getInitParameter(1);\n\n<web-app>\n <servlet>\n <servlet-name>TestServlet</servlet-name>\n <servlet-class>com.abc.TestServlet</servlet-class>\n <init-param>\n <param-name>locale</param-name>\n <param-value>US</param-value>\n </init-param>\n <init-param>\n <param-name>timezone</param-name>\n <param-value>eastern</param-value>\n </init-param>\n </servlet>\n</web-app>",
+      "question": "Consider the Servlet definition in a web.xml file below. (see picture) What will the following line of code return if present in the init() method of TestServlet? getInitParameter(1);\n```\n<web-app>\n  <servlet>\n    <servlet-name>TestServlet</servlet-name>\n    <servlet-class>com.abc.TestServlet</servlet-class>\n    <init-param>\n      <param-name>locale</param-name>\n      <param-value>US</param-value>\n    </init-param>\n    <init-param>\n      <param-name>timezone</param-name>\n      <param-value>eastern</param-value>\n    </init-param>\n  </servlet>\n</web-app>\n```",
       "options": [
         {
           "key": "A",
@@ -4403,7 +4403,7 @@ window.PRJ301_DATA = {
     {
       "id": 151,
       "slideNumber": null,
-      "question": "For what reason does the following JSP fail to translate and compile?\n\n<html>\n<body>\n<%! int x; %>\n<%=x ; %>\n</body>\n</html>",
+      "question": "For what reason does the following JSP fail to translate and compile?\n```\n<html>\n<body>\n<%! int x; %>\n<%=x ; %>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -4463,7 +4463,7 @@ window.PRJ301_DATA = {
     {
       "id": 153,
       "slideNumber": null,
-      "question": "<html>\n<body>\n<form action=\"loginPage.jsp\">\n Login ID: <input type=\"text\" name=\"txtId\">\n Password: <input type=\"password\" name=\"txtPass\">\n <input type=\"submit\" value=\"Login\">\n <input type=\"reset\" value=\"Clear\">\n</form>\n</body>\n</html>\nStudy the above html code. Assume that user clicks button Login.\nWhich is the correct statement?",
+      "question": "```\n<html>\n<body>\n<form action=\"loginPage.jsp\">\n  Login ID: <input type=\"text\" name=\"txtId\">\n  Password: <input type=\"password\" name=\"txtPass\">\n  <input type=\"submit\" value=\"Login\">\n  <input type=\"reset\" value=\"Clear\">\n</form>\n</body>\n</html>\n```\nStudy the above html code. Assume that user clicks button Login.\nWhich is the correct statement?",
       "options": [
         {
           "key": "A",
@@ -4579,7 +4579,7 @@ window.PRJ301_DATA = {
     {
       "id": 157,
       "slideNumber": null,
-      "question": "What is the output of the following code snippet of a JSP page?\n${empty \"\"}<br>\n${empty \"sometext\"}\n(Trong các lựa chọn, dấu \"/\" biểu thị xuống dòng.)",
+      "question": "What is the output of the following code snippet of a JSP page?\n```\n${empty \"\"}<br>\n${empty \"sometext\"}\n```\n(Trong các lựa chọn, dấu \"/\" biểu thị xuống dòng.)",
       "options": [
         {
           "key": "A",
@@ -4609,7 +4609,7 @@ window.PRJ301_DATA = {
     {
       "id": 158,
       "slideNumber": null,
-      "question": "What will be the result of pressing the submit button in the following HTML form?\n\n<form action=\"register.jsp\">\n <input type=\"text\" name=\"fullName\" value=\"Type name here\">\n <input type=\"submit\" name=\"sbmButton\" />\n</form>",
+      "question": "What will be the result of pressing the submit button in the following HTML form?\n```\n<form action=\"register.jsp\">\n  <input type=\"text\" name=\"fullName\" value=\"Type name here\">\n  <input type=\"submit\" name=\"sbmButton\" />\n</form>\n```",
       "options": [
         {
           "key": "A",
@@ -4703,7 +4703,7 @@ window.PRJ301_DATA = {
     {
       "id": 161,
       "slideNumber": null,
-      "question": "The web.xml file for a webapp contains the following XML fragment for configuring session timeout:\n<session-config>\n <session-timeout>300</session-timeout>\n</session-config>\nWhat would be the session timeout interval for the sessions created in this web application?",
+      "question": "The web.xml file for a webapp contains the following XML fragment for configuring session timeout:\n```\n<session-config>\n  <session-timeout>300</session-timeout>\n</session-config>\n```\nWhat would be the session timeout interval for the sessions created in this web application?",
       "options": [
         {
           "key": "A",
@@ -4819,7 +4819,7 @@ window.PRJ301_DATA = {
     {
       "id": 165,
       "slideNumber": null,
-      "question": "A bean with a property color is loaded using the following statement\n\n<jsp:useBean id=\"fruit\" class=\"Fruit\"/>\n\nWhich of the following statements may be used to print the value of color property of the bean? Select one correct answer.",
+      "question": "A bean with a property color is loaded using the following statement\n```\n<jsp:useBean id=\"fruit\" class=\"Fruit\"/>\n```\nWhich of the following statements may be used to print the value of color property of the bean? Select one correct answer.",
       "options": [
         {
           "key": "A",
@@ -4977,7 +4977,7 @@ window.PRJ301_DATA = {
     {
       "id": 170,
       "slideNumber": null,
-      "question": "(Choose 1 answer)\nWhich are the correct lines of code to get information in the following <init-param> tag in the web.xml file?\n\n<servlet>\n <servlet-name>ServletName</servlet-name>\n <servlet-class>ServletName</servlet-class>\n <init-param>\n <param-name>InitParamaterName</param-name>\n <param-value>InitParamaterValue</param-value>\n </init-param>\n</servlet>",
+      "question": "(Choose 1 answer)\nWhich are the correct lines of code to get information in the following <init-param> tag in the web.xml file?\n```\n<servlet>\n  <servlet-name>ServletName</servlet-name>\n  <servlet-class>ServletName</servlet-class>\n  <init-param>\n    <param-name>InitParamaterName</param-name>\n    <param-value>InitParamaterValue</param-value>\n  </init-param>\n</servlet>\n```",
       "options": [
         {
           "key": "A",
@@ -5165,7 +5165,7 @@ window.PRJ301_DATA = {
     {
       "id": 176,
       "slideNumber": null,
-      "question": "Where the bean is declared using the following useBean tag accessible?\n<jsp:useBean id=\"jbean\" class=\"jclass.JBean\" />",
+      "question": "Where the bean is declared using the following useBean tag accessible?\n```\n<jsp:useBean id=\"jbean\" class=\"jclass.JBean\" />\n```",
       "options": [
         {
           "key": "A",
@@ -5565,7 +5565,7 @@ window.PRJ301_DATA = {
     {
       "id": 189,
       "slideNumber": null,
-      "question": "What will happen when a servlet makes the following call within its doGet() method?\ngetServletContext().setAttribute(\"userid\", userid);",
+      "question": "What will happen when a servlet makes the following call within its doGet() method?\n```\ngetServletContext().setAttribute(\"userid\", userid);\n```",
       "options": [
         {
           "key": "A",
@@ -5621,7 +5621,7 @@ window.PRJ301_DATA = {
     {
       "id": 191,
       "slideNumber": null,
-      "question": "Which are the correct lines of code to get information in the following <context-param> tag in the web.xml file? Assume that response and request refer to HttpServletResponse and HttpServletRequest respectively.\n\n<web-app>\n <context-param>\n <param-name>machineName</param-name>\n <param-value>Server</param-value>\n </context-param>\n</web-app>",
+      "question": "Which are the correct lines of code to get information in the following <context-param> tag in the web.xml file? Assume that response and request refer to HttpServletResponse and HttpServletRequest respectively.\n```\n<web-app>\n  <context-param>\n    <param-name>machineName</param-name>\n    <param-value>Server</param-value>\n  </context-param>\n</web-app>\n```",
       "options": [
         {
           "key": "A",
@@ -5775,7 +5775,7 @@ window.PRJ301_DATA = {
     {
       "id": 196,
       "slideNumber": null,
-      "question": "Consider the following java code:\n\n//in file Book.java\npackage com.bookstore;\npublic class Book\n{\n private long isbn;\n public Book(){ isbn = 0; }\n public long getIsbn(){ return isbn; }\n public void setIsbn(long value){ this.isbn = value; }\n}\n\nCode for browse.jsp:\n\n<jsp:useBean class=\"com.bookstore.Book\" id=\"newbook\" />\nLINE 1 : <jsp:setProperty name=\"newbook\" property=\"isbn\" value=\"1000\"/>\n\nWhich of the following statements are correct?",
+      "question": "Consider the following java code:\n```\n//in file Book.java\npackage com.bookstore;\npublic class Book\n{\n    private long isbn;\n    public Book(){ isbn = 0; }\n    public long getIsbn(){ return isbn; }\n    public void setIsbn(long value){ this.isbn = value; }\n}\n```\nCode for browse.jsp:\n```\n<jsp:useBean class=\"com.bookstore.Book\" id=\"newbook\" />\nLINE 1 : <jsp:setProperty name=\"newbook\" property=\"isbn\" value=\"1000\"/>\n```\nWhich of the following statements are correct?",
       "options": [
         {
           "key": "A",
@@ -6029,26 +6029,26 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "<HTML>\n<HEAD><TITLE>...</TITLE>...</HEAD>\n<BODY ...>\n...\n</BODY>\n</HTML>"
+          "text": "```\n<HTML>\n<HEAD><TITLE>...</TITLE>...</HEAD>\n<BODY ...>\n...\n</BODY>\n</HTML>\n```"
         },
         {
           "key": "B",
-          "text": "<HTML>\n<BODY ...>\n<HEAD><TITLE>...</TITLE>...</HEAD>\n...\n</BODY>\n</HTML>"
+          "text": "```\n<HTML>\n<BODY ...>\n<HEAD><TITLE>...</TITLE>...</HEAD>\n...\n</BODY>\n</HTML>\n```"
         },
         {
           "key": "C",
-          "text": "<HEAD><TITLE>...</TITLE>...</HEAD>\n<HTML>\n<BODY ...>\n...\n</BODY>\n</HTML>"
+          "text": "```\n<HEAD><TITLE>...</TITLE>...</HEAD>\n<HTML>\n<BODY ...>\n...\n</BODY>\n</HTML>\n```"
         },
         {
           "key": "D",
-          "text": "<HTML>\n<HEAD>\n<BODY ...>\n<TITLE>...</TITLE>\n</HEAD>\n</BODY>\n</HTML>"
+          "text": "```\n<HTML>\n<HEAD>\n<BODY ...>\n<TITLE>...</TITLE>\n</HEAD>\n</BODY>\n</HTML>\n```"
         }
       ],
       "correctKeys": [
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <HTML>\n<HEAD><TITLE>...</TITLE>...</HEAD>\n<BODY ...>\n...\n</BODY>\n</HTML>",
+      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <HTML> <HEAD><TITLE>...</TITLE>...</HEAD> <BODY ...> ... </BODY> </HTML>",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -6301,7 +6301,7 @@ window.PRJ301_DATA = {
     {
       "id": 214,
       "slideNumber": null,
-      "question": "What will happen when a servlet makes the following call within its doGet() method?\ngetServletContext().setAttribute(\"userid\", userid);",
+      "question": "What will happen when a servlet makes the following call within its doGet() method?\n```\ngetServletContext().setAttribute(\"userid\", userid);\n```",
       "options": [
         {
           "key": "A",
@@ -6623,7 +6623,7 @@ window.PRJ301_DATA = {
     {
       "id": 225,
       "slideNumber": null,
-      "question": "Which method of LoginServlet will be called when the user clicks on \"Submit\" button for the following form? Assume that LoginServlet does not override the service() method of HttpServlet class. (Choose one)\n\n<html>\n<body>\n<form action=\"/myapp/LoginServlet\" method=\"POST\">\n <input type=\"text\" name=\"name\">\n <input type=\"password\" name=\"password\">\n <input type=\"submit\" value=\"Submit\">\n</form>\n</body>\n</html>",
+      "question": "Which method of LoginServlet will be called when the user clicks on \"Submit\" button for the following form? Assume that LoginServlet does not override the service() method of HttpServlet class. (Choose one)\n```\n<html>\n<body>\n<form action=\"/myapp/LoginServlet\" method=\"POST\">\n  <input type=\"text\" name=\"name\">\n  <input type=\"password\" name=\"password\">\n  <input type=\"submit\" value=\"Submit\">\n</form>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -6657,7 +6657,7 @@ window.PRJ301_DATA = {
     {
       "id": 226,
       "slideNumber": null,
-      "question": "Given the following JSP and tag handler code, what is the result of accessing the JSP?\n\nJSP Page Source\n<html>\n<body>\n START\n <br>\n <%@taglib uri=\"test_taglib\" prefix=\"myTag\"%>\n <myTag:TestTag/>\n <br>\n END\n</body>\n</html>\n\nTag Handler Code for <myTag:TestTag />\npackage examples;\nimport javax.servlet.jsp.*;\nimport javax.servlet.jsp.tagext.*;\n\npublic class TestTag extends TagSupport {\n public int doStartTag() throws JspException {\n return EVAL_PAGE;\n }\n public int doEndTag() throws JspException {\n return SKIP_PAGE;\n }\n}",
+      "question": "Given the following JSP and tag handler code, what is the result of accessing the JSP?\n\nJSP Page Source\n```\n<html>\n<body>\n  START\n  <br>\n  <%@taglib uri=\"test_taglib\" prefix=\"myTag\"%>\n  <myTag:TestTag/>\n  <br>\n  END\n</body>\n</html>\n```\nTag Handler Code for <myTag:TestTag />\n```\npackage examples;\nimport javax.servlet.jsp.*;\nimport javax.servlet.jsp.tagext.*;\n\npublic class TestTag extends TagSupport {\n    public int doStartTag() throws JspException {\n        return EVAL_PAGE;\n    }\n    public int doEndTag() throws JspException {\n        return SKIP_PAGE;\n    }\n}\n```",
       "options": [
         {
           "key": "A",
@@ -6799,7 +6799,7 @@ window.PRJ301_DATA = {
     {
       "id": 231,
       "slideNumber": null,
-      "question": "Consider the contents of 2 jsp files:\n\n<!-- In File : test.jsp -->\n<html>\n<body>\n<% String s = \"Hello\"; %>\n//1 insert LOC here.\n<%=s%>\n</body>\n</html>\n<!-- In File : test2.jsp -->\n<% s = s+\" world\"; %>\n\nWhat can be inserted at //1 so that it prints \"Hello world\" when test.jsp is requested?",
+      "question": "Consider the contents of 2 jsp files:\n```\n<!-- In File : test.jsp -->\n<html>\n<body>\n<% String s = \"Hello\"; %>\n//1 insert LOC here.\n<%=s%>\n</body>\n</html>\n<!-- In File : test2.jsp -->\n<% s = s+\" world\"; %>\n```\nWhat can be inserted at //1 so that it prints \"Hello world\" when test.jsp is requested?",
       "options": [
         {
           "key": "A",
@@ -6967,26 +6967,26 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "<jsp:useBean id=\"beanName1\" class=\"a.b.MyBean\" type=\"a.b.MyInterface\" />"
+          "text": "```\n<jsp:useBean id=\"beanName1\" class=\"a.b.MyBean\" type=\"a.b.MyInterface\" />\n```"
         },
         {
           "key": "B",
-          "text": "<% String className = \"a.b.MyBean\"; %>\n<jsp:useBean id=\"beanName2\" class=\"<%=className%>\" />"
+          "text": "```\n<% String className = \"a.b.MyBean\"; %>\n<jsp:useBean id=\"beanName2\" class=\"<%=className%>\" />\n```"
         },
         {
           "key": "C",
-          "text": "<% String beanName = \"beanName3\"; %>\n<jsp:useBean id=\"<%=beanName3%>\" class=\"a.b.MyBean\" />"
+          "text": "```\n<% String beanName = \"beanName3\"; %>\n<jsp:useBean id=\"<%=beanName3%>\" class=\"a.b.MyBean\" />\n```"
         },
         {
           "key": "D",
-          "text": "<% String propName = \"soleProp\"; %>\n<jsp:getProperty name=\"beanName1\" property=\"<%=propName%>\" />"
+          "text": "```\n<% String propName = \"soleProp\"; %>\n<jsp:getProperty name=\"beanName1\" property=\"<%=propName%>\" />\n```"
         }
       ],
       "correctKeys": [
         "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: C.\nLựa chọn đúng: C. <% String beanName = \"beanName3\"; %>\n<jsp:useBean id=\"<%=beanName3%>\" class=\"a.b.MyBean\" />",
+      "explanation": "Đáp án Cộng đồng & FUO AI: C.\nLựa chọn đúng: C. <% String beanName = \"beanName3\"; %> <jsp:useBean id=\"<%=beanName3%>\" class=\"a.b.MyBean\" />",
       "topic": "5. JSP Scripting, Directives & Standard Actions",
       "images": []
     },
@@ -7189,7 +7189,7 @@ window.PRJ301_DATA = {
     {
       "id": 244,
       "slideNumber": null,
-      "question": "Which method of LoginServlet will be called when the user clicks on \"Submit\" button for the following form? Assume that LoginServlet does not override the service() method of HttpServlet class.\n\n<html>\n<body>\n<form action=\"/myapp/LoginServlet\" method=\"POST\">\n <input type=\"text\" name=\"name\">\n <input type=\"password\" name=\"password\">\n <input type=\"submit\" value=\"Submit\">\n</form>\n</body>\n</html>",
+      "question": "Which method of LoginServlet will be called when the user clicks on \"Submit\" button for the following form? Assume that LoginServlet does not override the service() method of HttpServlet class.\n```\n<html>\n<body>\n<form action=\"/myapp/LoginServlet\" method=\"POST\">\n  <input type=\"text\" name=\"name\">\n  <input type=\"password\" name=\"password\">\n  <input type=\"submit\" value=\"Submit\">\n</form>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -7223,7 +7223,7 @@ window.PRJ301_DATA = {
     {
       "id": 245,
       "slideNumber": null,
-      "question": "Which of the statements regarding the following code are correct?\n\npublic void doPost(HttpServletRequest req, HttpServletResponse res)\n throws IOException, ServletException\n{\n res.getWriter().print(\"Hello \");\n RequestDispatcher rd = getServletContext().getRequestDispatcher(\"/test.jsp\");\n rd.include(req, res);\n res.getWriter().print(\"World\");\n}",
+      "question": "Which of the statements regarding the following code are correct?\n```\npublic void doPost(HttpServletRequest req, HttpServletResponse res)\n    throws IOException, ServletException\n{\n    res.getWriter().print(\"Hello \");\n    RequestDispatcher rd = getServletContext().getRequestDispatcher(\"/test.jsp\");\n    rd.include(req, res);\n    res.getWriter().print(\"World\");\n}\n```",
       "options": [
         {
           "key": "A",
@@ -7283,7 +7283,7 @@ window.PRJ301_DATA = {
     {
       "id": 247,
       "slideNumber": null,
-      "question": "What is the consequence of attempting to access the following JSP page?\n\n<html>\n<body>\n<%!\n public void _jspService(HttpServletRequest request, HttpServletResponse response) {\n out.write(\"A\");\n }\n%>\n<% out.write(\"B\"); %>\n</body>\n</html>",
+      "question": "What is the consequence of attempting to access the following JSP page?\n```\n<html>\n<body>\n<%!\n  public void _jspService(HttpServletRequest request, HttpServletResponse response) {\n    out.write(\"A\");\n  }\n%>\n<% out.write(\"B\"); %>\n</body>\n</html>\n```",
       "options": [
         {
           "key": "A",
@@ -7395,7 +7395,7 @@ window.PRJ301_DATA = {
     {
       "id": 251,
       "slideNumber": null,
-      "question": "Given the following JSP and tag handler code, what is the result of accessing the JSP?\n\nJSP Page Source\n<html>\n<body>\n START\n <br>\n <%@taglib uri=\"test_taglib\" prefix=\"myTag\"%>\n <myTag:TestTag/>\n <br>\n END\n</body>\n</html>\n\nTag Handler Code for <myTag:TestTag />\npackage examples;\nimport javax.servlet.jsp.*;\nimport javax.servlet.jsp.tagext.*;\n\npublic class TestTag extends TagSupport {\n public int doStartTag() throws JspException {\n return EVAL_PAGE;\n }\n public int doEndTag() throws JspException {\n return SKIP_PAGE;\n }\n}\nAssume *.tld and web.xml files are correct.",
+      "question": "Given the following JSP and tag handler code, what is the result of accessing the JSP?\n\nJSP Page Source\n```\n<html>\n<body>\n  START\n  <br>\n  <%@taglib uri=\"test_taglib\" prefix=\"myTag\"%>\n  <myTag:TestTag/>\n  <br>\n  END\n</body>\n</html>\n```\nTag Handler Code for <myTag:TestTag />\n```\npackage examples;\nimport javax.servlet.jsp.*;\nimport javax.servlet.jsp.tagext.*;\n\npublic class TestTag extends TagSupport {\n    public int doStartTag() throws JspException {\n        return EVAL_PAGE;\n    }\n    public int doEndTag() throws JspException {\n        return SKIP_PAGE;\n    }\n}\n```\nAssume *.tld and web.xml files are correct.",
       "options": [
         {
           "key": "A",
@@ -7635,7 +7635,7 @@ window.PRJ301_DATA = {
     {
       "id": 259,
       "slideNumber": null,
-      "question": "Consider the following doGet method code of a servlet:\n\npublic void doGet(HttpServletRequest req, HttpServletResponse res) {\n String command = req.getParameter(\"command\");\n if (\"remove\".equals(command)) {\n HttpSession session = req.getSession();\n // insert code here\n }\n}\n\nIf the command equals remove, you want to unbind an attribute named \"user\" from the session. Which of the following option will you use? (Choose one)",
+      "question": "Consider the following doGet method code of a servlet:\n```\npublic void doGet(HttpServletRequest req, HttpServletResponse res) {\n    String command = req.getParameter(\"command\");\n    if (\"remove\".equals(command)) {\n        HttpSession session = req.getSession();\n        // insert code here\n    }\n}\n```\nIf the command equals remove, you want to unbind an attribute named \"user\" from the session. Which of the following option will you use? (Choose one)",
       "options": [
         {
           "key": "A",
@@ -7909,26 +7909,26 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "<context-param>\n <param-name>name</param-name>\n <param-value>value</param-value>\n</context-param>"
+          "text": "```\n<context-param>\n  <param-name>name</param-name>\n  <param-value>value</param-value>\n</context-param>\n```"
         },
         {
           "key": "B",
-          "text": "<context-param>\n <name>name</name>\n <value>value</value>\n</context-param>"
+          "text": "```\n<context-param>\n  <name>name</name>\n  <value>value</value>\n</context-param>\n```"
         },
         {
           "key": "C",
-          "text": "<parameter>\n <name>name</name>\n <value>value</value>\n</parameter>"
+          "text": "```\n<parameter>\n  <name>name</name>\n  <value>value</value>\n</parameter>\n```"
         },
         {
           "key": "D",
-          "text": "<Context-param>\n <Param-name>name</Param-name>\n <Param-value>value</Param-value>\n</Context-param>"
+          "text": "```\n<Context-param>\n  <Param-name>name</Param-name>\n  <Param-value>value</Param-value>\n</Context-param>\n```"
         }
       ],
       "correctKeys": [
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <context-param>\n <param-name>name</param-name>\n <param-value>value</param-value>\n</context-param>",
+      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <context-param> <param-name>name</param-name> <param-value>value</param-value> </context-param>",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
     },
@@ -8538,7 +8538,7 @@ window.PRJ301_DATA = {
     {
       "id": 289,
       "slideNumber": null,
-      "question": "public class SessionExampleServlet extends HttpServlet {\n protected void doGet(HttpServletRequest request, HttpServletResponse response)\n throws ServletException, IOException {\n // TODO: Your code here\n }\n}\nIn the doGet method, how to create a new session for the user if the session doesn't exist?",
+      "question": "```\npublic class SessionExampleServlet extends HttpServlet {\n    protected void doGet(HttpServletRequest request, HttpServletResponse response)\n        throws ServletException, IOException {\n        // TODO: Your code here\n    }\n}\n```\nIn the doGet method, how to create a new session for the user if the session doesn't exist?",
       "options": [
         {
           "key": "A",
@@ -8718,7 +8718,7 @@ window.PRJ301_DATA = {
     {
       "id": 295,
       "slideNumber": null,
-      "question": "public class MyAppContextListener implements ServletContextListener {\npublic void context Initialized (ServletContextEvent event) {\n// TODO: Your code here\npublic void contextDestroyed (ServletContextEvent event)\n// TODO: Your code here\nIn the contextlnitialized method, what kind of tasks would you typically perform during the\ninitialization of the servlet context?",
+      "question": "```\npublic class MyAppContextListener implements ServletContextListener {\n    public void contextInitialized(ServletContextEvent event) {\n        // TODO: Your code here\n    }\n\n    public void contextDestroyed(ServletContextEvent event) {\n        // TODO: Your code here\n    }\n}\n```\nIn the contextInitialized method, what kind of tasks would you typically perform during the initialization of the servlet context?",
       "options": [
         {
           "key": "A",
@@ -8748,7 +8748,7 @@ window.PRJ301_DATA = {
     {
       "id": 296,
       "slideNumber": null,
-      "question": "public class MySessionListener implements HttpSessionListener {\npublic void sessionCreated (HttpSessionEvent event) {\n// TODO: Your code here\npublic void sessionDestroyed (HttpSessionEvent event)\n// TODO: Your code here\nIn the sessionDestroyed method, what kind of tasks would you typically perform when a user's\nsession is invalidated?",
+      "question": "```\npublic class MySessionListener implements HttpSessionListener {\n    public void sessionCreated(HttpSessionEvent event) {\n        // TODO: Your code here\n    }\n\n    public void sessionDestroyed(HttpSessionEvent event) {\n        // TODO: Your code here\n    }\n}\n```\nIn the sessionDestroyed method, what kind of tasks would you typically perform when a user's session is invalidated?",
       "options": [
         {
           "key": "A",
@@ -9364,26 +9364,26 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "<servlet>\n <servlet-name>name</servlet-name>\n <servlet-class>class</servlet-class>\n <init-param>\n <param-name>name</param-name>\n <param-value>value</param-value>\n </init-param>\n</servlet>"
+          "text": "```\n<servlet>\n  <servlet-name>name</servlet-name>\n  <servlet-class>class</servlet-class>\n  <init-param>\n    <param-name>name</param-name>\n    <param-value>value</param-value>\n  </init-param>\n</servlet>\n```"
         },
         {
           "key": "B",
-          "text": "<servlet>\n <servlet>name</servlet>\n <class>class</class>\n <init-param>\n <param-name>name</param-name>\n <param-value>value</param-value>\n </init-param>\n</servlet>"
+          "text": "```\n<servlet>\n  <servlet>name</servlet>\n  <class>class</class>\n  <init-param>\n    <param-name>name</param-name>\n    <param-value>value</param-value>\n  </init-param>\n</servlet>\n```"
         },
         {
           "key": "C",
-          "text": "<servlet>\n <servlet-name>name</servlet-name>\n <servlet-class>class</servlet-class>\n <initialized-param>\n <param-name>name</param-name>\n <param-value>value</param-value>\n </initialized-param>\n</servlet>"
+          "text": "```\n<servlet>\n  <servlet-name>name</servlet-name>\n  <servlet-class>class</servlet-class>\n  <initialized-param>\n    <param-name>name</param-name>\n    <param-value>value</param-value>\n  </initialized-param>\n</servlet>\n```"
         },
         {
           "key": "D",
-          "text": "<servlet>\n <servlet-name>name</servlet-name>\n <servlet-class>class</servlet-class>\n <initialized-param>\n <name>name</name>\n <value>value</value>\n </initialized-param>\n</servlet>"
+          "text": "```\n<servlet>\n  <servlet-name>name</servlet-name>\n  <servlet-class>class</servlet-class>\n  <initialized-param>\n    <name>name</name>\n    <value>value</value>\n  </initialized-param>\n</servlet>\n```"
         }
       ],
       "correctKeys": [
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <servlet>\n <servlet-name>name</servlet-name>\n <servlet-class>class</servlet-class>\n <init-param>\n <param-name>name</param-name>\n <param-value>value</param-value>\n </init-param>\n</servlet>",
+      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <servlet> <servlet-name>name</servlet-name> <servlet-class>class</servlet-class> <init-param> <param-name>name</param-name> <param-value>value</param-value> </init-param> </servlet>",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
     },
@@ -10027,7 +10027,7 @@ window.PRJ301_DATA = {
     {
       "id": 338,
       "slideNumber": null,
-      "question": "public class MyControllerServlet extends HttpServlet {\n protected void doGet(HttpServletRequest request, HttpServletResponse response)\n throws ServletException, IOException {\n String data = \"Hello from Controller\";\n request.setAttribute(\"message\", data);\n RequestDispatcher dispatcher = request.getRequestDispatcher(\"/myView.jsp\");\n dispatcher.forward(request, response);\n }\n}\nIn the above source code, how to pass message from Controller to JSP for display?",
+      "question": "```\npublic class MyControllerServlet extends HttpServlet {\n    protected void doGet(HttpServletRequest request, HttpServletResponse response)\n        throws ServletException, IOException {\n        String data = \"Hello from Controller\";\n        request.setAttribute(\"message\", data);\n        RequestDispatcher dispatcher = request.getRequestDispatcher(\"/myView.jsp\");\n        dispatcher.forward(request, response);\n    }\n}\n```\nIn the above source code, how to pass message from Controller to JSP for display?",
       "options": [
         {
           "key": "A",
@@ -10177,7 +10177,7 @@ window.PRJ301_DATA = {
     {
       "id": 343,
       "slideNumber": null,
-      "question": "public class CookieExampleServlet extends HttpServlet {\n protected void doGet(HttpServletRequest request, HttpServletResponse response)\n throws ServletException, IOException {\n // TODO: Your code here\n }\n}\nIn the doGet method, how to create a Cookie and send it to the client?",
+      "question": "```\npublic class CookieExampleServlet extends HttpServlet {\n    protected void doGet(HttpServletRequest request, HttpServletResponse response)\n        throws ServletException, IOException {\n        // TODO: Your code here\n    }\n}\n```\nIn the doGet method, how to create a Cookie and send it to the client?",
       "options": [
         {
           "key": "A",
@@ -10200,7 +10200,7 @@ window.PRJ301_DATA = {
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. Cookie newCookie = new Cookie(\"username\", \"john_doe\");\nresponse.addCookie(newCookie);",
+      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. Cookie newCookie = new Cookie(\"username\", \"john_doe\"); response.addCookie(newCookie);",
       "topic": "4. Session Management, Cookies & URL Rewriting",
       "images": []
     },
@@ -10421,7 +10421,7 @@ window.PRJ301_DATA = {
     {
       "id": 351,
       "slideNumber": null,
-      "question": "Which of the following correct code to get information in the following tag in the web.xml file?\n\n<web-app>\n <context-param>\n <param-name>studentName</param-name>\n <param-value>abcJhn</param-value>\n </context-param>\n</web-app>",
+      "question": "Which of the following correct code to get information in the following tag in the web.xml file?\n```\n<web-app>\n  <context-param>\n    <param-name>studentName</param-name>\n    <param-value>abcJhn</param-value>\n  </context-param>\n</web-app>\n```",
       "options": [
         {
           "key": "A",
@@ -10541,7 +10541,7 @@ window.PRJ301_DATA = {
     {
       "id": 355,
       "slideNumber": null,
-      "question": "<tag>\n <name>customTag</name>\n <tag-class>com.example.MyCustomTagHandler</tag-class>\n <body-content>empty</body-content>\n <attribute>\n <name>message</name>\n <required>true</required>\n <rtexprvalue>true</rtexprvalue>\n </attribute>\n</tag>\n\nWhat does the <rtexprvalue> element specify in the TLD?",
+      "question": "```\n<tag>\n  <name>customTag</name>\n  <tag-class>com.example.MyCustomTagHandler</tag-class>\n  <body-content>empty</body-content>\n  <attribute>\n    <name>message</name>\n    <required>true</required>\n    <rtexprvalue>true</rtexprvalue>\n  </attribute>\n</tag>\n```\nWhat does the <rtexprvalue> element specify in the TLD?",
       "options": [
         {
           "key": "A",
@@ -11668,7 +11668,7 @@ window.PRJ301_DATA = {
     {
       "id": 392,
       "slideNumber": null,
-      "question": "You are developing a JSP application that requires user authentication. Explain how you would\nuse session management to track the user's login status and securely store user information.\npage servlet . http.HttpSescionn\nHttpSession session = request .getSession ( ) ; session . setAttribute (\"loggedl",
+      "question": "You are developing a JSP application that requires user authentication. Explain how you would use session management to track the user's login status and securely store user information.\n```\n<%@ page import=\"javax.servlet.http.HttpSession\" %>\n<%\n  HttpSession session = request.getSession(); session.setAttribute(\"loggedInUser\", username);\n%>\n```",
       "options": [
         {
           "key": "A",
@@ -12881,30 +12881,30 @@ window.PRJ301_DATA = {
     {
       "id": 432,
       "slideNumber": null,
-      "question": "Suppose the following HTML code is used to enter user information and call the servlet url-pattern \"Record\":\n<html>\n <body>\n <form action=\"Record\" >\n User:<input type=\"text\" id=\"txtname1\" name=\"txtname2\"><br>\n Address:<input type=\"text\" id=\"txtadd1\" name=\"txtadd2\"><br>\n <input type=\"submit\" value=\"GotoZone\">\n </form>\n </body>\n</html>\n\nWhich of the Servlet code takes input from an html form and displays it on the browser?",
+      "question": "Suppose the following HTML code is used to enter user information and call the servlet url-pattern \"Record\":\n```\n<html>\n  <body>\n    <form action=\"Record\" >\n      User:<input type=\"text\" id=\"txtname1\" name=\"txtname2\"><br>\n      Address:<input type=\"text\" id=\"txtadd1\" name=\"txtadd2\"><br>\n      <input type=\"submit\" value=\"GotoZone\">\n    </form>\n  </body>\n</html>\n```\nWhich of the Servlet code takes input from an html form and displays it on the browser?",
       "options": [
         {
           "key": "A",
-          "text": "public class RecordServlet extends HttpServlet {\n protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n PrintWriter pw = res.getWriter();\n res.setContentType(\"text/html\");\n String account = req.getParameter(\"txtname1\");\n String Addr = req.getParameter(\"txtadd1\");\n pw.println(\"Hello \" + account + \" from\" + Addr);\n pw.close();\n }\n}"
+          "text": "```\npublic class RecordServlet extends HttpServlet {\n    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n        PrintWriter pw = res.getWriter();\n        res.setContentType(\"text/html\");\n        String account = req.getParameter(\"txtname1\");\n        String Addr = req.getParameter(\"txtadd1\");\n        pw.println(\"Hello \" + account + \" from\" + Addr);\n        pw.close();\n    }\n}\n```"
         },
         {
           "key": "B",
-          "text": "public class RecordServlet extends HttpServlet {\n protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n PrintWriter pw = res.getWriter();\n res.setContentType(\"text/html\");\n String account = req.getParameter(\"txtname2\");\n String Addr = req.getParameter(\"txtadd2\");\n pw.println(\"Hello \" + account + \" from\" + Addr);\n pw.close();\n }\n}"
+          "text": "```\npublic class RecordServlet extends HttpServlet {\n    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n        PrintWriter pw = res.getWriter();\n        res.setContentType(\"text/html\");\n        String account = req.getParameter(\"txtname2\");\n        String Addr = req.getParameter(\"txtadd2\");\n        pw.println(\"Hello \" + account + \" from\" + Addr);\n        pw.close();\n    }\n}\n```"
         },
         {
           "key": "C",
-          "text": "public class RecordServlet extends HttpServlet {\n protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n PrintWriter pw = res.getWriter();\n res.setContentType(\"text/html\");\n String account = req.getParameter(\"txtname2\");\n String Addr = req.getParameter(\"txtadd2\");\n pw.println(\"Hello \" + account + \" from\" + Addr);\n pw.close();\n }\n}"
+          "text": "```\npublic class RecordServlet extends HttpServlet {\n    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n        PrintWriter pw = res.getWriter();\n        res.setContentType(\"text/html\");\n        String account = req.getParameter(\"txtname2\");\n        String Addr = req.getParameter(\"txtadd2\");\n        pw.println(\"Hello \" + account + \" from\" + Addr);\n        pw.close();\n    }\n}\n```"
         },
         {
           "key": "D",
-          "text": "public class RecordServlet extends HttpServlet {\n protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n PrintWriter pw = res.getWriter();\n res.setContentType(\"text/html\");\n String account = req.getParameter(\"txtname1\");\n String Addr = req.getParameter(\"txtadd1\");\n pw.println(\"Hello \" + account + \" from\" + Addr);\n pw.close();\n }\n}"
+          "text": "```\npublic class RecordServlet extends HttpServlet {\n    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n        PrintWriter pw = res.getWriter();\n        res.setContentType(\"text/html\");\n        String account = req.getParameter(\"txtname1\");\n        String Addr = req.getParameter(\"txtadd1\");\n        pw.println(\"Hello \" + account + \" from\" + Addr);\n        pw.close();\n    }\n}\n```"
         }
       ],
       "correctKeys": [
         "D"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: D · FUO AI: B.\nLựa chọn đúng: D. public class RecordServlet extends HttpServlet {\n protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {\n PrintWriter pw = res.getWriter();\n res.setContentType(\"text/html\");\n String account = req.getParameter(\"txtname1\");\n String Addr = req.getParameter(\"txtadd1\");\n pw.println(\"Hello \" + account + \" from\" + Addr);\n pw.close();\n }\n}",
+      "explanation": "Đáp án Cộng đồng: D · FUO AI: B.\nLựa chọn đúng: D. public class RecordServlet extends HttpServlet { protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException { PrintWriter pw = res.getWriter(); res.setContentType(\"text/html\"); String account = req.getParameter(\"txtname1\"); String Addr = req.getParameter(\"txtadd1\"); pw.println(\"Hello \" + account + \" from\" + Addr); pw.close(); } }",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -13001,15 +13001,15 @@ window.PRJ301_DATA = {
     {
       "id": 436,
       "slideNumber": null,
-      "question": "JavaScript clients of SignalR application call public methods on hubs via the invoke method of\nthe HubConnection. The invoke method accepts the name of the hub method and any\narguments defined in the hub method.\nSupport that you already have defined the following code:\nvar connection = new signalR.HubConnectionBui1der()\n. withUr1 /chatHub\")\n. create( ) ;\nconnection. start() ;\nWhich the following codes you can call \"invoke\" method?",
+      "question": "JavaScript clients of SignalR application call public methods on hubs via the invoke method of the HubConnection. The invoke method accepts the name of the hub method and any arguments defined in the hub method.\n\nSupport that you already have defined the following code:\n```\nvar connection = new signalR.HubConnectionBuilder()\n    .withUrl(\"/chatHub\")\n    .create();\nconnection.start();\n```\nWhich the following codes you can call \"invoke\" method?",
       "options": [
         {
           "key": "A",
-          "text": "try { await connection. user, message) ; } catch (err) { console .error(err); }"
+          "text": "try { await connection.invoke(\"SendMessage\", user, message); } catch (err) { console.error(err); }"
         },
         {
           "key": "B",
-          "text": "try { await connection. invoke(user, message, \"SendMessage \" ) ; } catch (err) { console .error(err); }"
+          "text": "try { await connection.invoke(user, message, \"SendMessage\"); } catch (err) { console.error(err); }"
         },
         {
           "key": "C",
@@ -13024,7 +13024,7 @@ window.PRJ301_DATA = {
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. try { await connection. user, message) ; } catch (err) { console .error(err); }",
+      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. try { await connection.invoke(\"SendMessage\", user, message); } catch (err) { console.error(err); }",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -14954,7 +14954,7 @@ window.PRJ301_DATA = {
     {
       "id": 501,
       "slideNumber": null,
-      "question": "What output does this JSTL code produce?\n\n<%@ taglib uri=\"http://java.sun.com/jsp/jstl/core\" prefix=\"c\" %>\n<c:set var=\"item\" value=\"5\"/>\n<c:forEach var=\"item\" begin=\"1\" end=\"1\">\n <c:out value=\"${item}\"/>\n</c:forEach>",
+      "question": "What output does this JSTL code produce?\n```\n<%@ taglib uri=\"http://java.sun.com/jsp/jstl/core\" prefix=\"c\" %>\n<c:set var=\"item\" value=\"5\"/>\n<c:forEach var=\"item\" begin=\"1\" end=\"1\">\n  <c:out value=\"${item}\"/>\n</c:forEach>\n```",
       "options": [
         {
           "key": "A",
@@ -16724,7 +16724,7 @@ window.PRJ301_DATA = {
     {
       "id": 560,
       "slideNumber": null,
-      "question": "Consider the code in the servlet:\n\nHttpSession session = request.getSession();\nif(session.getAttribute(\"cart\") == null)\n session.setAttribute(\"cart\", new Hashtable<Integer, Integer>());\n\nAnd some explanations: A: Retrieves the current session object associated with the request. If no session exists, a new session is created automatically. B: Retrieves the current session object associated with the request. If no session exists, throw an exception. C: Checks if an attribute named \"cart\" not exists in the session, Creates a new shopping cart using a Hashtable<Integer, Integer>. D: If cart is found, remove an existed cart and create a new cart using Hashtable<Integer,Integer>. E: Create a new session automatically\n\nSelect and arrange the statements above to match the given code appropriately.",
+      "question": "Consider the code in the servlet:\n```\nHttpSession session = request.getSession();\nif(session.getAttribute(\"cart\") == null)\n    session.setAttribute(\"cart\", new Hashtable<Integer, Integer>());\n```\nAnd some explanations: A: Retrieves the current session object associated with the request. If no session exists, a new session is created automatically. B: Retrieves the current session object associated with the request. If no session exists, throw an exception. C: Checks if an attribute named \"cart\" not exists in the session, Creates a new shopping cart using a Hashtable<Integer, Integer>. D: If cart is found, remove an existed cart and create a new cart using Hashtable<Integer,Integer>. E: Create a new session automatically\n\nSelect and arrange the statements above to match the given code appropriately.",
       "options": [
         {
           "key": "A",
@@ -16826,26 +16826,26 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "<c:url value=\"https://fpt.edu.vn/student\"><c:param name=\"code\" value=\"SE123456\"/></c:url>"
+          "text": "```\n<c:url value=\"https://fpt.edu.vn/student\">\n    <c:param name=\"code\" value=\"SE123456\" />\n</c:url>\n```"
         },
         {
           "key": "B",
-          "text": "<c:url value=\"https://fpt.edu.vn/student\"><c:param value=\"SE123456\"/></c:url>"
+          "text": "```\n<c:url value=\"https://fpt.edu.vn/student\">\n    <c:param code=\"SE123456\" />\n</c:url>\n```"
         },
         {
           "key": "C",
-          "text": "<c:link value=\"https://fpt.edu.vn/student\"><c:param code=\"SE123456\"/></c:link>"
+          "text": "```\n<c:link value=\"https://fpt.edu.vn/student\">\n    <c:param code=\"SE123456\" />\n</c:link>\n```"
         },
         {
           "key": "D",
-          "text": "<c:link value=\"https://fpt.edu.vn/student\"><c:param name=\"code\" value=\"SE123456\"/></c:link>"
+          "text": "```\n<c:link value=\"https://fpt.edu.vn/student\">\n    <c:param name=\"code\" value=\"SE123456\" />\n</c:link>\n```"
         }
       ],
       "correctKeys": [
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <c:url value=\"https://fpt.edu.vn/student\"><c:param name=\"code\" value=\"SE123456\"/></c:url>",
+      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <c:url value=\"https://fpt.edu.vn/student\"> <c:param name=\"code\" value=\"SE123456\" /> </c:url>",
       "topic": "6. Expression Language (EL) & JSTL",
       "images": []
     },

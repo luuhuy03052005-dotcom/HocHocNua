@@ -156,22 +156,29 @@
     return best ? best.text.trim() : matches[0][0];
   }
 
+  function stripCodeBlocks(text) {
+    const withoutBlocks = String(text || '').replace(/```(?:[a-zA-Z0-9_-]*\n)?[\s\S]*?```/g, ' ').replace(/\s+/g, ' ').trim();
+    return withoutBlocks || String(text || '').replace(/```/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
   function questionKeywords(question) {
+    const prose = stripCodeBlocks(question);
     const keywords = [];
     NEGATION_PATTERNS.forEach(({ term, expression }) => {
-      if (expression.test(question)) keywords.push(originalPhrase(question, term));
+      if (expression.test(prose)) keywords.push(originalPhrase(prose, term));
     });
-    findDomainTerms(question, 2).forEach((term) => keywords.push(term));
+    findDomainTerms(prose, 2).forEach((term) => keywords.push(term));
     if (keywords.length === 0 || (keywords.length === 1 && NEGATION_PATTERNS.some(({ term }) => term.toLowerCase() === keywords[0].toLowerCase()))) {
-      keywords.push(bestScoredPhrase(question, 4));
+      keywords.push(bestScoredPhrase(prose, 4));
     }
     return Array.from(new Set(keywords.filter(Boolean))).slice(0, 3);
   }
 
   function answerKeywords(answerText) {
-    const domainTerms = findDomainTerms(answerText, 2);
-    if (/^(true|false)$/i.test(String(answerText).trim())) return [String(answerText).trim()];
-    const bestPhrase = bestScoredPhrase(answerText, 5);
+    const cleanAns = String(answerText || '').replace(/```/g, ' ').trim();
+    const domainTerms = findDomainTerms(cleanAns, 2);
+    if (/^(true|false)$/i.test(cleanAns)) return [cleanAns];
+    const bestPhrase = bestScoredPhrase(cleanAns, 5);
     if (domainTerms.length === 0) return [bestPhrase].filter(Boolean);
     const contextualPhrase = domainTerms.some((term) =>
       bestPhrase.toLowerCase().includes(term.toLowerCase()) && bestPhrase.toLowerCase() !== term.toLowerCase()
@@ -227,7 +234,7 @@
     };
   }
 
-  function appendHighlightedText(parent, text, keywords, className) {
+  function appendHighlightedSegment(parent, text, keywords, className) {
     const source = String(text || '');
     const terms = Array.from(new Set((keywords || []).filter(Boolean))).sort((a, b) => b.length - a.length);
     if (terms.length === 0) {
@@ -247,6 +254,33 @@
       return match;
     });
     if (cursor < source.length) parent.appendChild(document.createTextNode(source.slice(cursor)));
+  }
+
+  function appendHighlightedText(parent, text, keywords, className) {
+    const source = String(text || '');
+    if (!source.includes('```')) {
+      appendHighlightedSegment(parent, source, keywords, className);
+      return;
+    }
+    const { el } = SWTApp.utils;
+    const parts = source.split(/```(?:[a-zA-Z0-9_-]*\n)?([\s\S]*?)```/g);
+    parts.forEach((part, idx) => {
+      if (idx % 2 === 1) {
+        const codeText = part.replace(/^\r?\n|\r?\n$/g, '');
+        if (!codeText) return;
+        const pre = el('pre', 'code-block');
+        const codeEl = el('code');
+        appendHighlightedSegment(codeEl, codeText, keywords, className);
+        pre.appendChild(codeEl);
+        parent.appendChild(pre);
+      } else {
+        const prose = part.replace(/^\r?\n+|\r?\n+$/g, '');
+        if (!prose) return;
+        const proseDiv = el('div', 'rich-text-prose');
+        appendHighlightedSegment(proseDiv, prose, keywords, className);
+        parent.appendChild(proseDiv);
+      }
+    });
   }
 
   function createKeywordCard(record) {
@@ -275,7 +309,7 @@
       if (correct && answerRecord) {
         appendHighlightedText(text, option.text, answerRecord.keywords, 'keyword-mark keyword-answer-mark');
       } else {
-        text.textContent = option.text;
+        SWTApp.utils.renderRichText(text, option.text);
       }
       row.appendChild(text);
       if (correct) row.appendChild(el('span', 'keyword-correct-badge', 'ĐÚNG'));
