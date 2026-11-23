@@ -295,6 +295,43 @@
       goPractice(dx < 0 ? 1 : -1);
     }, { passive: false });
     card.addEventListener('touchcancel', () => { startTime = 0; }, { passive: true });
+
+    const clusterSlot = SWTApp.utils.byId('practice-cluster-slot');
+    const clusterPanel = SWTApp.utils.byId('practice-cluster-panel');
+    const practicePanel = SWTApp.utils.byId('panel-practice');
+    const mobileQuery = window.matchMedia('(max-width: 39.999em)');
+    let pinFrame = 0;
+
+    const unpinCluster = () => {
+      clusterPanel?.classList.remove('is-mobile-fixed');
+      if (clusterSlot) clusterSlot.style.blockSize = '';
+    };
+    const syncPinnedCluster = () => {
+      pinFrame = 0;
+      if (!clusterSlot || !clusterPanel || practicePanel?.hidden || !mobileQuery.matches) {
+        unpinCluster();
+        return;
+      }
+      const isFixed = clusterPanel.classList.contains('is-mobile-fixed');
+      const shouldFix = clusterSlot.getBoundingClientRect().top <= 0;
+      if (shouldFix && !isFixed) {
+        clusterSlot.style.blockSize = clusterPanel.getBoundingClientRect().height + 'px';
+        clusterPanel.classList.add('is-mobile-fixed');
+      } else if (!shouldFix && isFixed) {
+        unpinCluster();
+      } else if (isFixed) {
+        clusterSlot.style.blockSize = clusterPanel.getBoundingClientRect().height + 'px';
+      }
+    };
+    const queuePinnedCluster = () => {
+      if (!pinFrame) pinFrame = window.requestAnimationFrame(syncPinnedCluster);
+    };
+    window.addEventListener('scroll', queuePinnedCluster, { passive: true });
+    window.addEventListener('resize', queuePinnedCluster, { passive: true });
+    if (typeof mobileQuery.addEventListener === 'function') mobileQuery.addEventListener('change', queuePinnedCluster);
+    else mobileQuery.addListener(queuePinnedCluster);
+    if (typeof ResizeObserver === 'function' && clusterPanel) new ResizeObserver(queuePinnedCluster).observe(clusterPanel);
+    queuePinnedCluster();
   }
 
   function renderClusterReview() {

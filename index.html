@@ -15,20 +15,20 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-11">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-11">
-  <script defer src="data/questions.js?v=multi-course-11"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-11"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-11"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-11"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-11"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-11"></script>
-  <script defer src="js/storage.js?v=multi-course-11"></script>
-  <script defer src="js/practice.js?v=multi-course-11"></script>
-  <script defer src="js/exam.js?v=multi-course-11"></script>
-  <script defer src="js/keyword.js?v=multi-course-11"></script>
-  <script defer src="js/study.js?v=multi-course-11"></script>
-  <script defer src="js/app.js?v=multi-course-11"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-12">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-12">
+  <script defer src="data/questions.js?v=multi-course-12"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-12"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-12"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-12"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-12"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-12"></script>
+  <script defer src="js/storage.js?v=multi-course-12"></script>
+  <script defer src="js/practice.js?v=multi-course-12"></script>
+  <script defer src="js/exam.js?v=multi-course-12"></script>
+  <script defer src="js/keyword.js?v=multi-course-12"></script>
+  <script defer src="js/study.js?v=multi-course-12"></script>
+  <script defer src="js/app.js?v=multi-course-12"></script>
 </head>
 <body>
   <header class="topbar">
@@ -98,7 +98,8 @@
           <label class="switch-control"><input type="checkbox" id="practice-instant-next" switch> Tự qua câu đúng</label>
         </div>
 
-        <section class="practice-cluster-panel card" aria-labelledby="practice-cluster-label">
+        <div id="practice-cluster-slot" class="practice-cluster-slot">
+        <section id="practice-cluster-panel" class="practice-cluster-panel card" aria-labelledby="practice-cluster-label">
           <div class="practice-cluster-heading">
             <div>
               <strong id="practice-cluster-label">Cụm 1 / 1</strong>
@@ -114,6 +115,7 @@
           </div>
           <div id="practice-cluster-steps" class="practice-cluster-steps" aria-label="Trạng thái từng câu trong cụm"></div>
         </section>
+        </div>
 
         <article id="practice-question-card" class="card" aria-label="Câu hỏi luyện tập" aria-roledescription="Thẻ câu hỏi có thể vuốt trái hoặc phải">
           <div class="question-meta">
