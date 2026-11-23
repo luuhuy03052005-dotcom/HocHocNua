@@ -33,7 +33,12 @@
   }
 
   function recallFor(id) {
-    return Math.min(REQUIRED_RECALLS, Math.max(0, Number(recallStreaks[String(id)]) || 0));
+    const stored = Number(recallStreaks[String(id)]);
+    if (stored > 0) return Math.min(REQUIRED_RECALLS, stored);
+    const rec = SWTApp.storage.getRecord(id);
+    if (rec.mastery === 2) return REQUIRED_RECALLS;
+    const correctCount = Math.max(0, (rec.attempts || 0) - (rec.wrongCount || 0));
+    return Math.min(REQUIRED_RECALLS, Math.max(0, rec.correctStreak || 0, correctCount));
   }
 
   function clusterSlotOf(questionId) {
@@ -108,17 +113,13 @@
   function getClusterStats(questions) {
     const items = Array.isArray(questions) ? questions : [];
     const mastered = items.filter((question) => recallFor(question.id) >= REQUIRED_RECALLS).length;
-    const learning = items.filter((question) => {
-      const streak = recallFor(question.id);
-      return streak > 0 && streak < REQUIRED_RECALLS;
-    }).length;
-    const studied = mastered + learning;
+    const studied = items.filter((question) => recallFor(question.id) > 0 || SWTApp.storage.getRecord(question.id).mastery > 0).length;
     const recalls = items.reduce((sum, question) => sum + recallFor(question.id), 0);
     const required = items.length * REQUIRED_RECALLS;
     const status = items.length > 0 && mastered === items.length
       ? 'completed'
-      : recalls > 0 ? 'learning' : 'unstarted';
-    return { total: items.length, mastered, learning, studied, recalls, required, status };
+      : recalls > 0 || studied > 0 ? 'learning' : 'unstarted';
+    return { total: items.length, mastered, studied, recalls, required, status };
   }
 
   function clusterStatusLabel(status) {
@@ -213,13 +214,13 @@
     questions.forEach((question, questionIndex) => {
       const recall = recallFor(question.id);
       const completed = recall >= REQUIRED_RECALLS;
-      const isLearning = recall > 0 && !completed;
-      const item = el('article', 'cluster-question-item' + (completed ? ' is-completed' : isLearning ? ' is-learning' : ''));
+      const studied = recall > 0 || SWTApp.storage.getRecord(question.id).mastery > 0;
+      const item = el('article', 'cluster-question-item' + (completed ? ' is-completed' : studied ? ' is-learning' : ''));
       item.setAttribute('role', 'listitem');
       const heading = el('div', 'cluster-question-heading');
       heading.append(
         el('strong', '', 'Câu ' + (targetIndex * CLUSTER_SIZE + questionIndex + 1) + ' · #' + question.id),
-        el('span', ('badge ' + (completed ? 'badge-success' : isLearning ? 'badge-warning' : '')).trim(), completed ? 'Hoàn thành 2/2' : isLearning ? 'Đang nhớ 1/2' : 'Chưa học 0/2')
+        el('span', ('badge ' + (completed ? 'badge-success' : studied ? 'badge-warning' : '')).trim(), completed ? 'Hoàn thành 2/2' : recall > 0 ? 'Đang nhớ 1/2' : studied ? 'Đã học · nhớ 0/2' : 'Chưa học 0/2')
       );
       const previewText = String(question.question || '').replace(/```[\s\S]*?```/g, '[Đoạn mã]').replace(/\s+/g, ' ').trim();
       const preview = el('p', 'cluster-question-preview', previewText);
@@ -495,6 +496,7 @@
   }
 
   function selectOption(key) {
+    clearAutoNext();
     if (graded || deck.length === 0) return;
     if (deck[index].isMulti) {
       if (selectedKeys.has(key)) selectedKeys.delete(key); else selectedKeys.add(key);
@@ -506,6 +508,7 @@
   }
 
   function revealCurrent() {
+    clearAutoNext();
     if (graded || deck.length === 0) return;
     graded = wasRevealed = true;
     lastCorrect = false;
@@ -552,11 +555,10 @@
   }
 
   function getLearnedQuestions() {
-    const hasClusterRecalls = allQuestions.some((question) => recallFor(question.id) > 0);
     return allQuestions.filter((question) => {
       if (recallFor(question.id) > 0) return true;
       const rec = SWTApp.storage.getRecord(question.id);
-      return hasClusterRecalls ? rec.mastery === 2 : rec.mastery > 0;
+      return rec.mastery > 0 || rec.attempts > 0;
     });
   }
 
@@ -747,11 +749,21 @@
     setDisabledList(btns, false);
     if (fcIndex >= fcDeck.length) fcIndex = 0;
     const q = fcDeck[fcIndex];
+    const rec = SWTApp.storage.getRecord(q.id);
     const correctSet = new Set(q.correctKeys || []);
     const tag = preview.tagName === 'UL' || preview.tagName === 'OL' ? 'li' : 'div';
     setText('fc-counter', fcIndex + 1 + ' / ' + fcDeck.length);
+    setText('fc-slide-badge', q.slideNumber ? 'Slide ' + q.slideNumber : '#' + q.id);
+    setText('fc-topic-badge', q.topic || SWTApp.app?.getCourse().code || 'Môn học');
     setRichText('fc-stem', (q.slideNumber ? '[Slide ' + q.slideNumber + '] ' : '') + q.question);
     renderImages(byId('fc-images'), q.images);
+
+    const starBtn = byId('fc-star-btn');
+    if (starBtn) {
+      starBtn.setAttribute('aria-pressed', String(rec.starred));
+      starBtn.classList.toggle('is-starred', rec.starred);
+      starBtn.classList.toggle('is-active', rec.starred);
+    }
 
     (q.options || []).forEach((opt) => {
       const optLine = el(tag, 'fc-option-line');
@@ -848,6 +860,7 @@
       byId('fc-filter-topic')?.addEventListener('change', (e) => { SWTApp.storage.setPref('fcFilterTopic', e.target.value); buildFlashcardDeck(); });
       const blurPointer = (e) => { if (e.detail > 0) e.currentTarget?.blur(); };
       byId('fc-flip-btn')?.addEventListener('click', (e) => { blurPointer(e); setFlipped(!isFlipped()); });
+      byId('fc-star-btn')?.addEventListener('click', (e) => { e.stopPropagation(); this.toggleCardStar(); });
       byId('fc-card')?.addEventListener('click', (e) => { if (!e.target.closest('button, a')) setFlipped(!isFlipped()); });
       [['fc-grade-hard', 'hard'], ['fc-grade-good', 'good'], ['fc-grade-easy', 'easy']].forEach(([id, lv]) =>
         byId(id)?.addEventListener('click', (e) => { blurPointer(e); gradeCard(lv); })
@@ -916,6 +929,11 @@
     isCardFlipped: isFlipped,
     gradeCard,
     stepCard(d) { if (fcDeck.length > 0) { fcIndex = Math.min(fcDeck.length - 1, Math.max(0, fcIndex + d)); setFlipped(false); renderFlashcard(); } },
-    toggleCardStar() { if (fcDeck[fcIndex]) SWTApp.storage.toggleStar(fcDeck[fcIndex].id); }
+    toggleCardStar() {
+      if (fcDeck[fcIndex]) {
+        SWTApp.storage.toggleStar(fcDeck[fcIndex].id);
+        renderFlashcard();
+      }
+    }
   };
 })();

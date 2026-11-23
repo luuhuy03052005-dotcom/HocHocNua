@@ -512,8 +512,16 @@
         if (startSelect && endSelect && Number(endSelect.value) < Number(startSelect.value)) startSelect.value = endSelect.value;
         updateRangePreview();
       });
-      byId('exam-source-select')?.addEventListener('change', () => { updateRangeSummary(); updateRangePreview(); });
-      byId('exam-topic-select')?.addEventListener('change', () => { updateRangeSummary(); updateRangePreview(); });
+      byId('exam-source-select')?.addEventListener('change', () => {
+        updateRangeSummary();
+        updateRangePreview();
+        if (getEligibleQuestions(rangeStart, rangeEnd).length > 0) setSetupNotice('');
+      });
+      byId('exam-topic-select')?.addEventListener('change', () => {
+        updateRangeSummary();
+        updateRangePreview();
+        if (getEligibleQuestions(rangeStart, rangeEnd).length > 0) setSetupNotice('');
+      });
       byId('exam-submit-btn')?.addEventListener('click', submitExam);
       byId('exam-prev-btn')?.addEventListener('click', () => this.step(-1));
       byId('exam-next-btn')?.addEventListener('click', () => this.step(1));

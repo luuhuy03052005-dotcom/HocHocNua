@@ -15,20 +15,20 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-17">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-17">
-  <script defer src="data/questions.js?v=multi-course-17"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-17"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-17"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-17"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-17"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-17"></script>
-  <script defer src="js/storage.js?v=multi-course-17"></script>
-  <script defer src="js/practice.js?v=multi-course-17"></script>
-  <script defer src="js/exam.js?v=multi-course-17"></script>
-  <script defer src="js/keyword.js?v=multi-course-17"></script>
-  <script defer src="js/study.js?v=multi-course-17"></script>
-  <script defer src="js/app.js?v=multi-course-17"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-19">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-19">
+  <script defer src="data/questions.js?v=multi-course-19"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-19"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-19"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-19"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-19"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-19"></script>
+  <script defer src="js/storage.js?v=multi-course-19"></script>
+  <script defer src="js/practice.js?v=multi-course-19"></script>
+  <script defer src="js/exam.js?v=multi-course-19"></script>
+  <script defer src="js/keyword.js?v=multi-course-19"></script>
+  <script defer src="js/study.js?v=multi-course-19"></script>
+  <script defer src="js/app.js?v=multi-course-19"></script>
 </head>
 <body>
   <header class="topbar">
@@ -167,6 +167,14 @@
           <div class="toolbar-spacer"><span id="fc-counter" class="counter-pill">0 / 0</span></div>
         </div>
         <article id="fc-card" class="card" data-flipped="false" aria-label="Thẻ ghi nhớ">
+          <div class="question-meta">
+            <span id="fc-slide-badge" class="badge">Slide -</span>
+            <span id="fc-topic-badge" class="badge">Môn học</span>
+            <button type="button" id="fc-star-btn" class="btn btn-ghost btn-sm icon-toggle" aria-pressed="false" title="Đánh dấu câu hỏi (S)">
+              <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              <span>Đánh dấu</span>
+            </button>
+          </div>
           <div id="fc-stem" class="question-stem">Đang tải thẻ ghi nhớ...</div>
           <div id="fc-images" class="question-images" hidden></div>
           <div id="fc-options-preview" class="fc-options-list"></div>

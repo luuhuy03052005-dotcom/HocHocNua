@@ -196,12 +196,23 @@
       });
     }
     const practice = sanitizePractice(parsed && parsed.practice);
-    Object.keys(practice.recallStreaks).forEach((id) => {
+    Object.keys(records).forEach((id) => {
       const rec = records[id];
-      if (!rec || rec.attempts <= 0 || rec.correctStreak <= 0) {
-        delete practice.recallStreaks[id];
-      } else if (practice.recallStreaks[id] > rec.correctStreak) {
-        practice.recallStreaks[id] = Math.min(2, rec.correctStreak);
+      if (!rec) return;
+      const correctCount = Math.max(0, rec.attempts - rec.wrongCount);
+      const derivedStreak = rec.mastery === 2
+        ? 2
+        : Math.min(2, Math.max(rec.correctStreak, correctCount));
+      if (derivedStreak > (practice.recallStreaks[id] || 0)) {
+        practice.recallStreaks[id] = derivedStreak;
+      }
+      if (practice.recallStreaks[id] >= 2 && rec.mastery < 2) {
+        rec.mastery = 2;
+        rec.correctStreak = Math.max(rec.correctStreak, 2);
+        rec.lastWrong = false;
+      } else if (practice.recallStreaks[id] === 1 && rec.mastery === 0) {
+        rec.mastery = 1;
+        rec.correctStreak = Math.max(rec.correctStreak, 1);
       }
     });
     state = { prefs, records, practice };
@@ -254,6 +265,7 @@
       const rec = ensureRecord(id);
       rec.correctStreak = 0;
       rec.mastery = 1;
+      state.practice.recallStreaks[String(id)] = 0;
       saveState();
       return { ...rec };
     },
@@ -264,8 +276,12 @@
         rec.correctStreak += 1;
         rec.mastery = 2;
         rec.lastWrong = false;
+        state.practice.recallStreaks[String(id)] = 2;
       } else {
-        if (grade === 'hard') rec.correctStreak = 0;
+        if (grade === 'hard') {
+          rec.correctStreak = 0;
+          state.practice.recallStreaks[String(id)] = 0;
+        }
         rec.mastery = 1;
       }
       saveState();
