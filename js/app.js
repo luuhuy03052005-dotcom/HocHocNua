@@ -20,7 +20,7 @@
   function prepareQuestions(rawData) {
     const { normalizeText } = SWTApp.utils;
     const rawList = rawData && Array.isArray(rawData.questions) ? rawData.questions : [];
-    return rawList.map((q, idx) => {
+    const prepared = rawList.map((q, idx) => {
       const id = q.id != null ? q.id : idx + 1;
       const options = Array.isArray(q.options) ? q.options : [];
       const correctKeys = Array.isArray(q.correctKeys) ? q.correctKeys : [];
@@ -40,6 +40,14 @@
         images: Array.isArray(q.images) ? q.images : [],
         _searchNorm: searchNorm
       };
+    });
+    if (currentCourse.code !== 'PRJ301') return prepared;
+    const seenStems = new Set();
+    return prepared.filter((question) => {
+      const stem = normalizeText(question.question).replace(/[^a-z0-9]+/g, ' ').trim();
+      if (seenStems.has(stem)) return false;
+      seenStems.add(stem);
+      return true;
     });
   }
 

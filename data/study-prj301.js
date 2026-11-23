@@ -2,9 +2,9 @@ window.PRJ301_STUDY = {
   meta: {
     course: "PRJ301",
     title: "PRJ301 — Kiến thức cốt lõi",
-    source: "Tổng hợp từ 567 câu PRJ301",
+    source: "559 câu PRJ301 sau khi loại 8 câu trùng từ nguồn 567 câu",
     lessonCount: 8,
-    questionCount: 567,
+    questionCount: 559,
     knowledgeOnly: true,
     summaryLabel: "Tóm tắt",
     description: "Chỉ gồm khái niệm và cách hoạt động. Không có mẹo thi hoặc quy tắc học thuộc đáp án.",

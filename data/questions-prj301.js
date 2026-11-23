@@ -2,8 +2,10 @@ window.PRJ301_DATA = {
   "meta": {
     "course": "PRJ301",
     "title": "Java Web Application Development — Semester 4",
-    "totalQuestions": 567,
-    "totalSlides": 567,
+    "totalQuestions": 559,
+    "sourceQuestions": 567,
+    "duplicatesRemoved": 8,
+    "totalSlides": 559,
     "topics": [
       "1. Web & HTTP, HTML Forms & MVC Architecture",
       "2. Java Servlet API & Lifecycle",
@@ -99,10 +101,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "B"
+        "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B · FUO AI: A.\nLựa chọn đúng: B. One <amount> element and one <rate> element",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: B · FUO AI: A).\nLựa chọn đúng: A. Two separate <attribute> elements.",
       "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
       "images": []
     },
@@ -998,7 +1000,7 @@ window.PRJ301_DATA = {
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. False",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. False",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -1859,10 +1861,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "D"
+        "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: D · FUO AI: B.\nLựa chọn đúng: D. Use form-based authentication.",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: D · FUO AI: B).\nLựa chọn đúng: A. Use HTTPS instead of HTTP.",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -2105,34 +2107,34 @@ window.PRJ301_DATA = {
     {
       "id": 72,
       "slideNumber": null,
-      "question": "Which of these is legal return type of the doStartTag method defined in a class that extends TagSupport class?",
+      "question": "Which of these is a legal return value of doStartTag() in a class that extends TagSupport?",
       "options": [
         {
           "key": "A",
-          "text": "EVAL PAGE"
+          "text": "EVAL_PAGE"
         },
         {
           "key": "B",
-          "text": "EVAL BODY"
+          "text": "EVAL_BODY"
         },
         {
           "key": "C",
-          "text": "EVAL PAGE INCLUDE"
+          "text": "EVAL_PAGE_INCLUDE"
         },
         {
           "key": "D",
-          "text": "EVAL BODY INCLUDE"
+          "text": "EVAL_BODY_INCLUDE"
         },
         {
           "key": "E",
-          "text": "SKIP PAGE"
+          "text": "SKIP_PAGE"
         }
       ],
       "correctKeys": [
         "D"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: D.\nLựa chọn đúng: D. EVAL BODY INCLUDE",
+      "explanation": "Đáp án đã kiểm chứng: D (Cộng đồng: D · FUO AI: D).\nLựa chọn đúng: D. EVAL_BODY_INCLUDE",
       "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
       "images": []
     },
@@ -2741,36 +2743,6 @@ window.PRJ301_DATA = {
       "images": []
     },
     {
-      "id": 95,
-      "slideNumber": null,
-      "question": "Which of the following statements are correct about HTTP Basic authentication mechanism?",
-      "options": [
-        {
-          "key": "A",
-          "text": "HTML FORM is used to capture username and password."
-        },
-        {
-          "key": "B",
-          "text": "Password is transmitted as text."
-        },
-        {
-          "key": "C",
-          "text": "Password is transmitted in an encrypted form."
-        },
-        {
-          "key": "D",
-          "text": "Password is transmitted either in encrypted text or in plain text depending on the browser"
-        }
-      ],
-      "correctKeys": [
-        "B"
-      ],
-      "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: B.\nLựa chọn đúng: B. Password is transmitted as text.",
-      "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
-      "images": []
-    },
-    {
       "id": 96,
       "slideNumber": null,
       "question": "To send binary output in a response, which of the following method of HttpServletResponse get the appropriate Writer/Stream object?",
@@ -3103,10 +3075,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "B"
+        "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B · FUO AI: A.\nLựa chọn đúng: B. False",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: B · FUO AI: A).\nLựa chọn đúng: A. True",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -3137,36 +3109,6 @@ window.PRJ301_DATA = {
       ],
       "isMulti": false,
       "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. Every URL that the client uses must include jsessionid.",
-      "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
-      "images": []
-    },
-    {
-      "id": 109,
-      "slideNumber": null,
-      "question": "Which of the following is true about Data Integrity?",
-      "options": [
-        {
-          "key": "A",
-          "text": "The information/data is accessible only to users who are authenticated."
-        },
-        {
-          "key": "B",
-          "text": "The information/data is not tampered with, in transit from host to client."
-        },
-        {
-          "key": "C",
-          "text": "The information/data is not read by parties other than it's intended recipients."
-        },
-        {
-          "key": "D",
-          "text": "The information/data is never modified."
-        }
-      ],
-      "correctKeys": [
-        "B"
-      ],
-      "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: B.\nLựa chọn đúng: B. The information/data is not tampered with, in transit from host to client.",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -3565,10 +3507,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "C"
+        "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: C · FUO AI: D.\nLựa chọn đúng: C. <jsp:useBean id=\"fruit\" class=\"Fruit\" beanName=\"Fruit\"/>",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: C · FUO AI: D).\nLựa chọn đúng: B. <jsp:useBean id=\"fruit\" scope=\"page\" type=\"String\"/>",
       "topic": "5. JSP Scripting, Directives & Standard Actions",
       "images": []
     },
@@ -4401,36 +4343,6 @@ window.PRJ301_DATA = {
       "images": []
     },
     {
-      "id": 151,
-      "slideNumber": null,
-      "question": "For what reason does the following JSP fail to translate and compile?\n```\n<html>\n<body>\n<%! int x; %>\n<%=x ; %>\n</body>\n</html>\n```",
-      "options": [
-        {
-          "key": "A",
-          "text": "Data member x not initialized before use."
-        },
-        {
-          "key": "B",
-          "text": "Local variable x not initialized before use."
-        },
-        {
-          "key": "C",
-          "text": "Method declared in scriptlet."
-        },
-        {
-          "key": "D",
-          "text": "Error in JSP Expression."
-        }
-      ],
-      "correctKeys": [
-        "D"
-      ],
-      "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: D.\nLựa chọn đúng: D. Error in JSP Expression.",
-      "topic": "5. JSP Scripting, Directives & Standard Actions",
-      "images": []
-    },
-    {
       "id": 152,
       "slideNumber": null,
       "question": "Identify correct statement about a WAR file. (Choose one)",
@@ -4453,10 +4365,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "D"
+        "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: D · FUO AI: C.\nLựa chọn đúng: D. It contains web components such as servlets as well as EJBs.",
+      "explanation": "Đáp án đã kiểm chứng: C (Cộng đồng: D · FUO AI: C).\nLựa chọn đúng: C. It may contain third party jar and class files.",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
     },
@@ -4779,10 +4691,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "A"
+        "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A · FUO AI: B.\nLựa chọn đúng: A. To support sessions using URL rewriting, <url-rewriting. > true</url-rewriting > must be specified in the deployment descriptor.",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: A · FUO AI: B).\nLựa chọn đúng: B. If a web application uses HTTPS, the HTTPS response stream may be used to identify the session.",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -5027,10 +4939,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "A"
+        "D"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A · FUO AI: D.\nLựa chọn đúng: A. Hidden form fields.",
+      "explanation": "Đáp án đã kiểm chứng: D (Cộng đồng: A · FUO AI: D).\nLựa chọn đúng: D. URL Writing",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -5356,36 +5268,6 @@ window.PRJ301_DATA = {
       "images": []
     },
     {
-      "id": 182,
-      "slideNumber": null,
-      "question": "The HttpServletResponse lets you:",
-      "options": [
-        {
-          "key": "A",
-          "text": "All the others"
-        },
-        {
-          "key": "B",
-          "text": "obtain a PrintWriter used to send the document content back to the client."
-        },
-        {
-          "key": "C",
-          "text": "specify response headers (Content-Type, Set-Cookie, etc.)"
-        },
-        {
-          "key": "D",
-          "text": "specify outgoing information such as HTTP status codes (200, 404, etc.)"
-        }
-      ],
-      "correctKeys": [
-        "A"
-      ],
-      "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. All the others",
-      "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
-      "images": []
-    },
-    {
       "id": 183,
       "slideNumber": null,
       "question": "Which syntax is correct for JSP Expressions?",
@@ -5434,10 +5316,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "C"
+        "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: C · FUO AI: A.\nLựa chọn đúng: C. Hidden form fields.",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: C · FUO AI: A).\nLựa chọn đúng: A. URL Writing",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -5465,36 +5347,6 @@ window.PRJ301_DATA = {
       "isMulti": false,
       "explanation": "Đáp án Cộng đồng & FUO AI: C.\nLựa chọn đúng: C. WEB-INF",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
-      "images": []
-    },
-    {
-      "id": 186,
-      "slideNumber": null,
-      "question": "In which of the following cases will the method doEndTag() of a tag handler be invoked?",
-      "options": [
-        {
-          "key": "A",
-          "text": "It will be invoked only if doStartTag() or doAfterBody() return Tag.DO END TAG."
-        },
-        {
-          "key": "B",
-          "text": "It will be invoked only if doStartTag() and doAfterBody() complete successfully."
-        },
-        {
-          "key": "C",
-          "text": "It will be invoked in all case even if doStartTag() or doAfterBody() throw an exception."
-        },
-        {
-          "key": "D",
-          "text": "This method is invoked if doStartTag() method returns true."
-        }
-      ],
-      "correctKeys": [
-        "C"
-      ],
-      "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: C · FUO AI: B.\nLựa chọn đúng: C. It will be invoked in all case even if doStartTag() or doAfterBody() throw an exception.",
-      "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
       "images": []
     },
     {
@@ -6105,11 +5957,11 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "B",
-        "C"
+        "A",
+        "B"
       ],
       "isMulti": true,
-      "explanation": "Đáp án Cộng đồng: BC · FUO AI: AB.\nLựa chọn đúng: B. application | C. session",
+      "explanation": "Đáp án đã kiểm chứng: A, B (Cộng đồng: BC · FUO AI: AB).\nLựa chọn đúng: A. page | B. application",
       "topic": "5. JSP Scripting, Directives & Standard Actions",
       "images": []
     },
@@ -6296,32 +6148,6 @@ window.PRJ301_DATA = {
       "isMulti": false,
       "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. <%@ page isErrorPage=\"true\"%>",
       "topic": "5. JSP Scripting, Directives & Standard Actions",
-      "images": []
-    },
-    {
-      "id": 214,
-      "slideNumber": null,
-      "question": "What will happen when a servlet makes the following call within its doGet() method?\n```\ngetServletContext().setAttribute(\"userid\", userid);\n```",
-      "options": [
-        {
-          "key": "A",
-          "text": "The userid attribute is placed in application scope."
-        },
-        {
-          "key": "B",
-          "text": "The code in complied error"
-        },
-        {
-          "key": "C",
-          "text": "A SessionContextListener will be invoked."
-        }
-      ],
-      "correctKeys": [
-        "A"
-      ],
-      "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. The userid attribute is placed in application scope.",
-      "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
     {
@@ -6680,7 +6506,7 @@ window.PRJ301_DATA = {
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án đúng: A (FUO AI: A · Cộng đồng ghi F ngoài phạm vi A–D).\nLựa chọn đúng: A. START",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: F · FUO AI: A).\nLựa chọn đúng: A. START",
       "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
       "images": []
     },
@@ -6738,40 +6564,6 @@ window.PRJ301_DATA = {
       "isMulti": false,
       "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. The parameters will be appended to the URL as a query string.",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
-      "images": []
-    },
-    {
-      "id": 229,
-      "slideNumber": null,
-      "question": "Which is NOT a core component of JSP?",
-      "options": [
-        {
-          "key": "A",
-          "text": "directives"
-        },
-        {
-          "key": "B",
-          "text": "actions"
-        },
-        {
-          "key": "C",
-          "text": "scriptlets"
-        },
-        {
-          "key": "D",
-          "text": "tag libraries"
-        },
-        {
-          "key": "E",
-          "text": "name of a jsp file"
-        }
-      ],
-      "correctKeys": [
-        "E"
-      ],
-      "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: E.\nLựa chọn đúng: E. name of a jsp file",
-      "topic": "5. JSP Scripting, Directives & Standard Actions",
       "images": []
     },
     {
@@ -8350,7 +8142,7 @@ window.PRJ301_DATA = {
         "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: C (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: C. It requires each transaction to be committed or rolled back manually.",
+      "explanation": "Đáp án đã kiểm chứng: C (Cộng đồng: C · FUO AI: không có).\nLựa chọn đúng: C. It requires each transaction to be committed or rolled back manually.",
       "topic": "8. JDBC, Database Connection & JavaBeans",
       "images": []
     },
@@ -8380,7 +8172,7 @@ window.PRJ301_DATA = {
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: A. By allowing separate scaling of user interface and data processing components.",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: A · FUO AI: không có).\nLựa chọn đúng: A. By allowing separate scaling of user interface and data processing components.",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -8410,7 +8202,7 @@ window.PRJ301_DATA = {
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. Utilize servlet filters for handling user authentication.",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. Utilize servlet filters for handling user authentication.",
       "topic": "5. JSP Scripting, Directives & Standard Actions",
       "images": []
     },
@@ -8440,7 +8232,7 @@ window.PRJ301_DATA = {
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. Implement client-side validation in the View using JavaScript.",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. Implement client-side validation in the View using JavaScript.",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -8471,7 +8263,7 @@ window.PRJ301_DATA = {
         "C"
       ],
       "isMulti": true,
-      "explanation": "Đáp án Cộng đồng: AC (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: A. They differ in the way the controller is organized | C. MVCI is page-centric where as MVC2 is controller-centric",
+      "explanation": "Đáp án đã kiểm chứng: A, C (Cộng đồng: AC · FUO AI: không có).\nLựa chọn đúng: A. They differ in the way the controller is organized | C. MVCI is page-centric where as MVC2 is controller-centric",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -8501,7 +8293,7 @@ window.PRJ301_DATA = {
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. Distribute user-generated content across multiple tiers, applying appropriate security measures at each level.",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. Distribute user-generated content across multiple tiers, applying appropriate security measures at each level.",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -8512,7 +8304,7 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "String role = session.getAttribute(\"userRole\");"
+          "text": "String role = (String) session.getAttribute(\"userRole\");"
         },
         {
           "key": "B",
@@ -8531,7 +8323,7 @@ window.PRJ301_DATA = {
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: A. String role = session.getAttribute(\"userRole\");",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: A · FUO AI: không có).\nLựa chọn đúng: A. String role = (String) session.getAttribute(\"userRole\");",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -8561,7 +8353,7 @@ window.PRJ301_DATA = {
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. HttpSession session = request.getSession();",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. HttpSession session = request.getSession();",
       "topic": "4. Session Management, Cookies & URL Rewriting",
       "images": []
     },
@@ -8591,7 +8383,7 @@ window.PRJ301_DATA = {
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. It sends an HTTP redirect response to the client with a new URL.",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. It sends an HTTP redirect response to the client with a new URL.",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -8621,37 +8413,37 @@ window.PRJ301_DATA = {
         "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: C (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: C. URL rewriting for session tracking.",
+      "explanation": "Đáp án đã kiểm chứng: C (Cộng đồng: C · FUO AI: không có).\nLựa chọn đúng: C. URL rewriting for session tracking.",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
     {
       "id": 292,
       "slideNumber": null,
-      "question": "When is a ServletContext attribute available to servlets in a web application?",
+      "question": "How long is a ServletContext attribute available after it is set?",
       "options": [
         {
           "key": "A",
-          "text": "Only during the initialization of the servlet"
+          "text": "Only during servlet initialization"
         },
         {
           "key": "B",
-          "text": "During the entire lifecycle of the servlet container"
+          "text": "For the lifecycle of the web application (ServletContext), unless it is removed"
         },
         {
           "key": "C",
-          "text": "Only during the processing of a specific HTTP request"
+          "text": "Only while one HTTP request is being processed"
         },
         {
           "key": "D",
-          "text": "Only during the destruction of the servlet"
+          "text": "Only during servlet destruction"
         }
       ],
       "correctKeys": [
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. During the entire lifecycle of the servlet container",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. For the lifecycle of the web application (ServletContext), unless it is removed",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -8662,26 +8454,26 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "${myList 10 J"
+          "text": "${myList[0]}"
         },
         {
           "key": "B",
-          "text": "${myList . get First ( )"
+          "text": "${myList.getFirst()}"
         },
         {
           "key": "C",
-          "text": "$f:nyList . first}"
+          "text": "${myList.first}"
         },
         {
           "key": "D",
-          "text": "$f:nyList . get First"
+          "text": "${myList.getFirst}"
         }
       ],
       "correctKeys": [
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: A. ${myList 10 J",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: A · FUO AI: không có).\nLựa chọn đúng: A. ${myList[0]}",
       "topic": "6. Expression Language (EL) & JSTL",
       "images": []
     },
@@ -8692,7 +8484,7 @@ window.PRJ301_DATA = {
       "options": [
         {
           "key": "A",
-          "text": "."
+          "text": "+="
         },
         {
           "key": "B",
@@ -8711,14 +8503,14 @@ window.PRJ301_DATA = {
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: A. .",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: A · FUO AI: không có).\nLựa chọn đúng: A. +=",
       "topic": "6. Expression Language (EL) & JSTL",
       "images": []
     },
     {
       "id": 295,
       "slideNumber": null,
-      "question": "```\npublic class MyAppContextListener implements ServletContextListener {\n    public void contextInitialized(ServletContextEvent event) {\n        // TODO: Your code here\n    }\n\n    public void contextDestroyed(ServletContextEvent event) {\n        // TODO: Your code here\n    }\n}\n```\nIn the contextInitialized method, what kind of tasks would you typically perform during the initialization of the servlet context?",
+      "question": "```\npublic class MyAppContextListener implements ServletContextListener {\n    public void contextInitialized(ServletContextEvent event) {\n        // TODO: Your code here\n    }\n\n    public void contextDestroyed(ServletContextEvent event) {\n        // TODO: Your code here\n    }\n}\n```\nWhich task is appropriate for contextInitialized when the application needs a shared database resource?",
       "options": [
         {
           "key": "A",
@@ -8726,7 +8518,7 @@ window.PRJ301_DATA = {
         },
         {
           "key": "B",
-          "text": "Initializing objects for database connections"
+          "text": "Initializing an application-wide database connection pool"
         },
         {
           "key": "C",
@@ -8734,25 +8526,25 @@ window.PRJ301_DATA = {
         },
         {
           "key": "D",
-          "text": "Configuring global application settings"
+          "text": "Changing global settings after the application has already started"
         }
       ],
       "correctKeys": [
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. Initializing objects for database connections",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. Initializing an application-wide database connection pool",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
     },
     {
       "id": 296,
       "slideNumber": null,
-      "question": "```\npublic class MySessionListener implements HttpSessionListener {\n    public void sessionCreated(HttpSessionEvent event) {\n        // TODO: Your code here\n    }\n\n    public void sessionDestroyed(HttpSessionEvent event) {\n        // TODO: Your code here\n    }\n}\n```\nIn the sessionDestroyed method, what kind of tasks would you typically perform when a user's session is invalidated?",
+      "question": "```\npublic class MySessionListener implements HttpSessionListener {\n    public void sessionCreated(HttpSessionEvent event) {\n        // TODO: Your code here\n    }\n\n    public void sessionDestroyed(HttpSessionEvent event) {\n        // TODO: Your code here\n    }\n}\n```\nWhich task is appropriate in sessionDestroyed when a user's session is invalidated?",
       "options": [
         {
           "key": "A",
-          "text": "Closing database connections"
+          "text": "Releasing resources owned specifically by that session"
         },
         {
           "key": "B",
@@ -8775,7 +8567,7 @@ window.PRJ301_DATA = {
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: A. Closing database connections",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: A · FUO AI: không có).\nLựa chọn đúng: A. Releasing resources owned specifically by that session",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
     },
@@ -8805,7 +8597,7 @@ window.PRJ301_DATA = {
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. It watches for changes in user sessions, like when someone logs in or out",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. It watches for changes in user sessions, like when someone logs in or out",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
     },
@@ -8835,7 +8627,7 @@ window.PRJ301_DATA = {
         "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: C (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: C. Session destruction",
+      "explanation": "Đáp án đã kiểm chứng: C (Cộng đồng: C · FUO AI: không có).\nLựa chọn đúng: C. Session destruction",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
     },
@@ -8865,7 +8657,7 @@ window.PRJ301_DATA = {
         "B"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B (FUO AI: chưa có dữ liệu).\nLựa chọn đúng: B. <c:forEach>",
+      "explanation": "Đáp án đã kiểm chứng: B (Cộng đồng: B · FUO AI: không có).\nLựa chọn đúng: B. <c:forEach>",
       "topic": "6. Expression Language (EL) & JSTL",
       "images": []
     },
@@ -9534,11 +9326,11 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "B",
-        "C"
+        "A",
+        "B"
       ],
       "isMulti": true,
-      "explanation": "Đáp án Cộng đồng: BC · FUO AI: AB.\nLựa chọn đúng: B. Translates page to servlet | C. Compile page into servlet",
+      "explanation": "Đáp án đã kiểm chứng: A, B (Cộng đồng: BC · FUO AI: AB).\nLựa chọn đúng: A. Forwards page to JSP engine | B. Translates page to servlet",
       "topic": "5. JSP Scripting, Directives & Standard Actions",
       "images": []
     },
@@ -9835,10 +9627,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "A"
+        "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A · FUO AI: C.\nLựa chọn đúng: A. It uses a pure Java driver to communicate with the database.",
+      "explanation": "Đáp án đã kiểm chứng: C (Cộng đồng: A · FUO AI: C).\nLựa chọn đúng: C. It translates JDBC calls into the database-specific protocol and communicates with the database server over a network.",
       "topic": "8. JDBC, Database Connection & JavaBeans",
       "images": []
     },
@@ -9870,7 +9662,7 @@ window.PRJ301_DATA = {
         "C"
       ],
       "isMulti": true,
-      "explanation": "Đáp án Cộng đồng: ABC · FUO AI: ABD.\nLựa chọn đúng: A. JDBC driver not found | B. Database URL is not recognized by JDBC driver | C. Unauthorized user on DBMS",
+      "explanation": "Đáp án đã kiểm chứng: A, B, C (Cộng đồng: ABC · FUO AI: ABD).\nLựa chọn đúng: A. JDBC driver not found | B. Database URL is not recognized by JDBC driver | C. Unauthorized user on DBMS",
       "topic": "8. JDBC, Database Connection & JavaBeans",
       "images": []
     },
@@ -10583,7 +10375,7 @@ window.PRJ301_DATA = {
         },
         {
           "key": "C",
-          "text": "By using the getJspContext().getOut() method of the JspContext class."
+          "text": "By calling getJspBody() and invoking the returned JspFragment."
         },
         {
           "key": "D",
@@ -10591,21 +10383,21 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "B"
+        "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B · FUO AI: C.\nLựa chọn đúng: B. By implementing the BodyTag interface in the tag handler class.",
+      "explanation": "Đáp án đã kiểm chứng: C (Cộng đồng: B · FUO AI: C).\nLựa chọn đúng: C. By calling getJspBody() and invoking the returned JspFragment.",
       "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
       "images": []
     },
     {
       "id": 357,
       "slideNumber": null,
-      "question": "In custom tag development, how does the BodyTag interface differ from the SimpleTag interface?",
+      "question": "In custom tag development, how does the BodyTag interface differ from the SimpleTag interface? (Choose two)",
       "options": [
         {
           "key": "A",
-          "text": "Body Tag is used for tags without body content, while SimpleTag is for tags with body content."
+          "text": "BodyTag is used for tags without body content, while SimpleTag is for tags with body content."
         },
         {
           "key": "B",
@@ -10613,19 +10405,19 @@ window.PRJ301_DATA = {
         },
         {
           "key": "C",
-          "text": "SimpleTag is the newer, more complex interface, while BodyTag is outdated."
+          "text": "SimpleTag is the newer, simpler interface, while BodyTag belongs to the classic tag API."
         },
         {
           "key": "D",
-          "text": "BodyTag is not used in custom tag development, whereas SimpleTag is the standard."
+          "text": "BodyTag is not used in custom tag development, whereas SimpleTag is the only standard."
         }
       ],
       "correctKeys": [
         "B",
-        "D"
+        "C"
       ],
       "isMulti": true,
-      "explanation": "Đáp án Cộng đồng: BD · FUO AI: BC.\nLựa chọn đúng: B. BodyTag provides more control over the tag's body content processing than SimpleTag. | D. BodyTag is not used in custom tag development, whereas SimpleTag is the standard.",
+      "explanation": "Đáp án đã kiểm chứng: B, C (Cộng đồng: BD · FUO AI: BC).\nLựa chọn đúng: B. BodyTag provides more control over the tag's body content processing than SimpleTag. | C. SimpleTag is the newer, simpler interface, while BodyTag belongs to the classic tag API.",
       "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
       "images": []
     },
@@ -10997,7 +10789,7 @@ window.PRJ301_DATA = {
         "D"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: D · FUO AI: A.\nLựa chọn đúng: D. Always manage database tasks with transaction",
+      "explanation": "Đáp án đã kiểm chứng: D (Cộng đồng: D · FUO AI: A).\nLựa chọn đúng: D. Always manage database tasks with transaction",
       "topic": "8. JDBC, Database Connection & JavaBeans",
       "images": []
     },
@@ -12421,10 +12213,10 @@ window.PRJ301_DATA = {
       ],
       "correctKeys": [
         "A",
-        "C"
+        "B"
       ],
       "isMulti": true,
-      "explanation": "Đáp án Cộng đồng: AC · FUO AI: AB.\nLựa chọn đúng: A. getString(\"columnName\") | C. getString(index)",
+      "explanation": "Đáp án đã kiểm chứng: A, B (Cộng đồng: AC · FUO AI: AB).\nLựa chọn đúng: A. getString(\"columnName\") | B. getString(1 )",
       "topic": "8. JDBC, Database Connection & JavaBeans",
       "images": []
     },
@@ -12691,10 +12483,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "B"
+        "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B · FUO AI: C.\nLựa chọn đúng: B. ${bookList.get(2).title}",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: B · FUO AI: C).\nLựa chọn đúng: A. ${bookList[2].title}",
       "topic": "6. Expression Language (EL) & JSTL",
       "images": []
     },
@@ -12901,10 +12693,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "D"
+        "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: D · FUO AI: B.\nLựa chọn đúng: D. public class RecordServlet extends HttpServlet { protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException { PrintWriter pw = res.getWriter(); res.setContentType(\"text/html\"); String account = req.getParameter(\"txtname1\"); String Addr = req.getParameter(\"txtadd1\"); pw.println(\"Hello \" + account + \" from\" + Addr); pw.close(); } }",
+      "explanation": "Đáp án đã kiểm chứng: C (Cộng đồng: D · FUO AI: B).\nLựa chọn đúng: C. public class RecordServlet extends HttpServlet { protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException { PrintWriter pw = res.getWriter(); res.setContentType(\"text/html\"); String account = req.getParameter(\"txtname2\"); String Addr = req.getParameter(\"txtadd2\"); pw.println(\"Hello \" + account + \" from\" + Addr); pw.close(); } }",
       "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
@@ -13661,7 +13453,7 @@ window.PRJ301_DATA = {
     {
       "id": 458,
       "slideNumber": null,
-      "question": "In Java web applications, which of the following URL patterns is commonly used in to indicate that a servlet should handle requests for all URLs in a specific directory and its subdirectories?",
+      "question": "Which URL pattern maps a servlet to every request under the /pages directory and its subdirectories?",
       "options": [
         {
           "key": "A",
@@ -13684,7 +13476,7 @@ window.PRJ301_DATA = {
         "D"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: D · FUO AI: B.\nLựa chọn đúng: D. /pages/*",
+      "explanation": "Đáp án đã kiểm chứng: D (Cộng đồng: D · FUO AI: B).\nLựa chọn đúng: D. /pages/*",
       "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
       "images": []
     },
@@ -14523,10 +14315,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "B"
+        "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: B · FUO AI: A.\nLựa chọn đúng: B. init()",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: B · FUO AI: A).\nLựa chọn đúng: A. doTag()",
       "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
       "images": []
     },
@@ -15604,10 +15396,10 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "D"
+        "C"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: D · FUO AI: C.\nLựa chọn đúng: D. All of the above",
+      "explanation": "Đáp án đã kiểm chứng: C (Cộng đồng: D · FUO AI: C).\nLựa chọn đúng: C. To provide instructions to the JSP container",
       "topic": "5. JSP Scripting, Directives & Standard Actions",
       "images": []
     },
@@ -15669,36 +15461,6 @@ window.PRJ301_DATA = {
       "isMulti": false,
       "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. Use the getConnection() method of the DriverManager class",
       "topic": "8. JDBC, Database Connection & JavaBeans",
-      "images": []
-    },
-    {
-      "id": 525,
-      "slideNumber": null,
-      "question": "How to store a value in ServletContext from a Servlet?",
-      "options": [
-        {
-          "key": "A",
-          "text": "context.setAttribute(\"key\", value);"
-        },
-        {
-          "key": "B",
-          "text": "value);"
-        },
-        {
-          "key": "C",
-          "text": "session.setAttribute(\"key\", value);"
-        },
-        {
-          "key": "D",
-          "text": "response.setAttribute(\"key\", value);"
-        }
-      ],
-      "correctKeys": [
-        "A"
-      ],
-      "isMulti": false,
-      "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. context.setAttribute(\"key\", value);",
-      "topic": "2. Java Servlet API & Lifecycle",
       "images": []
     },
     {
@@ -16267,7 +16029,7 @@ window.PRJ301_DATA = {
         "A"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: A · FUO AI: D.\nLựa chọn đúng: A. JDBC can only use with relational databases.",
+      "explanation": "Đáp án đã kiểm chứng: A (Cộng đồng: A · FUO AI: D).\nLựa chọn đúng: A. JDBC can only use with relational databases.",
       "topic": "8. JDBC, Database Connection & JavaBeans",
       "images": []
     },
@@ -16852,7 +16614,7 @@ window.PRJ301_DATA = {
     {
       "id": 564,
       "slideNumber": null,
-      "question": "In a JSP, how do you use a custom tag defined in a tag library descriptor (TLD) file?",
+      "question": "After declaring its tag library, which syntax invokes a custom tag named tagName with the prefix customTag?",
       "options": [
         {
           "key": "A",
@@ -16872,11 +16634,11 @@ window.PRJ301_DATA = {
         }
       ],
       "correctKeys": [
-        "C"
+        "D"
       ],
       "isMulti": false,
-      "explanation": "Đáp án Cộng đồng: C · FUO AI: D.\nLựa chọn đúng: C. <%@ taglib %>",
-      "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+      "explanation": "Đáp án đã kiểm chứng: D (Cộng đồng: C · FUO AI: D).\nLựa chọn đúng: D. <customTag:tagName>",
+      "topic": "5. JSP Scripting, Directives & Standard Actions",
       "images": []
     },
     {
