@@ -211,7 +211,7 @@ input[type="checkbox"][switch]:focus-visible { outline: 3px solid var(--color-ac
 #panel-practice .toolbar select { min-block-size: 2rem; padding: 0.25rem 1.75rem 0.25rem 0.55rem; font-size: var(--text-xs); }
 #panel-practice .toolbar .switch-control { gap: 0.3rem; font-size: var(--text-xs); white-space: nowrap; }
 #panel-practice article.card { gap: 0.7rem; padding: 0.8rem 1rem; }
-#practice-question-card { touch-action: pan-y; transform: translateZ(0); overflow-wrap: anywhere; }
+#practice-question-card { touch-action: pan-y; transform: translateZ(0); overflow-wrap: anywhere; scroll-margin-block-start: 5rem; }
 #panel-practice .question-meta { gap: 0.35rem; }
 #panel-practice .question-meta :is(.badge, .counter-pill) { padding: 0.15rem 0.45rem; font-size: 0.7rem; }
 #panel-practice .question-stem { font-size: 1rem; line-height: 1.45; }
@@ -235,7 +235,6 @@ input[type="checkbox"][switch]:focus-visible { outline: 3px solid var(--color-ac
 .cluster-step.is-learning { color: var(--color-warning); background: var(--color-warning-soft); border-color: var(--color-warning); }
 .cluster-step.is-mastered { color: var(--color-success); background: var(--color-success-soft); border-color: var(--color-success); }
 .cluster-step[aria-current="true"] { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-.practice-cluster-help { display: none; color: var(--text-muted); font-size: 0.68rem; line-height: 1.2; }
 .practice-quick-controls {
   position: sticky; inset-block-end: max(var(--space-2), env(safe-area-inset-bottom, 0px)); z-index: 5;
   display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: stretch; gap: 0.35rem;
@@ -734,14 +733,17 @@ kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 
   #panel-practice .toolbar.is-mobile-open { display: grid; }
   #panel-practice .toolbar > select { grid-column: span 3; }
   #panel-practice .toolbar > .switch-control { grid-column: span 2; justify-content: center; }
-  .practice-cluster-panel { gap: 0.3rem; padding: 0.45rem 0.6rem; }
+  .practice-cluster-panel {
+    position: sticky; inset-block-start: 0; z-index: 15;
+    gap: 0.25rem; padding: 0.35rem 0.5rem; background: var(--bg-surface);
+    box-shadow: 0 4px 12px rgb(15 23 42 / 0.12);
+  }
   .practice-cluster-heading { display: flex; align-items: center; }
   .practice-cluster-heading > div { display: flex; }
   .practice-cluster-stats { display: flex; justify-content: flex-end; }
-  .practice-cluster-stats span:last-child { display: none; }
+  .practice-cluster-stats span { padding: 0.05rem 0.3rem; font-size: 0.66rem; }
   .practice-cluster-steps { gap: 0.15rem; }
   .cluster-step { min-block-size: 1.5rem; }
-  .practice-cluster-help { display: none; }
   .practice-quick-controls { gap: 0.25rem; padding: 0.25rem; }
   .practice-answer-keys { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); align-content: center; }
   .quick-answer-btn { inline-size: 100%; min-inline-size: 0; max-inline-size: none; min-block-size: 2.15rem; }

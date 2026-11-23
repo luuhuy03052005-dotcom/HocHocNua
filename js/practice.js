@@ -55,10 +55,10 @@
     const recalls = deck.reduce((sum, q) => sum + recallFor(q.id), 0);
     const required = total * REQUIRED_RECALLS;
     const pct = required > 0 ? Math.round((recalls / required) * 100) : 0;
-    setText('practice-cluster-label', 'Cụm ' + (clusterIndex + 1) + ' / ' + totalClusters());
+    setText('practice-cluster-label', 'Cụm ' + (clusterIndex + 1) + '/' + totalClusters());
     setText('practice-cluster-range', total ? 'Câu ' + (clusterIndex * CLUSTER_SIZE + 1) + '–' + (clusterIndex * CLUSTER_SIZE + total) : 'Không có câu');
-    setText('practice-cluster-mastered', mastered + ' / ' + total + ' câu thuộc');
-    setText('practice-cluster-recalls', recalls + ' / ' + required + ' lượt nhớ');
+    setText('practice-cluster-mastered', 'Thuộc ' + mastered + '/' + total);
+    setText('practice-cluster-recalls', 'Nhớ ' + recalls + '/' + required);
     const fill = byId('practice-cluster-progress-fill');
     if (fill) fill.style.inlineSize = pct + '%';
     const track = fill?.parentElement;
@@ -74,7 +74,14 @@
         step.title = 'Câu ' + (idx + 1) + ': ' + streak + '/' + REQUIRED_RECALLS + ' lượt nhớ đúng';
         step.setAttribute('aria-label', step.title);
         step.setAttribute('aria-current', String(idx === index));
-        step.addEventListener('click', () => { index = idx; resetTurn(); renderPractice(); });
+        step.addEventListener('click', () => {
+          const direction = idx - index;
+          index = idx;
+          resetTurn();
+          renderPractice();
+          if (direction) animatePracticeChange(direction);
+          scrollQuestionIntoView();
+        });
         steps.appendChild(step);
       });
     }
@@ -194,6 +201,13 @@
       ],
       { duration: 160, easing: 'cubic-bezier(.2,.8,.2,1)' }
     );
+  }
+
+  function scrollQuestionIntoView() {
+    const card = SWTApp.utils.byId('practice-question-card');
+    if (!card) return;
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    window.requestAnimationFrame(() => card.scrollIntoView({ block: 'start', behavior }));
   }
 
   function gradeCurrent() {
