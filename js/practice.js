@@ -32,6 +32,109 @@
     return optionCache.get(q.id);
   }
 
+  function lessonNumberFromTopic(topic) {
+    const match = String(topic || '').match(/^\s*(\d+)/);
+    return match ? Number(match[1]) : 0;
+  }
+
+  function keywordScore(blob, keywords) {
+    const { normalizeText } = SWTApp.utils;
+    const searchable = (value) => normalizeText(value).replace(/[^a-z0-9]+/g, ' ').trim();
+    const haystack = ' ' + searchable(blob) + ' ';
+    return (keywords || []).reduce((score, keyword) => {
+      const needle = searchable(keyword);
+      if (!needle || !haystack.includes(' ' + needle + ' ')) return score;
+      return score + Math.max(1, needle.split(' ').length);
+    }, 0);
+  }
+
+  function getQuestionKnowledge(q) {
+    const courseCode = SWTApp.app?.getCourse().code;
+    const data = courseCode === 'PRJ301'
+      ? window.PRJ301_STUDY
+      : courseCode === 'SSG105' ? window.SSG105_STUDY : null;
+    if (!data || !Array.isArray(data.lessons)) return null;
+
+    const lessonNumber = lessonNumberFromTopic(q.topic);
+    const lesson = data.lessons.find((item) => Number(item.number) === lessonNumber);
+    if (!lesson) return null;
+
+    const correctText = (q.options || [])
+      .filter((option) => (q.correctKeys || []).includes(option.key))
+      .map((option) => option.text)
+      .join(' ');
+    const questionBlob = [q.question, q.topic, correctText, q.explanation].join(' ');
+    const specific = (data.questionKnowledge || [])
+      .filter((item) => Number(item.lesson) === lessonNumber)
+      .map((item) => ({ ...item, score: keywordScore(questionBlob, item.keywords) }))
+      .sort((a, b) => b.score - a.score);
+
+    let items = specific.filter((item) => item.score > 0).slice(0, 2);
+    if (!items.length) {
+      items = (lesson.points || []).map((point) => {
+        if (typeof point === 'string') {
+          const keywords = SWTApp.utils.normalizeText(point).split(/[^a-z0-9]+/).filter((word) => word.length >= 5);
+          return { term: 'Kiến thức chính', text: point, score: keywordScore(questionBlob, keywords) };
+        }
+        const keywords = SWTApp.utils.normalizeText(point.term).split(/[^a-z0-9]+/).filter(Boolean);
+        return { term: point.term, text: point.text, score: keywordScore(questionBlob, keywords) };
+      }).sort((a, b) => b.score - a.score).slice(0, 2);
+    }
+
+    return { lesson, items };
+  }
+
+  function renderPracticeKnowledge(q) {
+    const { byId, el } = SWTApp.utils;
+    const wrap = byId('practice-knowledge-wrap');
+    const button = byId('practice-knowledge-btn');
+    const panel = byId('practice-knowledge-panel');
+    if (!wrap || !button || !panel) return;
+
+    const knowledge = graded ? getQuestionKnowledge(q) : null;
+    wrap.hidden = !knowledge;
+    panel.hidden = true;
+    panel.replaceChildren();
+    button.setAttribute('aria-expanded', 'false');
+    button.textContent = 'Hiện kiến thức của câu này';
+    if (!knowledge) return;
+
+    const heading = el('div', 'practice-knowledge-heading');
+    heading.append(
+      el('span', 'badge badge-accent', 'Bài ' + knowledge.lesson.number),
+      el('strong', '', knowledge.lesson.title)
+    );
+    panel.appendChild(heading);
+
+    const list = el('div', 'practice-knowledge-list');
+    knowledge.items.forEach((item) => {
+      const article = el('article', 'practice-knowledge-item');
+      article.append(el('mark', '', item.term || 'Khái niệm'), el('p', '', item.text || ''));
+      list.appendChild(article);
+    });
+    panel.appendChild(list);
+
+    const openLesson = el('button', 'btn btn-ghost btn-sm practice-open-lesson-btn', 'Mở bài học đầy đủ');
+    openLesson.type = 'button';
+    openLesson.addEventListener('click', () => {
+      SWTApp.app?.selectTab('tab-study');
+      const lessonNode = document.getElementById('lesson-' + knowledge.lesson.number);
+      if (lessonNode) {
+        lessonNode.open = true;
+        window.requestAnimationFrame(() => lessonNode.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+      }
+    });
+    panel.appendChild(openLesson);
+
+    button.onclick = () => {
+      clearAutoNext();
+      const willOpen = panel.hidden;
+      panel.hidden = !willOpen;
+      button.setAttribute('aria-expanded', String(willOpen));
+      button.textContent = willOpen ? 'Ẩn kiến thức của câu này' : 'Hiện kiến thức của câu này';
+    };
+  }
+
   function recallFor(id) {
     const stored = Number(recallStreaks[String(id)]);
     if (stored > 0) return Math.min(REQUIRED_RECALLS, stored);
@@ -382,6 +485,7 @@
       setText('practice-topic-badge', customSubsetIds ? 'Câu sai bài thi' : 'Trống');
       setText('practice-stem', 'Không có câu hỏi nào khớp bộ lọc hiện tại.');
       ['practice-multi-badge', 'practice-submit-multi-btn', 'practice-feedback'].forEach((id) => setHidden(id, true));
+      setHidden('practice-knowledge-wrap', true);
       setHidden('practice-flip-options-btn', true);
       optsEl.hidden = true;
       renderImages(byId('practice-images'), []);
@@ -444,6 +548,7 @@
         if (q.explanation) fbEl.appendChild(el('p', 'feedback-explanation', q.explanation));
       }
     }
+    renderPracticeKnowledge(q);
 
     if (byId('practice-prev-btn')) byId('practice-prev-btn').disabled = index <= 0;
     if (byId('practice-next-btn')) byId('practice-next-btn').disabled = false;

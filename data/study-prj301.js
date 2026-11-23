@@ -116,5 +116,54 @@ window.PRJ301_STUDY = {
       ],
       remember: "Servlet điều phối, DAO làm việc với database, JavaBean mang dữ liệu và JSP chỉ hiển thị."
     }
+  ],
+  questionKnowledge: [
+    { lesson: 1, term: "HTTP stateless", keywords: ["stateless", "stateful", "remember client", "protocol"], text: "HTTP xử lý từng request độc lập; session và cookie được thêm vào để duy trì trạng thái." },
+    { lesson: 1, term: "GET và POST", keywords: ["get method", "post method", "query string", "request body", "idempotent"], text: "GET thường dùng để đọc và mang tham số trên URL; POST gửi dữ liệu trong body và thường dùng khi tạo hoặc thay đổi dữ liệu." },
+    { lesson: 1, term: "HTML Form", keywords: ["form", "action", "method", "input name", "submit"], text: "Khi submit form, thuộc tính name của control trở thành tên parameter; action và method quyết định nơi và cách gửi." },
+    { lesson: 1, term: "URL", keywords: ["url", "uri", "context path", "servlet path", "path info", "query"], text: "URL của Java Web gồm context path của ứng dụng, đường dẫn servlet, phần pathInfo và query string nếu có." },
+    { lesson: 1, term: "MVC", keywords: ["mvc", "model", "view", "controller", "architecture"], text: "Controller điều phối request, Model chứa dữ liệu/nghiệp vụ và View chỉ trình bày kết quả." },
+
+    { lesson: 2, term: "Servlet lifecycle", keywords: ["init", "service", "destroy", "lifecycle", "called once"], text: "Container tạo servlet rồi gọi init() một lần; service() xử lý request; destroy() chạy trước khi servlet bị gỡ." },
+    { lesson: 2, term: "HTTP method dispatch", keywords: ["doget", "dopost", "doput", "dodelete", "service method"], text: "HttpServlet.service() đọc HTTP method và chuyển request tới doGet(), doPost() hoặc phương thức tương ứng." },
+    { lesson: 2, term: "Parameter và Attribute", keywords: ["getparameter", "setattribute", "getattribute", "parameter", "attribute"], text: "Parameter là chuỗi do client gửi; attribute là object do code phía server đặt vào một scope." },
+    { lesson: 2, term: "Forward và Redirect", keywords: ["forward", "sendredirect", "requestdispatcher", "redirect", "new request"], text: "Forward chạy nội bộ với cùng request; redirect trả địa chỉ mới để browser tạo một request khác." },
+    { lesson: 2, term: "Config và Context", keywords: ["servletconfig", "servletcontext", "init parameter", "application scope"], text: "ServletConfig thuộc riêng một servlet; ServletContext đại diện và được dùng chung trong toàn web application." },
+
+    { lesson: 3, term: "Deployment descriptor", keywords: ["web xml", "deployment descriptor", "web inf"], text: "WEB-INF/web.xml mô tả cấu hình triển khai như servlet, mapping, filter, listener, error page và security." },
+    { lesson: 3, term: "URL mapping", keywords: ["url pattern", "servlet mapping", "mapping", "load on startup"], text: "Container so khớp URL với url-pattern để xác định servlet hoặc filter cần gọi." },
+    { lesson: 3, term: "Filter chain", keywords: ["filter", "filterchain", "dofilter", "chain"], text: "Filter có thể xử lý trước và sau tài nguyên; chain.doFilter() chuyển request tới phần tử tiếp theo trong chuỗi." },
+    { lesson: 3, term: "Listener", keywords: ["listener", "context initialized", "session created", "attribute listener"], text: "Listener là callback của container khi vòng đời context, request, session hoặc attribute thay đổi." },
+    { lesson: 3, term: "WEB-INF", keywords: ["web inf", "direct access", "protected directory"], text: "Tài nguyên trong WEB-INF không được client truy cập trực tiếp nhưng server vẫn có thể đọc hoặc forward tới đó." },
+
+    { lesson: 4, term: "HttpSession", keywords: ["httpsession", "getsession", "session", "invalidate"], text: "HttpSession gắn dữ liệu với một người dùng qua nhiều request; invalidate() hủy session và toàn bộ attribute của nó." },
+    { lesson: 4, term: "Session timeout", keywords: ["maxinactiveinterval", "timeout", "inactive", "session timeout"], text: "Max inactive interval là khoảng thời gian không có request trước khi container tự hết hạn session." },
+    { lesson: 4, term: "Cookie", keywords: ["cookie", "setmaxage", "addcookie", "getcookies"], text: "Cookie là name/value lưu phía client; response gửi cookie xuống và request sau gửi cookie phù hợp trở lại server." },
+    { lesson: 4, term: "URL rewriting", keywords: ["encodeurl", "url rewriting", "jsessionid", "cookies disabled"], text: "URL rewriting đưa session id vào URL khi browser không sử dụng cookie; encodeURL() chỉ thêm khi cần." },
+    { lesson: 4, term: "Bốn scope", keywords: ["page scope", "request scope", "session scope", "application scope", "scope"], text: "page tồn tại trong JSP; request theo một request; session theo một user; application dùng chung toàn ứng dụng." },
+
+    { lesson: 5, term: "JSP thành Servlet", keywords: ["jsp lifecycle", "translation", "jspservice", "generated servlet"], text: "Container dịch JSP thành servlet; phần nội dung xử lý request nằm trong phương thức _jspService()." },
+    { lesson: 5, term: "Declaration", keywords: ["declaration", "class variable", "instance variable", "member method"], text: "JSP declaration tạo field hoặc method ở cấp lớp servlet được sinh ra từ JSP." },
+    { lesson: 5, term: "Scriptlet", keywords: ["scriptlet", "local variable", "java statement"], text: "Scriptlet được chèn vào _jspService(), vì vậy biến khai báo tại đây là biến local của quá trình xử lý request." },
+    { lesson: 5, term: "Expression", keywords: ["jsp expression", "expression", "print value", "semicolon"], text: "JSP expression tính một giá trị rồi ghi giá trị đó ra response; biểu thức không kết thúc bằng dấu chấm phẩy." },
+    { lesson: 5, term: "Directive và Action", keywords: ["directive", "include directive", "jsp include", "jsp forward", "usebean", "errorpage"], text: "Directive ảnh hưởng lúc dịch JSP; standard action thực thi trong lúc xử lý request." },
+
+    { lesson: 6, term: "EL property", keywords: ["expression language", "el", "bean property", "dot operator", "bracket"], text: "EL truy cập property qua getter; dấu chấm dùng tên cố định, dấu ngoặc vuông dùng key hoặc index động." },
+    { lesson: 6, term: "EL scope lookup", keywords: ["pagescope", "requestscope", "sessionscope", "applicationscope", "findattribute"], text: "Nếu không chỉ rõ scope, EL tìm tên lần lượt trong page, request, session rồi application." },
+    { lesson: 6, term: "EL operators", keywords: ["empty", "eq", "ne", "and", "or", "operator"], text: "EL cung cấp toán tử so sánh, logic và empty để kiểm tra null, chuỗi rỗng hoặc collection rỗng." },
+    { lesson: 6, term: "JSTL điều kiện", keywords: ["c if", "c choose", "c when", "otherwise", "conditional"], text: "c:if biểu diễn một điều kiện; c:choose cùng c:when/c:otherwise biểu diễn nhiều nhánh." },
+    { lesson: 6, term: "JSTL vòng lặp", keywords: ["c foreach", "foreach", "varstatus", "items", "begin end step"], text: "c:forEach lặp collection hoặc một khoảng số; varStatus cung cấp index, count, first và last." },
+
+    { lesson: 7, term: "TLD", keywords: ["tld", "tag library descriptor", "taglib", "tag class", "body content"], text: "TLD liên kết tên tag trong JSP với handler class và mô tả body cùng các attribute của tag." },
+    { lesson: 7, term: "doStartTag", keywords: ["dostarttag", "skip body", "eval body include", "eval body buffered"], text: "doStartTag() quyết định có đánh giá phần body của classic tag hay không." },
+    { lesson: 7, term: "doAfterBody", keywords: ["doafterbody", "eval body again", "repeat body"], text: "doAfterBody() có thể trả EVAL_BODY_AGAIN để đánh giá lại body hoặc kết thúc vòng lặp body." },
+    { lesson: 7, term: "doEndTag", keywords: ["doendtag", "eval page", "skip page"], text: "doEndTag() quyết định JSP tiếp tục phần còn lại với EVAL_PAGE hay dừng với SKIP_PAGE." },
+    { lesson: 7, term: "SimpleTag", keywords: ["simpletag", "simpletagsupport", "dotag", "jspfragment", "getjspbody"], text: "SimpleTagSupport thực thi trong doTag(); body được biểu diễn bằng JspFragment và chạy bằng invoke()." },
+
+    { lesson: 8, term: "JDBC flow", keywords: ["jdbc", "connection", "statement", "resultset", "driver"], text: "Một thao tác JDBC lấy Connection, tạo Statement, thực thi SQL, xử lý kết quả rồi đóng tài nguyên." },
+    { lesson: 8, term: "PreparedStatement", keywords: ["preparedstatement", "placeholder", "sql injection", "setstring", "setint"], text: "PreparedStatement tách cấu trúc SQL khỏi dữ liệu bằng placeholder và các phương thức setXxx()." },
+    { lesson: 8, term: "Query và Update", keywords: ["executequery", "executeupdate", "select", "insert", "delete"], text: "executeQuery() dùng cho SELECT và trả ResultSet; executeUpdate() dùng cho DML và trả số dòng tác động." },
+    { lesson: 8, term: "Transaction", keywords: ["transaction", "autocommit", "commit", "rollback"], text: "Transaction nhóm nhiều thay đổi thành một đơn vị: tất cả commit hoặc khi lỗi thì rollback." },
+    { lesson: 8, term: "JavaBean và DAO", keywords: ["javabean", "bean", "getter", "setter", "dao", "data access object"], text: "JavaBean mang dữ liệu qua property; DAO chịu trách nhiệm thực hiện và che giấu chi tiết truy cập database." }
   ]
 };
