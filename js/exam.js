@@ -310,8 +310,11 @@
 
     examQs.forEach((q, idx) => {
       const sel = answers.get(q.id) || new Set();
-      const ok = sameKeySet(sel, q.correctKeys);
-      SWTApp.storage.recordAnswer(q.id, ok);
+      const hasAnswered = sel.size > 0;
+      const ok = hasAnswered && sameKeySet(sel, q.correctKeys);
+      if (hasAnswered) {
+        SWTApp.storage.recordAnswer(q.id, ok);
+      }
       if (ok) correctCount += 1; else lastWrongIds.push(q.id);
 
       const tKey = q.topic || SWTApp.app?.getCourse().code || 'Môn học';
@@ -450,11 +453,28 @@
         syncExamToggles(checked, isInstantAnswerEnabled());
         SWTApp.storage.setPref('examRandom', checked);
         if (this.isActive() && examQs.length > 0) {
-          const currentQId = examQs[currentIdx]?.id;
-          const base = orderedPool.length === examQs.length ? orderedPool : examQs;
-          examQs = checked ? SWTApp.utils.shuffle(base) : base.slice();
-          const foundIdx = examQs.findIndex((item) => item.id === currentQId);
-          currentIdx = foundIdx >= 0 ? foundIdx : 0;
+          const base = orderedPool.length === examQs.length ? orderedPool : examQs.slice();
+          const orderMap = new Map(base.map((item, idx) => [item.id, idx]));
+          const lockedByIndex = new Map();
+          const unanswered = [];
+          examQs.forEach((item, idx) => {
+            const ans = answers.get(item.id);
+            if (ans && ans.size > 0) {
+              lockedByIndex.set(idx, item);
+            } else {
+              unanswered.push(item);
+            }
+          });
+          const reorderedUnanswered = checked
+            ? SWTApp.utils.shuffle(unanswered)
+            : unanswered.slice().sort((a, b) => (orderMap.get(a.id) ?? 0) - (orderMap.get(b.id) ?? 0));
+          let cursor = 0;
+          examQs = examQs.map((_, idx) => {
+            if (lockedByIndex.has(idx)) return lockedByIndex.get(idx);
+            const nextItem = reorderedUnanswered[cursor];
+            cursor += 1;
+            return nextItem;
+          });
           renderExamActive();
         }
       };

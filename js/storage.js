@@ -195,7 +195,16 @@
         records[id] = sanitizeRecord(parsed.records[id]);
       });
     }
-    state = { prefs, records, practice: sanitizePractice(parsed && parsed.practice) };
+    const practice = sanitizePractice(parsed && parsed.practice);
+    Object.keys(practice.recallStreaks).forEach((id) => {
+      const rec = records[id];
+      if (!rec || rec.attempts <= 0 || rec.correctStreak <= 0) {
+        delete practice.recallStreaks[id];
+      } else if (practice.recallStreaks[id] > rec.correctStreak) {
+        practice.recallStreaks[id] = Math.min(2, rec.correctStreak);
+      }
+    });
+    state = { prefs, records, practice };
   }
 
   function saveState() {
@@ -321,7 +330,16 @@
       return state.practice.recallStreaks[String(id)];
     },
     resetPracticeRecall(ids) {
-      (Array.isArray(ids) ? ids : []).forEach((id) => { state.practice.recallStreaks[String(id)] = 0; });
+      (Array.isArray(ids) ? ids : []).forEach((id) => {
+        const key = String(id);
+        state.practice.recallStreaks[key] = 0;
+        if (state.records[key]) {
+          state.records[key].correctStreak = 0;
+          if (state.records[key].mastery === 2) {
+            state.records[key].mastery = state.records[key].attempts > 0 ? 1 : 0;
+          }
+        }
+      });
       saveState();
     },
     setPracticeClusterIndex(clusterIndex) {

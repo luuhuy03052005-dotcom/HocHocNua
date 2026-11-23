@@ -15,20 +15,20 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-15">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-15">
-  <script defer src="data/questions.js?v=multi-course-15"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-15"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-15"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-15"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-15"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-15"></script>
-  <script defer src="js/storage.js?v=multi-course-15"></script>
-  <script defer src="js/practice.js?v=multi-course-15"></script>
-  <script defer src="js/exam.js?v=multi-course-15"></script>
-  <script defer src="js/keyword.js?v=multi-course-15"></script>
-  <script defer src="js/study.js?v=multi-course-15"></script>
-  <script defer src="js/app.js?v=multi-course-15"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-17">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-17">
+  <script defer src="data/questions.js?v=multi-course-17"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-17"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-17"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-17"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-17"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-17"></script>
+  <script defer src="js/storage.js?v=multi-course-17"></script>
+  <script defer src="js/practice.js?v=multi-course-17"></script>
+  <script defer src="js/exam.js?v=multi-course-17"></script>
+  <script defer src="js/keyword.js?v=multi-course-17"></script>
+  <script defer src="js/study.js?v=multi-course-17"></script>
+  <script defer src="js/app.js?v=multi-course-17"></script>
 </head>
 <body>
   <header class="topbar">
@@ -99,6 +99,9 @@
           <label class="switch-control"><input type="checkbox" id="practice-shuffle-questions" switch> Trộn câu</label>
           <label class="switch-control"><input type="checkbox" id="practice-shuffle-options" switch> Trộn đáp án</label>
           <label class="switch-control"><input type="checkbox" id="practice-instant-next" switch> Tự qua câu đúng</label>
+          <div class="toolbar-spacer practice-toolbar-actions">
+            <button type="button" class="btn btn-sm btn-secondary" data-learned-exam-trigger>Thi câu đã học</button>
+          </div>
         </div>
 
         <div id="practice-cluster-slot" class="practice-cluster-slot">
@@ -108,6 +111,7 @@
               <strong id="practice-cluster-label">Cụm 1 / 1</strong>
               <span id="practice-cluster-range">Câu 1–10</span>
             </div>
+            <button type="button" id="practice-open-cluster-picker-btn" class="cluster-picker-open-btn" aria-haspopup="dialog">Chọn cụm</button>
             <div class="practice-cluster-stats">
               <span id="practice-cluster-mastered">Thuộc 0/10</span>
               <span id="practice-cluster-recalls">Nhớ 0/20</span>
@@ -133,7 +137,7 @@
           </div>
           <div id="practice-stem" class="question-stem">Đang tải bộ câu hỏi...</div>
           <div id="practice-images" class="question-images" hidden></div>
-          <button type="button" id="practice-flip-options-btn" class="practice-flip-options-btn" aria-expanded="false" aria-controls="practice-options">Lật thẻ · hiện lựa chọn</button>
+          <button type="button" id="practice-flip-options-btn" class="practice-flip-options-btn" aria-controls="practice-feedback">Lật flashcard · xem đáp án đúng</button>
           <div id="practice-options" class="options-list" role="group" aria-label="Các lựa chọn trả lời"></div>
           <div><button type="button" id="practice-submit-multi-btn" class="btn btn-primary" hidden>Chốt đáp án (Enter)</button></div>
           <div id="practice-feedback" class="feedback-box" role="status" aria-live="polite" hidden></div>
@@ -416,19 +420,67 @@
     </section>
   </main>
 
-  <dialog id="practice-cluster-review-dialog" class="cluster-review-dialog" aria-labelledby="practice-cluster-review-title">
+  <dialog id="practice-cluster-review-dialog" class="cluster-review-dialog" closedby="any" aria-labelledby="practice-cluster-review-title">
     <div class="dialog-header">
       <div>
         <span class="badge badge-success">Hoàn thành cụm</span>
         <h2 id="practice-cluster-review-title">Tổng ôn cụm</h2>
         <p id="practice-cluster-review-summary" class="dialog-subtitle"></p>
       </div>
+      <button type="button" class="btn btn-ghost btn-sm" command="close" commandfor="practice-cluster-review-dialog" aria-label="Đóng hộp thoại">Đóng</button>
     </div>
     <div id="practice-cluster-review-list" class="cluster-review-list" tabindex="0" role="region" aria-label="Mười câu tổng ôn"></div>
     <div class="dialog-actions">
       <button type="button" id="practice-review-repeat-btn" class="btn btn-secondary">Luyện lại cụm này</button>
       <button type="button" id="practice-review-next-btn" class="btn btn-primary">Sang cụm tiếp theo</button>
     </div>
+  </dialog>
+
+  <dialog id="practice-cluster-picker-dialog" class="cluster-picker-dialog" closedby="any" aria-labelledby="practice-cluster-picker-title">
+    <div class="dialog-header">
+      <div>
+        <h2 id="practice-cluster-picker-title">Chọn cụm câu hỏi</h2>
+        <p id="practice-cluster-filter-summary" class="dialog-subtitle"></p>
+      </div>
+      <button type="button" class="btn btn-ghost btn-sm" command="close" commandfor="practice-cluster-picker-dialog" aria-label="Đóng hộp thoại">Đóng</button>
+    </div>
+
+    <div id="practice-cluster-picker-list-view">
+      <div class="cluster-picker-toolbar">
+        <label class="field-group" for="practice-cluster-status-filter">Trạng thái cụm
+          <select id="practice-cluster-status-filter">
+            <option value="all">Tất cả cụm</option>
+            <option value="completed">Đã hoàn thành</option>
+            <option value="learning">Đang học</option>
+            <option value="unstarted">Chưa học</option>
+          </select>
+        </label>
+        <div class="cluster-picker-summary" aria-label="Thống kê trạng thái cụm">
+          <span><strong id="cluster-picker-completed-count">0</strong> hoàn thành</span>
+          <span><strong id="cluster-picker-learning-count">0</strong> đang học</span>
+          <span><strong id="cluster-picker-unstarted-count">0</strong> chưa học</span>
+        </div>
+      </div>
+      <div id="practice-cluster-picker-list" class="cluster-picker-list" role="list"></div>
+      <p id="practice-cluster-picker-empty" class="study-empty" hidden>Không có cụm phù hợp với bộ lọc này.</p>
+    </div>
+
+    <section id="practice-cluster-detail-view" class="cluster-detail-view" hidden aria-labelledby="practice-cluster-detail-title">
+      <button type="button" id="practice-cluster-back-btn" class="btn btn-ghost btn-sm">← Danh sách cụm</button>
+      <div class="cluster-detail-heading">
+        <div>
+          <h3 id="practice-cluster-detail-title">Cụm</h3>
+          <p id="practice-cluster-detail-summary" class="dialog-subtitle"></p>
+        </div>
+        <span id="practice-cluster-detail-status" class="badge"></span>
+      </div>
+      <div id="practice-cluster-question-list" class="cluster-question-list" role="list"></div>
+      <div class="dialog-actions">
+        <button type="button" id="practice-cluster-restart-btn" class="btn btn-secondary">Luyện lại từ đầu</button>
+        <button type="button" id="practice-cluster-exam-btn" class="btn btn-secondary">Thi thử cụm này</button>
+        <button type="button" id="practice-cluster-use-btn" class="btn btn-primary">Học cụm này</button>
+      </div>
+    </section>
   </dialog>
 
   <dialog id="practice-learned-exam-dialog" closedby="any" aria-labelledby="practice-learned-exam-title">
