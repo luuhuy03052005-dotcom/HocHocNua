@@ -215,6 +215,13 @@ input[type="checkbox"][switch]:focus-visible { outline: 3px solid var(--color-ac
 #panel-practice .question-meta { gap: 0.35rem; }
 #panel-practice .question-meta :is(.badge, .counter-pill) { padding: 0.15rem 0.45rem; font-size: 0.7rem; }
 #panel-practice .question-stem { font-size: 1rem; line-height: 1.45; }
+.practice-flip-options-btn {
+  inline-size: 100%; min-block-size: 3rem; padding: 0.65rem 1rem;
+  color: var(--color-accent); background: var(--color-accent-soft);
+  border: 1px dashed var(--color-accent); border-radius: var(--radius-sm);
+  font: inherit; font-size: 0.9rem; font-weight: 750; cursor: pointer;
+}
+.practice-flip-options-btn:hover { filter: brightness(0.98); }
 #panel-practice .options-list { gap: 0.45rem; }
 #panel-practice :is(.option-item, .option-btn) { min-block-size: 2.35rem; gap: 0.65rem; padding: 0.45rem 0.7rem; font-size: 0.9rem; border-radius: var(--radius-sm); }
 #panel-practice .option-key { min-inline-size: 1.5rem; min-block-size: 1.5rem; font-size: 0.75rem; }

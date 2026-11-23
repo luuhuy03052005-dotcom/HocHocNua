@@ -6,7 +6,7 @@
   const REQUIRED_RECALLS = 2;
   let allQuestions = [], filteredQuestions = [], deck = [], index = 0, customSubsetIds = null;
   let clusterIndex = 0, recallStreaks = {};
-  let selectedKeys = new Set(), graded = false, wasRevealed = false, lastCorrect = false;
+  let selectedKeys = new Set(), graded = false, wasRevealed = false, lastCorrect = false, practiceCardFlipped = false;
   let optionCache = new Map(), autoNextTimer = null, fcDeck = [], fcIndex = 0;
 
   function clearAutoNext() {
@@ -17,6 +17,7 @@
     clearAutoNext();
     selectedKeys = new Set();
     graded = wasRevealed = lastCorrect = false;
+    practiceCardFlipped = false;
   }
 
   function setDisabledList(ids, disabled) {
@@ -92,7 +93,7 @@
     document.querySelectorAll('[data-practice-answer-key]').forEach((button) => {
       const key = button.dataset.practiceAnswerKey;
       button.hidden = !availableKeys.has(key);
-      button.disabled = graded || !availableKeys.has(key);
+      button.disabled = graded || !practiceCardFlipped || !availableKeys.has(key);
       button.classList.toggle('is-selected', selectedKeys.has(key));
     });
   }
@@ -133,6 +134,8 @@
       setText('practice-topic-badge', customSubsetIds ? 'Câu sai bài thi' : 'Trống');
       setText('practice-stem', 'Không có câu hỏi nào khớp bộ lọc hiện tại.');
       ['practice-multi-badge', 'practice-submit-multi-btn', 'practice-feedback'].forEach((id) => setHidden(id, true));
+      setHidden('practice-flip-options-btn', true);
+      optsEl.hidden = true;
       renderImages(byId('practice-images'), []);
       setDisabledList(actionIds, true);
       updateQuickControls(null);
@@ -160,10 +163,16 @@
     getDisplayedOptions(q).forEach((opt) =>
       optsEl.appendChild(createOptionBtn(opt, { selected: selectedKeys.has(opt.key), graded, isCorrectKey: correctSet.has(opt.key), disabled: graded }, () => selectOption(opt.key)))
     );
+    optsEl.hidden = !practiceCardFlipped && !graded;
+    const flipButton = byId('practice-flip-options-btn');
+    if (flipButton) {
+      flipButton.hidden = practiceCardFlipped || graded;
+      flipButton.setAttribute('aria-expanded', String(practiceCardFlipped || graded));
+    }
     updateQuickControls(q);
 
     const submitBtn = byId('practice-submit-multi-btn');
-    if (submitBtn) { submitBtn.hidden = !q.isMulti || graded; submitBtn.disabled = selectedKeys.size === 0; }
+    if (submitBtn) { submitBtn.hidden = !practiceCardFlipped || !q.isMulti || graded; submitBtn.disabled = selectedKeys.size === 0; }
 
     if (fbEl) {
       fbEl.replaceChildren();
@@ -229,8 +238,15 @@
     }
   }
 
+  function flipPracticeCard() {
+    if (deck.length === 0 || graded || practiceCardFlipped) return false;
+    practiceCardFlipped = true;
+    renderPractice();
+    return true;
+  }
+
   function selectOption(key) {
-    if (graded || deck.length === 0) return;
+    if (graded || deck.length === 0 || !practiceCardFlipped) return;
     if (deck[index].isMulti) {
       if (selectedKeys.has(key)) selectedKeys.delete(key); else selectedKeys.add(key);
       renderPractice();
@@ -242,6 +258,7 @@
 
   function revealCurrent() {
     if (graded || deck.length === 0) return;
+    practiceCardFlipped = true;
     graded = wasRevealed = true;
     lastCorrect = false;
     SWTApp.storage.markRevealed(deck[index].id);
@@ -511,6 +528,7 @@
       byId('practice-prev-btn')?.addEventListener('click', () => goPractice(-1));
       byId('practice-next-btn')?.addEventListener('click', () => goPractice(1));
       byId('practice-reveal-btn')?.addEventListener('click', revealCurrent);
+      byId('practice-flip-options-btn')?.addEventListener('click', flipPracticeCard);
       byId('practice-star-btn')?.addEventListener('click', () => this.toggleStar());
       document.querySelectorAll('[data-practice-answer-key]').forEach((button) => {
         button.addEventListener('click', () => selectOption(button.dataset.practiceAnswerKey));
@@ -575,14 +593,16 @@
       buildPracticeDeck(id);
     },
     selectByNumber(num) {
+      if (!practiceCardFlipped) return false;
       const key = ['A', 'B', 'C', 'D', 'E', 'F'][num - 1];
       const o = deck[index] && (deck[index].options || []).find((option) => String(option.key).toUpperCase() === key);
       if (o) { selectOption(o.key); return true; }
       return false;
     },
-    selectByLetter(ch) { const o = deck[index] && getDisplayedOptions(deck[index]).find((x) => x.key.toUpperCase() === ch); if (o) { selectOption(o.key); return true; } return false; },
+    selectByLetter(ch) { if (!practiceCardFlipped) return false; const o = deck[index] && getDisplayedOptions(deck[index]).find((x) => x.key.toUpperCase() === ch); if (o) { selectOption(o.key); return true; } return false; },
     submitOrNext() {
       if (!deck[index]) return false;
+      if (!practiceCardFlipped && !graded) return flipPracticeCard();
       if (!graded && deck[index].isMulti && selectedKeys.size > 0) { gradeCurrent(); return true; }
       if (graded) { goPractice(1); return true; }
       return false;
