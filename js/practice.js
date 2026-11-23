@@ -2,7 +2,10 @@
   'use strict';
 
   const SWTApp = (window.SWTApp = window.SWTApp || {});
-  let allQuestions = [], deck = [], index = 0, customSubsetIds = null;
+  const CLUSTER_SIZE = 10;
+  const REQUIRED_RECALLS = 2;
+  let allQuestions = [], filteredQuestions = [], deck = [], index = 0, customSubsetIds = null;
+  let clusterIndex = 0, recallStreaks = {};
   let selectedKeys = new Set(), graded = false, wasRevealed = false, lastCorrect = false;
   let optionCache = new Map(), autoNextTimer = null, fcDeck = [], fcIndex = 0;
 
@@ -28,16 +31,82 @@
     return optionCache.get(q.id);
   }
 
+  function recallFor(id) {
+    return Math.min(REQUIRED_RECALLS, Math.max(0, Number(recallStreaks[String(id)]) || 0));
+  }
+
+  function clusterIsComplete() {
+    return deck.length > 0 && deck.every((q) => recallFor(q.id) >= REQUIRED_RECALLS);
+  }
+
+  function totalClusters() {
+    return Math.max(1, Math.ceil(filteredQuestions.length / CLUSTER_SIZE));
+  }
+
+  function setClusterIndex(nextIndex) {
+    clusterIndex = Math.min(totalClusters() - 1, Math.max(0, Number(nextIndex) || 0));
+    SWTApp.storage.setPracticeClusterIndex(clusterIndex);
+  }
+
+  function updateClusterProgress() {
+    const { byId, el, setText } = SWTApp.utils;
+    const total = deck.length;
+    const mastered = deck.filter((q) => recallFor(q.id) >= REQUIRED_RECALLS).length;
+    const recalls = deck.reduce((sum, q) => sum + recallFor(q.id), 0);
+    const required = total * REQUIRED_RECALLS;
+    const pct = required > 0 ? Math.round((recalls / required) * 100) : 0;
+    setText('practice-cluster-label', 'Cụm ' + (clusterIndex + 1) + ' / ' + totalClusters());
+    setText('practice-cluster-range', total ? 'Câu ' + (clusterIndex * CLUSTER_SIZE + 1) + '–' + (clusterIndex * CLUSTER_SIZE + total) : 'Không có câu');
+    setText('practice-cluster-mastered', mastered + ' / ' + total + ' câu thuộc');
+    setText('practice-cluster-recalls', recalls + ' / ' + required + ' lượt nhớ');
+    const fill = byId('practice-cluster-progress-fill');
+    if (fill) fill.style.inlineSize = pct + '%';
+    const track = fill?.parentElement;
+    if (track) track.setAttribute('aria-valuenow', String(pct));
+
+    const steps = byId('practice-cluster-steps');
+    if (steps) {
+      steps.replaceChildren();
+      deck.forEach((q, idx) => {
+        const streak = recallFor(q.id);
+        const step = el('button', 'cluster-step' + (streak === 1 ? ' is-learning' : streak >= 2 ? ' is-mastered' : ''), String(idx + 1));
+        step.type = 'button';
+        step.title = 'Câu ' + (idx + 1) + ': ' + streak + '/' + REQUIRED_RECALLS + ' lượt nhớ đúng';
+        step.setAttribute('aria-label', step.title);
+        step.setAttribute('aria-current', String(idx === index));
+        step.addEventListener('click', () => { index = idx; resetTurn(); renderPractice(); });
+        steps.appendChild(step);
+      });
+    }
+  }
+
+  function updateQuickControls(q) {
+    const availableKeys = new Set((q?.options || []).map((option) => String(option.key).toUpperCase()));
+    document.querySelectorAll('[data-practice-answer-key]').forEach((button) => {
+      const key = button.dataset.practiceAnswerKey;
+      button.hidden = !availableKeys.has(key);
+      button.disabled = graded || !availableKeys.has(key);
+      button.classList.toggle('is-selected', selectedKeys.has(key));
+    });
+  }
+
   function buildPracticeDeck(preserveId) {
     const { storage, utils } = SWTApp;
     const mode = utils.byId('practice-filter-mode')?.value || 'all';
     const topic = utils.byId('practice-filter-topic')?.value || 'all';
-    const list = allQuestions.filter((q) =>
+    filteredQuestions = allQuestions.filter((q) =>
       customSubsetIds ? customSubsetIds.has(q.id) : (topic === 'all' || q.topic === topic) && storage.matchesStatus(q.id, mode)
     );
-    deck = utils.byId('practice-shuffle-questions')?.checked ? utils.shuffle(list) : list;
+    if (preserveId != null) {
+      const sourceIndex = filteredQuestions.findIndex((q) => q.id === preserveId);
+      if (sourceIndex >= 0) clusterIndex = Math.floor(sourceIndex / CLUSTER_SIZE);
+    }
+    setClusterIndex(clusterIndex);
+    const start = clusterIndex * CLUSTER_SIZE;
+    const cluster = filteredQuestions.slice(start, start + CLUSTER_SIZE);
+    deck = utils.byId('practice-shuffle-questions')?.checked ? utils.shuffle(cluster) : cluster;
     if (preserveId != null) index = Math.max(0, deck.findIndex((q) => q.id === preserveId));
-    else if (index >= deck.length) index = 0;
+    else if (index >= deck.length || index < 0) index = 0;
     resetTurn();
     renderPractice();
   }
@@ -49,6 +118,7 @@
     if (!optsEl) return;
     optsEl.replaceChildren();
     const actionIds = ['practice-prev-btn', 'practice-next-btn', 'practice-reveal-btn', 'practice-star-btn'];
+    updateClusterProgress();
 
     if (deck.length === 0) {
       setText('practice-counter', '0 / 0');
@@ -58,6 +128,7 @@
       ['practice-multi-badge', 'practice-submit-multi-btn', 'practice-feedback'].forEach((id) => setHidden(id, true));
       renderImages(byId('practice-images'), []);
       setDisabledList(actionIds, true);
+      updateQuickControls(null);
       return;
     }
 
@@ -82,6 +153,7 @@
     getDisplayedOptions(q).forEach((opt) =>
       optsEl.appendChild(createOptionBtn(opt, { selected: selectedKeys.has(opt.key), graded, isCorrectKey: correctSet.has(opt.key), disabled: graded }, () => selectOption(opt.key)))
     );
+    updateQuickControls(q);
 
     const submitBtn = byId('practice-submit-multi-btn');
     if (submitBtn) { submitBtn.hidden = !q.isMulti || graded; submitBtn.disabled = selectedKeys.size === 0; }
@@ -95,23 +167,36 @@
         const ans = (q.correctKeys || []).join(', ');
         const msg = wasRevealed ? 'Đáp án đúng: ' + ans : lastCorrect ? 'Chính xác (' + ans + ')' : 'Chưa đúng — Đáp án đúng: ' + ans;
         fbEl.appendChild(el('strong', 'feedback-title', msg));
+        const recall = recallFor(q.id);
+        const recallText = wasRevealed
+          ? 'Đã xem đáp án — câu này cần nhớ lại từ đầu.'
+          : lastCorrect
+            ? recall >= REQUIRED_RECALLS ? 'Đã thuộc câu này: 2/2 lượt đúng liên tiếp.' : 'Đã nhớ lần 1/2 — hãy trả lời đúng thêm một vòng.'
+            : 'Trả lời sai — chuỗi nhớ của câu này trở về 0/2.';
+        fbEl.appendChild(el('span', 'practice-recall-feedback', recallText));
         if (q.explanation) fbEl.appendChild(el('p', 'feedback-explanation', q.explanation));
       }
     }
 
     if (byId('practice-prev-btn')) byId('practice-prev-btn').disabled = index <= 0;
-    if (byId('practice-next-btn')) byId('practice-next-btn').disabled = index >= deck.length - 1;
+    if (byId('practice-next-btn')) byId('practice-next-btn').disabled = false;
+    updateClusterProgress();
   }
 
   function gradeCurrent() {
     if (graded || deck.length === 0 || selectedKeys.size === 0) return;
     const q = deck[index];
+    const wasClusterComplete = clusterIsComplete();
     graded = true;
     wasRevealed = false;
     lastCorrect = SWTApp.utils.sameKeySet(selectedKeys, q.correctKeys);
     SWTApp.storage.recordAnswer(q.id, lastCorrect);
+    const nextRecall = lastCorrect ? Math.min(REQUIRED_RECALLS, recallFor(q.id) + 1) : 0;
+    recallStreaks[String(q.id)] = SWTApp.storage.setPracticeRecall(q.id, nextRecall);
     renderPractice();
-    if (lastCorrect && SWTApp.utils.byId('practice-instant-next')?.checked && index < deck.length - 1) {
+    if (!wasClusterComplete && clusterIsComplete()) {
+      window.setTimeout(showClusterReview, 180);
+    } else if (lastCorrect && SWTApp.utils.byId('practice-instant-next')?.checked) {
       clearAutoNext();
       autoNextTimer = window.setTimeout(() => goPractice(1), 650);
     }
@@ -133,15 +218,83 @@
     graded = wasRevealed = true;
     lastCorrect = false;
     SWTApp.storage.markRevealed(deck[index].id);
+    recallStreaks[String(deck[index].id)] = SWTApp.storage.setPracticeRecall(deck[index].id, 0);
     renderPractice();
   }
 
   function goPractice(delta) {
     const next = index + delta;
-    if (deck.length === 0 || next < 0 || next >= deck.length) return;
-    index = next;
+    if (deck.length === 0 || next < 0) return;
+    if (next >= deck.length) {
+      if (clusterIsComplete()) {
+        showClusterReview();
+        return;
+      }
+      const firstUnmastered = deck.findIndex((q) => recallFor(q.id) < REQUIRED_RECALLS);
+      index = firstUnmastered >= 0 ? firstUnmastered : 0;
+    } else index = next;
     resetTurn();
     renderPractice();
+  }
+
+  function renderClusterReview() {
+    const { byId, el, setText, renderRichText, renderImages } = SWTApp.utils;
+    const list = byId('practice-cluster-review-list');
+    if (!list) return;
+    list.replaceChildren();
+    setText('practice-cluster-review-title', 'Tổng ôn cụm ' + (clusterIndex + 1));
+    setText('practice-cluster-review-summary', deck.length + '/' + deck.length + ' câu đã đạt 2 lượt đúng liên tiếp. Đọc nhanh câu hỏi và đáp án trước khi sang cụm mới.');
+
+    deck.forEach((q, idx) => {
+      const item = el('article', 'cluster-review-item');
+      const heading = el('div', 'cluster-review-heading');
+      heading.append(
+        el('span', 'counter-pill', 'Câu #' + q.id),
+        el('span', 'badge badge-success', 'Thuộc 2/2')
+      );
+      const stem = el('div', 'cluster-review-question');
+      renderRichText(stem, q.question);
+      const images = el('div', 'question-images cluster-review-images');
+      renderImages(images, q.images);
+      const answer = el('div', 'cluster-review-answer');
+      const correct = (q.options || []).filter((option) => (q.correctKeys || []).includes(option.key));
+      const answerText = correct.map((option) => option.key + '. ' + option.text).join(' · ') || (q.correctKeys || []).join(', ');
+      renderRichText(answer, 'Đáp án: ' + answerText);
+      item.append(heading, stem);
+      if (!images.hidden) item.appendChild(images);
+      item.appendChild(answer);
+      if (q.explanation) item.appendChild(el('p', 'cluster-review-explanation', q.explanation));
+      list.appendChild(item);
+    });
+
+    const nextButton = byId('practice-review-next-btn');
+    if (nextButton) nextButton.textContent = clusterIndex < totalClusters() - 1 ? 'Sang cụm ' + (clusterIndex + 2) : 'Hoàn tất toàn bộ';
+  }
+
+  function showClusterReview() {
+    const dialog = SWTApp.utils.byId('practice-cluster-review-dialog');
+    if (!dialog || dialog.open || !clusterIsComplete()) return;
+    renderClusterReview();
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  }
+
+  function repeatCurrentCluster() {
+    SWTApp.storage.resetPracticeRecall(deck.map((q) => q.id));
+    deck.forEach((q) => { recallStreaks[String(q.id)] = 0; });
+    index = 0;
+    SWTApp.utils.byId('practice-cluster-review-dialog')?.close();
+    resetTurn();
+    renderPractice();
+  }
+
+  function advanceCluster() {
+    const dialog = SWTApp.utils.byId('practice-cluster-review-dialog');
+    dialog?.close();
+    if (clusterIndex >= totalClusters() - 1) return;
+    setClusterIndex(clusterIndex + 1);
+    index = 0;
+    buildPracticeDeck();
   }
 
   const isFlipped = () => SWTApp.utils.byId('fc-card')?.dataset.flipped === 'true';
@@ -216,6 +369,9 @@
       allQuestions = Array.isArray(questions) ? questions : [];
       const { byId } = SWTApp.utils;
       const prefs = SWTApp.storage.getPrefs();
+      const practiceState = SWTApp.storage.getPracticeState();
+      recallStreaks = practiceState.recallStreaks;
+      clusterIndex = practiceState.clusterIndex;
       [
         ['practice-shuffle-questions', 'shuffleQuestions', buildPracticeDeck],
         ['practice-shuffle-options', 'shuffleOptions', () => { optionCache.clear(); renderPractice(); }],
@@ -228,13 +384,18 @@
         node.addEventListener('change', () => { SWTApp.storage.setPref(key, node.checked); if (fn) fn(); });
       });
 
-      byId('practice-filter-mode')?.addEventListener('change', (e) => { customSubsetIds = null; SWTApp.storage.setPref('practiceFilterMode', e.target.value); buildPracticeDeck(); });
-      byId('practice-filter-topic')?.addEventListener('change', (e) => { customSubsetIds = null; SWTApp.storage.setPref('practiceFilterTopic', e.target.value); buildPracticeDeck(); });
+      byId('practice-filter-mode')?.addEventListener('change', (e) => { customSubsetIds = null; clusterIndex = 0; SWTApp.storage.setPracticeClusterIndex(0); SWTApp.storage.setPref('practiceFilterMode', e.target.value); buildPracticeDeck(); });
+      byId('practice-filter-topic')?.addEventListener('change', (e) => { customSubsetIds = null; clusterIndex = 0; SWTApp.storage.setPracticeClusterIndex(0); SWTApp.storage.setPref('practiceFilterTopic', e.target.value); buildPracticeDeck(); });
       byId('practice-submit-multi-btn')?.addEventListener('click', gradeCurrent);
       byId('practice-prev-btn')?.addEventListener('click', () => goPractice(-1));
       byId('practice-next-btn')?.addEventListener('click', () => goPractice(1));
       byId('practice-reveal-btn')?.addEventListener('click', revealCurrent);
       byId('practice-star-btn')?.addEventListener('click', () => this.toggleStar());
+      document.querySelectorAll('[data-practice-answer-key]').forEach((button) => {
+        button.addEventListener('click', () => selectOption(button.dataset.practiceAnswerKey));
+      });
+      byId('practice-review-repeat-btn')?.addEventListener('click', repeatCurrentCluster);
+      byId('practice-review-next-btn')?.addEventListener('click', advanceCluster);
       const jumpEl = byId('practice-jump-input');
       const applyJump = () => {
         const n = parseInt(jumpEl?.value || '', 10);
@@ -252,7 +413,14 @@
       buildPracticeDeck();
       buildFlashcardDeck();
     },
-    refreshAll() { optionCache.clear(); buildPracticeDeck(); buildFlashcardDeck(); },
+    refreshAll() {
+      optionCache.clear();
+      const practiceState = SWTApp.storage.getPracticeState();
+      recallStreaks = practiceState.recallStreaks;
+      clusterIndex = practiceState.clusterIndex;
+      buildPracticeDeck();
+      buildFlashcardDeck();
+    },
     onTabActivated(tabId) {
       if (tabId === 'tab-practice') renderPractice();
       else if (tabId === 'tab-flashcard') {
@@ -270,6 +438,8 @@
       const { byId } = SWTApp.utils;
       if (byId('practice-filter-mode')) byId('practice-filter-mode').value = 'mistakes';
       if (byId('practice-filter-topic')) byId('practice-filter-topic').value = 'all';
+      clusterIndex = 0;
+      SWTApp.storage.setPracticeClusterIndex(0);
       index = 0;
       buildPracticeDeck();
     },
@@ -282,7 +452,12 @@
       }
       buildPracticeDeck(id);
     },
-    selectByNumber(num) { const o = deck[index] && getDisplayedOptions(deck[index])[num - 1]; if (o) { selectOption(o.key); return true; } return false; },
+    selectByNumber(num) {
+      const key = ['A', 'B', 'C', 'D', 'E', 'F'][num - 1];
+      const o = deck[index] && (deck[index].options || []).find((option) => String(option.key).toUpperCase() === key);
+      if (o) { selectOption(o.key); return true; }
+      return false;
+    },
     selectByLetter(ch) { const o = deck[index] && getDisplayedOptions(deck[index]).find((x) => x.key.toUpperCase() === ch); if (o) { selectOption(o.key); return true; } return false; },
     submitOrNext() {
       if (!deck[index]) return false;

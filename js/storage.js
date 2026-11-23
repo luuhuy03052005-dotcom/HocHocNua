@@ -30,6 +30,11 @@
     lastWrong: false
   };
 
+  const DEFAULT_PRACTICE = {
+    recallStreaks: {},
+    clusterIndex: 0
+  };
+
   const byId = (id) => document.getElementById(id);
 
   function el(tag, className, text) {
@@ -139,7 +144,21 @@
   };
 
   const listeners = new Set();
-  let state = { prefs: { ...DEFAULT_PREFS }, records: {} };
+  let state = { prefs: { ...DEFAULT_PREFS }, records: {}, practice: { ...DEFAULT_PRACTICE } };
+
+  function sanitizePractice(raw) {
+    const source = raw && typeof raw === 'object' ? raw : {};
+    const recallStreaks = {};
+    if (source.recallStreaks && typeof source.recallStreaks === 'object') {
+      Object.keys(source.recallStreaks).forEach((id) => {
+        recallStreaks[id] = Math.min(2, Math.max(0, Number(source.recallStreaks[id]) || 0));
+      });
+    }
+    return {
+      recallStreaks,
+      clusterIndex: Math.max(0, Math.floor(Number(source.clusterIndex) || 0))
+    };
+  }
 
   function sanitizeRecord(raw) {
     if (!raw || typeof raw !== 'object') return { ...DEFAULT_RECORD };
@@ -176,12 +195,12 @@
         records[id] = sanitizeRecord(parsed.records[id]);
       });
     }
-    state = { prefs, records };
+    state = { prefs, records, practice: sanitizePractice(parsed && parsed.practice) };
   }
 
   function saveState() {
     try {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 1, prefs: state.prefs, records: state.records }));
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ version: 2, prefs: state.prefs, records: state.records, practice: state.practice }));
     } catch (_) {}
     notify();
   }
@@ -212,7 +231,7 @@
       if (isCorrect) {
         rec.correctStreak += 1;
         rec.lastWrong = false;
-        rec.mastery = rec.wrongCount === 0 || rec.correctStreak >= 2 ? 2 : Math.max(rec.mastery, 1);
+        rec.mastery = rec.correctStreak >= 2 ? 2 : 1;
       } else {
         rec.correctStreak = 0;
         rec.wrongCount += 1;
@@ -224,10 +243,9 @@
     },
     markRevealed(id) {
       const rec = ensureRecord(id);
-      if (rec.mastery === 0) {
-        rec.mastery = 1;
-        saveState();
-      }
+      rec.correctStreak = 0;
+      rec.mastery = 1;
+      saveState();
       return { ...rec };
     },
     gradeFlashcard(id, grade) {
@@ -291,8 +309,28 @@
       }
       saveState();
     },
+    getPracticeState() {
+      return {
+        recallStreaks: { ...state.practice.recallStreaks },
+        clusterIndex: state.practice.clusterIndex
+      };
+    },
+    setPracticeRecall(id, streak) {
+      state.practice.recallStreaks[String(id)] = Math.min(2, Math.max(0, Number(streak) || 0));
+      saveState();
+      return state.practice.recallStreaks[String(id)];
+    },
+    resetPracticeRecall(ids) {
+      (Array.isArray(ids) ? ids : []).forEach((id) => { state.practice.recallStreaks[String(id)] = 0; });
+      saveState();
+    },
+    setPracticeClusterIndex(clusterIndex) {
+      state.practice.clusterIndex = Math.max(0, Math.floor(Number(clusterIndex) || 0));
+      saveState();
+    },
     resetProgress() {
       state.records = {};
+      state.practice = { recallStreaks: {}, clusterIndex: 0 };
       saveState();
     },
     onChange(fn) {
