@@ -1,128 +1,120 @@
 window.PRJ301_STUDY = {
   meta: {
     course: "PRJ301",
-    title: "Kiến thức trọng tâm PRJ301",
-    source: "Đối chiếu 567 câu PRJ301 trong ngân hàng hiện tại",
+    title: "PRJ301 — Kiến thức cốt lõi",
+    source: "Tổng hợp từ 567 câu PRJ301",
     lessonCount: 8,
     questionCount: 567,
-    description: "8 nhóm kiến thức cốt lõi, trình bày theo khái niệm → cần nhớ → dấu hiệu chọn đáp án.",
-    guideDescription: "Nắm luồng HTTP → Servlet → JSP/EL → JDBC, sau đó luyện nhận diện cú pháp và vòng đời.",
-    foundationDescription: "5 sơ đồ tư duy ngắn giúp nối các khái niệm đang bị rời rạc trong bộ câu hỏi.",
-    searchPlaceholder: "Tìm Lesson, servlet, JSP, session, JDBC...",
-    recallPlaceholder: "Ví dụ: doGet, forward, session, <%=, c:forEach..."
+    knowledgeOnly: true,
+    summaryLabel: "Tóm tắt",
+    description: "Chỉ gồm khái niệm và cách hoạt động. Không có mẹo thi hoặc quy tắc học thuộc đáp án.",
+    searchPlaceholder: "Tìm HTTP, Servlet, JSP, Session, JDBC..."
   },
   lessons: [
     {
       number: 1,
-      title: "Web, HTTP, HTML Form & MVC",
+      title: "HTTP, HTML Form và MVC",
       badge: "98 câu",
-      summary: "Luồng request/response, GET–POST, URL, form và vai trò MVC.",
+      summary: "Cách trình duyệt và Java Web trao đổi dữ liệu.",
       points: [
-        { term: "HTTP", text: "Giao thức request–response và stateless; mỗi request độc lập nếu không dùng session/cookie." },
-        { term: "GET / POST", text: "GET đọc dữ liệu, tham số thường ở URL; POST gửi dữ liệu trong body và phù hợp thao tác thay đổi." },
-        { term: "HTML form", text: "action là URL nhận dữ liệu; method là GET/POST; name tạo tên tham số để server đọc." },
-        { term: "URL parts", text: "scheme://host:port/context/servlet/path?query; phân biệt contextPath, servletPath và pathInfo." },
-        { term: "MVC", text: "Controller nhận request, Model xử lý dữ liệu, View hiển thị; Servlet thường là Controller, JSP là View." }
+        { term: "HTTP", text: "Trình duyệt gửi request; server xử lý và trả response. HTTP không tự ghi nhớ request trước." },
+        { term: "GET / POST", text: "GET thường lấy dữ liệu và đặt tham số trên URL; POST gửi dữ liệu trong request body." },
+        { term: "HTML Form", text: "action xác định URL đích, method chọn GET/POST, thuộc tính name tạo tên tham số gửi lên server." },
+        { term: "MVC", text: "Controller nhận request, Model xử lý dữ liệu, View hiển thị kết quả. Servlet thường là Controller, JSP là View." }
       ],
-      remember: "Đọc câu hỏi theo luồng: trình duyệt gửi request → controller xử lý → model lấy dữ liệu → view trả response."
+      remember: "Luồng chính: Browser → HTTP request → Servlet → Model/DAO → JSP → HTTP response."
     },
     {
       number: 2,
-      title: "Servlet API & Lifecycle",
+      title: "Servlet",
       badge: "114 câu",
-      summary: "Vòng đời servlet, request/response, điều hướng và phạm vi dữ liệu.",
+      summary: "Thành phần tiếp nhận và điều phối request.",
       points: [
-        { term: "Lifecycle", text: "Container gọi init() một lần → service() mỗi request → destroy() một lần trước khi gỡ servlet." },
-        { term: "doGet / doPost", text: "HttpServlet.service() tự phân phối request tới phương thức tương ứng HTTP method." },
-        { term: "Parameter / Attribute", text: "Parameter do client gửi và đọc bằng getParameter; attribute do server gắn bằng setAttribute." },
-        { term: "Forward / Redirect", text: "forward chạy nội bộ, giữ request; redirect trả 3xx để trình duyệt tạo request mới." },
-        { term: "Config / Context", text: "ServletConfig thuộc một servlet; ServletContext dùng chung toàn web application." }
+        { term: "Lifecycle", text: "Container gọi init() một lần, service() cho mỗi request và destroy() trước khi gỡ servlet." },
+        { term: "doGet / doPost", text: "HttpServlet.service() chuyển request tới phương thức tương ứng với HTTP method." },
+        { term: "Parameter / Attribute", text: "Parameter là dữ liệu client gửi; attribute là object do server gắn vào request, session hoặc context." },
+        { term: "Forward / Redirect", text: "Forward tiếp tục xử lý trong server với cùng request; redirect yêu cầu browser tạo request mới." }
       ],
-      remember: "Muốn giữ request attribute thì forward; muốn đổi URL và tạo request mới thì sendRedirect."
+      remember: "Servlet đọc input, gọi xử lý nghiệp vụ, đặt dữ liệu vào attribute rồi chuyển tới View."
     },
     {
       number: 3,
-      title: "web.xml, Filter & Listener",
+      title: "web.xml, Filter và Listener",
       badge: "86 câu",
-      summary: "Cấu hình ứng dụng, ánh xạ URL, tiền/hậu xử lý và bắt sự kiện.",
+      summary: "Cấu hình ứng dụng và các thành phần chạy quanh request.",
       points: [
-        { term: "web.xml", text: "Deployment descriptor nằm trong WEB-INF; khai báo servlet, mapping, filter, listener, security và error page." },
-        { term: "URL mapping", text: "Ghép servlet-name với url-pattern; pattern exact, path /*, extension *.jsp hoặc default /." },
-        { term: "Filter", text: "Chặn request/response trước hoặc sau tài nguyên; phải gọi chain.doFilter() nếu muốn đi tiếp." },
-        { term: "Listener", text: "Nhận sự kiện tạo/hủy context, session, request hoặc thay đổi attribute; không xử lý URL như filter." },
-        { term: "WEB-INF", text: "Client không truy cập trực tiếp tài nguyên trong thư mục này; server vẫn có thể forward tới đó." }
+        { term: "web.xml", text: "Deployment descriptor trong WEB-INF, dùng để khai báo servlet, mapping, filter, listener và cấu hình ứng dụng." },
+        { term: "URL Mapping", text: "Liên kết một url-pattern với servlet hoặc filter để container biết thành phần nào xử lý URL." },
+        { term: "Filter", text: "Xử lý request/response trước và sau tài nguyên đích; chain.doFilter() chuyển luồng tới thành phần tiếp theo." },
+        { term: "Listener", text: "Nhận thông báo khi context, session, request hoặc attribute được tạo, thay đổi hay hủy." }
       ],
-      remember: "Filter = đi qua chuỗi xử lý; Listener = nghe sự kiện; web.xml = nơi cấu hình và ánh xạ."
+      remember: "web.xml cấu hình; Filter nằm trên luồng request; Listener phản ứng với sự kiện vòng đời."
     },
     {
       number: 4,
-      title: "Session, Cookie & URL Rewriting",
+      title: "Session và phạm vi dữ liệu",
       badge: "32 câu",
-      summary: "Duy trì trạng thái giữa nhiều request và chọn đúng phạm vi lưu dữ liệu.",
+      summary: "Cách Java Web duy trì trạng thái qua nhiều request.",
       points: [
-        { term: "HttpSession", text: "Lưu dữ liệu theo một người dùng qua nhiều request; getSession() tạo nếu chưa có, false thì không tạo." },
-        { term: "Session lifecycle", text: "invalidate() kết thúc ngay; setMaxInactiveInterval() đặt thời gian không hoạt động tính bằng giây." },
-        { term: "Cookie", text: "Cặp name/value lưu phía client; setMaxAge điều khiển thời gian sống, addCookie gửi về trình duyệt." },
-        { term: "URL rewriting", text: "Gắn session id vào URL khi cookie không dùng được; ưu tiên response.encodeURL()." },
-        { term: "4 scopes", text: "page < request < session < application; chọn phạm vi nhỏ nhất đủ thời gian và đối tượng sử dụng." }
+        { term: "HttpSession", text: "Lưu dữ liệu của một người dùng qua nhiều request. invalidate() kết thúc session." },
+        { term: "Cookie", text: "Cặp name/value được lưu phía trình duyệt và gửi lại server theo các request phù hợp." },
+        { term: "URL Rewriting", text: "Đưa session id vào URL khi cookie không sử dụng được; response.encodeURL() hỗ trợ việc này." },
+        { term: "Scopes", text: "page chỉ trong JSP; request trong một request; session theo một user; application dùng chung toàn ứng dụng." }
       ],
-      remember: "Một request → request scope; nhiều request cùng user → session; toàn ứng dụng → application."
+      remember: "Dữ liệu càng dùng lâu và cho nhiều đối tượng thì scope càng lớn: page → request → session → application."
     },
     {
       number: 5,
-      title: "JSP Scripting, Directives & Actions",
+      title: "JSP",
       badge: "128 câu",
-      summary: "Cú pháp JSP, implicit objects, include/forward và JavaBean.",
+      summary: "View được container chuyển thành servlet để tạo HTML.",
       points: [
-        { term: "<%! ... %>", text: "Declaration tạo field hoặc method ở cấp lớp servlet sinh ra từ JSP." },
-        { term: "<% ... %>", text: "Scriptlet chứa lệnh Java chạy trong _jspService(); biến khai báo ở đây là local variable." },
-        { term: "<%= ... %>", text: "Expression in giá trị ra response; không đặt dấu chấm phẩy trong biểu thức." },
-        { term: "Directive / Action", text: "<%@ include %> ghép lúc dịch; <jsp:include> chạy lúc request; <jsp:forward> chuyển xử lý." },
-        { term: "Implicit objects", text: "request, response, session, application, out, config, pageContext, page và exception." }
+        { term: "JSP Lifecycle", text: "JSP được dịch thành servlet; _jspService() tạo nội dung response cho mỗi request." },
+        { term: "Scripting", text: "<%! %> khai báo member; <% %> chứa Java statement; <%= %> in giá trị ra response." },
+        { term: "Directive / Action", text: "Directive cấu hình khi dịch JSP; standard action như jsp:include và jsp:forward chạy lúc xử lý request." },
+        { term: "Implicit Objects", text: "Các object có sẵn gồm request, response, session, application, out, config, pageContext, page và exception." }
       ],
-      remember: "Thấy đoạn JSP, kiểm tra delimiter trước; sau đó xác định code ở cấp lớp hay trong _jspService()."
+      remember: "JSP là View: nhận dữ liệu đã chuẩn bị và tạo giao diện, không nên chứa nghiệp vụ hoặc truy cập database."
     },
     {
       number: 6,
-      title: "Expression Language & JSTL",
+      title: "Expression Language và JSTL",
       badge: "35 câu",
-      summary: "Truy cập dữ liệu không dùng scriptlet và chọn đúng tag điều khiển/định dạng.",
+      summary: "Đọc và trình bày dữ liệu trong JSP mà không viết Java trực tiếp.",
       points: [
-        { term: "EL ${...}", text: "Đọc bean, map, list và scope; object.property tương đương getter, object[index] dùng cho key/index động." },
-        { term: "Scope lookup", text: "Không ghi scope thì EL tìm lần lượt page → request → session → application." },
-        { term: "empty", text: "Kiểm tra null, chuỗi rỗng hoặc collection rỗng; dùng eq/ne/and/or cho biểu thức dễ đọc." },
-        { term: "JSTL core", text: "c:if cho một nhánh; c:choose/when/otherwise cho nhiều nhánh; c:forEach để lặp." },
-        { term: "fmt tags", text: "formatNumber/formatDate để hiển thị; parseNumber/parseDate để chuyển chuỗi thành giá trị." }
+        { term: "EL ${...}", text: "Truy cập bean property, Map, List và dữ liệu trong các scope bằng cú pháp ngắn." },
+        { term: "Scope Lookup", text: "Khi không ghi rõ scope, EL tìm lần lượt page, request, session rồi application." },
+        { term: "JSTL Core", text: "c:if và c:choose xử lý điều kiện; c:forEach lặp dữ liệu; c:set tạo hoặc cập nhật biến." },
+        { term: "JSTL fmt", text: "Các tag fmt định dạng và chuyển đổi số, ngày tháng theo locale hoặc pattern." }
       ],
-      remember: "JSP hiện đại: Servlet chuẩn bị dữ liệu → setAttribute → JSP đọc bằng EL/JSTL, tránh Java scriptlet trong View."
+      remember: "Servlet đặt dữ liệu bằng setAttribute; JSP đọc bằng EL và trình bày bằng JSTL."
     },
     {
       number: 7,
-      title: "Custom Tags & TLD",
+      title: "Custom Tag và TLD",
       badge: "39 câu",
-      summary: "Khai báo thư viện tag và vòng đời classic/simple tag handler.",
+      summary: "Đóng gói logic giao diện thành thẻ JSP tái sử dụng.",
       points: [
-        { term: "TLD", text: "Mô tả tag library: uri, tag name, handler class, body-content và attributes." },
-        { term: "doStartTag", text: "Trả SKIP_BODY để bỏ body hoặc EVAL_BODY_INCLUDE/EVAL_BODY_BUFFERED để đánh giá body." },
-        { term: "doAfterBody", text: "Trả EVAL_BODY_AGAIN để lặp body hoặc SKIP_BODY để kết thúc vòng lặp body." },
-        { term: "doEndTag", text: "Trả EVAL_PAGE để tiếp tục JSP hoặc SKIP_PAGE để dừng phần còn lại của trang." },
-        { term: "SimpleTag", text: "SimpleTagSupport dùng doTag(); gọi getJspBody().invoke(null) khi muốn chạy body." }
+        { term: "TLD", text: "Tag Library Descriptor mô tả URI, tên tag, handler class, body-content và các attribute." },
+        { term: "Classic Tag", text: "Vòng đời chính gồm doStartTag(), xử lý body, doAfterBody() và doEndTag()." },
+        { term: "Return Values", text: "SKIP_BODY/EVAL_BODY điều khiển body; EVAL_PAGE/SKIP_PAGE điều khiển phần còn lại của JSP." },
+        { term: "SimpleTag", text: "SimpleTagSupport gom logic vào doTag(); JspFragment đại diện cho phần body của tag." }
       ],
-      remember: "Câu classic tag thường hỏi đúng method + hằng số trả về; SimpleTag gom xử lý vào doTag()."
+      remember: "TLD mô tả tag; tag handler là lớp Java thực sự thực thi hành vi của tag."
     },
     {
       number: 8,
-      title: "JDBC, DataSource & JavaBeans",
+      title: "JDBC, JavaBean và DAO",
       badge: "35 câu",
-      summary: "Kết nối database, chạy SQL an toàn, transaction và cấu trúc bean/DAO.",
+      summary: "Truy cập database và tổ chức lớp dữ liệu.",
       points: [
-        { term: "PreparedStatement", text: "SQL có placeholder ?, gán tham số bằng setXxx; an toàn và rõ hơn nối chuỗi SQL." },
-        { term: "Query / Update", text: "executeQuery() trả ResultSet cho SELECT; executeUpdate() trả số dòng cho INSERT/UPDATE/DELETE." },
-        { term: "Transaction", text: "setAutoCommit(false) → chạy các lệnh → commit; lỗi thì rollback." },
-        { term: "Resources", text: "Đóng ResultSet, Statement và Connection; ưu tiên try-with-resources để luôn giải phóng." },
-        { term: "JavaBean / DAO", text: "Bean có constructor rỗng, property qua getter/setter; DAO tách logic truy cập dữ liệu khỏi servlet/JSP." }
+        { term: "JDBC Flow", text: "Lấy Connection, tạo Statement, thực thi SQL, đọc ResultSet rồi đóng tài nguyên." },
+        { term: "PreparedStatement", text: "Dùng dấu ? cho tham số và setXxx() để gán giá trị, thay vì ghép chuỗi SQL." },
+        { term: "Query / Update", text: "executeQuery() chạy SELECT và trả ResultSet; executeUpdate() chạy INSERT, UPDATE hoặc DELETE." },
+        { term: "Transaction", text: "Tắt auto-commit để nhiều lệnh cùng commit khi thành công hoặc rollback khi có lỗi." },
+        { term: "JavaBean / DAO", text: "Bean chứa dữ liệu qua getter/setter; DAO đóng gói toàn bộ thao tác truy cập database." }
       ],
-      remember: "SELECT → executeQuery/ResultSet; thay đổi dữ liệu → executeUpdate; nhiều lệnh cùng nghiệp vụ → transaction."
+      remember: "Servlet điều phối, DAO làm việc với database, JavaBean mang dữ liệu và JSP chỉ hiển thị."
     }
   ]
 };

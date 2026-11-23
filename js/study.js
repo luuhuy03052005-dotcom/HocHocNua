@@ -5,6 +5,7 @@
   let lessons = [];
   let extra = null;
   let recallData = null;
+  let studyMeta = {};
   let query = '';
   let recallQuery = '';
   let recallLesson = 'all';
@@ -148,7 +149,7 @@
       list.appendChild(item);
     });
     const remember = el('div', 'study-remember');
-    remember.append(el('span', 'study-remember-label', 'Cần nhớ'), el('p', '', lesson.remember || ''));
+    remember.append(el('span', 'study-remember-label', studyMeta.summaryLabel || 'Cần nhớ'), el('p', '', lesson.remember || ''));
     body.append(list, remember);
 
     const supplement = extra?.lessonSupplements?.[String(lesson.number)];
@@ -269,15 +270,28 @@
       : courseCode === 'PRJ301' ? window.PRJ301_STUDY : null;
     extra = courseCode === 'SSG105'
       ? window.SSG105_STUDY_EXTRA
-      : courseCode === 'PRJ301' ? window.PRJ301_STUDY_EXTRA : null;
+      : null;
     recallData = courseCode === 'SSG105'
       ? window.SSG105_RECALL
-      : courseCode === 'PRJ301' ? window.PRJ301_RECALL : null;
+      : null;
+    studyMeta = data?.meta || {};
     lessons = data && Array.isArray(data.lessons) ? data.lessons : [];
     const available = lessons.length > 0;
     byId('study-content').hidden = !available;
     byId('study-unavailable').hidden = available;
     if (available) {
+      const knowledgeOnly = Boolean(studyMeta.knowledgeOnly);
+      [
+        'study-guide-title',
+        'study-exam-tips-title',
+        'study-recall-title',
+        'study-number-title',
+        'study-foundation-title',
+        'study-sources-title'
+      ].forEach((id) => {
+        const section = byId(id)?.closest('section');
+        if (section) section.hidden = knowledgeOnly;
+      });
       query = '';
       recallQuery = '';
       recallLesson = 'all';
