@@ -82,7 +82,7 @@ svg.icon-svg { inline-size: 1rem; block-size: 1rem; flex: none; fill: none; stro
   border: 1px solid var(--border-hairline); border-radius: var(--radius-md);
 }
 .toolbar-spacer { margin-inline-start: auto; display: flex; align-items: center; gap: var(--space-2); }
-.mobile-practice-settings-toggle { display: none; }
+.mobile-practice-actions, .mobile-practice-settings-toggle, .mobile-learned-exam-btn { display: none; }
 
 select, input[type="search"], input[type="text"], input[type="number"] {
   min-block-size: 2.25rem; padding: var(--space-1) var(--space-3);
@@ -675,6 +675,8 @@ dialog[open]:where(:not([data-closing]))::backdrop { background-color: rgb(0 0 0
 @media (prefers-reduced-motion: reduce) { dialog, dialog::backdrop { transition-duration: 0.08s; } }
 .dialog-header { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); margin-block-end: var(--space-3); }
 .dialog-actions { display: flex; justify-content: flex-end; gap: var(--space-2); margin-block-start: var(--space-4); }
+.learned-exam-count { display: flex; align-items: baseline; gap: var(--space-2); margin-block: var(--space-3); color: var(--text-secondary); }
+.learned-exam-count strong { color: var(--color-accent); font-size: 2rem; line-height: 1; }
 kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 0.35rem; border: 1px solid var(--border-control); border-radius: var(--radius-sm); background: var(--bg-subtle); }
 
 @media (forced-colors: active) {
@@ -725,11 +727,13 @@ kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 
   .action-bar { align-items: stretch; }
   .action-bar > .btn, .action-bar > .action-group { flex: 1 1 auto; }
   .action-bar .action-group .btn { flex: 1 1 auto; }
-  .mobile-practice-settings-toggle {
+  .mobile-practice-actions { display: flex; align-items: center; gap: 0.4rem; }
+  .mobile-practice-settings-toggle, .mobile-learned-exam-btn {
     display: inline-flex; align-items: center; justify-content: center; justify-self: start;
     min-block-size: 1.9rem; padding: 0.25rem 0.6rem; color: var(--text-secondary); background: var(--bg-surface);
     border: 1px solid var(--border-control); border-radius: var(--radius-sm); font: inherit; font-size: 0.72rem; font-weight: 700;
   }
+  .mobile-learned-exam-btn { color: var(--color-accent); border-color: var(--color-accent); }
   #panel-practice .toolbar { display: none; grid-template-columns: repeat(6, minmax(0, 1fr)); }
   #panel-practice .toolbar.is-mobile-open { display: grid; }
   #panel-practice .toolbar > select { grid-column: span 3; }

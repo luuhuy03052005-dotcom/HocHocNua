@@ -273,6 +273,30 @@
       settingsButton.setAttribute('aria-expanded', String(isOpen));
     });
 
+    const learnedQuestions = () => allQuestions.filter((question) => SWTApp.storage.getRecord(question.id).mastery > 0);
+    SWTApp.utils.byId('practice-learned-exam-btn')?.addEventListener('click', () => {
+      const learned = learnedQuestions();
+      const minutes = Math.min(60, Math.max(5, learned.length));
+      SWTApp.utils.setText('practice-learned-exam-count', String(learned.length));
+      SWTApp.utils.setText(
+        'practice-learned-exam-message',
+        learned.length > 0
+          ? 'Tạo đề ' + learned.length + ' câu trong ' + minutes + ' phút và chuyển sang Thi thử.'
+          : 'Chưa có câu đã học. Hãy trả lời hoặc xem đáp án ít nhất một câu trước.'
+      );
+      const confirmButton = SWTApp.utils.byId('practice-confirm-learned-exam-btn');
+      if (confirmButton) confirmButton.disabled = learned.length === 0;
+      const dialog = SWTApp.utils.byId('practice-learned-exam-dialog');
+      if (dialog && typeof dialog.showModal === 'function') dialog.showModal();
+      else dialog?.setAttribute('open', '');
+    });
+    SWTApp.utils.byId('practice-confirm-learned-exam-btn')?.addEventListener('click', () => {
+      const ids = learnedQuestions().map((question) => question.id);
+      if (ids.length === 0 || !SWTApp.exam?.startWithQuestions(ids)) return;
+      SWTApp.utils.byId('practice-learned-exam-dialog')?.close();
+      SWTApp.app?.selectTab('tab-exam');
+    });
+
     const card = SWTApp.utils.byId('practice-question-card');
     if (!card) return;
     let startX = 0, startY = 0, startTime = 0;

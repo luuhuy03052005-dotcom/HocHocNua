@@ -15,20 +15,20 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-12">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-12">
-  <script defer src="data/questions.js?v=multi-course-12"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-12"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-12"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-12"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-12"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-12"></script>
-  <script defer src="js/storage.js?v=multi-course-12"></script>
-  <script defer src="js/practice.js?v=multi-course-12"></script>
-  <script defer src="js/exam.js?v=multi-course-12"></script>
-  <script defer src="js/keyword.js?v=multi-course-12"></script>
-  <script defer src="js/study.js?v=multi-course-12"></script>
-  <script defer src="js/app.js?v=multi-course-12"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-13">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-13">
+  <script defer src="data/questions.js?v=multi-course-13"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-13"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-13"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-13"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-13"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-13"></script>
+  <script defer src="js/storage.js?v=multi-course-13"></script>
+  <script defer src="js/practice.js?v=multi-course-13"></script>
+  <script defer src="js/exam.js?v=multi-course-13"></script>
+  <script defer src="js/keyword.js?v=multi-course-13"></script>
+  <script defer src="js/study.js?v=multi-course-13"></script>
+  <script defer src="js/app.js?v=multi-course-13"></script>
 </head>
 <body>
   <header class="topbar">
@@ -79,9 +79,12 @@
   <main class="workspace-main">
     <section id="panel-practice" class="tab-panel" role="tabpanel" aria-labelledby="tab-practice">
       <div class="panel-inner">
-        <button type="button" id="practice-mobile-settings-btn" class="mobile-practice-settings-toggle" aria-expanded="false" aria-controls="practice-toolbar">
-          Bộ lọc và tùy chọn
-        </button>
+        <div class="mobile-practice-actions">
+          <button type="button" id="practice-mobile-settings-btn" class="mobile-practice-settings-toggle" aria-expanded="false" aria-controls="practice-toolbar">
+            Bộ lọc và tùy chọn
+          </button>
+          <button type="button" id="practice-learned-exam-btn" class="mobile-learned-exam-btn">Thi câu đã học</button>
+        </div>
         <div id="practice-toolbar" class="toolbar">
           <label for="practice-filter-mode" class="sr-only">Chế độ lọc câu hỏi</label>
           <select id="practice-filter-mode">
@@ -424,6 +427,20 @@
     <div class="dialog-actions">
       <button type="button" id="practice-review-repeat-btn" class="btn btn-secondary">Luyện lại cụm này</button>
       <button type="button" id="practice-review-next-btn" class="btn btn-primary">Sang cụm tiếp theo</button>
+    </div>
+  </dialog>
+
+  <dialog id="practice-learned-exam-dialog" closedby="any" aria-labelledby="practice-learned-exam-title">
+    <div class="dialog-header">
+      <h2 id="practice-learned-exam-title">Thi thử các câu đã học?</h2>
+      <button type="button" class="btn btn-ghost btn-sm" command="close" commandfor="practice-learned-exam-dialog" aria-label="Đóng hộp thoại">Đóng</button>
+    </div>
+    <p id="practice-learned-exam-message">Đang kiểm tra tiến độ học...</p>
+    <div class="learned-exam-count"><strong id="practice-learned-exam-count">0</strong><span>câu đã học</span></div>
+    <p class="dialog-subtitle">Gồm các câu đang nhớ và đã thuộc. Chỉ chuyển sang Thi thử sau khi bạn xác nhận.</p>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" command="close" commandfor="practice-learned-exam-dialog">Hủy</button>
+      <button type="button" id="practice-confirm-learned-exam-btn" class="btn btn-primary">Xác nhận thi thử</button>
     </div>
   </dialog>
 

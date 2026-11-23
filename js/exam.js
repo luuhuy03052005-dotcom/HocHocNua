@@ -175,14 +175,12 @@
     updateRangePreview();
   }
 
-  function startExam() {
-    const { byId, setHidden } = SWTApp.utils;
-    const mins = Math.min(240, Math.max(1, parseInt(byId('exam-duration-input')?.value || '60', 10) || 60));
-    const pool = getEligibleQuestions(rangeStart, rangeEnd);
+  function beginExam(pool, durationMinutes) {
+    const { setHidden } = SWTApp.utils;
     if (pool.length === 0) {
-      setSetupNotice('Không có câu hỏi nào trong phạm vi khớp nguồn hoặc chủ đề đã chọn.');
-      return;
+      return false;
     }
+    const mins = Math.min(240, Math.max(1, Number(durationMinutes) || 60));
     setSetupNotice('');
     orderedPool = pool.slice();
     examQs = isRandomEnabled() ? SWTApp.utils.shuffle(orderedPool) : orderedPool.slice();
@@ -199,6 +197,23 @@
     tickTimer();
     timerId = window.setInterval(tickTimer, 500);
     renderExamActive();
+    return true;
+  }
+
+  function startExam() {
+    const { byId } = SWTApp.utils;
+    const mins = Math.min(240, Math.max(1, parseInt(byId('exam-duration-input')?.value || '60', 10) || 60));
+    const pool = getEligibleQuestions(rangeStart, rangeEnd);
+    if (!beginExam(pool, mins)) {
+      setSetupNotice('Không có câu hỏi nào trong phạm vi khớp nguồn hoặc chủ đề đã chọn.');
+    }
+  }
+
+  function startExamWithQuestions(questionIds) {
+    const ids = new Set((Array.isArray(questionIds) ? questionIds : []).map(Number));
+    const pool = allQuestions.filter((question) => ids.has(Number(question.id)));
+    const mins = Math.min(60, Math.max(5, pool.length));
+    return beginExam(pool, mins);
   }
 
   function selectExamOption(key) {
@@ -496,6 +511,7 @@
       renderBank();
     },
     refreshBank: renderBank,
+    startWithQuestions: startExamWithQuestions,
     onTabActivated(tabId) { if (tabId === 'tab-bank') renderBank(); },
     isActive: () => Boolean(SWTApp.utils.byId('exam-active') && !SWTApp.utils.byId('exam-active').hidden),
     selectByNumber(n) { const o = examQs[currentIdx]?.options?.[n - 1]; if (o) { selectExamOption(o.key); return true; } return false; },
