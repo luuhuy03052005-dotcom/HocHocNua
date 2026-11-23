@@ -1,5 +1,5 @@
 *, *::before, *::after { box-sizing: border-box; }
-[hidden]:not([hidden="until-found"]) { display: none !important; }
+[hidden] { display: none !important; }
 html {
   inline-size: 100%; max-inline-size: 100%; overflow-x: hidden;
   -webkit-text-size-adjust: 100%; text-size-adjust: 100%;
@@ -82,6 +82,7 @@ svg.icon-svg { inline-size: 1rem; block-size: 1rem; flex: none; fill: none; stro
   border: 1px solid var(--border-hairline); border-radius: var(--radius-md);
 }
 .toolbar-spacer { margin-inline-start: auto; display: flex; align-items: center; gap: var(--space-2); }
+.mobile-practice-settings-toggle { display: none; }
 
 select, input[type="search"], input[type="text"], input[type="number"] {
   min-block-size: 2.25rem; padding: var(--space-1) var(--space-3);
@@ -210,6 +211,7 @@ input[type="checkbox"][switch]:focus-visible { outline: 3px solid var(--color-ac
 #panel-practice .toolbar select { min-block-size: 2rem; padding: 0.25rem 1.75rem 0.25rem 0.55rem; font-size: var(--text-xs); }
 #panel-practice .toolbar .switch-control { gap: 0.3rem; font-size: var(--text-xs); white-space: nowrap; }
 #panel-practice article.card { gap: 0.7rem; padding: 0.8rem 1rem; }
+#practice-question-card { touch-action: pan-y; transform: translateZ(0); overflow-wrap: anywhere; }
 #panel-practice .question-meta { gap: 0.35rem; }
 #panel-practice .question-meta :is(.badge, .counter-pill) { padding: 0.15rem 0.45rem; font-size: 0.7rem; }
 #panel-practice .question-stem { font-size: 1rem; line-height: 1.45; }
@@ -693,26 +695,23 @@ kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 
   .app-subtitle { display: none; }
   .course-picker { inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; overflow: hidden; }
   .course-picker select { inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; min-block-size: 2.5rem; }
-  .progress-pill {
-    grid-column: 1 / -1; grid-row: 2; inline-size: 100%; justify-content: space-between;
-    gap: var(--space-1) var(--space-2); padding: var(--space-1) var(--space-2); border-radius: var(--radius-md);
-  }
+  .progress-pill { display: none; }
   .progress-track { flex: 1 1 4rem; min-inline-size: 3rem; }
   .topbar-actions { grid-column: 2; grid-row: 1; gap: 0; }
   .topbar-actions .btn { min-inline-size: 2.5rem; inline-size: 2.5rem; min-block-size: 2.5rem; padding: 0; }
   .topbar-actions .btn > span { display: none; }
 
   .tabs-bar {
-    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible;
+    display: flex; overflow-x: auto; overscroll-behavior-inline: contain;
     inline-size: 100%; min-inline-size: 0; max-inline-size: 100%;
-    gap: 1px; padding: var(--space-2); border-block-start: 1px solid var(--border-hairline);
+    gap: 0; padding: 0 var(--space-2); border-block-start: 1px solid var(--border-hairline);
   }
   [role="tab"] {
-    min-inline-size: 0; min-block-size: 2.75rem; justify-content: center;
-    padding: var(--space-2); text-align: center; white-space: normal; line-height: 1.2;
+    min-inline-size: max-content; min-block-size: 2.35rem; justify-content: center;
+    padding: 0.45rem 0.7rem; font-size: 0.78rem; text-align: center; white-space: nowrap; line-height: 1.2;
   }
 
-  .panel-inner { inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; padding: var(--space-3); gap: var(--space-3); }
+  .panel-inner { inline-size: 100%; min-inline-size: 0; max-inline-size: 100%; padding: var(--space-2); gap: var(--space-2); }
   .card { padding: var(--space-3); gap: var(--space-3); border-radius: var(--radius-md); }
   .toolbar { align-items: stretch; padding: var(--space-2); }
   .toolbar > :is(select, input[type="search"], input[type="text"], input[type="number"]) { inline-size: 100%; max-inline-size: none; }
@@ -726,13 +725,20 @@ kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 
   .action-bar { align-items: stretch; }
   .action-bar > .btn, .action-bar > .action-group { flex: 1 1 auto; }
   .action-bar .action-group .btn { flex: 1 1 auto; }
-  #panel-practice .toolbar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .mobile-practice-settings-toggle {
+    display: inline-flex; align-items: center; justify-content: center; justify-self: start;
+    min-block-size: 1.9rem; padding: 0.25rem 0.6rem; color: var(--text-secondary); background: var(--bg-surface);
+    border: 1px solid var(--border-control); border-radius: var(--radius-sm); font: inherit; font-size: 0.72rem; font-weight: 700;
+  }
+  #panel-practice .toolbar { display: none; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  #panel-practice .toolbar.is-mobile-open { display: grid; }
   #panel-practice .toolbar > select { grid-column: span 3; }
   #panel-practice .toolbar > .switch-control { grid-column: span 2; justify-content: center; }
   .practice-cluster-panel { gap: 0.3rem; padding: 0.45rem 0.6rem; }
   .practice-cluster-heading { display: flex; align-items: center; }
   .practice-cluster-heading > div { display: flex; }
   .practice-cluster-stats { display: flex; justify-content: flex-end; }
+  .practice-cluster-stats span:last-child { display: none; }
   .practice-cluster-steps { gap: 0.15rem; }
   .cluster-step { min-block-size: 1.5rem; }
   .practice-cluster-help { display: none; }
@@ -741,6 +747,12 @@ kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 
   .quick-answer-btn { inline-size: 100%; min-inline-size: 0; max-inline-size: none; min-block-size: 2.15rem; }
   .quick-nav-btn { min-inline-size: 2.2rem; padding-inline: 0.45rem; }
   .quick-reveal-btn { min-inline-size: 2.05rem; padding-inline: 0.4rem; }
+  #practice-question-card { min-block-size: 25rem; padding: 0.7rem 0.75rem; }
+  #practice-topic-badge { display: none; }
+  #practice-star-btn { min-block-size: 2rem; padding: 0.25rem; }
+  #practice-star-btn span { display: none; }
+  #panel-practice .question-stem { font-size: 1rem; line-height: 1.45; }
+  #panel-practice :is(.option-item, .option-btn) { min-block-size: 2.75rem; padding: 0.6rem 0.65rem; font-size: 0.92rem; line-height: 1.4; }
 
   .setup-grid { grid-template-columns: 1fr; }
   .range-picker-btn { min-block-size: 3.25rem; }

@@ -183,6 +183,19 @@
     updateClusterProgress();
   }
 
+  function animatePracticeChange(direction) {
+    const card = SWTApp.utils.byId('practice-question-card');
+    if (!card || typeof card.animate !== 'function' || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    card.getAnimations().forEach((animation) => animation.cancel());
+    card.animate(
+      [
+        { opacity: 0.72, transform: 'translate3d(' + (direction > 0 ? '14px' : '-14px') + ', 0, 0)' },
+        { opacity: 1, transform: 'translate3d(0, 0, 0)' }
+      ],
+      { duration: 160, easing: 'cubic-bezier(.2,.8,.2,1)' }
+    );
+  }
+
   function gradeCurrent() {
     if (graded || deck.length === 0 || selectedKeys.size === 0) return;
     const q = deck[index];
@@ -235,6 +248,39 @@
     } else index = next;
     resetTurn();
     renderPractice();
+    animatePracticeChange(delta);
+  }
+
+  function initMobileControls() {
+    const settingsButton = SWTApp.utils.byId('practice-mobile-settings-btn');
+    const toolbar = SWTApp.utils.byId('practice-toolbar');
+    settingsButton?.addEventListener('click', () => {
+      const isOpen = toolbar?.classList.toggle('is-mobile-open') || false;
+      settingsButton.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    const card = SWTApp.utils.byId('practice-question-card');
+    if (!card) return;
+    let startX = 0, startY = 0, startTime = 0;
+    card.addEventListener('touchstart', (event) => {
+      if (event.touches.length !== 1 || document.querySelector('dialog[open]')) return;
+      const touch = event.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+      startTime = Date.now();
+    }, { passive: true });
+    card.addEventListener('touchend', (event) => {
+      if (!startTime || event.changedTouches.length !== 1) return;
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - startX;
+      const dy = touch.clientY - startY;
+      const elapsed = Date.now() - startTime;
+      startTime = 0;
+      if (elapsed > 700 || Math.abs(dx) < 56 || Math.abs(dx) < Math.abs(dy) * 1.25) return;
+      event.preventDefault();
+      goPractice(dx < 0 ? 1 : -1);
+    }, { passive: false });
+    card.addEventListener('touchcancel', () => { startTime = 0; }, { passive: true });
   }
 
   function renderClusterReview() {
@@ -396,6 +442,7 @@
       });
       byId('practice-review-repeat-btn')?.addEventListener('click', repeatCurrentCluster);
       byId('practice-review-next-btn')?.addEventListener('click', advanceCluster);
+      initMobileControls();
       const jumpEl = byId('practice-jump-input');
       const applyJump = () => {
         const n = parseInt(jumpEl?.value || '', 10);

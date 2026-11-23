@@ -124,10 +124,7 @@
       tab.tabIndex = isSel ? 0 : -1;
       tab.toggleAttribute('focusgroupstart', isSel);
       const panel = panelForTab(tab);
-      if (panel) {
-        if (isSel) panel.hidden = false;
-        else panel.hidden = 'until-found';
-      }
+      if (panel) panel.hidden = !isSel;
     });
 
     try {
@@ -159,8 +156,6 @@
         }
       });
 
-      const panel = panelForTab(tab);
-      panel?.addEventListener('beforematch', () => selectTab(tab.id));
     });
   }
 
