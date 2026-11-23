@@ -21,7 +21,9 @@
       lesson.number,
       lesson.title,
       lesson.summary,
-      ...(lesson.points || []),
+      ...(lesson.points || []).flatMap((point) =>
+        typeof point === 'string' ? [point] : [point.term, point.text]
+      ),
       lesson.remember,
       ...(supplement.terms || []).flat(),
       ...(supplement.tips || []),
@@ -127,12 +129,24 @@
     const number = el('span', 'study-lesson-number', 'Lesson ' + lesson.number);
     const heading = el('span', 'study-lesson-heading');
     heading.append(el('strong', '', lesson.title), el('span', '', lesson.summary));
-    const pages = el('span', 'badge', 'Trang ' + lesson.pages);
+    const pages = el('span', 'badge', lesson.badge || ('Trang ' + lesson.pages));
     summary.append(number, heading, pages);
 
     const body = el('div', 'study-lesson-body');
     const list = el('ul', 'study-point-list');
-    (lesson.points || []).forEach((point) => list.appendChild(el('li', '', point)));
+    (lesson.points || []).forEach((point) => {
+      const item = el('li');
+      if (typeof point === 'string') {
+        item.textContent = point;
+      } else {
+        item.className = 'study-concept-point';
+        item.append(
+          el('mark', 'study-concept-mark', point.term || ''),
+          el('span', '', point.text || '')
+        );
+      }
+      list.appendChild(item);
+    });
     const remember = el('div', 'study-remember');
     remember.append(el('span', 'study-remember-label', 'Cần nhớ'), el('p', '', lesson.remember || ''));
     body.append(list, remember);
@@ -250,16 +264,44 @@
 
   function init(courseCode) {
     const { byId, setText } = SWTApp.utils;
-    const data = courseCode === 'SSG105' ? window.SSG105_STUDY : null;
-    extra = courseCode === 'SSG105' ? window.SSG105_STUDY_EXTRA : null;
-    recallData = courseCode === 'SSG105' ? window.SSG105_RECALL : null;
+    const data = courseCode === 'SSG105'
+      ? window.SSG105_STUDY
+      : courseCode === 'PRJ301' ? window.PRJ301_STUDY : null;
+    extra = courseCode === 'SSG105'
+      ? window.SSG105_STUDY_EXTRA
+      : courseCode === 'PRJ301' ? window.PRJ301_STUDY_EXTRA : null;
+    recallData = courseCode === 'SSG105'
+      ? window.SSG105_RECALL
+      : courseCode === 'PRJ301' ? window.PRJ301_RECALL : null;
     lessons = data && Array.isArray(data.lessons) ? data.lessons : [];
     const available = lessons.length > 0;
     byId('study-content').hidden = !available;
     byId('study-unavailable').hidden = available;
     if (available) {
+      query = '';
+      recallQuery = '';
+      recallLesson = 'all';
+      const questionCount = data.meta?.questionCount || extra?.meta?.basedOnQuestions || '';
+      setText('study-intro-title', data.meta?.title || 'Kiến thức trọng tâm');
+      setText('study-intro-description', data.meta?.description || 'Khái niệm, dấu hiệu nhận diện và mẹo chọn đáp án.');
       setText('study-total-count', String(lessons.length));
       setText('study-source-label', data.meta?.source || 'Tài liệu môn học');
+      setText('study-guide-title', questionCount ? 'Lộ trình làm chủ bộ ' + questionCount + ' câu' : 'Lộ trình ôn tập');
+      setText('study-guide-description', data.meta?.guideDescription || 'Học khái niệm, nhận diện từ khóa, luyện câu hỏi và ôn lại lỗi sai.');
+      setText('study-foundation-title', (extra?.foundationModules?.length || 0) + ' chuyên đề nền tảng cho bộ câu hỏi');
+      setText('study-foundation-description', data.meta?.foundationDescription || 'Các nhóm kiến thức cần liên kết để xử lý câu hỏi tình huống và đoạn mã.');
+      const lessonSearch = byId('study-search-input');
+      const recallSearch = byId('study-recall-search');
+      if (lessonSearch) {
+        lessonSearch.value = '';
+        lessonSearch.placeholder = data.meta?.searchPlaceholder || 'Tìm Lesson hoặc thuật ngữ...';
+      }
+      if (recallSearch) {
+        recallSearch.value = '';
+        recallSearch.placeholder = data.meta?.recallPlaceholder || 'Ví dụ: thuật ngữ, tình huống hoặc đáp án...';
+      }
+      const recallSelect = byId('study-recall-lesson');
+      if (recallSelect) recallSelect.replaceChildren(new Option('Tất cả Lesson', 'all'));
       renderExtra();
       render();
     }
