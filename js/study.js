@@ -381,6 +381,10 @@
     const available = lessons.length > 0;
     byId('study-content').hidden = !available;
     byId('study-unavailable').hidden = available;
+    const shortcutsSection = byId('study-shortcuts');
+    if (shortcutsSection) {
+      shortcutsSection.hidden = (courseCode !== 'PRJ301');
+    }
     if (available) {
       const knowledgeOnly = Boolean(studyMeta.knowledgeOnly);
       [
@@ -453,6 +457,20 @@
     });
     byId('study-open-all-btn')?.addEventListener('click', () => setAll(true));
     byId('study-close-all-btn')?.addEventListener('click', () => setAll(false));
+
+    const shortcutsEl = byId('study-shortcuts');
+    if (shortcutsEl && !shortcutsEl.dataset.bound) {
+      shortcutsEl.dataset.bound = 'true';
+      shortcutsEl.addEventListener('click', (event) => {
+        const btn = event.target.closest('[data-open-q]');
+        if (!btn) return;
+        const qId = Number(btn.getAttribute('data-open-q'));
+        if (qId && SWTApp.practice?.openQuestion) {
+          SWTApp.app?.selectTab('tab-practice');
+          SWTApp.practice.openQuestion(qId);
+        }
+      });
+    }
   }
 
   SWTApp.study = { init };
