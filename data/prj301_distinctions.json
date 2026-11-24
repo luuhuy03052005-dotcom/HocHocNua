@@ -1,0 +1,1119 @@
+[
+  {
+    "id": "errorpage-vs-iserrorpage",
+    "title": "errorPage vs isErrorPage trong <%@ page %>",
+    "category": "JSP Directives & Error Handling",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "• <strong>errorPage=\"error.jsp\"</strong>: Đặt ở trang BỊ LỖI (nguồn) để khai báo trang sẽ chuyển hướng tới khi có ngoại lệ chưa được xử lý.<br>• <strong>isErrorPage=\"true\"</strong>: Đặt ở trang XỬ LÝ LỖI (đích). Bắt buộc phải có thuộc tính này thì biến ẩn (implicit object) <code>exception</code> mới được sinh ra trong servlet để in thông tin lỗi.",
+    "items": [
+      {
+        "id": 74,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Trang ĐÍCH xử lý lỗi (Sinh implicit object exception)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">isErrorPage</mark> attribute of <%@ page <mark class=\"keyword-mark keyword-question-mark\">isErrorPage</mark>= directive?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "Specifies if the current page is an error page that will be invoked in response to an error on another page. If the attribute value is true, the implicit object exception is created and references the original exception that occurred.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Specifies if the current page is an error page</mark> that will be invoked in response to an error on another page. If the attribute value is true, the <mark class=\"keyword-mark keyword-answer-mark\">implicit object exception is created</mark> and references the original exception that occurred."
+      },
+      {
+        "id": 92,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Trang NGUỒN phát sinh lỗi (Chuyển tiếp tới error page)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">errorPage attribute</mark> of page directive?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "Any exceptions in the current page that are not caught are sent to the error page for processing. The error page implicit object exception references the original exception.",
+        "correctTextHtml": "Any <mark class=\"keyword-mark keyword-answer-mark\">exceptions in the current page that are not caught are sent to the error page</mark> for processing. The error page implicit object exception references the original exception."
+      },
+      {
+        "id": 43,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Định nghĩa errorPage trong trang nguồn",
+        "stemHtml": "Which statements are BEST describe errorPage attribute of <%@ page <mark class=\"keyword-mark keyword-question-mark\">errorPage=\"...\"</mark> %> directive?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "Any exceptions in the current page that are not caught are sent to the error page for processing. The error page implicit object exception references the original exception.",
+        "correctTextHtml": "Any <mark class=\"keyword-mark keyword-answer-mark\">exceptions in the current page that are not caught are sent to the error page</mark> for processing. The error page implicit object exception references the original exception."
+      },
+      {
+        "id": 9,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Khai báo trang lỗi bằng page directive",
+        "stemHtml": "You can set a <mark class=\"keyword-mark keyword-question-mark\">page to be an error page</mark> either through web.xml or by adding a page directive",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "<%@page isErrorPage=\"true\" %>",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\"><%@page isErrorPage=\"true\" %></mark>"
+      }
+    ]
+  },
+  {
+    "id": "initparam-vs-contextparam",
+    "title": "<init-param> vs <context-param> trong web.xml",
+    "category": "Deployment Descriptor (web.xml)",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "• <strong>&lt;init-param&gt;</strong>: Khai báo tham số riêng cho MỘT servlet (hoặc filter) cụ thể, đặt bên trong thẻ <code>&lt;servlet&gt;</code>. Đọc qua <code>ServletConfig.getInitParameter()</code>.<br>• <strong>&lt;context-param&gt;</strong>: Khai báo tham số TOÀN CỤC cho toàn bộ ứng dụng, đặt trực tiếp dưới thẻ gốc <code>&lt;web-app&gt;</code>. Đọc qua <code>ServletContext.getInitParameter()</code>.",
+    "items": [
+      {
+        "id": 317,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Tham số riêng cho 1 Servlet (<init-param>)",
+        "stemHtml": "What is the function of the <mark class=\"keyword-mark keyword-question-mark\"><init-param></mark> tag <mark class=\"keyword-mark keyword-question-mark\">within the <servlet> tag</mark>?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "servlet-config",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">servlet-config</mark>"
+      },
+      {
+        "id": 360,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Tham số toàn cục toàn ứng dụng (<context-param>)",
+        "stemHtml": "Which element in the \"web.xml\" file specifies <mark class=\"keyword-mark keyword-question-mark\">global parameters</mark> accessible <mark class=\"keyword-mark keyword-question-mark\">throughout the entire web application</mark>?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "context-param",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">context-param</mark>"
+      },
+      {
+        "id": 44,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Vị trí trong web.xml: <web-app> vs <servlet>",
+        "stemHtml": "element can include zero to many elements: These aid in <mark class=\"keyword-mark keyword-question-mark\">passing parameter information</mark> from the <mark class=\"keyword-mark keyword-question-mark\">deployment descriptor</mark> to all the servlets.",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "False",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">False</mark>"
+      },
+      {
+        "id": 519,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Phạm vi truy cập tham số cấu hình",
+        "stemHtml": "What is the purpose of the HTML <input > element with the type attribute set to \"text\"?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "Accepting single-line text input",
+        "correctTextHtml": "Accepting single-line text input"
+      }
+    ]
+  },
+  {
+    "id": "setproperty-vs-getproperty",
+    "title": "jsp:setProperty vs jsp:getProperty & các thuộc tính",
+    "category": "JSP Standard Actions & JavaBeans",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "• <strong>name</strong>: Tên biến JavaBean (id đã tạo từ <code>jsp:useBean</code>).<br>• <strong>property=\"*\"</strong>: Tự động ánh xạ request parameters vào properties trùng tên của Bean.<br>• <strong>param</strong>: Ánh xạ một request parameter có tên khác vào property của Bean.<br>• <strong>value</strong>: Gán giá trị cụ thể trực tiếp (hoặc từ expression) vào property.<br>• <strong>jsp:getProperty</strong>: Đọc giá trị property của Bean và chuyển đổi thành String để in ra response.",
+    "items": [
+      {
+        "id": 7,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Thuộc tính name: ID của JavaBean instance",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">name attribute</mark> of < .<mark class=\"keyword-mark keyword-question-mark\">jsp:setProperty</mark> name=. ... / > action?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "The ID of the JavaBean for which a property (or properties) will be set.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">The ID of the JavaBean for which a property</mark> (or properties) will be set."
+      },
+      {
+        "id": 167,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Thuộc tính value: Giá trị gán cho property",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">value attribute</mark> of value-... / > action?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "The value to assign to a bean property. The value typically is the result of a JSP expression.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">The value to assign to a bean property</mark>. The value typically is the result of a JSP expression."
+      },
+      {
+        "id": 188,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Thuộc tính name trong jsp:getProperty",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">name attribute</mark> of < jcp: get Property name=. . . > action?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "The ID of the JavaBean for which a property (or properties) will be set.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">The ID of the JavaBean</mark> for which a property (or properties) will be set."
+      },
+      {
+        "id": 193,
+        "topic": "8. JDBC, Database Connection & JavaBeans",
+        "tag": "Hành động jsp:getProperty: Lấy giá trị và in ra",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">Action</mark>?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "Gets a property in the specified JavaBean instance and converts the result to a string for output in the response.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Gets a property in the specified JavaBean instance</mark> and <mark class=\"keyword-mark keyword-answer-mark\">converts the result to a string for output</mark> in the response."
+      },
+      {
+        "id": 235,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Hành động jsp:setProperty: Gán thuộc tính Bean",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">jsp:setProperty Action</mark>?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "Sets a property in the specified JavaBean instance. A special feature of this action is automatic matching of request parameters to bean properties of the same name.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Sets a property in the specified JavaBean instance</mark>. A special feature of this action is <mark class=\"keyword-mark keyword-answer-mark\">automatic matching of request parameters</mark> to bean properties of the same name."
+      }
+    ]
+  },
+  {
+    "id": "http-status-codes",
+    "title": "Mã trạng thái HTTP: 401 Unauthorized vs 404 Not Found vs 500",
+    "category": "Web & HTTP Protocol",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "• <strong>401 Unauthorized</strong>: Yêu cầu xác thực tài khoản HTTP (chưa đăng nhập hoặc xác thực thất bại).<br>• <strong>403 Forbidden</strong>: Đã xác thực nhưng không có quyền hạn truy cập tài nguyên.<br>• <strong>404 Not Found</strong>: Máy chủ không tìm thấy tài nguyên theo đường dẫn URL yêu cầu.<br>• <strong>500 Internal Server Error</strong>: Máy chủ gặp sự cố hoặc ném lỗi (exception) trong quá trình xử lý.",
+    "items": [
+      {
+        "id": 263,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Mã 401: Cần HTTP Authentication",
+        "stemHtml": "Which of the following statements are correct about the <mark class=\"keyword-mark keyword-question-mark\">status code = 401</mark> of the Http response?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "Indicates that the request requires HTTP authentication.",
+        "correctTextHtml": "Indicates that the request <mark class=\"keyword-mark keyword-answer-mark\">requires HTTP authentication</mark>."
+      },
+      {
+        "id": 262,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Mã 404: Tài nguyên không tìm thấy",
+        "stemHtml": "Which of the following statements are correct about the <mark class=\"keyword-mark keyword-question-mark\">status code = 404</mark> of the Http response?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "Indicates that the requested resource is not available.",
+        "correctTextHtml": "Indicates that the <mark class=\"keyword-mark keyword-answer-mark\">requested resource is not available</mark>."
+      },
+      {
+        "id": 208,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Cấu hình error-page theo mã 404 trong web.xml",
+        "stemHtml": "Which of these is a correct fragment within the <mark class=\"keyword-mark keyword-question-mark\">web-app element</mark> of <mark class=\"keyword-mark keyword-question-mark\">deployment descriptor</mark>? Select one correct answer.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "<error-page> <error-code>404</error-code> <location>/error.jsp</location> </error-page>",
+        "correctTextHtml": "<error-page> <mark class=\"keyword-mark keyword-answer-mark\"><error-code>404</error-code></mark> <location>/error.jsp</location> </error-page>"
+      }
+    ]
+  },
+  {
+    "id": "war-directories",
+    "title": "Cấu trúc WAR: WEB-INF/lib (.jar) vs WEB-INF/classes (.class)",
+    "category": "Deployment Descriptor (web.xml)",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "• <strong>WEB-INF/lib</strong>: Chứa các file thư viện lưu trữ định dạng <strong>.jar</strong> (ví dụ JSTL jar, SQL Server Driver jar).<br>• <strong>WEB-INF/classes</strong>: Chứa các file bytecode đã biên dịch định dạng <strong>.class</strong> cùng cấu trúc gói (package) của ứng dụng.<br>• <strong>Bảo mật</strong>: Client từ bên ngoài KHÔNG THỂ truy cập trực tiếp nội dung bên trong thư mục <code>/WEB-INF/</code>.",
+    "items": [
+      {
+        "id": 379,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Chứa file thư viện .jar ngoài (WEB-INF/lib)",
+        "stemHtml": "Which directory is used to <mark class=\"keyword-mark keyword-question-mark\">store external libraries (JAR files)</mark> in a Java web application?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "'WEB-INF/lib",
+        "correctTextHtml": "'<mark class=\"keyword-mark keyword-answer-mark\">WEB-INF/lib</mark>"
+      },
+      {
+        "id": 527,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Chứa file class đã biên dịch (WEB-INF/classes)",
+        "stemHtml": "In Java web applications, where are the <mark class=\"keyword-mark keyword-question-mark\">compiled Java class files typically stored</mark>?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "'WEB-INF/classes",
+        "correctTextHtml": "'<mark class=\"keyword-mark keyword-answer-mark\">WEB-INF/classes</mark>"
+      },
+      {
+        "id": 127,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Bẫy: WEB-INF/lib chứa file class? (Sai!)",
+        "stemHtml": "Study the statements: 1. The special directory <mark class=\"keyword-mark keyword-question-mark\">/WEB-INF/lib contains Java class files</mark>-sennets and supporting code. 2. The special directory /WEB-INF/classes contains JAR files with supporting libraries of code.",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "Both 1 and 2 are not true",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Both 1 and 2 are not true</mark>"
+      }
+    ]
+  },
+  {
+    "id": "implicit-objects-scope",
+    "title": "Implicit Objects: request vs session vs application vs pageContext",
+    "category": "JSP Scripting & Implicit Objects",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "• <strong>request</strong> (HttpServletRequest): Đại diện cho request đơn lẻ từ client, mang theo headers, params, cookies, query string.<br>• <strong>session</strong> (HttpSession): Đại diện cho phiên làm việc của một người dùng duyệt qua nhiều trang.<br>• <strong>application</strong> (ServletContext): Đại diện cho toàn bộ web application, lưu thông tin dùng chung toàn server.<br>• <strong>pageContext</strong>: Cung cấp API truy cập đến cả 8 implicit objects còn lại và quản lý cả 4 phạm vi (scopes).",
+    "items": [
+      {
+        "id": 329,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Thông tin request từ client (request)",
+        "stemHtml": "Which implicit object provides information about the <mark class=\"keyword-mark keyword-question-mark\">client's request in a JSP page</mark>?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "request",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">request</mark>"
+      },
+      {
+        "id": 413,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Đại diện request gửi đến server (request)",
+        "stemHtml": "Which implicit object in JavaServer Pages (JSP) <mark class=\"keyword-mark keyword-question-mark\">represents the request made by the client</mark> to the server?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "request",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">request</mark>"
+      },
+      {
+        "id": 439,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Truy xuất HTTP headers và cookies (request)",
+        "stemHtml": "Which implicit object provides <mark class=\"keyword-mark keyword-question-mark\">access to HTTP headers and cookies</mark> in a Java Servlet?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "request",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">request</mark>"
+      },
+      {
+        "id": 494,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Truy xuất ServletContext (application)",
+        "stemHtml": "In JavaServer Pages (JSP), which implicit object <mark class=\"keyword-mark keyword-question-mark\">provides access to the servlet context</mark>?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "application",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">application</mark>"
+      },
+      {
+        "id": 168,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Đối tượng page: Đại diện cho chính JSP instance",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">page implicit object</mark> of jsp file?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "This java.lang.Object object represents the this reference for the current JSP instance.",
+        "correctTextHtml": "This java.lang.Object object <mark class=\"keyword-mark keyword-answer-mark\">represents the this reference for the current JSP instance</mark>."
+      },
+      {
+        "id": 178,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Đối tượng pageContext: Cầu nối ẩn chi tiết container",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">pageContext implicit object</mark> of jsp file?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "This javax.servlet.jsp.PageContext object hides the implementation details of the underlying servlet and JSP container and provides JSP programmers with access to the implicit objects discussed in this table.",
+        "correctTextHtml": "This javax.servlet.jsp.PageContext object <mark class=\"keyword-mark keyword-answer-mark\">hides the implementation details</mark> of the underlying servlet and JSP container and provides JSP programmers with <mark class=\"keyword-mark keyword-answer-mark\">access to the implicit objects</mark> discussed in this table."
+      }
+    ]
+  },
+  {
+    "id": "web-listeners",
+    "title": "Web Listeners: Vòng đời ứng dụng vs Thay đổi Attribute",
+    "category": "Deployment Descriptor (web.xml)",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "• <strong>ServletContextListener</strong>: Lắng nghe vòng đời của web app (khởi động/kết thúc). Rất hay dùng để <strong>nạp JDBC Driver tự động</strong> khi web app vừa start.<br>• <strong>ServletContextAttributeListener</strong>: Lắng nghe khi có attribute trong ServletContext được thêm, sửa, xóa.<br>• <strong>HttpSessionAttributeListener</strong>: Lắng nghe thuộc tính trong session với 3 methods: <code>attributeAdded</code>, <code>attributeRemoved</code>, <code>attributeReplaced</code>.",
+    "items": [
+      {
+        "id": 500,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Khởi tạo ứng dụng & nạp JDBC Driver (ServletContextListener)",
+        "stemHtml": "Which Listener should be used to <mark class=\"keyword-mark keyword-question-mark\">load JDBC Driver automatically</mark> <mark class=\"keyword-mark keyword-question-mark\">for a web application</mark>?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "ServletContextListener",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">ServletContextListener</mark>"
+      },
+      {
+        "id": 550,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Lắng nghe thêm attribute vào ServletContext",
+        "stemHtml": "Which listener is triggered when an <mark class=\"keyword-mark keyword-question-mark\">attribute is added to a ServletContext</mark>?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "ServletContextAttributeListener",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">ServletContextAttributeListener</mark>"
+      },
+      {
+        "id": 498,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Sự kiện xóa attribute trong Session",
+        "stemHtml": "What is the method signature for an event where an <mark class=\"keyword-mark keyword-question-mark\">attribute was removed from an HttpSession</mark>?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "public void attributeRemoved(HttpSessionBindingEvent event)",
+        "correctTextHtml": "public void <mark class=\"keyword-mark keyword-answer-mark\">attributeRemoved(HttpSessionBindingEvent event)</mark>"
+      },
+      {
+        "id": 549,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Sự kiện thay thế attribute trong Session",
+        "stemHtml": "What is the method signature for an event where an <mark class=\"keyword-mark keyword-question-mark\">attribute was replaced in an HttpSession</mark>?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "public voici att ributeRep1acecl (HttpSessionBindingEvent event)",
+        "correctTextHtml": "public voici att ributeRep1acecl (<mark class=\"keyword-mark keyword-answer-mark\">HttpSessionBindingEvent</mark> event)"
+      }
+    ]
+  },
+  {
+    "id": "jsp-directives-and-taglib",
+    "title": "Directives: page vs include vs taglib (uri vs prefix)",
+    "category": "JSP Directives & Standard Actions",
+    "badge": "Bộ câu hỏi tương đồng",
+    "rule": "• <strong>&lt;%@ page %&gt;</strong>: Cấu hình chung cho toàn trang JSP (import thư viện, contentType, isErrorPage, errorPage...).<br>• <strong>&lt;%@ include %&gt;</strong>: Nhúng tĩnh mã nguồn của file khác vào trang lúc biên dịch (Translation-time).<br>• <strong>&lt;%@ taglib %&gt;</strong>: Khai báo thư viện thẻ custom / JSTL. Thuộc tính <strong>uri</strong> trỏ đến bộ nhận diện TLD, còn <strong>prefix</strong> là tiền tố đứng trước tên thẻ (ví dụ <code>c:</code>, <code>fmt:</code>).",
+    "items": [
+      {
+        "id": 2,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Thuộc tính uri: Đường dẫn định danh TLD",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">uri attribute</mark> of <mark class=\"keyword-mark keyword-question-mark\"><%@ taglib</mark> uri=...%> directive of JSP file",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "Specifies the relative or absolute URI of the tag library descriptor.",
+        "correctTextHtml": "Specifies the <mark class=\"keyword-mark keyword-answer-mark\">relative or absolute URI of the tag library descriptor</mark>."
+      },
+      {
+        "id": 232,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Thuộc tính prefix: Tiền tố phân biệt custom tag",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">prefix attribute</mark> of < <mark class=\"keyword-mark keyword-question-mark\">taglib</mark> prefix= . . directive of JSP file?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "Specifies the required prefix that distinguishes custom tags from built-in tags. The prefix names jsp, jspx, java, javax, servlet, sun and sunw are reserved.",
+        "correctTextHtml": "Specifies the required <mark class=\"keyword-mark keyword-answer-mark\">prefix that distinguishes custom tags from built-in tags</mark>. The prefix names jsp, jspx, java, javax, servlet, sun and sunw are reserved."
+      },
+      {
+        "id": 81,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Directive page: Định nghĩa các thiết lập trang",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">page directive of JSP file</mark>?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "Defines page settings for the JSP container to process",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Defines page settings for the JSP container to process</mark>"
+      },
+      {
+        "id": 102,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Directive include: Chèn mã nguồn lúc dịch (translation-time)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">include directive of JSP file</mark>?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "Causes the JSP container to perform a translation-time insertion of another resource's content. When the JSP is translated into a servlet and compiled, the referenced file replaces the include directive as if it were originally part of the JSP.",
+        "correctTextHtml": "Causes the JSP container to perform a <mark class=\"keyword-mark keyword-answer-mark\">translation-time insertion of another resource's content</mark>. When the JSP is translated into a servlet and compiled, the referenced file replaces the include directive as if it were originally part of the JSP."
+      },
+      {
+        "id": 26,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Directive taglib: Mở rộng chức năng bằng thư viện thẻ",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">taglib directive of JSP file</mark>?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "Allows programmers to include their own new tags in the form of tag libraries. These libraries can be used to encapsulate functionality and simplify the coding of a JSP.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Allows programmers to include their own new tags</mark> in the form of tag libraries. These libraries can be used to encapsulate functionality and simplify the coding of a JSP."
+      }
+    ]
+  },
+  {
+    "id": "jsp-usebean-attributes",
+    "title": "Các thuộc tính của <jsp:useBean>: id, class, type, beanName",
+    "category": "JSP Standard Actions & JavaBeans",
+    "badge": "Bộ câu hỏi tương đồng",
+    "rule": "• <strong>id</strong>: Tên biến đại diện (case-sensitive) để truy cập JavaBean trong trang.<br>• <strong>class</strong>: Tên lớp Java cụ thể (phải kèm package) để khởi tạo đối tượng qua constructor rỗng.<br>• <strong>type</strong>: Kiểu dữ liệu để ép kiểu biến (có thể là interface hoặc lớp cha). Nếu đối tượng không tương thích kiểu thì ném <code>ClassCastException</code>.<br>• <strong>beanName</strong>: Dùng cùng method <code>java.beans.Beans.instantiate()</code>.<br>• <strong>Bẫy</strong>: <code>className</code> và <code>name</code> KHÔNG PHẢI thuộc tính hợp lệ của <code>jsp:useBean</code>!",
+    "items": [
+      {
+        "id": 13,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Thuộc tính type: Ép kiểu đối tượng (gây ClassCastException nếu sai)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">type attribute of <jsp:useBean</mark> type=..... /> action?",
+        "correctKeys": [
+          "E"
+        ],
+        "correctText": "The type of the JavaBean. This can be the same type as the class attribute, a superclass or an interface implemented by that type. The default value is the same as for attribute class. A ClassCastException occurs if the Java object is not of the type specified with attribute type.",
+        "correctTextHtml": "The type of the JavaBean. This can be the same type as the class attribute, a <mark class=\"keyword-mark keyword-answer-mark\">superclass or an interface</mark> implemented by that type. The default value is the same as for attribute class. A <mark class=\"keyword-mark keyword-answer-mark\">ClassCastException occurs if the Java object is not of the type</mark> specified with attribute type."
+      },
+      {
+        "id": 190,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Thuộc tính id: Tên biến đại diện để thao tác bean",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">id attribute of < .jsp:useBean</mark> id=. .... > Action?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "The name used to manipulate the Java object with actions <jsp:setProperty. > and <jsp:getProperty. > . A variable of this name is also declared for use in JSP scripting elements. The name specified here is case sensitive.",
+        "correctTextHtml": "The <mark class=\"keyword-mark keyword-answer-mark\">name used to manipulate the Java object with actions</mark> <jsp:setProperty. > and <jsp:getProperty. > . A variable of this name is also declared for use in JSP scripting elements. The name specified here is <mark class=\"keyword-mark keyword-answer-mark\">case sensitive</mark>."
+      },
+      {
+        "id": 181,
+        "topic": "8. JDBC, Database Connection & JavaBeans",
+        "tag": "Thuộc tính beanName: Dùng cùng Beans.instantiate",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">beanName attribute</mark> of < j cp : uceBean beanName= n Action? (Select 2)",
+        "correctKeys": [
+          "B",
+          "C"
+        ],
+        "correctText": "The fully qualified class name of the Java object. / The name of a bean that can be used with method instantiate of class java.beans.Beans to load a JavaBean into memory.",
+        "correctTextHtml": "The fully qualified class name of the Java object. / The name of a bean that can be used with method <mark class=\"keyword-mark keyword-answer-mark\">instantiate of class java.beans.Beans</mark> to load a JavaBean into memory."
+      },
+      {
+        "id": 38,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Bẫy: className KHÔNG PHẢI thuộc tính của useBean",
+        "stemHtml": "Which of the following is <mark class=\"keyword-mark keyword-question-mark\">NOT a valid attribute for a useBean tag</mark>?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "className",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">className</mark>"
+      },
+      {
+        "id": 345,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Bẫy: name KHÔNG PHẢI thuộc tính của useBean (phải dùng id)",
+        "stemHtml": "Which of the following is <mark class=\"keyword-mark keyword-question-mark\">NOT a valid attribute for a jsp:useBean tag</mark>?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "name",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">name</mark>"
+      }
+    ]
+  },
+  {
+    "id": "forward-vs-sendredirect",
+    "title": "Chuyển hướng: RequestDispatcher.forward() vs sendRedirect()",
+    "category": "Java Servlet API & Lifecycle",
+    "badge": "Cặp khái niệm đối lập",
+    "rule": "• <strong>forward(request, response)</strong>: Chuyển hướng nội bộ phía <strong>SERVER</strong>. Chỉ có <strong>1 Request / 1 Response</strong>. URL trên trình duyệt <strong>KHÔNG ĐỔI</strong>. Dữ liệu trong <code>request scope</code> được bảo toàn.<br>• <strong>sendRedirect(location)</strong>: Phía <strong>CLIENT</strong> (trả về HTTP 302 để browser gửi một <strong>Request mới hoàn toàn</strong>). URL trên trình duyệt <strong>THAY ĐỔI</strong>. Request scope cũ bị mất.",
+    "items": [
+      {
+        "id": 15,
+        "topic": "4. Session Management, Cookies & URL Rewriting",
+        "tag": "forward: Server xử lý nội bộ, giữ nguyên URL & request attributes",
+        "stemHtml": "Which of the following lines of code, in the doPost() method of a servlet, uses the URL rewriting for maintaining sessions? (Choose one)",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "out.println(\"<a href=' \"+response.encodeURL(\"/servlet/XServlet\")+\" '>Click here</a>\");",
+        "correctTextHtml": "out.println(\"<a href=' \"+response.encodeURL(\"/servlet/XServlet\")+\" '>Click here</a>\");"
+      },
+      {
+        "id": 24,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "sendRedirect: Trả mã 302, Browser gửi request mới, URL đổi",
+        "stemHtml": "A JSP page called test.jsp is passed a parameter name in the URL using http://localhost/test.jsp?name=\"John\". The test.jsp contains the following code.\n```\n<%! String myName = request.getParameter(\"name\"); %>\n<% String test = \"welcome \" + myName; %>\n<%= test %>\n```\nWhat is the output?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "The program gives a syntax error because of the statement <%! String myName=request.getParameter(\"name\"); %>",
+        "correctTextHtml": "The program gives a syntax error because of the statement <%! String myName=request.getParameter(\"name\"); %>"
+      },
+      {
+        "id": 209,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "forward giữ nguyên request attributes từ servlet sang JSP",
+        "stemHtml": "Identify correct statement about a WAR file. (Choose multiple correct answers)",
+        "correctKeys": [
+          "C",
+          "D"
+        ],
+        "correctText": "It is used by web application developer to deploy the web application in a single unit. / It contains web components such as servlets as well as EJBs.",
+        "correctTextHtml": "It is used by web application developer to deploy the web application in a single unit. / It contains web components such as servlets as well as EJBs."
+      },
+      {
+        "id": 405,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "sendRedirect làm thay đổi thanh địa chỉ URL của browser",
+        "stemHtml": "What is inside a HTTP response?",
+        "correctKeys": [
+          "E"
+        ],
+        "correctText": "Both A and D is true",
+        "correctTextHtml": "Both A and D is true"
+      }
+    ]
+  },
+  {
+    "id": "getparameter-vs-getattribute",
+    "title": "Lấy dữ liệu: getParameter() (Client) vs getAttribute() (Server)",
+    "category": "Java Servlet API & Lifecycle",
+    "badge": "Cặp khái niệm đối lập",
+    "rule": "• <strong>request.getParameter(name)</strong>: Đọc dữ liệu do <strong>CLIENT</strong> gửi lên từ form HTML hoặc query string trên URL. Luôn trả về <strong>String</strong> (hoặc <code>getParameterValues</code> trả về <code>String[]</code> cho checkbox/multi-select).<br>• <strong>request.getAttribute(name) / session.getAttribute(name)</strong>: Đọc đối tượng do <strong>SERVER</strong> lưu vào scope qua <code>setAttribute()</code>. Luôn trả về <strong>Object</strong> (cần ép kiểu về class ban đầu).",
+    "items": [
+      {
+        "id": 86,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "getParameter: Lấy chuỗi do client nhập từ form HTML",
+        "stemHtml": "Consider the <mark class=\"keyword-mark keyword-question-mark\">HTML code below</mark>. Which of the following method calls can <mark class=\"keyword-mark keyword-question-mark\">retrieve the \"email\"</mark> value sent from the browser? (Choose one)",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "getParameter(\"email\") of ServletRequest",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">getParameter(\"email\") of ServletRequest</mark>"
+      },
+      {
+        "id": 475,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "getParameter: Lấy userName do client submit",
+        "stemHtml": "Consider the <mark class=\"keyword-mark keyword-question-mark\">HTML code below</mark>. Which of the following method calls can <mark class=\"keyword-mark keyword-question-mark\">retrieve the \"userName\"</mark> value sent from the browser? (Choose one)",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "getParameter(\"userName\") of ServletRequest",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">getParameter(\"userName\") of ServletRequest</mark>"
+      },
+      {
+        "id": 179,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "getAttribute: Lấy đối tượng đã lưu từ session scope",
+        "stemHtml": "Which of the following method calls can be used to <mark class=\"keyword-mark keyword-question-mark\">retrieve an object from the session</mark> that was stored with the name \"<mark class=\"keyword-mark keyword-question-mark\">roleName</mark>\"?",
+        "correctKeys": [
+          "E"
+        ],
+        "correctText": "getAttribute( \" roleName \" ) ;",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">getAttribute( \" roleName \" ) ;</mark>"
+      },
+      {
+        "id": 221,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "getAttribute: Đọc object roleName từ session",
+        "stemHtml": "Which of the following method calls can be used to retrieve an object from the session that was stored using the name \"roleName\"?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "getAttribute(\"roleName\");",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">getAttribute(\"roleName\");</mark>"
+      },
+      {
+        "id": 36,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "getAttribute: Đọc object userid từ session",
+        "stemHtml": "Which of the following method calls can be used to <mark class=\"keyword-mark keyword-question-mark\">retrieve an object from the session</mark> that was stored with the name \"<mark class=\"keyword-mark keyword-question-mark\">userid</mark>\"?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "getAttribute( \" userid \" ) ;",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">getAttribute( \" userid \" ) ;</mark>"
+      },
+      {
+        "id": 254,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "getAttribute: Đọc object userid từ session (chuẩn cú pháp)",
+        "stemHtml": "Which of the following method calls can be used to retrieve an object from the session that was stored using the name \"userid\"?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "getAttribute(\"userid\");",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">getAttribute(\"userid\");</mark>"
+      }
+    ]
+  },
+  {
+    "id": "jsp-scripting-delimiters",
+    "title": "Cú pháp JSP: <%! Declaration %> vs <% Scriptlet %> vs <%= Expression %>",
+    "category": "JSP Scripting & Delimiters",
+    "badge": "Cặp khái niệm đối lập",
+    "rule": "• <strong>&lt;%! ... %&gt; (Declaration)</strong>: Khai báo biến/phương thức ở cấp LỚP (class member). Biến là instance variable, lưu trạng thái xuyên suốt nhiều request!<br>• <strong>&lt;% ... %&gt; (Scriptlet)</strong>: Code Java nằm trong thân phương thức <code>_jspService()</code>. Biến là local variable, được tạo mới và hủy mỗi khi có request.<br>• <strong>&lt;%= ... %&gt; (Expression)</strong>: Đánh giá biểu thức và in kết quả ra response (`out.print(...)`). <strong>Cấm có dấu chấm phẩy ; ở cuối</strong>.<br>• <em>Đặc biệt</em>: Các method trong <code>&lt;%! %&gt;</code> có thể gọi lẫn nhau bất kể thứ tự khai báo (như câu 5: <code>methodA()</code> gọi <code>methodB()</code> hoàn toàn hợp lệ)!",
+    "items": [
+      {
+        "id": 5,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Declaration: Khai báo methodA và methodB gọi lẫn nhau hợp lệ",
+        "stemHtml": "What is the result of attempting to access the following JSP page?\n```\n<html>\n<body>\n<%! public String <mark class=\"keyword-mark keyword-question-mark\">methodA()</mark> {\n    return <mark class=\"keyword-mark keyword-question-mark\">methodB()</mark>;\n}\n%>\n<%! public String <mark class=\"keyword-mark keyword-question-mark\">methodB()</mark> {\n    <mark class=\"keyword-mark keyword-question-mark\">return \"JAD Final Test\";</mark>\n}\n%>\n<h2><%= <mark class=\"keyword-mark keyword-question-mark\">methodA()</mark> %></h2>\n</body>\n</html>\n```",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "\"JAD Final Test\" is output to the resulting web page.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">\"JAD Final Test\" is output to the resulting web page</mark>."
+      },
+      {
+        "id": 1,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Declaration: Khai báo biến Date d ở cấp lớp (phải có dấu ;)",
+        "stemHtml": "Which of the following is a <mark class=\"keyword-mark keyword-question-mark\">correct JSP declaration</mark> for a variable of class <mark class=\"keyword-mark keyword-question-mark\">java.util.Date</mark>?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "<%! Date d = new Date(); %>",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\"><%! Date d = new Date(); %></mark>"
+      },
+      {
+        "id": 19,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Expression: In trực tiếp giá trị ra HTML output",
+        "stemHtml": "A <mark class=\"keyword-mark keyword-question-mark\">JSP expression is used to insert values directly into the output</mark>.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      },
+      {
+        "id": 57,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Bẫy cú pháp: Expression không được có dấu chấm phẩy ;",
+        "stemHtml": "A JSP page needs to generate an XML file. Which attribute of page directive may be used to specify that the JSP page is generating an XML file?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "<%@page contentType=\"text/xml\">",
+        "correctTextHtml": "<%@page contentType=\"text/xml\">"
+      }
+    ]
+  },
+  {
+    "id": "include-directive-vs-action",
+    "title": "Chèn trang: <%@ include %> Directive vs <jsp:include> Action",
+    "category": "JSP Directives & Standard Actions",
+    "badge": "Cặp khái niệm đối lập",
+    "rule": "• <strong>&lt;%@ include file=\"...\" %&gt; (Directive)</strong>: Nhúng tĩnh tại <strong>Translation-time</strong> (khi dịch JSP thành servlet .java). Toàn bộ nội dung file được dán vào trước khi biên dịch.<br>• <strong>&lt;jsp:include page=\"...\" /&gt; (Standard Action)</strong>: Nhúng động tại <strong>Request-time</strong> (khi trang đang chạy nhận request). Trang được gọi thực thi độc lập rồi chèn HTML kết quả vào response.",
+    "items": [
+      {
+        "id": 27,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Bẫy: <jsp:include> chạy lúc translation-time? (Sai! Nó chạy lúc request-time)",
+        "stemHtml": "Action <mark class=\"keyword-mark keyword-question-mark\">< j cp : include> is evaluated once at page translation time</mark>.",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "False",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">False</mark>"
+      },
+      {
+        "id": 102,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "include directive: Chèn mã nguồn lúc dịch (translation-time)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">include directive of JSP file</mark>?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "Causes the JSP container to perform a translation-time insertion of another resource's content. When the JSP is translated into a servlet and compiled, the referenced file replaces the include directive as if it were originally part of the JSP.",
+        "correctTextHtml": "Causes the JSP container to perform a <mark class=\"keyword-mark keyword-answer-mark\">translation-time insertion of another resource's content</mark>. When the JSP is translated into a servlet and compiled, the referenced file replaces the include directive as if it were originally part of the JSP."
+      },
+      {
+        "id": 123,
+        "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+        "tag": "include action: Nhúng tài nguyên động lúc request",
+        "stemHtml": "Which of the following defines the class name of a tag in a TLD?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "tag-class",
+        "correctTextHtml": "tag-class"
+      },
+      {
+        "id": 306,
+        "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+        "tag": "Phân biệt thời điểm thực thi giữa Directive và Action",
+        "stemHtml": "What is the role of the setBodyContent() method in the Body Tag interface?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "It sets the body content of the custom tag.",
+        "correctTextHtml": "It sets the body content of the custom tag."
+      }
+    ]
+  },
+  {
+    "id": "custom-tag-lifecycle-returns",
+    "title": "Vòng đời Tag Handler: doStartTag() vs doEndTag() & Return Values",
+    "category": "Custom Tags & Tag Library Descriptor (TLD)",
+    "badge": "Bẫy hằng số trả về",
+    "rule": "• <strong>doStartTag()</strong>: Luôn chạy khi gặp thẻ mở. Trả về <code>SKIP_BODY</code> (bỏ qua nội dung thân thẻ) hoặc <code>EVAL_BODY_INCLUDE</code> (đánh giá thân thẻ vào response).<br>• <strong>doAfterBody()</strong>: Trả về <code>EVAL_BODY_AGAIN</code> (lặp lại xử lý body) hoặc <code>SKIP_BODY</code> (kết thúc vòng lặp).<br>• <strong>doEndTag()</strong>: Chạy khi gặp thẻ đóng (chỉ chạy khi start và body hoàn tất thành công). Trả về <code>EVAL_PAGE</code> (tiếp tục chạy phần còn lại của trang JSP) hoặc <code>SKIP_PAGE</code> (ngưng chạy ngay lập tức phần còn lại của JSP).",
+    "items": [
+      {
+        "id": 124,
+        "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+        "tag": "doStartTag(): Luôn luôn được gọi khi gặp thẻ mở",
+        "stemHtml": "In which of the following case will the <mark class=\"keyword-mark keyword-question-mark\">method doStartTag() of a tag handler be invoked</mark>?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "This method is always invoked whenever the tag's use is encountered in the jsp page.",
+        "correctTextHtml": "This method is <mark class=\"keyword-mark keyword-answer-mark\">always invoked whenever the tag's use is encountered in the jsp page</mark>."
+      },
+      {
+        "id": 133,
+        "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+        "tag": "doEndTag(): Chỉ được gọi khi doStartTag và doAfterBody thành công",
+        "stemHtml": "In which of the following cases will the <mark class=\"keyword-mark keyword-question-mark\">method doEndTag() of a tag handler be invoked</mark>?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "It will be invoked only if doStartTag() and doAfterBody() complete successfully.",
+        "correctTextHtml": "It will be invoked <mark class=\"keyword-mark keyword-answer-mark\">only if doStartTag() and doAfterBody() complete successfully</mark>."
+      },
+      {
+        "id": 78,
+        "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+        "tag": "Thẻ không có body: TagSupport vs BodyTagSupport",
+        "stemHtml": "When implementing a tag, if the <mark class=\"keyword-mark keyword-question-mark\">tag does not include the body</mark>, then the tag handler class must extend the BodyTagSupport class. Is this statement true of false?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "False",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">False</mark>"
+      },
+      {
+        "id": 344,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "doStartTag return: SKIP_BODY vs EVAL_BODY_INCLUDE",
+        "stemHtml": "How to store a value in ServletContext from a Servlet?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "context . set Att ribute (\"key\" value) ;",
+        "correctTextHtml": "context . set Att ribute (\"key\" value) ;"
+      },
+      {
+        "id": 409,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "doEndTag return: EVAL_PAGE vs SKIP_PAGE",
+        "stemHtml": "What is the purpose of the element in the servlet mapping configuration?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "To set the URL address that maps to a servlet",
+        "correctTextHtml": "To set the URL address that maps to a servlet"
+      }
+    ]
+  },
+  {
+    "id": "jdbc-statement-types",
+    "title": "JDBC Statements: Statement vs PreparedStatement vs CallableStatement",
+    "category": "JDBC, Database Connection & JavaBeans",
+    "badge": "Bộ câu hỏi tương đồng",
+    "rule": "• <strong>Statement</strong>: Dùng cho truy vấn SQL tĩnh không tham số.<br>• <strong>PreparedStatement</strong>: Câu SQL được biên dịch trước, tham số truyền qua dấu chấm hỏi <code>?</code> (gán bằng <code>setInt</code>, <code>setString</code>). Có khả năng <strong>ngăn ngừa triệt để SQL Injection</strong> và thực thi nhanh khi lặp lại.<br>• <strong>CallableStatement</strong>: Dùng để gọi <strong>Stored Procedure</strong> trong Database qua cú pháp <code>{call procedureName(?, ?)}</code>.",
+    "items": [
+      {
+        "id": 200,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "PreparedStatement: Dùng dấu ? và chống SQL Injection",
+        "stemHtml": "Which statements are BEST describe jsp:include Action?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "Dynamically includes another resource in a JSP. As the JSP executes, the referenced resource is included and processed.",
+        "correctTextHtml": "Dynamically includes another resource in a JSP. As the JSP executes, the referenced resource is included and processed."
+      },
+      {
+        "id": 276,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "CallableStatement: Gọi Stored Procedure trong Database",
+        "stemHtml": "What is the main purpose of JSP in a web application?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "To handle server-side logic and generate dynamic content.",
+        "correctTextHtml": "To handle server-side logic and generate dynamic content."
+      },
+      {
+        "id": 280,
+        "topic": "8. JDBC, Database Connection & JavaBeans",
+        "tag": "Statement: Truy vấn tĩnh thông thường",
+        "stemHtml": "What's the purpose of the close method when handling JDBC resources?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "resultSet.close(); statement.close(); connection.close();",
+        "correctTextHtml": "resultSet.close(); <mark class=\"keyword-mark keyword-answer-mark\">statement</mark>.close(); connection.close();"
+      },
+      {
+        "id": 335,
+        "topic": "8. JDBC, Database Connection & JavaBeans",
+        "tag": "Thiết lập tham số PreparedStatement bằng setString / setInt",
+        "stemHtml": "How do you manage database transaction with JDBC driver?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "Invoke con.commit() or con.rollback()",
+        "correctTextHtml": "Invoke con.commit() or con.rollback()"
+      }
+    ]
+  },
+  {
+    "id": "jdbc-executequery-vs-update",
+    "title": "Thực thi SQL: executeQuery() (SELECT) vs executeUpdate() (DML/DDL)",
+    "category": "JDBC, Database Connection & JavaBeans",
+    "badge": "Cặp khái niệm đối lập",
+    "rule": "• <strong>executeQuery()</strong>: Chỉ dùng duy nhất cho câu lệnh <strong>SELECT</strong>. Trả về đối tượng <strong>ResultSet</strong> đại diện cho tập kết quả trả về từ database.<br>• <strong>executeUpdate()</strong>: Dùng cho các câu lệnh thay đổi dữ liệu (<strong>INSERT, UPDATE, DELETE</strong>) hoặc cấu trúc bảng (<strong>CREATE, ALTER, DROP</strong>). Trả về một số nguyên <strong>int</strong> là số dòng bị ảnh hưởng.",
+    "items": [
+      {
+        "id": 358,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "executeQuery: Chạy lệnh SELECT và trả về ResultSet",
+        "stemHtml": "What is filter mapping used for in a Java web application?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "To specify which URL patterns or servlets the filter should intercept.",
+        "correctTextHtml": "To specify which URL patterns or servlets the filter should intercept."
+      },
+      {
+        "id": 474,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "executeUpdate: Chạy INSERT/UPDATE/DELETE và trả về int",
+        "stemHtml": "Assess the role and importance of form validation in HTML. Which attribute is used for ensuring that a required field must be filled out before submitting the form?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "required",
+        "correctTextHtml": "required"
+      },
+      {
+        "id": 511,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Phương thức thích hợp cho câu lệnh SELECT",
+        "stemHtml": "Which implicit object in JSP provides access to the servlet context and can be used to store and retrieve application-wide information?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "application",
+        "correctTextHtml": "application"
+      },
+      {
+        "id": 537,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Phương thức thích hợp cho câu lệnh UPDATE/DELETE",
+        "stemHtml": "How is the deployment descriptor of a web application typically named?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "web.xml",
+        "correctTextHtml": "web.xml"
+      }
+    ]
+  },
+  {
+    "id": "servlet-lifecycle-methods",
+    "title": "Vòng đời Servlet: init() vs service() vs destroy()",
+    "category": "Java Servlet API & Lifecycle",
+    "badge": "Cặp khái niệm đối lập",
+    "rule": "• <strong>init(ServletConfig)</strong>: Chạy <strong>ĐÚNG 1 LẦN DUY NHẤT</strong> khi Servlet được nạp vào bộ nhớ để khởi tạo tài nguyên.<br>• <strong>service(request, response)</strong>: Chạy <strong>MỖI KHI CÓ REQUEST</strong> gửi đến. Nó phân tích HTTP method và điều phối tới <code>doGet()</code>, <code>doPost()</code>... tương ứng.<br>• <strong>destroy()</strong>: Chạy <strong>ĐÚNG 1 LẦN DUY NHẤT</strong> trước khi Servlet bị hủy bỏ hoặc khi server dừng.",
+    "items": [
+      {
+        "id": 64,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Kế thừa HttpServlet và ghi đè doGet/doPost",
+        "stemHtml": "To be a servlet, a class should <mark class=\"keyword-mark keyword-question-mark\">extend HttpServlet and override doGet or doPost</mark>, depending on whether the data is being sent by GET or by POST.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      },
+      {
+        "id": 107,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Các phương thức vòng đời servlet chạy tự động bởi Container",
+        "stemHtml": "The following statement is True or False? Statement: <mark class=\"keyword-mark keyword-question-mark\">Servlet methods are executed automatically</mark>.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      },
+      {
+        "id": 130,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "doGet và doPost gọi chung logic để xử lý cả hai method",
+        "stemHtml": "If you want the same Servlet to <mark class=\"keyword-mark keyword-question-mark\">handle both GET and POST</mark> and to <mark class=\"keyword-mark keyword-question-mark\">take the same action</mark> for both, simply have doGet call doPost, or vice versa.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      },
+      {
+        "id": 203,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Khai báo servlet trong web.xml: servlet-name và servlet-class",
+        "stemHtml": "The <mark class=\"keyword-mark keyword-question-mark\"><servlet > element</mark> holds declarative information about a servlet. It has only <mark class=\"keyword-mark keyword-question-mark\">two mandatory subelements</mark>- a logical name for the servlet, and < cervlet- ciazc > , the fully qualified Java name without the .class extension.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      },
+      {
+        "id": 225,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Nhấn Submit với method=\"post\" -> Container gọi doPost",
+        "stemHtml": "Which method of <mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark> will be called when the user clicks on \"<mark class=\"keyword-mark keyword-question-mark\">Submit</mark>\" <mark class=\"keyword-mark keyword-question-mark\">button</mark> for the following form? Assume that <mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark> does not override the service() method of HttpServlet class. (Choose one)\n```\n<html>\n<body>\n<form action=\"/myapp/<mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark>\" method=\"POST\">\n  <input type=\"text\" name=\"name\">\n  <input type=\"password\" name=\"password\">\n  <input type=\"<mark class=\"keyword-mark keyword-question-mark\">submit</mark>\" value=\"<mark class=\"keyword-mark keyword-question-mark\">Submit</mark>\">\n</form>\n</body>\n</html>\n```",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "doPost(HttpServletRequest, HttpServletResponse);",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">doPost(HttpServletRequest, HttpServletResponse);</mark>"
+      }
+    ]
+  },
+  {
+    "id": "session-cookie-timeout",
+    "title": "Quản lý Session & Cookie: Timeout Phút vs Giây & session.invalidate()",
+    "category": "Session Management, Cookies & URL Rewriting",
+    "badge": "Bẫy đơn vị thời gian",
+    "rule": "• <strong>&lt;session-timeout&gt; trong web.xml</strong>: Đơn vị tính bằng <strong>PHÚT</strong>.<br>• <strong>session.setMaxInactiveInterval(seconds)</strong>: Đơn vị tính bằng <strong>GIÂY</strong>.<br>• <strong>cookie.setMaxAge(seconds)</strong>: Đơn vị tính bằng <strong>GIÂY</strong>. Giá trị âm: cookie phiên (mất khi đóng browser); bằng 0: xóa cookie lập tức.<br>• <strong>session.invalidate()</strong>: Hủy session ngay lập tức.<br>• <strong>Bẫy</strong>: Đặt session timeout = 0 qua setMaxInactiveInterval KHÔNG PHẢI là kỹ thuật chuẩn để hủy session (thậm chí có container hiểu là không bao giờ timeout).",
+    "items": [
+      {
+        "id": 50,
+        "topic": "4. Session Management, Cookies & URL Rewriting",
+        "tag": "Bẫy: Đặt timeout = 0 KHÔNG PHẢI kỹ thuật chuẩn để hủy session",
+        "stemHtml": "Which is <mark class=\"keyword-mark keyword-question-mark\">NOT a technique for a session be definitely invalidated</mark>?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "If the session time out is set to 0 using setMaxlnactivelnterval() method.",
+        "correctTextHtml": "If the <mark class=\"keyword-mark keyword-answer-mark\">session time out is set to 0 using setMaxlnactivelnterval()</mark> method."
+      },
+      {
+        "id": 420,
+        "topic": "4. Session Management, Cookies & URL Rewriting",
+        "tag": "Bẫy chuẩn hóa: timeout = 0 không hủy session dứt khoát",
+        "stemHtml": "Which is <mark class=\"keyword-mark keyword-question-mark\">NOT a standard technique for a session be definitely invalidated</mark>?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "If the session time out is set to 0 using setMaxlnactivelnterval() method.",
+        "correctTextHtml": "If the <mark class=\"keyword-mark keyword-answer-mark\">session time out is set to 0 using setMaxlnactivelnterval()</mark> method."
+      },
+      {
+        "id": 54,
+        "topic": "4. Session Management, Cookies & URL Rewriting",
+        "tag": "Hủy session dứt khoát: Gọi HttpSession.invalidate()",
+        "stemHtml": "<mark class=\"keyword-mark keyword-question-mark\">Session death</mark> can come about through an explicit call (in Servlet code) to <mark class=\"keyword-mark keyword-question-mark\">HttpSession.invalidate()</mark>.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      },
+      {
+        "id": 35,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Bẫy: Cookie không bao giờ hết hạn? (Sai! Hết hạn theo MaxAge)",
+        "stemHtml": "<mark class=\"keyword-mark keyword-question-mark\">Cookies never expire</mark>.",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "False",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">False</mark>"
+      },
+      {
+        "id": 89,
+        "topic": "4. Session Management, Cookies & URL Rewriting",
+        "tag": "HttpSession lưu trữ cặp key-value qua setAttribute",
+        "stemHtml": "HttpSession objects have a built-in data structure that lets you store any number of keys and associated values.",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      },
+      {
+        "id": 222,
+        "topic": "4. Session Management, Cookies & URL Rewriting",
+        "tag": "Đọc cookie từ client gửi lên: Gọi request.getCookies()",
+        "stemHtml": "To <mark class=\"keyword-mark keyword-question-mark\">read the cookies that come back</mark> from the client, you call <mark class=\"keyword-mark keyword-question-mark\">getCookies on the HttpServletRequest</mark>.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      }
+    ]
+  },
+  {
+    "id": "error-page-config-webxml",
+    "title": "Cấu hình <error-page>: <error-code> vs <exception-type>",
+    "category": "Deployment Descriptor (web.xml)",
+    "badge": "Bộ câu hỏi tương đồng",
+    "rule": "• <strong>&lt;error-code&gt;</strong>: Bắt lỗi theo mã HTTP (ví dụ: <code>&lt;error-code&gt;404&lt;/error-code&gt;</code> hoặc <code>500</code>).<br>• <strong>&lt;exception-type&gt;</strong>: Bắt lỗi theo tên lớp ngoại lệ Java (ví dụ: <code>&lt;exception-type&gt;java.lang.Throwable&lt;/exception-type&gt;</code>).<br>• Cả 2 thẻ đều nằm trong <code>&lt;error-page&gt;</code> và bắt buộc đi kèm thẻ con <code>&lt;location&gt;/error.jsp&lt;/location&gt;</code>.",
+    "items": [
+      {
+        "id": 119,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Cấu hình bắt lỗi theo exception-type trong web.xml",
+        "stemHtml": "Which of these is a correct fragment within the <mark class=\"keyword-mark keyword-question-mark\">web-app element of deployment descriptor</mark>? Select 1 correct answer",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "<error-page> <exception-type> mypackage.MyException</exception-type> <location> /error.jsp</location> </error-page>",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\"><error-page> <exception-type> mypackage.MyException</exception-type> <location> /error.jsp</location> </error-page></mark>"
+      },
+      {
+        "id": 208,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "Cấu hình bắt lỗi theo error-code trong web.xml",
+        "stemHtml": "Which of these is a correct fragment within the <mark class=\"keyword-mark keyword-question-mark\">web-app element of deployment descriptor</mark>? Select one correct answer.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "<error-page> <error-code>404</error-code> <location>/error.jsp</location> </error-page>",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\"><error-page> <error-code>404</error-code> <location>/error.jsp</location> </error-page></mark>"
+      }
+    ]
+  },
+  {
+    "id": "auth-concept",
+    "title": "Bảo mật Web: Authentication (Xác thực) vs Authorization (Phân quyền)",
+    "category": "Web & HTTP Protocol",
+    "badge": "Cặp khái niệm đối lập",
+    "rule": "• <strong>Authentication (Xác thực)</strong>: Xác minh danh tính người dùng (Bạn là ai? - Kiểm tra username/password, token, certificate).<br>• <strong>Authorization (Phân quyền)</strong>: Xác định quyền hạn truy cập tài nguyên (Bạn được phép làm gì? - Kiểm tra vai trò Role/Permission đối với URL được bảo vệ).",
+    "items": [
+      {
+        "id": 82,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Authorization: Xác định quyền hạn truy cập tài nguyên",
+        "stemHtml": "Which of the following statement is correct? (choose one)",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "Authorization means determining whether one has access to a particular resource or not.",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Authorization means determining whether one has access to a particular resource or not</mark>."
+      },
+      {
+        "id": 163,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Bảo mật HTTPS: Phiên làm việc an toàn",
+        "stemHtml": "Which of the following statements is correct? (Choose one)",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "If a web application uses HTTPS, the HTTPS response stream may be used to identify the session.",
+        "correctTextHtml": "If a web application uses HTTPS, the <mark class=\"keyword-mark keyword-answer-mark\">HTTPS response stream may be used to identify the session</mark>."
+      }
+    ]
+  }
+]

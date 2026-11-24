@@ -84,6 +84,18 @@
     return { lesson, items };
   }
 
+  function getQuestionDistinction(q) {
+    if (!q || !window.PRJ301_STUDY?.distinctions) return null;
+    for (const group of window.PRJ301_STUDY.distinctions) {
+      const matchedItem = (group.items || []).find((item) => item.id === q.id);
+      if (matchedItem) {
+        const otherItems = (group.items || []).filter((item) => item.id !== q.id);
+        return { group, matchedItem, otherItems };
+      }
+    }
+    return null;
+  }
+
   function renderPracticeKnowledge(q) {
     const { byId, el } = SWTApp.utils;
     const wrap = byId('practice-knowledge-wrap');
@@ -92,46 +104,71 @@
     if (!wrap || !button || !panel) return;
 
     const knowledge = graded ? getQuestionKnowledge(q) : null;
-    wrap.hidden = !knowledge;
+    const dist = graded ? getQuestionDistinction(q) : null;
+    wrap.hidden = !(knowledge || dist);
     panel.hidden = true;
     panel.replaceChildren();
     button.setAttribute('aria-expanded', 'false');
-    button.textContent = 'Hiện kiến thức của câu này';
-    if (!knowledge) return;
+    button.textContent = dist ? 'Hiện kiến thức & bẫy phân biệt của câu này' : 'Hiện kiến thức của câu này';
+    if (!knowledge && !dist) return;
 
-    const heading = el('div', 'practice-knowledge-heading');
-    heading.append(
-      el('span', 'badge badge-accent', 'Bài ' + knowledge.lesson.number),
-      el('strong', '', knowledge.lesson.title)
-    );
-    panel.appendChild(heading);
+    if (dist) {
+      const distBox = el('div', 'practice-knowledge-distinction');
+      const distHead = el('div', 'practice-distinction-badge', '⚠️ CÂU DỄ NHẦM LẪN: ' + dist.group.title);
+      const distRule = el('div', 'practice-distinction-rule');
+      distRule.innerHTML = dist.group.rule;
+      distBox.append(distHead, distRule);
 
-    const list = el('div', 'practice-knowledge-list');
-    knowledge.items.forEach((item) => {
-      const article = el('article', 'practice-knowledge-item');
-      article.append(el('mark', '', item.term || 'Khái niệm'), el('p', '', item.text || ''));
-      list.appendChild(article);
-    });
-    panel.appendChild(list);
-
-    const openLesson = el('button', 'btn btn-ghost btn-sm practice-open-lesson-btn', 'Mở bài học đầy đủ');
-    openLesson.type = 'button';
-    openLesson.addEventListener('click', () => {
-      SWTApp.app?.selectTab('tab-study');
-      const lessonNode = document.getElementById('lesson-' + knowledge.lesson.number);
-      if (lessonNode) {
-        lessonNode.open = true;
-        window.requestAnimationFrame(() => lessonNode.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+      if (dist.otherItems.length > 0) {
+        distBox.appendChild(el('div', 'practice-distinction-sub', 'Các câu hỏi tương đồng dễ nhầm khác:'));
+        const othersList = el('div', 'practice-distinction-others');
+        dist.otherItems.slice(0, 3).forEach((other) => {
+          const otherCard = el('div', 'practice-distinction-other-card');
+          otherCard.innerHTML = `<strong>Câu #${other.id} [${other.tag || other.topic}]:</strong> ${other.stemHtml} <br><span class="badge badge-success">Đáp án: ${(other.correctKeys || []).join(', ')}</span> <em>${other.correctTextHtml}</em>`;
+          othersList.appendChild(otherCard);
+        });
+        distBox.appendChild(othersList);
       }
-    });
-    panel.appendChild(openLesson);
+      panel.appendChild(distBox);
+    }
+
+    if (knowledge) {
+      const heading = el('div', 'practice-knowledge-heading');
+      heading.append(
+        el('span', 'badge badge-accent', 'Bài ' + knowledge.lesson.number),
+        el('strong', '', knowledge.lesson.title)
+      );
+      panel.appendChild(heading);
+
+      const list = el('div', 'practice-knowledge-list');
+      knowledge.items.forEach((item) => {
+        const article = el('article', 'practice-knowledge-item');
+        article.append(el('mark', '', item.term || 'Khái niệm'), el('p', '', item.text || ''));
+        list.appendChild(article);
+      });
+      panel.appendChild(list);
+
+      const openLesson = el('button', 'btn btn-ghost btn-sm practice-open-lesson-btn', 'Mở bài học đầy đủ');
+      openLesson.type = 'button';
+      openLesson.addEventListener('click', () => {
+        SWTApp.app?.selectTab('tab-study');
+        const lessonNode = document.getElementById('lesson-' + knowledge.lesson.number);
+        if (lessonNode) {
+          lessonNode.open = true;
+          window.requestAnimationFrame(() => lessonNode.scrollIntoView({ block: 'start', behavior: 'smooth' }));
+        }
+      });
+      panel.appendChild(openLesson);
+    }
 
     button.onclick = () => {
       clearAutoNext();
       const willOpen = panel.hidden;
       panel.hidden = !willOpen;
       button.setAttribute('aria-expanded', String(willOpen));
-      button.textContent = willOpen ? 'Ẩn kiến thức của câu này' : 'Hiện kiến thức của câu này';
+      button.textContent = willOpen
+        ? (dist ? 'Ẩn kiến thức & bẫy phân biệt' : 'Ẩn kiến thức của câu này')
+        : (dist ? 'Hiện kiến thức & bẫy phân biệt của câu này' : 'Hiện kiến thức của câu này');
     };
   }
 

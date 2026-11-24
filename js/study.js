@@ -9,6 +9,9 @@
   let query = '';
   let recallQuery = '';
   let recallLesson = 'all';
+  let distinctionsData = [];
+  let distinctionsQuery = '';
+  let distinctionsCategory = 'all';
 
   function normalize(value) {
     return SWTApp.utils.normalizeText(value).replace(/[^a-z0-9]+/g, ' ').trim();
@@ -238,6 +241,102 @@
     renderRecall();
   }
 
+  function distinctionMatches(group) {
+    if (distinctionsCategory !== 'all' && group.category !== distinctionsCategory) return false;
+    if (!distinctionsQuery) return true;
+    const blob = [
+      group.title,
+      group.category,
+      group.badge,
+      group.rule,
+      ...(group.items || []).flatMap((item) => [
+        item.id, item.topic, item.tag, item.stemHtml, item.correctText, item.correctTextHtml
+      ])
+    ].join(' ');
+    return normalize(blob).includes(distinctionsQuery);
+  }
+
+  function renderDistinctions() {
+    const { byId, el, setText } = SWTApp.utils;
+    const section = byId('study-distinctions');
+    const list = byId('study-distinctions-list');
+    const empty = byId('study-distinctions-empty');
+    if (!section || !list) return;
+
+    if (!distinctionsData || !distinctionsData.length) {
+      section.hidden = true;
+      return;
+    }
+    section.hidden = false;
+
+    // Populate category dropdown
+    const catSelect = byId('study-distinctions-category');
+    if (catSelect && catSelect.options.length <= 1) {
+      const categories = Array.from(new Set(distinctionsData.map((d) => d.category)));
+      categories.forEach((cat) => {
+        const opt = document.createElement('option');
+        opt.value = cat;
+        opt.textContent = cat;
+        catSelect.appendChild(opt);
+      });
+    }
+
+    const filtered = distinctionsData.filter(distinctionMatches);
+    list.replaceChildren();
+
+    filtered.forEach((group, index) => {
+      const card = el('article', 'distinction-card card');
+      card.id = 'distinction-' + group.id;
+
+      const header = el('div', 'distinction-header');
+      const badgeWrap = el('div', 'distinction-badges');
+      badgeWrap.append(
+        el('span', 'badge badge-warning', group.badge || 'Phân biệt'),
+        el('span', 'badge badge-accent', group.category)
+      );
+      header.append(badgeWrap, el('h3', 'distinction-title', (index + 1) + '. ' + group.title));
+      card.appendChild(header);
+
+      const ruleBox = el('div', 'distinction-rule');
+      ruleBox.innerHTML = group.rule;
+      card.appendChild(ruleBox);
+
+      const grid = el('div', 'distinction-grid');
+      (group.items || []).forEach((item) => {
+        const itemEl = el('div', 'distinction-item');
+
+        const itemHead = el('div', 'distinction-item-head');
+        const qBadge = el('span', 'badge badge-contrast', 'Câu #' + item.id);
+        const tagBadge = el('span', 'distinction-tag-badge', item.tag || item.topic);
+        itemHead.append(qBadge, tagBadge);
+
+        const stemBox = el('div', 'distinction-stem rich-text-prose');
+        stemBox.innerHTML = item.stemHtml;
+
+        const ansBox = el('div', 'distinction-ans');
+        const ansBadge = el('span', 'badge badge-success', 'Đáp án: ' + (item.correctKeys || []).join(', '));
+        const ansText = el('div', 'distinction-ans-text');
+        ansText.innerHTML = item.correctTextHtml;
+        ansBox.append(ansBadge, ansText);
+
+        const practiceBtn = el('button', 'btn btn-secondary btn-sm distinction-practice-btn', 'Luyện câu #' + item.id);
+        practiceBtn.type = 'button';
+        practiceBtn.addEventListener('click', () => {
+          SWTApp.app?.selectTab('tab-practice');
+          SWTApp.practice?.openQuestion(item.id);
+        });
+
+        itemEl.append(itemHead, stemBox, ansBox, practiceBtn);
+        grid.appendChild(itemEl);
+      });
+      card.appendChild(grid);
+      list.appendChild(card);
+    });
+
+    setText('study-distinctions-count', filtered.length + ' / ' + distinctionsData.length + ' chuyên đề');
+    if (empty) empty.hidden = filtered.length !== 0;
+  }
+
   function render() {
     const { byId, el, setText } = SWTApp.utils;
     const container = byId('study-lesson-list');
@@ -276,6 +375,9 @@
       : null;
     studyMeta = data?.meta || {};
     lessons = data && Array.isArray(data.lessons) ? data.lessons : [];
+    distinctionsData = data && Array.isArray(data.distinctions) ? data.distinctions : [];
+    distinctionsQuery = '';
+    distinctionsCategory = 'all';
     const available = lessons.length > 0;
     byId('study-content').hidden = !available;
     byId('study-unavailable').hidden = available;
@@ -314,12 +416,29 @@
         recallSearch.value = '';
         recallSearch.placeholder = data.meta?.recallPlaceholder || 'Ví dụ: thuật ngữ, tình huống hoặc đáp án...';
       }
+      const distSearch = byId('study-distinctions-search');
+      if (distSearch) {
+        distSearch.value = '';
+      }
+      const distCategory = byId('study-distinctions-category');
+      if (distCategory) {
+        distCategory.replaceChildren(new Option('Tất cả chuyên đề', 'all'));
+      }
       const recallSelect = byId('study-recall-lesson');
       if (recallSelect) recallSelect.replaceChildren(new Option('Tất cả Lesson', 'all'));
+      renderDistinctions();
       renderExtra();
       render();
     }
 
+    byId('study-distinctions-search')?.addEventListener('input', (event) => {
+      distinctionsQuery = normalize(event.target.value);
+      renderDistinctions();
+    });
+    byId('study-distinctions-category')?.addEventListener('change', (event) => {
+      distinctionsCategory = event.target.value;
+      renderDistinctions();
+    });
     byId('study-search-input')?.addEventListener('input', (event) => {
       query = normalize(event.target.value);
       render();
