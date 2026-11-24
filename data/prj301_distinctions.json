@@ -1212,5 +1212,258 @@
         "correctTextHtml": "If a web application uses HTTPS, the <mark class=\"keyword-mark keyword-answer-mark\">HTTPS response stream may be used to identify the session</mark>."
       }
     ]
+  },
+  {
+    "id": "scope-vs-implicit-object-trap",
+    "title": "4 Scopes vs Implicit Objects: 'response' KHÔNG PHẢI là Scope!",
+    "category": "JSP Scripting & Implicit Objects",
+    "badge": "Bộ lựa chọn gần như y hệt",
+    "rule": "<strong>Bẫy danh từ cực kỳ nguy hiểm:</strong> Cả 2 câu đều có các lựa chọn: <code>page</code>, <code>request</code>, <code>session</code>, <code>application</code>, <code>response</code>.<br>• Trong JSP chỉ có đúng <strong>4 Scopes</strong> (từ hẹp đến rộng): <code>page &lt; request &lt; session &lt; application</code>. <strong>response KHÔNG PHẢI là một Scope!</strong><br>• Giá trị scope mặc định của <code>&lt;jsp:useBean&gt;</code> nếu không khai báo là <strong>page</strong>.<br>• Biến ẩn cung cấp thông tin client gửi lên là <strong>request</strong>.",
+    "items": [
+      {
+        "id": 117,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Bẫy Scope: Cái nào KHÔNG PHẢI là scope? ➔ Chọn response",
+        "stemHtml": "Which is <mark class=\"keyword-mark keyword-question-mark\">NOT a scope</mark> of implicit objects of JSP file?",
+        "correctKeys": [
+          "E"
+        ],
+        "correctText": "response",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">response</mark> (Chỉ có 4 scopes: page, request, session, application; response là implicit object chứ không phải scope!)"
+      },
+      {
+        "id": 112,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Scope mặc định của jsp:useBean ➔ page",
+        "stemHtml": "Name the <mark class=\"keyword-mark keyword-question-mark\">default value</mark> of the <mark class=\"keyword-mark keyword-question-mark\">scope</mark> attribute of &lt;jsp:useBean&gt;",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "page",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">page</mark> (Nếu không khai báo thuộc tính scope, đối tượng bean mặc định nằm ở page scope)"
+      },
+      {
+        "id": 329,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Biến ẩn đại diện client request ➔ request",
+        "stemHtml": "Which implicit object provides information about the <mark class=\"keyword-mark keyword-question-mark\">client's request</mark> in a JSP page?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "request",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">request</mark>"
+      }
+    ]
+  },
+  {
+    "id": "servlet-methods-frequency",
+    "title": "Vòng đời Servlet: Phương thức nào được gọi nhiều lần nhất?",
+    "category": "Java Servlet API & Lifecycle",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "<strong>Bẫy tần suất gọi trong Servlet:</strong> Các lựa chọn gồm <code>init()</code>, <code>service()</code>, <code>destroy()</code>, <code>doGet()</code>.<br>• <strong>init()</strong>: Chỉ gọi <strong>1 lần duy nhất</strong> khi Servlet được nạp vào bộ nhớ.<br>• <strong>destroy()</strong>: Chỉ gọi <strong>1 lần duy nhất</strong> trước khi Servlet bị dỡ bỏ.<br>• <strong>service()</strong>: Được gọi <strong>MỖI KHI CÓ REQUEST</strong> gửi tới (gọi nhiều nhất trong toàn bộ vòng đời!).",
+    "items": [
+      {
+        "id": 320,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Phương thức gọi nhiều nhất trong Servlet ➔ service()",
+        "stemHtml": "Which method is <mark class=\"keyword-mark keyword-question-mark\">invoked most</mark> during servlet operation?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "service()",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">service()</mark> (Vì service() chạy cho mọi request gửi tới, còn init() và destroy() chỉ chạy đúng 1 lần)"
+      },
+      {
+        "id": 363,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Phương thức chịu trách nhiệm xử lý request ➔ service()",
+        "stemHtml": "Which method of the javax.servlet.Servlet interface is <mark class=\"keyword-mark keyword-question-mark\">responsible for handling requests</mark>?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "service()",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">service()</mark>"
+      }
+    ]
+  },
+  {
+    "id": "jsp-execution-outside-service",
+    "title": "Phần tử JSP nào KHÔNG thực thi trong _jspService()?",
+    "category": "JSP Scripting & Delimiters",
+    "badge": "Bộ đáp án giống nhau",
+    "rule": "<strong>Bẫy vị trí sinh mã khi dịch JSP sang Servlet:</strong><br>• <strong>Scriptlet (&lt;% %&gt;) và Expression (&lt;%= %&gt;)</strong>: Mã Java được đặt <strong>BÊN TRONG</strong> phương thức <code>_jspService()</code> ➔ Thực thi mỗi khi có request.<br>• <strong>Declaration (&lt;%! %&gt;)</strong>: Mã Java được đặt ở <strong>CẤP LỚP (class level)</strong> bên ngoài <code>_jspService()</code> ➔ Dùng để khai báo instance field và method.<br>• <strong>Directive (&lt;%@ %&gt;)</strong>: Được xử lý tại <strong>Translation-time (lúc dịch)</strong> ➔ KHÔNG thực thi trong <code>_jspService()</code>.",
+    "items": [
+      {
+        "id": 459,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Phần tử KHÔNG chạy trong _jspService() ➔ Declaration & Directive",
+        "stemHtml": "Which JSP element is <mark class=\"keyword-mark keyword-question-mark\">NOT executed at the service()</mark> method of the servlet? (Choose two)",
+        "correctKeys": [
+          "C",
+          "D"
+        ],
+        "correctText": "Declaration / Directive",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Declaration</mark> (cấp class) và <mark class=\"keyword-mark keyword-answer-mark\">Directive</mark> (xử lý lúc dịch), trong khi Scriptlet và Expression đặt trong _jspService()"
+      },
+      {
+        "id": 252,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Định nghĩa method/field nằm ngoài _jspService() ➔ declaration (<%! %>)",
+        "stemHtml": "A JSP lets you define methods or fields that get inserted into the main body of the servlet class (<mark class=\"keyword-mark keyword-question-mark\">outside of the service method</mark>). Which tag is used?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "declaration",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">declaration</mark> (&lt;%! ... %&gt;)"
+      }
+    ]
+  },
+  {
+    "id": "http-methods-valid-vs-sql",
+    "title": "Phương thức HTTP 1.1: 'UPDATE' là lệnh SQL, KHÔNG PHẢI HTTP!",
+    "category": "Web & HTTP Protocol",
+    "badge": "Bộ lựa chọn gần như y hệt",
+    "rule": "<strong>Bẫy lẫn lộn HTTP Method và SQL Command:</strong><br>• Các phương thức chuẩn của <strong>HTTP 1.1</strong> gồm: <code>GET, POST, PUT, DELETE, HEAD, OPTIONS, TRACE, CONNECT</code>.<br>• ⚠️ <strong>UPDATE</strong> là lệnh trong cơ sở dữ liệu <strong>SQL (DML)</strong>, tuyệt đối <strong>KHÔNG PHẢI là HTTP Method</strong>!<br>• Khi truyền dữ liệu nhạy cảm (mật khẩu, thông tin thẻ), phải dùng <strong>POST</strong> (gửi trong body, không lưu cache, không hiện trên URL như GET).",
+    "items": [
+      {
+        "id": 359,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Cái nào KHÔNG PHẢI method của HTTP 1.1? ➔ UPDATE",
+        "stemHtml": "What are <mark class=\"keyword-mark keyword-question-mark\">NOT the methods of HTTP 1.1</mark> request?",
+        "correctKeys": [
+          "E"
+        ],
+        "correctText": "UPDATE",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">UPDATE</mark> (Đây là câu lệnh SQL DML, còn HTTP chỉ có GET, POST, PUT, DELETE...)"
+      },
+      {
+        "id": 506,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Phương thức an toàn hơn để truyền mật khẩu ➔ POST",
+        "stemHtml": "Which method is <mark class=\"keyword-mark keyword-question-mark\">more secure</mark> when transferring sensitive data like passwords?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "poST",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">POST</mark> (Dữ liệu gửi trong request body, không lộ trên URL query string)"
+      },
+      {
+        "id": 135,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Bẫy: Hai HTTP request phổ biến nhất là get và put? ➔ False",
+        "stemHtml": "The two most common HTTP requests are <mark class=\"keyword-mark keyword-question-mark\">get and put</mark>.",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "False",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">False</mark> (Phải là GET và POST mới là 2 phương thức phổ biến nhất)"
+      },
+      {
+        "id": 250,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Hai HTTP request phổ biến nhất là get và post ➔ True",
+        "stemHtml": "The two most common HTTP requests are <mark class=\"keyword-mark keyword-question-mark\">get and post</mark>.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "True",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">True</mark>"
+      }
+    ]
+  },
+  {
+    "id": "mvc-roles-and-traps",
+    "title": "Vai trò trong mô hình MVC2: 'Database' và 'Service Layer' KHÔNG thuộc chữ MVC!",
+    "category": "Web & HTTP Protocol",
+    "badge": "Bộ lựa chọn gần như y hệt",
+    "rule": "<strong>Bẫy thành phần trong kiến trúc MVC:</strong><br>• <strong>Model</strong>: Chứa dữ liệu nghiệp vụ và business logic (JavaBean, DAO, Entity).<br>• <strong>View</strong>: Trình bày dữ liệu ra giao diện người dùng (<strong>JSP</strong>).<br>• <strong>Controller</strong>: Tiếp nhận request, điều phối xử lý và chuyển hướng (<strong>Servlet</strong>).<br>• ⚠️ <strong>Bẫy:</strong> <code>Database</code> và <code>Service Layer</code> KHÔNG PHẢI là một thành phần đại diện trong chữ viết tắt MVC (Model - View - Controller)!",
+    "items": [
+      {
+        "id": 389,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Thành phần chịu trách nhiệm hiển thị dữ liệu ➔ View (JSP)",
+        "stemHtml": "Which component of the MVC architecture is <mark class=\"keyword-mark keyword-question-mark\">responsible for presenting data</mark> to the user?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "View",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">View</mark> (Thường là trang JSP)"
+      },
+      {
+        "id": 531,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Vai trò của Servlet trong kiến trúc MVC2 ➔ Controller",
+        "stemHtml": "In MVC2 architecture, what <mark class=\"keyword-mark keyword-question-mark\">role does the servlet</mark> typically play?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "Controller",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Controller</mark> (Điều phối luồng dữ liệu giữa Model và View)"
+      },
+      {
+        "id": 390,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Cái nào KHÔNG PHẢI thành phần tiêu chuẩn của MVC? ➔ Database",
+        "stemHtml": "Which is <mark class=\"keyword-mark keyword-question-mark\">NOT considered a standard component</mark> of a typical MVC architecture?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "Database",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Database</mark> (MVC chỉ gồm 3 phần: Model, View, Controller; Database nằm phía sau Model)"
+      },
+      {
+        "id": 464,
+        "topic": "1. Web & HTTP, HTML Forms & MVC Architecture",
+        "tag": "Cái nào KHÔNG PHẢI thành phần của chữ MVC? ➔ Service Layer",
+        "stemHtml": "Which is <mark class=\"keyword-mark keyword-question-mark\">NOT a component</mark> of the MVC architecture in Java web frameworks?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "Service Layer",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Service Layer</mark>"
+      }
+    ]
+  },
+  {
+    "id": "statement-1-vs-statement-2",
+    "title": "Dạng bài: 'Only 1 is true' vs 'Only 2 is true' vs 'Both true/false'",
+    "category": "Deployment Descriptor (web.xml)",
+    "badge": "Bộ 4 đáp án giống nhau 100%",
+    "rule": "<strong>Bẫy nhận định 1 & 2 với 4 phương án y hệt nhau:</strong><br>• <strong>Câu 97</strong>: Nhận định 1 nói deployment descriptor là <code>web.xml</code> và nằm trong <code>WEB-INF</code> ➔ Đúng! Nhận định 2 nói có thể đặt tên bất kỳ ➔ Sai! ➔ Chọn <strong>Only statement 1 is true</strong>.<br>• <strong>Câu 127</strong>: Nhận định 1 nói thư mục <code>/WEB-INF/lib</code> chứa file class ➔ Sai (lib chứa file .jar, classes mới chứa file .class)! ➔ Chọn <strong>Both 1 and 2 are not true</strong>.<br>• <strong>Câu 164</strong>: Nhận định 1 nói mỗi web app có unique context path ➔ Đúng! Nhận định 2 nói context path do admin/server cấu hình ➔ Đúng! ➔ Chọn <strong>Both 1 and 2 are true</strong>.",
+    "items": [
+      {
+        "id": 97,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "web.xml bắt buộc đặt tên web.xml và nằm trong WEB-INF ➔ Only 1 is true",
+        "stemHtml": "Study the statements about web.xml file:<br>1. The deployment descriptor file is called web.xml, and it resides in the /WEB-INF directory...<br>2. Can have any name...",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "Only statement 1 is true",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Only statement 1 is true</mark> (Tên file bắt buộc là web.xml, không thể đặt tên tùy ý)"
+      },
+      {
+        "id": 127,
+        "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
+        "tag": "WEB-INF/lib chứa file class? ➔ Both 1 and 2 are not true",
+        "stemHtml": "Study the statements:<br>1. The special directory <mark class=\"keyword-mark keyword-question-mark\">/WEB-INF/lib contains Java class files</mark>...<br>2. /WEB-INF/classes contains jar files...",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "Both 1 and 2 are not true",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Both 1 and 2 are not true</mark> (Bị đảo ngược: /WEB-INF/lib chứa file .jar, còn /WEB-INF/classes mới chứa file .class!)"
+      },
+      {
+        "id": 164,
+        "topic": "2. Java Servlet API & Lifecycle",
+        "tag": "Context path duy nhất trong container ➔ Both 1 and 2 are true",
+        "stemHtml": "Study the statements:<br>1. Every web application within a web container has a <mark class=\"keyword-mark keyword-question-mark\">unique context path</mark>.<br>2. Context path configures by deployer/server...",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "Both 1 and 2 are true",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">Both 1 and 2 are true</mark>"
+      }
+    ]
   }
 ]
