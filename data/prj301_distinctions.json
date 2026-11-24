@@ -811,11 +811,44 @@
   },
   {
     "id": "custom-tag-lifecycle-returns",
-    "title": "Vòng đời Tag Handler: doStartTag() vs doEndTag() & Return Values",
+    "title": "Giá trị trả về của Custom Tag: doStartTag() (BODY) vs doEndTag() (PAGE)",
     "category": "Custom Tags & Tag Library Descriptor (TLD)",
-    "badge": "Bẫy hằng số trả về",
-    "rule": "• <strong>doStartTag()</strong>: Luôn chạy khi gặp thẻ mở. Trả về <code>SKIP_BODY</code> (bỏ qua nội dung thân thẻ) hoặc <code>EVAL_BODY_INCLUDE</code> (đánh giá thân thẻ vào response).<br>• <strong>doAfterBody()</strong>: Trả về <code>EVAL_BODY_AGAIN</code> (lặp lại xử lý body) hoặc <code>SKIP_BODY</code> (kết thúc vòng lặp).<br>• <strong>doEndTag()</strong>: Chạy khi gặp thẻ đóng (chỉ chạy khi start và body hoàn tất thành công). Trả về <code>EVAL_PAGE</code> (tiếp tục chạy phần còn lại của trang JSP) hoặc <code>SKIP_PAGE</code> (ngưng chạy ngay lập tức phần còn lại của JSP).",
+    "badge": "Bẫy hằng số trả về & Đổi tên method",
+    "rule": "<strong>Quy tắc vàng phân biệt giá trị trả về trong TagSupport:</strong><br>\n• <strong>doStartTag()</strong> ➔ Chỉ xử lý <strong>BODY (thân thẻ)</strong>: Hợp lệ gồm <mark class=\"keyword-mark keyword-answer-mark\">SKIP_BODY</mark> (bỏ qua body) hoặc <mark class=\"keyword-mark keyword-answer-mark\">EVAL_BODY_INCLUDE</mark> (đánh giá body vào output). (Nếu kế thừa <code>BodyTagSupport</code> thì có thêm <code>EVAL_BODY_BUFFERED</code>). <em>Tuyệt đối không có chữ PAGE!</em><br>\n• <strong>doEndTag()</strong> ➔ Chỉ xử lý <strong>PAGE (trang JSP)</strong>: Hợp lệ gồm <mark class=\"keyword-mark keyword-answer-mark\">EVAL_PAGE</mark> (tiếp tục chạy phần JSP còn lại) hoặc <mark class=\"keyword-mark keyword-answer-mark\">SKIP_PAGE</mark> (dừng trang, bỏ qua phần JSP sau thẻ). <em>Tuyệt đối không có chữ BODY!</em><br>\n• <strong>doAfterBody()</strong> ➔ Chỉ gồm <mark class=\"keyword-mark keyword-answer-mark\">EVAL_BODY_AGAIN</mark> (lặp body) hoặc <mark class=\"keyword-mark keyword-answer-mark\">SKIP_BODY</mark> (dừng lặp).<br>\n• ⚠️ <strong>Các hằng số BỊA để gài bẫy:</strong> <code>EVAL_BODY</code> (SAI), <code>EVAL_PAGE_INCLUDE</code> (SAI) ➔ Thấy là loại ngay!",
     "items": [
+      {
+        "id": 16,
+        "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+        "tag": "Hỏi doEndTag ➔ Chỉ chọn hằng số có chữ PAGE (EVAL_PAGE)",
+        "stemHtml": "Which of these is legal return types of the <mark class=\"keyword-mark keyword-question-mark\">doEndTag</mark> method defined in a class that extends TagSupport class? Select one correct answer.",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "EVAL_PAGE",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">EVAL_PAGE</mark> (Hợp lệ cho doEndTag; các lựa chọn khác hoặc là bịa hoặc chỉ thuộc về doStartTag)"
+      },
+      {
+        "id": 72,
+        "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+        "tag": "Hỏi doStartTag ➔ Chỉ chọn hằng số có chữ BODY (EVAL_BODY_INCLUDE / SKIP_BODY)",
+        "stemHtml": "Which of these is a legal return value of <mark class=\"keyword-mark keyword-question-mark\">doStartTag()</mark> in a class that extends TagSupport?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "EVAL_BODY_INCLUDE",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">EVAL_BODY_INCLUDE</mark> (Hợp lệ cho doStartTag; EVAL_PAGE thuộc doEndTag, EVAL_BODY/EVAL_PAGE_INCLUDE là hằng số bịa)"
+      },
+      {
+        "id": 226,
+        "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
+        "tag": "Ứng dụng doEndTag trả về SKIP_PAGE ➔ Dừng trang, không in phần sau thẻ (chỉ in START)",
+        "stemHtml": "Given the following JSP and tag handler code: doEndTag() returns <mark class=\"keyword-mark keyword-question-mark\">SKIP_PAGE</mark>. What is the result?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "START",
+        "correctTextHtml": "<mark class=\"keyword-mark keyword-answer-mark\">START</mark> (Vì doEndTag trả về SKIP_PAGE nên container dừng xử lý phần còn lại của JSP, chữ END phía dưới không bao giờ được in ra)"
+      },
       {
         "id": 124,
         "topic": "7. Custom Tags & Tag Library Descriptor (TLD)",
