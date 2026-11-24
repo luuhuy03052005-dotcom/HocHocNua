@@ -168,6 +168,70 @@ window.PRJ301_STUDY = {
   ],
   distinctions: [
   {
+    "id": "jsp-implicit-objects-identical-5-options",
+    "title": "Bộ 5 câu JSP Implicit Objects: 'Which statements are BEST describe [X] implicit object of jsp file?'",
+    "category": "JSP Scripting & Implicit Objects",
+    "badge": "Bộ 5 đáp án giống nhau 100%",
+    "rule": "<strong>Bẫy trắc nghiệm kinh điển của PRJ301:</strong> Cả 5 câu hỏi đều có bộ lựa chọn A/B/C/D/E y hệt nhau 100% (trích từ bảng đặc tả JSP của Deitel). Đề bài chỉ thay đổi đúng tên biến ẩn ở giữa câu hỏi. <strong>Mẹo chọn đáp án đúng trong 3 giây:</strong><br>• Đề hỏi <strong>request</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">client request</mark> / <mark class=\"keyword-mark keyword-answer-mark\">HttpServletRequest</mark> ➔ Chọn <strong>E</strong>.<br>• Đề hỏi <strong>response</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">response to the client</mark> / <mark class=\"keyword-mark keyword-answer-mark\">HttpServletResponse</mark> ➔ Chọn <strong>D</strong>.<br>• Đề hỏi <strong>page</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">this reference for the current JSP instance</mark> / <mark class=\"keyword-mark keyword-answer-mark\">java.lang.Object</mark> ➔ Chọn <strong>B</strong>.<br>• Đề hỏi <strong>pageContext</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">PageContext object hides the implementation details</mark> ➔ Chọn <strong>C</strong> (hoặc A tùy đề).<br>• Đề hỏi <strong>out</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">JspWriter object writes text as part of the response</mark> ➔ Chọn <strong>A</strong>.",
+    "items": [
+      {
+        "id": 280,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Hỏi request ➔ Chọn E (client request / HttpServletRequest)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">request</mark> implicit object of jsp file?",
+        "correctKeys": [
+          "E"
+        ],
+        "correctText": "This object represents the client request. The object normally is an instance of a class that implements HttpServletRequest (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a subclass of javax.servlet.ServletRequest.",
+        "correctTextHtml": "This object represents the <mark class=\"keyword-mark keyword-answer-mark\">client request</mark>. The object normally is an instance of a class that implements <mark class=\"keyword-mark keyword-answer-mark\">HttpServletRequest</mark> (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a subclass of javax.servlet.ServletRequest."
+      },
+      {
+        "id": 175,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Hỏi response ➔ Chọn D (response to the client / HttpServletResponse)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">response</mark> implicit object of jsp file?",
+        "correctKeys": [
+          "D"
+        ],
+        "correctText": "This object represents the response to the client. The object normally is an instance of a class that implements HttpServletResponse (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a class that implements javax.servlet.ServletResponse.",
+        "correctTextHtml": "This object represents the <mark class=\"keyword-mark keyword-answer-mark\">response to the client</mark>. The object normally is an instance of a class that implements <mark class=\"keyword-mark keyword-answer-mark\">HttpServletResponse</mark> (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a class that implements javax.servlet.ServletResponse."
+      },
+      {
+        "id": 168,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Hỏi page ➔ Chọn B (this reference / java.lang.Object)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">page</mark> implicit object of jsp file?",
+        "correctKeys": [
+          "B"
+        ],
+        "correctText": "This java.lang.Object object represents the this reference for the current JSP instance.",
+        "correctTextHtml": "This java.lang.Object object represents the <mark class=\"keyword-mark keyword-answer-mark\">this reference for the current JSP instance</mark>."
+      },
+      {
+        "id": 178,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Hỏi pageContext ➔ Chọn C (PageContext / hides implementation details)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">pageContext</mark> implicit object of jsp file?",
+        "correctKeys": [
+          "C"
+        ],
+        "correctText": "This javax.servlet.jsp.PageContext object hides the implementation details of the underlying servlet and JSP container and provides JSP programmers with access to the implicit objects discussed in this table.",
+        "correctTextHtml": "This javax.servlet.jsp.PageContext object <mark class=\"keyword-mark keyword-answer-mark\">hides the implementation details</mark> of the underlying servlet and JSP container and provides JSP programmers with <mark class=\"keyword-mark keyword-answer-mark\">access to the implicit objects</mark> discussed in this table."
+      },
+      {
+        "id": 560,
+        "topic": "5. JSP Scripting, Directives & Standard Actions",
+        "tag": "Hỏi out ➔ Chọn A (JspWriter / writes text to response)",
+        "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">out</mark> implicit object of jsp file?",
+        "correctKeys": [
+          "A"
+        ],
+        "correctText": "This javax.servlet.jsp.JspWriter object writes text as part of the response to a request. This object is used implicitly with JSP expressions and actions that insert string content in a response.",
+        "correctTextHtml": "This javax.servlet.jsp.<mark class=\"keyword-mark keyword-answer-mark\">JspWriter object writes text as part of the response</mark> to a request. This object is used implicitly with JSP expressions and actions that insert string content in a response."
+      }
+    ]
+  },
+  {
     "id": "errorpage-vs-iserrorpage",
     "title": "errorPage vs isErrorPage trong <%@ page %>",
     "category": "JSP Directives & Error Handling",
@@ -700,7 +764,7 @@ window.PRJ301_STUDY = {
         "id": 24,
         "topic": "5. JSP Scripting, Directives & Standard Actions",
         "tag": "sendRedirect: Trả mã 302, Browser gửi request mới, URL đổi",
-        "stemHtml": "A JSP page called test.jsp is passed a parameter name in the URL using http://localhost/test.jsp?name=\"John\". The test.jsp contains the following code.\n```\n<%! String myName = request.getParameter(\"name\"); %>\n<% String test = \"welcome \" + myName; %>\n<%= test %>\n```\nWhat is the output?",
+        "stemHtml": "A JSP page called test.jsp is passed a parameter name in the URL using http://localhost/test.jsp?name=\"John\". The test.jsp contains the following code.\\n```\\n<%! String myName = request.getParameter(\"name\"); %>\\n<% String test = \"welcome \" + myName; %>\\n<%= test %>\\n```\\nWhat is the output?",
         "correctKeys": [
           "B"
         ],
@@ -818,7 +882,7 @@ window.PRJ301_STUDY = {
         "id": 5,
         "topic": "5. JSP Scripting, Directives & Standard Actions",
         "tag": "Declaration: Khai báo methodA và methodB gọi lẫn nhau hợp lệ",
-        "stemHtml": "What is the result of attempting to access the following JSP page?\n```\n<html>\n<body>\n<%! public String <mark class=\"keyword-mark keyword-question-mark\">methodA()</mark> {\n    return <mark class=\"keyword-mark keyword-question-mark\">methodB()</mark>;\n}\n%>\n<%! public String <mark class=\"keyword-mark keyword-question-mark\">methodB()</mark> {\n    <mark class=\"keyword-mark keyword-question-mark\">return \"JAD Final Test\";</mark>\n}\n%>\n<h2><%= <mark class=\"keyword-mark keyword-question-mark\">methodA()</mark> %></h2>\n</body>\n</html>\n```",
+        "stemHtml": "What is the result of attempting to access the following JSP page?\\n```\\n<html>\\n<body>\\n<%! public String <mark class=\"keyword-mark keyword-question-mark\">methodA()</mark> {\\n    return <mark class=\"keyword-mark keyword-question-mark\">methodB()</mark>;\\n}\\n%>\\n<%! public String <mark class=\"keyword-mark keyword-question-mark\">methodB()</mark> {\\n    <mark class=\"keyword-mark keyword-question-mark\">return \"JAD Final Test\";</mark>\\n}\\n%>\\n<h2><%= <mark class=\"keyword-mark keyword-question-mark\">methodA()</mark> %></h2>\\n</body>\\n</html>\\n```",
         "correctKeys": [
           "A"
         ],
@@ -1138,7 +1202,7 @@ window.PRJ301_STUDY = {
         "id": 225,
         "topic": "2. Java Servlet API & Lifecycle",
         "tag": "Nhấn Submit với method=\"post\" -> Container gọi doPost",
-        "stemHtml": "Which method of <mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark> will be called when the user clicks on \"<mark class=\"keyword-mark keyword-question-mark\">Submit</mark>\" <mark class=\"keyword-mark keyword-question-mark\">button</mark> for the following form? Assume that <mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark> does not override the service() method of HttpServlet class. (Choose one)\n```\n<html>\n<body>\n<form action=\"/myapp/<mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark>\" method=\"POST\">\n  <input type=\"text\" name=\"name\">\n  <input type=\"password\" name=\"password\">\n  <input type=\"<mark class=\"keyword-mark keyword-question-mark\">submit</mark>\" value=\"<mark class=\"keyword-mark keyword-question-mark\">Submit</mark>\">\n</form>\n</body>\n</html>\n```",
+        "stemHtml": "Which method of <mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark> will be called when the user clicks on \"<mark class=\"keyword-mark keyword-question-mark\">Submit</mark>\" <mark class=\"keyword-mark keyword-question-mark\">button</mark> for the following form? Assume that <mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark> does not override the service() method of HttpServlet class. (Choose one)\\n```\\n<html>\\n<body>\\n<form action=\"/myapp/<mark class=\"keyword-mark keyword-question-mark\">LoginServlet</mark>\" method=\"POST\">\\n  <input type=\"text\" name=\"name\">\\n  <input type=\"password\" name=\"password\">\\n  <input type=\"<mark class=\"keyword-mark keyword-question-mark\">submit</mark>\" value=\"<mark class=\"keyword-mark keyword-question-mark\">Submit</mark>\">\\n</form>\\n</body>\\n</html>\\n```",
         "correctKeys": [
           "A"
         ],
