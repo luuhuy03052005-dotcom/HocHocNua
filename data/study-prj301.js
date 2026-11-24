@@ -2,9 +2,9 @@ window.PRJ301_STUDY = {
   meta: {
     course: "PRJ301",
     title: "PRJ301 — Kiến thức cốt lõi",
-    source: "559 câu PRJ301 sau khi loại 8 câu trùng từ nguồn 567 câu",
+    source: "562 câu PRJ301 sau khi bổ sung trọn bộ câu hỏi JSP Implicit Objects",
     lessonCount: 8,
-    questionCount: 559,
+    questionCount: 562,
     knowledgeOnly: true,
     summaryLabel: "Tóm tắt",
     description: "Chỉ gồm khái niệm và cách hoạt động. Không có mẹo thi hoặc quy tắc học thuộc đáp án.",
@@ -175,7 +175,7 @@ window.PRJ301_STUDY = {
     "rule": "<strong>Bẫy trắc nghiệm kinh điển của PRJ301:</strong> Cả 5 câu hỏi đều có bộ lựa chọn A/B/C/D/E y hệt nhau 100% (trích từ bảng đặc tả JSP của Deitel). Đề bài chỉ thay đổi đúng tên biến ẩn ở giữa câu hỏi. <strong>Mẹo chọn đáp án đúng trong 3 giây:</strong><br>• Đề hỏi <strong>request</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">client request</mark> / <mark class=\"keyword-mark keyword-answer-mark\">HttpServletRequest</mark> ➔ Chọn <strong>E</strong>.<br>• Đề hỏi <strong>response</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">response to the client</mark> / <mark class=\"keyword-mark keyword-answer-mark\">HttpServletResponse</mark> ➔ Chọn <strong>D</strong>.<br>• Đề hỏi <strong>page</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">this reference for the current JSP instance</mark> / <mark class=\"keyword-mark keyword-answer-mark\">java.lang.Object</mark> ➔ Chọn <strong>B</strong>.<br>• Đề hỏi <strong>pageContext</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">PageContext object hides the implementation details</mark> ➔ Chọn <strong>C</strong> (hoặc A tùy đề).<br>• Đề hỏi <strong>out</strong> ➔ Tìm chữ <mark class=\"keyword-mark keyword-answer-mark\">JspWriter object writes text as part of the response</mark> ➔ Chọn <strong>A</strong>.",
     "items": [
       {
-        "id": 280,
+        "id": 568,
         "topic": "5. JSP Scripting, Directives & Standard Actions",
         "tag": "Hỏi request ➔ Chọn E (client request / HttpServletRequest)",
         "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">request</mark> implicit object of jsp file?",
@@ -186,7 +186,7 @@ window.PRJ301_STUDY = {
         "correctTextHtml": "This object represents the <mark class=\"keyword-mark keyword-answer-mark\">client request</mark>. The object normally is an instance of a class that implements <mark class=\"keyword-mark keyword-answer-mark\">HttpServletRequest</mark> (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a subclass of javax.servlet.ServletRequest."
       },
       {
-        "id": 175,
+        "id": 569,
         "topic": "5. JSP Scripting, Directives & Standard Actions",
         "tag": "Hỏi response ➔ Chọn D (response to the client / HttpServletResponse)",
         "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">response</mark> implicit object of jsp file?",
@@ -219,7 +219,7 @@ window.PRJ301_STUDY = {
         "correctTextHtml": "This javax.servlet.jsp.PageContext object <mark class=\"keyword-mark keyword-answer-mark\">hides the implementation details</mark> of the underlying servlet and JSP container and provides JSP programmers with <mark class=\"keyword-mark keyword-answer-mark\">access to the implicit objects</mark> discussed in this table."
       },
       {
-        "id": 560,
+        "id": 570,
         "topic": "5. JSP Scripting, Directives & Standard Actions",
         "tag": "Hỏi out ➔ Chọn A (JspWriter / writes text to response)",
         "stemHtml": "Which statements are BEST describe <mark class=\"keyword-mark keyword-question-mark\">out</mark> implicit object of jsp file?",

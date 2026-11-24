@@ -2,7 +2,7 @@ window.PRJ301_DATA = {
   "meta": {
     "course": "PRJ301",
     "title": "Java Web Application Development — Semester 4",
-    "totalQuestions": 559,
+    "totalQuestions": 562,
     "sourceQuestions": 567,
     "duplicatesRemoved": 8,
     "totalSlides": 559,
@@ -16730,6 +16730,105 @@ window.PRJ301_DATA = {
       "explanation": "Đáp án Cộng đồng & FUO AI: A.\nLựa chọn đúng: A. The filter matching the request via a URL pattern.",
       "topic": "3. Deployment Descriptor (web.xml), Filters & Listeners",
       "images": []
+    },
+    {
+      "id": 568,
+      "slideNumber": 280,
+      "topic": "5. JSP Scripting, Directives & Standard Actions",
+      "question": "Which statements are BEST describe request implicit object of jsp file?",
+      "options": [
+        {
+          "key": "A",
+          "text": "This javax.servlet.jsp.JspWriter object writes text as part of the response to a request. This object is used implicitly with JSP expressions and actions that insert string content in a response."
+        },
+        {
+          "key": "B",
+          "text": "This java.lang.Object object represents the this reference for the current JSP instance."
+        },
+        {
+          "key": "C",
+          "text": "This javax.servlet.jsp.PageContext object hides the implementation details of the underlying servlet and JSP container and provides JSP programmers with access to the implicit objects discussed in this table."
+        },
+        {
+          "key": "D",
+          "text": "This object represents the response to the client. The object normally is an instance of a class that implements HttpServletResponse (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a class that implements javax.servlet.ServletResponse."
+        },
+        {
+          "key": "E",
+          "text": "This object represents the client request. The object normally is an instance of a class that implements HttpServletRequest (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a subclass of javax.servlet.ServletRequest."
+        }
+      ],
+      "correctKeys": [
+        "E"
+      ],
+      "isMulti": false,
+      "explanation": "Biến ẩn request đại diện cho request từ client (HttpServletRequest)."
+    },
+    {
+      "id": 569,
+      "slideNumber": 175,
+      "topic": "5. JSP Scripting, Directives & Standard Actions",
+      "question": "Which statements are BEST describe response implicit object of jsp file?",
+      "options": [
+        {
+          "key": "A",
+          "text": "This javax.servlet.jsp.JspWriter object writes text as part of the response to a request. This object is used implicitly with JSP expressions and actions that insert string content in a response."
+        },
+        {
+          "key": "B",
+          "text": "This java.lang.Object object represents the this reference for the current JSP instance."
+        },
+        {
+          "key": "C",
+          "text": "This javax.servlet.jsp.PageContext object hides the implementation details of the underlying servlet and JSP container and provides JSP programmers with access to the implicit objects discussed in this table."
+        },
+        {
+          "key": "D",
+          "text": "This object represents the response to the client. The object normally is an instance of a class that implements HttpServletResponse (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a class that implements javax.servlet.ServletResponse."
+        },
+        {
+          "key": "E",
+          "text": "This object represents the client request. The object normally is an instance of a class that implements HttpServletRequest (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a subclass of javax.servlet.ServletRequest."
+        }
+      ],
+      "correctKeys": [
+        "D"
+      ],
+      "isMulti": false,
+      "explanation": "Biến ẩn response đại diện cho response gửi về client (HttpServletResponse)."
+    },
+    {
+      "id": 570,
+      "slideNumber": null,
+      "topic": "5. JSP Scripting, Directives & Standard Actions",
+      "question": "Which statements are BEST describe out implicit object of jsp file?",
+      "options": [
+        {
+          "key": "A",
+          "text": "This javax.servlet.jsp.JspWriter object writes text as part of the response to a request. This object is used implicitly with JSP expressions and actions that insert string content in a response."
+        },
+        {
+          "key": "B",
+          "text": "This java.lang.Object object represents the this reference for the current JSP instance."
+        },
+        {
+          "key": "C",
+          "text": "This javax.servlet.jsp.PageContext object hides the implementation details of the underlying servlet and JSP container and provides JSP programmers with access to the implicit objects discussed in this table."
+        },
+        {
+          "key": "D",
+          "text": "This object represents the response to the client. The object normally is an instance of a class that implements HttpServletResponse (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a class that implements javax.servlet.ServletResponse."
+        },
+        {
+          "key": "E",
+          "text": "This object represents the client request. The object normally is an instance of a class that implements HttpServletRequest (package javax.servlet.http). If a protocol other than HTTP is used, this object is an instance of a subclass of javax.servlet.ServletRequest."
+        }
+      ],
+      "correctKeys": [
+        "A"
+      ],
+      "isMulti": false,
+      "explanation": "Biến ẩn out là đối tượng JspWriter dùng để ghi dữ liệu văn bản vào response."
     }
   ]
 };
