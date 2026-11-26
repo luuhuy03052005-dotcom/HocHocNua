@@ -85,8 +85,17 @@
   }
 
   function getQuestionDistinction(q) {
-    if (!q || !window.PRJ301_STUDY?.distinctions) return null;
-    for (const group of window.PRJ301_STUDY.distinctions) {
+    if (!q) return null;
+    const courseCode = SWTApp.app?.getCourse()?.code;
+    const studyData = courseCode === 'PRJ301'
+      ? window.PRJ301_STUDY
+      : courseCode === 'SWT301'
+      ? window.SWT301_STUDY
+      : courseCode === 'SSG105'
+      ? window.SSG105_STUDY
+      : null;
+    if (!studyData?.distinctions) return null;
+    for (const group of studyData.distinctions) {
       const matchedItem = (group.items || []).find((item) => item.id === q.id);
       if (matchedItem) {
         const otherItems = (group.items || []).filter((item) => item.id !== q.id);

@@ -12,6 +12,10 @@
   let distinctionsData = [];
   let distinctionsQuery = '';
   let distinctionsCategory = 'all';
+  let distinctionsKind = 'all';
+  let expandAllOptions = false;
+  let activeCourseCode = '';
+  let listenersBound = false;
 
   function normalize(value) {
     return SWTApp.utils.normalizeText(value).replace(/[^a-z0-9]+/g, ' ').trim();
@@ -241,7 +245,13 @@
     renderRecall();
   }
 
+  function getDistinctionKind(group) {
+    if (group.kind === 'same-options' || group.kind === 'similar-questions') return group.kind;
+    return /đáp án|lựa chọn/i.test(group.badge || '') ? 'same-options' : 'similar-questions';
+  }
+
   function distinctionMatches(group) {
+    if (distinctionsKind !== 'all' && getDistinctionKind(group) !== distinctionsKind) return false;
     if (distinctionsCategory !== 'all' && group.category !== distinctionsCategory) return false;
     if (!distinctionsQuery) return true;
     const blob = [
@@ -256,6 +266,34 @@
     return normalize(blob).includes(distinctionsQuery);
   }
 
+  function updateDistinctionFilterUI() {
+    const { byId, setText } = SWTApp.utils;
+    const total = distinctionsData.length;
+    const sameCount = distinctionsData.filter((g) => getDistinctionKind(g) === 'same-options').length;
+    const simCount = distinctionsData.filter((g) => getDistinctionKind(g) === 'similar-questions').length;
+
+    setText('dist-kind-all', `Tất cả (${total})`);
+    setText('dist-kind-same', `🎯 Các đáp án giống nhau (${sameCount})`);
+    setText('dist-kind-similar', `🔍 Câu hỏi gần giống nhau (${simCount})`);
+
+    setText('study-jump-same-options', `🎯 Các đáp án giống nhau (${sameCount})`);
+    setText('study-jump-similar-questions', `🔍 Câu hỏi gần giống nhau (${simCount})`);
+    setText('study-jump-all-distinctions', `📚 Tất cả câu dễ nhầm (${total})`);
+
+    document.querySelectorAll('[data-dist-kind]').forEach((btn) => {
+      const active = btn.getAttribute('data-dist-kind') === distinctionsKind;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    const expandBtn = byId('study-distinctions-expand-opts');
+    if (expandBtn) {
+      expandBtn.textContent = expandAllOptions
+        ? 'Thu gọn bộ đáp án A/B/C/D'
+        : 'Hiện tất cả bộ đáp án A/B/C/D';
+    }
+  }
+
   function renderDistinctions() {
     const { byId, el, setText } = SWTApp.utils;
     const section = byId('study-distinctions');
@@ -268,6 +306,11 @@
       return;
     }
     section.hidden = false;
+    updateDistinctionFilterUI();
+
+    const qMap = new Map();
+    const courseQuestions = SWTApp.app?.getQuestions?.() || [];
+    courseQuestions.forEach((q) => qMap.set(q.id, q));
 
     // Populate category dropdown
     const catSelect = byId('study-distinctions-category');
@@ -285,14 +328,18 @@
     list.replaceChildren();
 
     filtered.forEach((group, index) => {
+      const kind = getDistinctionKind(group);
       const card = el('article', 'distinction-card card');
       card.id = 'distinction-' + group.id;
 
       const header = el('div', 'distinction-header');
       const badgeWrap = el('div', 'distinction-badges');
+      const kindLabel = kind === 'same-options' ? '🎯 Đáp án giống nhau' : '🔍 Câu hỏi gần giống nhau';
       badgeWrap.append(
+        el('span', kind === 'same-options' ? 'badge badge-success' : 'badge badge-warning', kindLabel),
         el('span', 'badge badge-warning', group.badge || 'Phân biệt'),
-        el('span', 'badge badge-accent', group.category)
+        el('span', 'badge badge-accent', group.category),
+        el('span', 'badge', (group.items?.length || 0) + ' câu')
       );
       header.append(badgeWrap, el('h3', 'distinction-title', (index + 1) + '. ' + group.title));
       card.appendChild(header);
@@ -313,6 +360,25 @@
         const stemBox = el('div', 'distinction-stem rich-text-prose');
         stemBox.innerHTML = item.stemHtml;
 
+        const fullQ = qMap.get(item.id);
+        let optsDetails = null;
+        if (fullQ && Array.isArray(fullQ.options) && fullQ.options.length > 0) {
+          optsDetails = el('details', 'distinction-opts-details');
+          if (expandAllOptions) optsDetails.open = true;
+          const optsSummary = el('summary', 'distinction-opts-summary', `Xem đủ ${fullQ.options.length} lựa chọn (${fullQ.options.map((o) => o.key).join('/')})`);
+          const optsList = el('ul', 'distinction-opts-list');
+          fullQ.options.forEach((opt) => {
+            const isCorrect = (fullQ.correctKeys || item.correctKeys || []).includes(opt.key);
+            const li = el('li', 'distinction-opt-row' + (isCorrect ? ' is-correct' : ''));
+            li.append(
+              el('strong', 'distinction-opt-key', opt.key + '.'),
+              el('span', 'distinction-opt-text', opt.text)
+            );
+            optsList.appendChild(li);
+          });
+          optsDetails.append(optsSummary, optsList);
+        }
+
         const ansBox = el('div', 'distinction-ans');
         const ansBadge = el('span', 'badge badge-success', 'Đáp án: ' + (item.correctKeys || []).join(', '));
         const ansText = el('div', 'distinction-ans-text');
@@ -326,7 +392,11 @@
           SWTApp.practice?.openQuestion(item.id);
         });
 
-        itemEl.append(itemHead, stemBox, ansBox, practiceBtn);
+        if (optsDetails) {
+          itemEl.append(itemHead, stemBox, optsDetails, ansBox, practiceBtn);
+        } else {
+          itemEl.append(itemHead, stemBox, ansBox, practiceBtn);
+        }
         grid.appendChild(itemEl);
       });
       card.appendChild(grid);
@@ -377,11 +447,14 @@
     recallData = courseCode === 'SSG105'
       ? window.SSG105_RECALL
       : null;
+    activeCourseCode = courseCode;
     studyMeta = data?.meta || {};
     lessons = data && Array.isArray(data.lessons) ? data.lessons : [];
     distinctionsData = data && Array.isArray(data.distinctions) ? data.distinctions : [];
     distinctionsQuery = '';
     distinctionsCategory = 'all';
+    distinctionsKind = 'all';
+    expandAllOptions = false;
     const hasStudy = lessons.length > 0 || courseCode === 'PRJ301' || courseCode === 'SWT301';
     byId('study-content').hidden = !hasStudy;
     byId('study-unavailable').hidden = hasStudy;
@@ -392,8 +465,11 @@
     const shortcutsSwt = byId('study-shortcuts-swt301');
     if (shortcutsSwt) shortcutsSwt.hidden = (courseCode !== 'SWT301');
 
+    const hasDistinctions = Boolean(distinctionsData && distinctionsData.length);
     const distSection = byId('study-distinctions');
-    if (distSection) distSection.hidden = (courseCode !== 'PRJ301') || (!distinctionsData || !distinctionsData.length);
+    if (distSection) distSection.hidden = !hasDistinctions;
+    const quickJump = byId('study-quick-jump');
+    if (quickJump) quickJump.hidden = !hasDistinctions;
 
     if (hasStudy) {
       const knowledgeOnly = Boolean(studyMeta.knowledgeOnly) || courseCode === 'SWT301' || courseCode === 'PRJ301';
@@ -422,7 +498,7 @@
 
       if (courseCode === 'SWT301') {
         setText('study-intro-title', 'Mẹo thi & Kiến thức trọng tâm SWT301');
-        setText('study-intro-description', 'Bảng tra cứu phản xạ 1 giây, từ khóa auto chọn, auto gạch và phân biệt bẫy trắc nghiệm.');
+        setText('study-intro-description', 'Bảng tra cứu phản xạ 1 giây, từ khóa auto chọn, auto gạch, bộ đáp án giống nhau và các câu hỏi gần giống nhau.');
         setText('study-total-count', '367');
         const totalUnit = document.querySelector('.study-total-box span');
         if (totalUnit) totalUnit.textContent = 'câu hỏi';
@@ -453,6 +529,7 @@
       const distSearch = byId('study-distinctions-search');
       if (distSearch) {
         distSearch.value = '';
+        distSearch.placeholder = data?.meta?.distinctionsPlaceholder || 'Ví dụ: errorPage, isErrorPage, forward, redirect, doStartTag...';
       }
       const distCategory = byId('study-distinctions-category');
       if (distCategory) {
@@ -465,28 +542,60 @@
       render();
     }
 
-    byId('study-distinctions-search')?.addEventListener('input', (event) => {
-      distinctionsQuery = normalize(event.target.value);
-      renderDistinctions();
-    });
-    byId('study-distinctions-category')?.addEventListener('change', (event) => {
-      distinctionsCategory = event.target.value;
-      renderDistinctions();
-    });
-    byId('study-search-input')?.addEventListener('input', (event) => {
-      query = normalize(event.target.value);
-      render();
-    });
-    byId('study-recall-search')?.addEventListener('input', (event) => {
-      recallQuery = normalize(event.target.value);
-      renderRecall();
-    });
-    byId('study-recall-lesson')?.addEventListener('change', (event) => {
-      recallLesson = event.target.value;
-      renderRecall();
-    });
-    byId('study-open-all-btn')?.addEventListener('click', () => setAll(true));
-    byId('study-close-all-btn')?.addEventListener('click', () => setAll(false));
+    if (!listenersBound) {
+      listenersBound = true;
+      byId('study-distinctions-search')?.addEventListener('input', (event) => {
+        distinctionsQuery = normalize(event.target.value);
+        renderDistinctions();
+      });
+      byId('study-distinctions-category')?.addEventListener('change', (event) => {
+        distinctionsCategory = event.target.value;
+        renderDistinctions();
+      });
+      byId('study-distinctions-kind-bar')?.addEventListener('click', (event) => {
+        const kindBtn = event.target.closest('[data-dist-kind]');
+        if (kindBtn) {
+          distinctionsKind = kindBtn.getAttribute('data-dist-kind') || 'all';
+          renderDistinctions();
+        }
+      });
+      byId('study-distinctions-expand-opts')?.addEventListener('click', () => {
+        expandAllOptions = !expandAllOptions;
+        document.querySelectorAll('#study-distinctions-list .distinction-opts-details').forEach((d) => {
+          d.open = expandAllOptions;
+        });
+        updateDistinctionFilterUI();
+      });
+      byId('study-quick-jump')?.addEventListener('click', (event) => {
+        const jumpBtn = event.target.closest('[data-study-jump]');
+        if (!jumpBtn) return;
+        const target = jumpBtn.getAttribute('data-study-jump');
+        if (target === 'shortcuts') {
+          const elTarget = activeCourseCode === 'SWT301'
+            ? byId('study-shortcuts-swt301')
+            : (byId('study-shortcuts-prj301') || byId('study-shortcuts'));
+          elTarget?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          distinctionsKind = target || 'all';
+          renderDistinctions();
+          byId('study-distinctions')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+      byId('study-search-input')?.addEventListener('input', (event) => {
+        query = normalize(event.target.value);
+        render();
+      });
+      byId('study-recall-search')?.addEventListener('input', (event) => {
+        recallQuery = normalize(event.target.value);
+        renderRecall();
+      });
+      byId('study-recall-lesson')?.addEventListener('change', (event) => {
+        recallLesson = event.target.value;
+        renderRecall();
+      });
+      byId('study-open-all-btn')?.addEventListener('click', () => setAll(true));
+      byId('study-close-all-btn')?.addEventListener('click', () => setAll(false));
+    }
 
     const studyContent = byId('study-content');
     if (studyContent && !studyContent.dataset.boundOpenQ) {

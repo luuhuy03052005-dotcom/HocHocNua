@@ -1241,3 +1241,101 @@ kbd { font-family: var(--font-mono); font-size: var(--text-xs); padding: 0.1rem 
   color: var(--text-primary);
   margin: 0;
 }
+
+/* =====================================================================
+   STUDY QUICK JUMP & DISTINCTION FILTER / OPTIONS PREVIEW
+   ===================================================================== */
+.study-quick-jump {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-block: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-control);
+}
+.study-quick-jump-label {
+  font-size: var(--text-sm);
+  font-weight: 750;
+  color: var(--text-secondary);
+}
+.study-quick-jump-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.distinction-kind-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-start: var(--space-3);
+}
+.distinction-kind-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.42rem 0.85rem;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-control);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.distinction-kind-btn:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.distinction-kind-btn.is-active {
+  color: #fff;
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.distinction-expand-opts-btn {
+  margin-inline-start: auto;
+}
+.distinction-opts-details {
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  background: var(--bg-subtle);
+  padding: 0.35rem 0.65rem;
+  font-size: var(--text-xs);
+}
+.distinction-opts-summary {
+  cursor: pointer;
+  font-weight: 650;
+  color: var(--text-secondary);
+  user-select: none;
+}
+.distinction-opts-summary:hover {
+  color: var(--color-accent);
+}
+.distinction-opts-list {
+  list-style: none;
+  margin: 0.45rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.28rem;
+}
+.distinction-opt-row {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.25rem 0.45rem;
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.distinction-opt-row.is-correct {
+  background: var(--color-success-soft);
+  color: var(--text-primary);
+  font-weight: 650;
+}
+.distinction-opt-key {
+  min-inline-size: 1.2rem;
+  color: var(--text-primary);
+}
