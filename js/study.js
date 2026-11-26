@@ -366,7 +366,11 @@
     const { byId, setText } = SWTApp.utils;
     const data = courseCode === 'SSG105'
       ? window.SSG105_STUDY
-      : courseCode === 'PRJ301' ? window.PRJ301_STUDY : null;
+      : courseCode === 'PRJ301'
+      ? window.PRJ301_STUDY
+      : courseCode === 'SWT301'
+      ? window.SWT301_STUDY
+      : null;
     extra = courseCode === 'SSG105'
       ? window.SSG105_STUDY_EXTRA
       : null;
@@ -440,11 +444,11 @@
       const recallSearch = byId('study-recall-search');
       if (lessonSearch) {
         lessonSearch.value = '';
-        lessonSearch.placeholder = data.meta?.searchPlaceholder || 'Tìm Lesson hoặc thuật ngữ...';
+        lessonSearch.placeholder = data?.meta?.searchPlaceholder || 'Tìm Lesson hoặc thuật ngữ...';
       }
       if (recallSearch) {
         recallSearch.value = '';
-        recallSearch.placeholder = data.meta?.recallPlaceholder || 'Ví dụ: thuật ngữ, tình huống hoặc đáp án...';
+        recallSearch.placeholder = data?.meta?.recallPlaceholder || 'Ví dụ: thuật ngữ, tình huống hoặc đáp án...';
       }
       const distSearch = byId('study-distinctions-search');
       if (distSearch) {
