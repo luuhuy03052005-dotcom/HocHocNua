@@ -378,15 +378,21 @@
     distinctionsData = data && Array.isArray(data.distinctions) ? data.distinctions : [];
     distinctionsQuery = '';
     distinctionsCategory = 'all';
-    const available = lessons.length > 0;
-    byId('study-content').hidden = !available;
-    byId('study-unavailable').hidden = available;
-    const shortcutsSection = byId('study-shortcuts');
-    if (shortcutsSection) {
-      shortcutsSection.hidden = (courseCode !== 'PRJ301');
-    }
-    if (available) {
-      const knowledgeOnly = Boolean(studyMeta.knowledgeOnly);
+    const hasStudy = lessons.length > 0 || courseCode === 'PRJ301' || courseCode === 'SWT301';
+    byId('study-content').hidden = !hasStudy;
+    byId('study-unavailable').hidden = hasStudy;
+
+    const shortcutsPrj = byId('study-shortcuts-prj301') || byId('study-shortcuts');
+    if (shortcutsPrj) shortcutsPrj.hidden = (courseCode !== 'PRJ301');
+
+    const shortcutsSwt = byId('study-shortcuts-swt301');
+    if (shortcutsSwt) shortcutsSwt.hidden = (courseCode !== 'SWT301');
+
+    const distSection = byId('study-distinctions');
+    if (distSection) distSection.hidden = (courseCode !== 'PRJ301') || (!distinctionsData || !distinctionsData.length);
+
+    if (hasStudy) {
+      const knowledgeOnly = Boolean(studyMeta.knowledgeOnly) || courseCode === 'SWT301' || courseCode === 'PRJ301';
       [
         'study-guide-title',
         'study-exam-tips-title',
@@ -398,18 +404,38 @@
         const section = byId(id)?.closest('section');
         if (section) section.hidden = knowledgeOnly;
       });
+
+      const lessonList = byId('study-lesson-list');
+      const lessonToolbar = document.querySelector('.study-toolbar');
+      const lessonNav = byId('study-lesson-nav');
+      if (lessonToolbar) lessonToolbar.hidden = (lessons.length === 0);
+      if (lessonNav) lessonNav.hidden = (lessons.length === 0);
+      if (lessonList) lessonList.hidden = (lessons.length === 0);
+
       query = '';
       recallQuery = '';
       recallLesson = 'all';
-      const questionCount = data.meta?.questionCount || extra?.meta?.basedOnQuestions || '';
-      setText('study-intro-title', data.meta?.title || 'Kiến thức trọng tâm');
-      setText('study-intro-description', data.meta?.description || 'Khái niệm, dấu hiệu nhận diện và mẹo chọn đáp án.');
-      setText('study-total-count', String(lessons.length));
-      setText('study-source-label', data.meta?.source || 'Tài liệu môn học');
-      setText('study-guide-title', questionCount ? 'Lộ trình làm chủ bộ ' + questionCount + ' câu' : 'Lộ trình ôn tập');
-      setText('study-guide-description', data.meta?.guideDescription || 'Học khái niệm, nhận diện từ khóa, luyện câu hỏi và ôn lại lỗi sai.');
-      setText('study-foundation-title', (extra?.foundationModules?.length || 0) + ' chuyên đề nền tảng cho bộ câu hỏi');
-      setText('study-foundation-description', data.meta?.foundationDescription || 'Các nhóm kiến thức cần liên kết để xử lý câu hỏi tình huống và đoạn mã.');
+
+      if (courseCode === 'SWT301') {
+        setText('study-intro-title', 'Mẹo thi & Kiến thức trọng tâm SWT301');
+        setText('study-intro-description', 'Bảng tra cứu phản xạ 1 giây, từ khóa auto chọn, auto gạch và phân biệt bẫy trắc nghiệm.');
+        setText('study-total-count', '367');
+        const totalUnit = document.querySelector('.study-total-box span');
+        if (totalUnit) totalUnit.textContent = 'câu hỏi';
+        setText('study-source-label', 'Software Testing — Semester 5');
+      } else {
+        const questionCount = data?.meta?.questionCount || extra?.meta?.basedOnQuestions || '';
+        setText('study-intro-title', data?.meta?.title || 'Kiến thức trọng tâm');
+        setText('study-intro-description', data?.meta?.description || 'Khái niệm, dấu hiệu nhận diện và mẹo chọn đáp án.');
+        setText('study-total-count', String(lessons.length));
+        const totalUnit = document.querySelector('.study-total-box span');
+        if (totalUnit) totalUnit.textContent = lessons.length > 0 ? 'Lesson' : 'câu hỏi';
+        setText('study-source-label', data?.meta?.source || 'Tài liệu môn học');
+        setText('study-guide-title', questionCount ? 'Lộ trình làm chủ bộ ' + questionCount + ' câu' : 'Lộ trình ôn tập');
+        setText('study-guide-description', data?.meta?.guideDescription || 'Học khái niệm, nhận diện từ khóa, luyện câu hỏi và ôn lại lỗi sai.');
+        setText('study-foundation-title', (extra?.foundationModules?.length || 0) + ' chuyên đề nền tảng cho bộ câu hỏi');
+        setText('study-foundation-description', data?.meta?.foundationDescription || 'Các nhóm kiến thức cần liên kết để xử lý câu hỏi tình huống và đoạn mã.');
+      }
       const lessonSearch = byId('study-search-input');
       const recallSearch = byId('study-recall-search');
       if (lessonSearch) {
@@ -458,10 +484,10 @@
     byId('study-open-all-btn')?.addEventListener('click', () => setAll(true));
     byId('study-close-all-btn')?.addEventListener('click', () => setAll(false));
 
-    const shortcutsEl = byId('study-shortcuts');
-    if (shortcutsEl && !shortcutsEl.dataset.bound) {
-      shortcutsEl.dataset.bound = 'true';
-      shortcutsEl.addEventListener('click', (event) => {
+    const studyContent = byId('study-content');
+    if (studyContent && !studyContent.dataset.boundOpenQ) {
+      studyContent.dataset.boundOpenQ = 'true';
+      studyContent.addEventListener('click', (event) => {
         const btn = event.target.closest('[data-open-q]');
         if (!btn) return;
         const qId = Number(btn.getAttribute('data-open-q'));
