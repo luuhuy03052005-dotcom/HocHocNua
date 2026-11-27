@@ -171,36 +171,29 @@
     return null;
   }
 
-  function cleanPointText(text) {
-    return String(text || '').replace(/\s*\((?:—\s*)?#[0-9,\s&#a-zA-Z-]+\)/g, '').trim();
-  }
-
-  const FAKE_OR_ZERO_OPTIONS = new Map([
-    ['state analysis', 'Đáp án bẫy (0% đúng) — tên không chuẩn, gặp là gạch!'],
-    ['memory analysis', 'Đáp án bẫy nhử theo chữ "memory leak" (0% đúng) — bắt rò bộ nhớ lúc chạy phải chọn Dynamic analysis!'],
-    ['coverage analysis', 'Đo % code đã chạy (0% đúng khi đứng lẻ làm đáp án trong bộ đề này).'],
-    ['data flow analysis', 'Soi đường đi của biến trong code tĩnh (0% đúng khi đứng lẻ làm đáp án).'],
-    ['trends analysis', 'Phân tích xu hướng — không phải thước đo độ phủ code (0% đúng).'],
-    ['metrics analysis', 'Phân tích số liệu — vẫn nằm trong chi phí review (0% đúng).'],
-    ['sanity testing', 'Test lướt nhanh chỗ vừa sửa nhỏ (0% đúng khi đứng lẻ trong bộ đề — gạch!).'],
-    ['smoke testing', 'Test lướt các tính năng chính xem bản mới có chạy nổi không (0% đúng trong bộ đề — gạch!).'],
-    ['requirements testing', 'Đáp án nhiễu (0% đúng) — gặp Internet Banking chọn ngay Non-functional testing!'],
-    ['pole coverage', 'Tên BỊA không có thật — khoanh câu này khi đề hỏi cái nào SAI (Incorrect form of Logic coverage)!']
-  ]);
-
-  function getOptionFamilyTip(q) {
-    if (!q || getCourseCode() !== 'SWT301' || !Array.isArray(q.options)) return null;
-    const optsLow = q.options.map((o) => String(o.text || '').trim().toLowerCase().replace(/\.$/, ''));
-    const analysisCount = optsLow.filter((t) => /\banaly[sz]\w*/.test(t)).length;
-    const testingCount = optsLow.filter((t) => /\btesting\b/.test(t) && t.split(/\s+/).length <= 5).length;
-
-    if (analysisCount >= 2) {
-      return '💡 Chốt nhanh họ "Analysis": Gạch State / Memory / Coverage / Data flow (0% đúng). Thấy "memory leak" ➔ Dynamic analysis · "unreachable code / coding standards" ➔ Static analysis · "Reviewing test Basis / Designing environment" ➔ Test Analysis and Design.';
+  function getQuestionTip(q) {
+    if (!q) return null;
+    const code = getCourseCode();
+    if (code === 'SWT301') {
+      return window.SWT301_STUDY?.questionTips?.[String(q.id)] || null;
     }
-    if (testingCount >= 2) {
-      return '💡 Chốt nhanh "... Testing": Functional lẻ & Regression lẻ đều 0% đúng! Đọc từ khóa trên đề: 1 hàm lẻ (single/individual) ➔ Unit · mối nối (interfaces) ➔ Integration · nguyên app (entire system) ➔ System · khách/kinh doanh (business) ➔ Acceptance · ngân hàng (internet banking) ➔ Non-functional · tải thường (varying workloads) ➔ Load · quá tải (exceeded) ➔ Stress.';
+    const dist = getDistinctionForQuestion(q);
+    if (dist?.matched?.cue && dist?.matched?.answer) {
+      return {
+        mode: 'glance',
+        cue: dist.matched.cue,
+        pick: dist.matched.answer,
+        avoid: null
+      };
     }
     return null;
+  }
+
+  function cleanPointText(text) {
+    return String(text || '')
+      .replace(/\s*\((?:[^()]*#[0-9]+[^()]*)\)/g, '')
+      .replace(/\s*#[0-9]+(?:,\s*#[0-9]+)*/g, '')
+      .trim();
   }
 
   function renderBoxContent(box, button, q, opts) {
@@ -211,7 +204,7 @@
     const head = el('div', 'q-concept-head');
     const titleWrap = el('div', 'q-concept-title-wrap');
     titleWrap.append(
-      el('span', 'q-concept-badge', '? Kiến thức câu #' + q.id),
+      el('span', 'q-concept-badge', '? Kiến thức nhanh'),
       el('span', 'q-concept-topic', q.topic || getCourseCode())
     );
     const closeBtn = el('button', 'btn btn-ghost btn-sm q-concept-close', 'Thu gọn ×');
@@ -223,24 +216,7 @@
     head.append(titleWrap, closeBtn);
     box.appendChild(head);
 
-    const familyTip = getOptionFamilyTip(q);
-    if (familyTip) {
-      box.appendChild(el('div', 'swt-chapter-flow', familyTip));
-    }
-
     const concepts = getConceptsForQuestion(q);
-    if (getCourseCode() === 'SWT301' && Array.isArray(q.options)) {
-      q.options.forEach((opt) => {
-        const keyNorm = String(opt.text || '').trim().toLowerCase().replace(/\.$/, '');
-        if (FAKE_OR_ZERO_OPTIONS.has(keyNorm)) {
-          concepts.push({
-            term: opt.text.replace(/\.$/, '') + ' (Lưu ý phương án nhiễu)',
-            what: FAKE_OR_ZERO_OPTIONS.get(keyNorm),
-            points: []
-          });
-        }
-      });
-    }
     if (concepts.length > 0) {
       const list = el('div', 'q-concept-list');
       concepts.forEach((item) => {
@@ -253,20 +229,53 @@
         if (item.points && item.points.length > 0) {
           const ul = el('ul', 'q-concept-points');
           item.points.forEach((pt) => {
-            ul.appendChild(el('li', '', cleanPointText(pt)));
+            const cleaned = cleanPointText(pt);
+            if (cleaned) ul.appendChild(el('li', '', cleaned));
           });
-          card.appendChild(ul);
+          if (ul.childNodes.length > 0) card.appendChild(ul);
         }
         list.appendChild(card);
       });
       box.appendChild(list);
     }
 
+    const tip = getQuestionTip(q);
+    if (tip && tip.pick) {
+      const tipBar = el('div', 'q-concept-rote-tip');
+      tipBar.appendChild(el('span', 'rote-tip-label', '⚡ Mẹo:'));
+      const flow = el('div', 'rote-tip-flow');
+
+      if (tip.mode === 'instant') {
+        flow.appendChild(el('span', 'rote-chip rote-chip-instant', 'Khỏi nhìn đề'));
+      } else if (tip.mode === 'standalone') {
+        flow.appendChild(el('span', 'rote-chip rote-chip-standalone', 'Đứng lẻ 1 mình'));
+      } else if (tip.cue) {
+        const cueChip = el('span', 'rote-chip rote-chip-cue');
+        cueChip.append(el('span', 'rote-chip-prefix', 'Đề có: '), el('strong', '', tip.cue));
+        flow.appendChild(cueChip);
+      }
+
+      flow.appendChild(el('span', 'rote-arrow', '→'));
+
+      const pickChip = el('span', 'rote-chip rote-chip-pick');
+      pickChip.append(el('span', 'rote-chip-prefix', 'Chọn: '), el('strong', '', tip.pick));
+      flow.appendChild(pickChip);
+
+      if (tip.avoid) {
+        const avoidChip = el('span', 'rote-chip rote-chip-avoid');
+        avoidChip.append(el('span', 'rote-chip-prefix', 'Không chọn: '), el('strong', '', tip.avoid));
+        flow.appendChild(avoidChip);
+      }
+
+      tipBar.appendChild(flow);
+      box.appendChild(tipBar);
+    }
+
     if (opts && opts.showDistinction) {
       const dist = getDistinctionForQuestion(q);
       if (dist) {
         const trap = el('div', 'q-concept-trap');
-        trap.appendChild(el('div', 'q-concept-trap-title', '⚠️ Bẫy dễ nhầm: ' + dist.group.title));
+        trap.appendChild(el('div', 'q-concept-trap-title', '⚠️ Phân biệt nhanh: ' + dist.group.title));
         const rule = el('div', 'q-concept-trap-rule');
         rule.innerHTML = dist.group.rule;
         trap.appendChild(rule);
@@ -310,6 +319,7 @@
   SWTApp.conceptHelper = {
     getConceptsForQuestion,
     getDistinctionForQuestion,
+    getQuestionTip,
     toggleConceptBox,
     resetConceptBox,
     refreshIfOpen

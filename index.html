@@ -15,23 +15,23 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-37">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-37">
-  <script defer src="data/questions.js?v=multi-course-37"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-37"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-37"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-37"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-37"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-37"></script>
-  <script defer src="data/study-prj301.js?v=multi-course-37"></script>
-  <script defer src="data/study-swt301.js?v=multi-course-37"></script>
-  <script defer src="js/storage.js?v=multi-course-37"></script>
-  <script defer src="js/concept-helper.js?v=multi-course-37"></script>
-  <script defer src="js/practice.js?v=multi-course-37"></script>
-  <script defer src="js/exam.js?v=multi-course-37"></script>
-  <script defer src="js/keyword.js?v=multi-course-37"></script>
-  <script defer src="js/study.js?v=multi-course-37"></script>
-  <script defer src="js/app.js?v=multi-course-37"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-38">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-38">
+  <script defer src="data/questions.js?v=multi-course-38"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-38"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-38"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-38"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-38"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-38"></script>
+  <script defer src="data/study-prj301.js?v=multi-course-38"></script>
+  <script defer src="data/study-swt301.js?v=multi-course-38"></script>
+  <script defer src="js/storage.js?v=multi-course-38"></script>
+  <script defer src="js/concept-helper.js?v=multi-course-38"></script>
+  <script defer src="js/practice.js?v=multi-course-38"></script>
+  <script defer src="js/exam.js?v=multi-course-38"></script>
+  <script defer src="js/keyword.js?v=multi-course-38"></script>
+  <script defer src="js/study.js?v=multi-course-38"></script>
+  <script defer src="js/app.js?v=multi-course-38"></script>
 </head>
 <body>
   <header class="topbar">
@@ -352,19 +352,63 @@
           <nav id="study-quick-jump" class="study-quick-jump card" aria-label="Đi nhanh đến phần ôn tập" hidden>
             <span class="study-quick-jump-label">Đi nhanh đến mục:</span>
             <div class="study-quick-jump-actions">
-              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="families" id="study-jump-families">🧭 Mẹo gỡ rối họ Analyse &amp; các dạng Test</button>
-              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="concepts" id="study-jump-concepts">📘 Khái niệm &amp; Phân tích 6 chương</button>
-              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="shortcuts">⚡ Mẹo &amp; Keyword Auto chọn</button>
+              <button type="button" class="btn btn-primary btn-sm" data-study-jump="rote" id="study-jump-rote">⚡ Bảng Học Vẹt</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="families" id="study-jump-families">🧭 Gỡ rối Analyse &amp; các dạng Test</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="concepts" id="study-jump-concepts">📘 Khái niệm 6 chương</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="shortcuts">⚡ Mẹo &amp; Keyword</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="same-options" id="study-jump-same-options">🎯 Các đáp án giống nhau</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="similar-questions" id="study-jump-similar-questions">🔍 Câu hỏi gần giống nhau</button>
             </div>
           </nav>
 
+          <section class="study-rote card" id="study-rote-swt301" aria-labelledby="study-rote-swt301-title" hidden>
+            <div class="study-section-heading">
+              <div class="study-shortcuts-header-top">
+                <span class="badge badge-accent">Học vẹt đánh nhanh</span>
+                <span class="badge badge-success">Có gì chọn gì · Không chọn gì</span>
+              </div>
+              <h2 id="study-rote-swt301-title">Bảng Học Vẹt SWT301 — Nhìn Màu Chốt Ngay Đáp Án</h2>
+              <div class="rote-legend" aria-label="Chú thích màu">
+                <span class="rote-chip rote-chip-cue">Đề có chữ này</span>
+                <span class="rote-arrow">&rarr;</span>
+                <span class="rote-chip rote-chip-pick">Khoanh ngay chữ này</span>
+                <span class="rote-chip rote-chip-avoid">Không chọn chữ này</span>
+              </div>
+            </div>
+
+            <div class="swt-rote-tabs" id="swt-rote-tabs" role="group" aria-label="Chế độ học vẹt">
+              <button type="button" class="distinction-kind-btn is-active" data-rote-mode="instant">🟢 Khỏi nhìn đề — Thấy là khoanh</button>
+              <button type="button" class="distinction-kind-btn" data-rote-mode="glance">🔵 Liếc đề 2 chữ &rarr; Khoanh</button>
+              <button type="button" class="distinction-kind-btn" data-rote-mode="standalone">🟡 Đứng lẻ 1 mình mới khoanh</button>
+              <button type="button" class="distinction-kind-btn" data-rote-mode="traps">🔴 Đáp án bẫy — Cấm chọn</button>
+              <button type="button" class="distinction-kind-btn" data-rote-mode="all">📋 Xem tất cả</button>
+            </div>
+
+            <div class="swt-rote-toolbar">
+              <label for="swt-rote-search" class="sr-only">Tìm nhanh từ khóa</label>
+              <input type="search" id="swt-rote-search" placeholder="Gõ 1 chữ bất kỳ để tra liền (VD: all, leak, system, review, if, plan)...">
+              <label for="swt-rote-chapter" class="sr-only">Lọc theo chương</label>
+              <select id="swt-rote-chapter">
+                <option value="all">Tất cả chương</option>
+                <option value="1">Chương 1 — Khái niệm &amp; Nguyên lý</option>
+                <option value="2">Chương 2 — Các cấp độ &amp; Loại Test</option>
+                <option value="3">Chương 3 — Review &amp; Static Analysis</option>
+                <option value="4">Chương 4 — Kỹ thuật thiết kế Test</option>
+                <option value="5">Chương 5 — Quản lý, Rủi ro &amp; Lỗi</option>
+                <option value="6">Chương 6 — Công cụ Test (Tools)</option>
+              </select>
+              <span id="swt-rote-count" class="counter-pill">0 mục</span>
+            </div>
+
+            <div id="swt-rote-list" class="swt-rote-list"></div>
+            <div id="swt-rote-empty" class="study-empty" hidden>Không tìm thấy dòng nào khớp với từ vừa gõ.</div>
+          </section>
+
           <section class="study-shortcuts card" id="study-word-families-swt301" aria-labelledby="study-word-families-swt301-title" hidden>
             <div class="study-section-heading">
               <div class="study-shortcuts-header-top">
                 <span class="badge badge-warning">Chuyên trị đáp án na ná nhau</span>
-                <span class="badge badge-success">Thống kê chính xác 100% trên 367 câu</span>
+                <span class="badge badge-success">Gỡ rối nhanh</span>
               </div>
               <h2 id="study-word-families-swt301-title">Bí kíp chốt đáp án khi gặp một rừng chữ "Analyse / Analysis" &amp; "Các dạng Test / Testing"</h2>
               <p class="study-shortcuts-lead">Khi 4 đáp án toàn các từ hao hao nhau (<em>Static / Dynamic / Coverage / Memory analysis</em> hoặc <em>Unit / System / Performance / Regression / Confirmation testing...</em>), chỉ cần áp dụng đúng 2 bảng loại trừ &amp; khóa từ khóa dưới đây:</p>
@@ -897,10 +941,10 @@
             <div class="study-section-heading">
               <div class="study-shortcuts-header-top">
                 <span class="badge badge-accent">Mẹo thi &amp; Phản xạ 1 giây</span>
-                <span class="badge badge-success">Kiểm toán 100% trên 367 câu SWT301</span>
+                <span class="badge badge-success">Tổng hợp theo chuyên đề</span>
               </div>
               <h2 id="study-shortcuts-swt301-title">Bảng tổng hợp trọn bộ mẹo thi &amp; Keyword "thần thánh" SWT301</h2>
-              <p class="study-shortcuts-lead">Đã rà soát đủ 367/367 câu — Từ khóa auto chọn 100%, đáp án mồi auto gạch 0%, trọn bộ câu Đúng/Sai, Chọn nhiều, Sơ đồ hình vẽ, Ghép cặp, Bài tập số liệu và phản xạ 1 giây.</p>
+              <p class="study-shortcuts-lead">Từ khóa khoanh nhanh, đáp án mồi loại ngay, trọn bộ câu Đúng/Sai, Chọn nhiều, Sơ đồ hình vẽ, Ghép cặp và Bài tập tính toán.</p>
             </div>
 
             <!-- PHẦN 1: AUTO CHỌN 100% -->

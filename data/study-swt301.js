@@ -44,7 +44,7 @@ window.SWT301_STUDY = {
           "bullets": [
             "Verification = Làm ĐÚNG như bản thiết kế chưa ('building product right', gồm Review/Inspection).",
             "Validation = App làm ra có ĐÚNG thứ người dùng cần không ('built the right product').",
-            "QA = Giữ chuẩn quy trình · QC = Soi chất lượng sản phẩm (Câu #6 lấy ruột QC gắn tên QA ➔ chọn False!)."
+            "QA = Giữ chuẩn quy trình · QC = Soi chất lượng sản phẩm."
           ],
           "qIds": [
             6,
@@ -83,7 +83,7 @@ window.SWT301_STUDY = {
       "questionPatterns": [
         {
           "type": "Mẹo bắt câu hỏi gài chữ NOT / EXCEPT ở Chương 1",
-          "cue": "Không thuộc mục tiêu test ➔ Debugging (#27) · Không phải nguyên lý ➔ Exhaustive testing (#31) · Không thuộc chuẩn chất lượng ISO 9126 / Testability ➔ Supportability (#48), Development cost (#30), Robustness (#68).",
+          "cue": "Không thuộc mục tiêu test ➔ Debugging · Không phải nguyên lý ➔ Exhaustive testing · Không thuộc chuẩn chất lượng ISO 9126 / Testability ➔ Supportability, Development cost, Robustness.",
           "qIds": [
             21,
             27,
@@ -129,7 +129,7 @@ window.SWT301_STUDY = {
           "term": "Chức năng vs Phi chức năng: Usability · Performance · Load · Stress",
           "what": "Làm được việc gì (Functional) khác với Chạy mượt cỡ nào (Non-functional).",
           "bullets": [
-            "Functional: App có tính đúng tiền, đăng nhập được không? · Non-functional: Chạy nhanh, an toàn, dễ bấm cỡ nào? (Gặp Internet Banking #66, #234 chọn ngay Non-functional!).",
+            "Functional: App có tính đúng tiền, đăng nhập được không? · Non-functional: Chạy nhanh, an toàn, dễ bấm cỡ nào?.",
             "Usability = giao diện dễ xài · Performance = độ nhanh mượt.",
             "Load testing = cho khách vào mức BÌNH THƯỜNG DỰ KIẾN ('varying workloads') · Stress testing = nhồi VƯỢT QUÁ SỨC CHỊU ĐỰNG ('limitations exceeded')."
           ],
@@ -169,8 +169,8 @@ window.SWT301_STUDY = {
       ],
       "questionPatterns": [
         {
-          "type": "Siêu bẫy câu #12 vs #81 về 'Performance testing'",
-          "cue": "Hỏi 'Which IS non-functional?' (#81) ➔ Performance testing. Hỏi 'What is NOT test type?' (#12) ➔ CŨNG chọn Performance testing (vì nó chỉ là nhánh con nằm trong Non-functional)!",
+          "type": "Siêu bẫy câu vs về 'Performance testing'",
+          "cue": "Hỏi 'Which IS non-functional?' ➔ Performance testing. Hỏi 'What is NOT test type?' ➔ CŨNG chọn Performance testing (vì nó chỉ là nhánh con nằm trong Non-functional)!",
           "qIds": [
             12,
             81
@@ -189,7 +189,7 @@ window.SWT301_STUDY = {
           "what": "Soi lỗi tài liệu/code bằng mắt trước khi bấm chạy app.",
           "bullets": [
             "Informal: Xem nhanh giá rẻ, không biên bản · Walkthrough: TÁC GIẢ (Author) tự trình bày kịch bản để chia sẻ & xin góp ý.",
-            "Technical / Peer Review: Anh em chuyên gia tự soi kỹ thuật, KHÔNG có Sếp (Management) ngồi dự (#133).",
+            "Technical / Peer Review: Anh em chuyên gia tự soi kỹ thuật, KHÔNG có Sếp (Management) ngồi dự.",
             "Inspection: Căng nhất — có MODERATOR chuyên nghiệp điều hành & hòa giải, có SCRIBE ngồi chép biên bản lỗi, dùng Checklist."
           ],
           "qIds": [
@@ -212,7 +212,7 @@ window.SWT301_STUDY = {
           "what": "Quét code lúc chưa chạy khác với theo dõi RAM lúc đang chạy.",
           "bullets": [
             "Static Analysis: Giống cảnh sát bắt lỗi chính tả code (code thừa unreachable, biến chưa tạo, sai chuẩn trình bày) — KHÔNG chạy app nên KHÔNG đo được độ phủ code và KHÔNG bắt được tràn RAM.",
-            "Dynamic Analysis: Bật app chạy thật để rình bắt rò rỉ bộ nhớ (Memory leaks & con trỏ lỗi #73, #88)."
+            "Dynamic Analysis: Bật app chạy thật để rình bắt rò rỉ bộ nhớ."
           ],
           "qIds": [
             16,
@@ -232,7 +232,7 @@ window.SWT301_STUDY = {
       "questionPatterns": [
         {
           "type": "Đừng lộn bước Planning với bước Kick-off của buổi Review",
-          "cue": "Chọn người & chia vai ('allocating roles') = Planning (#77, #156) · Giải thích mục tiêu tài liệu ('explaining objective') = Kick-off (#274). Luôn nhớ Planning đứng đầu tiên!",
+          "cue": "Chọn người & chia vai ('allocating roles') = Planning · Giải thích mục tiêu tài liệu ('explaining objective') = Kick-off. Luôn nhớ Planning đứng đầu tiên!",
           "qIds": [
             46,
             77,
@@ -275,9 +275,9 @@ window.SWT301_STUDY = {
           "term": "Hộp trắng (White-box) & Đoán lỗi kinh nghiệm (Error Guessing / Exploratory)",
           "what": "Đếm dòng code lệnh IF và ứng biến khi thiếu tài liệu.",
           "bullets": [
-            "IF không có ELSE ➔ chỉ cần 1 test Statement, 2 test Branch (#219, #225). IF CÓ ELSE ➔ cần 2 test Statement, 2 test Branch (#170, #226). Hỏi Paths của 2 IF rời ➔ 2 × 2 = 4 (#236).",
-            "Cyclomatic Complexity = L - N + 2P (#216, số càng to code càng khó test).",
-            "Error Guessing = đoán lỗi sau khi đã test chuẩn (#322) · Exploratory = vừa mò vừa chạy test cùng lúc khi GẤP & thiếu tài liệu (#272, #294)."
+            "IF không có ELSE ➔ chỉ cần 1 test Statement, 2 test Branch. IF CÓ ELSE ➔ cần 2 test Statement, 2 test Branch. Hỏi Paths của 2 IF rời ➔ 2 × 2 = 4.",
+            "Cyclomatic Complexity = L - N + 2P.",
+            "Error Guessing = đoán lỗi sau khi đã test chuẩn · Exploratory = vừa mò vừa chạy test cùng lúc khi GẤP & thiếu tài liệu."
           ],
           "qIds": [
             28,
@@ -298,8 +298,8 @@ window.SWT301_STUDY = {
       ],
       "questionPatterns": [
         {
-          "type": "Bẫy 1 chữ chết người: 'Decision table' vs 'Decision testing' & bài #353",
-          "cue": "'Decision TABLE' là Black-box (#90), còn 'Decision TESTING' là White-box (#28)! Ở câu #353 code y hệt #170 nhưng đề bảo ĐÃ ĐỦ 100% rồi hỏi cần THÊM bao nhiêu ('How many MORE') ➔ chọn None!",
+          "type": "Bẫy 1 chữ chết người: 'Decision table' vs 'Decision testing' & bài",
+          "cue": "'Decision TABLE' là Black-box, còn 'Decision TESTING' là White-box! Ở câu code y hệt nhưng đề bảo ĐÃ ĐỦ 100% rồi hỏi cần THÊM bao nhiêu ('How many MORE') ➔ chọn None!",
           "qIds": [
             28,
             90,
@@ -320,8 +320,8 @@ window.SWT301_STUDY = {
           "what": "Ai làm việc nấy và nguyên tắc chốt điểm dừng.",
           "bullets": [
             "Leader làm việc với hãng bán tool & viết báo cáo tổng kết · Tester viết Test Spec, chuẩn bị Data & bấm chạy test.",
-            "Test Plan là kế hoạch tổng thể nên KHÔNG nhét chi tiết nhỏ như Expected results (#15, #34), Test scripts (#199), Test spec (#144) hay Quality plans (#23).",
-            "Dừng test khi nào? Nhìn đáp án theo thứ tự ưu tiên: (1) Phụ thuộc Rủi ro ('risks' #210) ➔ (2) Đạt tiêu chí hoàn thành ('completion criteria met' #363) ➔ (3) Hết giờ ('scheduled time expires' #298)."
+            "Test Plan là kế hoạch tổng thể nên KHÔNG nhét chi tiết nhỏ như Expected results, Test scripts, Test spec hay Quality plans.",
+            "Dừng test khi nào? Nhìn đáp án theo thứ tự ưu tiên: (1) Phụ thuộc Rủi ro ➔ (2) Đạt tiêu chí hoàn thành ➔ (3) Hết giờ."
           ],
           "qIds": [
             15,
@@ -340,9 +340,9 @@ window.SWT301_STUDY = {
           "term": "Project vs Product Risk · Severity vs Priority · Quản lý phiên bản (CM)",
           "what": "3 cặp khái niệm quản lý đi thi cực hay hỏi.",
           "bullets": [
-            "Project Risk = rắc rối con người, tổ chức, lịch trình, nhà cung cấp (#26, #367) ≠ Product Risk = bản thân con app viết dởm, hay lỗi (#26, #137).",
-            "Severity = lỗi phá hệ thống NẶNG cỡ nào (#67) ≠ Priority = cần SỬA GẤP trước hay sau (#278). Phiếu báo bug KHÔNG viết lời giải sửa code (#14, #24).",
-            "Configuration Management (CM): Giữ đúng phiên bản code & bộ test như Git (làm ngay từ lúc Planning #95, không liên quan kiểm toán ISO 9001 #19)."
+            "Project Risk = rắc rối con người, tổ chức, lịch trình, nhà cung cấp ≠ Product Risk = bản thân con app viết dởm, hay lỗi.",
+            "Severity = lỗi phá hệ thống NẶNG cỡ nào ≠ Priority = cần SỬA GẤP trước hay sau. Phiếu báo bug KHÔNG viết lời giải sửa code.",
+            "Configuration Management (CM): Giữ đúng phiên bản code & bộ test như Git."
           ],
           "qIds": [
             14,
@@ -361,7 +361,7 @@ window.SWT301_STUDY = {
       ],
       "questionPatterns": [
         {
-          "type": "Bẫy dự án trễ 6 tuần, cấm dời ngày giao & cấm giảm chất lượng (#316)",
+          "type": "Bẫy dự án trễ 6 tuần, cấm dời ngày giao & cấm giảm chất lượng",
           "cue": "Đừng chọn tuyển thêm người hay bắt tăng ca (càng thêm bug)! Đáp án chuẩn duy nhất là cắt bớt tính năng chưa làm ('Eliminate some of the requirements').",
           "qIds": [
             201,
@@ -375,16 +375,16 @@ window.SWT301_STUDY = {
       "number": 6,
       "title": "Chương 6: Các loại Tool kiểm thử — Đừng râu ông nọ cắm cằm bà kia!",
       "badge": "18 câu",
-      "flow": "Tìm tool: Xem mình cần gì trước (#168) ➔ Mua về: Cho 1 nhóm nhỏ xài thử Pilot (#299) ➔ Cấm quăng vào dự án đang trễ lịch (#189)!",
+      "flow": "Tìm tool: Xem mình cần gì trước ➔ Mua về: Cho 1 nhóm nhỏ xài thử Pilot ➔ Cấm quăng vào dự án đang trễ lịch!",
       "concepts": [
         {
           "term": "Nhớ đúng nghề của từng Tool (Chỉ 1 dòng mỗi loại)",
           "what": "Mỗi tool chỉ giỏi đúng việc của nó, không làm thay người được hết.",
           "bullets": [
-            "Requirements tool: Lưu yêu cầu, kiểm tra mâu thuẫn & nối dây truy vết (#87, #157).",
-            "Test management tool: Lên lịch, quản lý tiến độ & log sự cố (#102 — KHÔNG tự đẻ ra test data #11!).",
-            "Test design tool: Phụ đẻ ra test case (#91).",
-            "Test execution / Capture-Playback: Tự bấm chạy lại test — tiết kiệm tiền nhất (#80), cực ngon để CHẠY Regression (#295), nhưng KHÔNG tự nghĩ ra đáp án đúng ('expected outputs' #10)!"
+            "Requirements tool: Lưu yêu cầu, kiểm tra mâu thuẫn & nối dây truy vết.",
+            "Test management tool: Lên lịch, quản lý tiến độ & log sự cố.",
+            "Test design tool: Phụ đẻ ra test case.",
+            "Test execution / Capture-Playback: Tự bấm chạy lại test — tiết kiệm tiền nhất, cực ngon để CHẠY Regression, nhưng KHÔNG tự nghĩ ra đáp án đúng!"
           ],
           "qIds": [
             10,
@@ -403,8 +403,8 @@ window.SWT301_STUDY = {
       ],
       "questionPatterns": [
         {
-          "type": "Cặp câu Mua Tool mới (#168 vs #299)",
-          "cue": "Mới ĐỊNH tìm tool (#168) ➔ Phân tích nhu cầu của mình trước ('Analyze your needs') · ĐÃ MUA về rồi (#299) ➔ Đưa 1 nhóm nhỏ xài thử ('A small team').",
+          "type": "Cặp câu Mua Tool mới",
+          "cue": "Mới ĐỊNH tìm tool ➔ Phân tích nhu cầu của mình trước ('Analyze your needs') · ĐÃ MUA về rồi ➔ Đưa 1 nhóm nhỏ xài thử ('A small team').",
           "qIds": [
             20,
             168,
@@ -536,7 +536,7 @@ window.SWT301_STUDY = {
       "term": "QA vs QC & Quality (Đảm bảo vs Kiểm soát chất lượng)",
       "what": "Quality là làm đúng yêu cầu ('Conformance to requirements'). QA lo giữ chuẩn QUY TRÌNH, còn QC đi soi lỗi SẢN PHẨM.",
       "points": [
-        "Bẫy hay gặp: Câu #6 lấy việc 'so sánh chất lượng sản phẩm' (của QC) gán cho QA nên là Sai (False)!"
+        "Bẫy hay gặp: Câu lấy việc 'so sánh chất lượng sản phẩm' (của QC) gán cho QA nên là Sai (False)!"
       ],
       "triggers": [
         "quality assurance",
@@ -557,7 +557,7 @@ window.SWT301_STUDY = {
       "term": "ISO 9126 & Testability (6 tiêu chí chất lượng phần mềm)",
       "what": "Bộ chuẩn đo phần mềm tốt gồm 6 mặt: Chức năng, Tin cậy, Dễ dùng, Hiệu quả, Dễ bảo trì, Dễ di chuyển.",
       "points": [
-        "Gạt bỏ ngay các chữ ngoại lai: Supportability (#48), Development cost (#30), Viability (#142), Robustness (không thuộc Testability #68)."
+        "Gạt bỏ ngay các chữ ngoại lai: Supportability, Development cost, Viability, Robustness."
       ],
       "triggers": [
         "iso 9126",
@@ -720,7 +720,7 @@ window.SWT301_STUDY = {
       "term": "Tâm lý & Tester độc lập (Sao Dev không tự test được?)",
       "what": "Dev tự viết code như 'con đẻ' nên hay chủ quan không thấy lỗi ('Lack of Objectivity'); cần người độc lập soi mới ra nhiều bug.",
       "points": [
-        "Độc lập cao nhất là thuê đội từ công ty/tổ chức khác (#284). Khi báo bug cho Dev phải lịch sự, góp ý xây dựng ('constructive feedback')."
+        "Độc lập cao nhất là thuê đội từ công ty/tổ chức khác. Khi báo bug cho Dev phải lịch sự, góp ý xây dựng ('constructive feedback')."
       ],
       "triggers": [
         "independent testing",
@@ -783,7 +783,7 @@ window.SWT301_STUDY = {
       "term": "Mô hình V-Model, Waterfall & Phần mềm mua sẵn (COTS)",
       "what": "V-Model lồng việc chuẩn bị test song song ngay từ lúc viết yêu cầu & thiết kế (chứ không đợi code xong hết như Waterfall).",
       "points": [
-        "Bắt đầu quy trình test ngay khi tài liệu Requirements được duyệt (#320). Phần mềm mua sẵn (COTS) không thấy code bên trong, test nghiệm thu để yên tâm xài ('build confidence')."
+        "Bắt đầu quy trình test ngay khi tài liệu Requirements được duyệt. Phần mềm mua sẵn (COTS) không thấy code bên trong, test nghiệm thu để yên tâm xài ('build confidence')."
       ],
       "triggers": [
         "v-model",
@@ -890,7 +890,7 @@ window.SWT301_STUDY = {
       "term": "System Testing (Test nguyên con app hoàn chỉnh)",
       "what": "Sau khi ráp xong toàn bộ, đem nguyên hệ thống hoàn chỉnh ra test tổng thể từ A–Z như lúc chạy thật.",
       "points": [
-        "Test cả tính năng (Functional) lẫn độ nhanh/bảo mật (Non-functional). Chỉ chọn đáp án 'System Testing' khi đề có chữ 'testing the entire system' (#164)!"
+        "Test cả tính năng (Functional) lẫn độ nhanh/bảo mật (Non-functional). Chỉ chọn đáp án 'System Testing' khi đề có chữ 'testing the entire system'!"
       ],
       "triggers": [
         "system testing",
@@ -957,7 +957,7 @@ window.SWT301_STUDY = {
       "term": "Non-functional & Usability Testing (App xài sướng, mượt & an toàn cỡ nào?)",
       "what": "Không hỏi có chạy được không, mà hỏi chạy TỐT THẾ NÀO ('how well'): có nhanh không, bảo mật không, dễ bấm không.",
       "points": [
-        "Cứ gặp 'Internet banking' (#66, #234) là chọn Non-functional testing!",
+        "Cứ gặp 'Internet banking' là chọn Non-functional testing!",
         "Usability testing = test độ dễ dùng, giao diện thân thiện với người dùng ('user-friendliness')."
       ],
       "triggers": [
@@ -985,7 +985,7 @@ window.SWT301_STUDY = {
       "term": "Performance vs Load vs Stress Testing (Tốc độ vs Tải bình thường vs Nhồi quá tải)",
       "what": "Cùng đo sức chịu đựng của máy chủ nhưng khác nhau ở MỨC ĐỘ NGƯỜI TRUY CẬP:",
       "points": [
-        "Performance = tên chung đo tốc độ phản hồi & hiệu năng (Lưu ý bẫy #12: nó là con của Non-functional chứ không phải 1 trong 4 nhóm cha).",
+        "Performance = tên chung đo tốc độ phản hồi & hiệu năng.",
         "Load testing = cho lượng người vào đúng mức DỰ KIẾN BÌNH THƯỜNG ('varying workloads / normal usage').",
         "Stress testing = nhồi nhét VƯỢT QUÁ GIỚI HẠN chịu đựng xem sập thế nào ('limitations exceeded / beyond capacity')."
       ],
@@ -1010,7 +1010,7 @@ window.SWT301_STUDY = {
       "term": "Confirmation Testing / Re-testing (Test lại đúng con bug vừa sửa)",
       "what": "Dev bảo 'tao fix xong bug A rồi đó' ➔ mình vào chạy lại ĐÚNG chỗ bug A xem hết lỗi thật chưa.",
       "points": [
-        "Dấu hiệu: 'confirm that the defect has been fixed / removed'. Riêng câu #166 hỏi phương pháp trong Maintenance Testing thì chọn 'Re-testing'."
+        "Dấu hiệu: 'confirm that the defect has been fixed / removed'. Riêng câu hỏi phương pháp trong Maintenance Testing thì chọn 'Re-testing'."
       ],
       "triggers": [
         "confirmation testing",
@@ -1058,7 +1058,7 @@ window.SWT301_STUDY = {
       "term": "Static Testing vs Dynamic Testing (Đọc nguội không chạy code vs Bấm chạy thật)",
       "what": "Static = Mở tài liệu hoặc code ra SOI BẰNG MẮT / TOOL mà KHÔNG BẤM CHẠY app. Dynamic = Phải BẤM CHẠY app lên mới test.",
       "points": [
-        "Static bắt lỗi thiếu yêu cầu/thiết kế từ trong trứng nước cực rẻ, nhưng KHÔNG làm giảm việc phải viết tài liệu (#33)."
+        "Static bắt lỗi thiếu yêu cầu/thiết kế từ trong trứng nước cực rẻ, nhưng KHÔNG làm giảm việc phải viết tài liệu."
       ],
       "triggers": [
         "static testing",
@@ -1141,7 +1141,7 @@ window.SWT301_STUDY = {
       "term": "Scribe (Thư ký ghi biên bản) & Author (Tác giả bài viết)",
       "what": "Scribe = ngồi ghi lại toàn bộ lỗi & câu hỏi mở trong cuộc họp. Author = người đẻ ra tài liệu và mang về sửa.",
       "points": [
-        "Lưu ý: Sếp (Management) KHÔNG được ngồi dự buổi Technical/Peer review (#133) để anh em kỹ thuật thoải mái bắt lỗi!"
+        "Lưu ý: Sếp (Management) KHÔNG được ngồi dự buổi Technical/Peer review để anh em kỹ thuật thoải mái bắt lỗi!"
       ],
       "triggers": [
         "scribe",
@@ -1184,7 +1184,7 @@ window.SWT301_STUDY = {
       "term": "Technical Review (Peer Review) & Inspection (Thanh tra gắt nhất)",
       "what": "Technical review = nhóm chuyên gia ngang hàng mổ xẻ kỹ thuật (không có sếp). Inspection = buổi thanh tra bài bản nhất do Moderator cầm trịch kèm checklist chặt chẽ.",
       "points": [
-        "Inspection không chạy code nên KHÔNG THỂ biết code đã chạy phủ được bao nhiêu % ('How much code covered' #336, #356)."
+        "Inspection không chạy code nên KHÔNG THỂ biết code đã chạy phủ được bao nhiêu %."
       ],
       "triggers": [
         "technical review",
@@ -1215,7 +1215,7 @@ window.SWT301_STUDY = {
       "term": "Static Analysis vs Dynamic Analysis (Quét code tĩnh vs Bắt tràn bộ nhớ lúc chạy)",
       "what": "Static analysis = như 'cảnh sát chính tả code' (Dev dùng để bắt biến thừa, code chết unreachable, sai chuẩn code). Dynamic analysis = soi lúc app ĐANG CHẠY để bắt rò rỉ RAM (Memory leaks).",
       "points": [
-        "Nhớ cứng: Memory leaks (tràn/rò bộ nhớ) chỉ xảy ra khi chạy thật nên Static KHÔNG tìm được (#16), bắt buộc chọn Dynamic analysis (#73, #88)!"
+        "Nhớ cứng: Memory leaks (tràn/rò bộ nhớ) chỉ xảy ra khi chạy thật nên Static KHÔNG tìm được, bắt buộc chọn Dynamic analysis!"
       ],
       "triggers": [
         "static analysis",
@@ -1248,7 +1248,7 @@ window.SWT301_STUDY = {
       "term": "Black-box vs White-box vs Gray-box (Không nhìn code vs Soi từng dòng code)",
       "what": "Black-box = chỉ nhìn bên ngoài nhập input đo output, không cần biết code. White-box (còn gọi là Structural / Glass / Clear box) = mở code ra soi luồng logic.",
       "points": [
-        "Gray-box / Hybrid = lai cả hai (#54). Random testing không tính là White-box theo chuẩn BS7925-2 (#125)."
+        "Gray-box / Hybrid = lai cả hai. Random testing không tính là White-box theo chuẩn BS7925-2."
       ],
       "triggers": [
         "black box",
@@ -1338,7 +1338,7 @@ window.SWT301_STUDY = {
       "term": "Decision Table Testing (Kẻ bảng ghép nhiều điều kiện Đúng/Sai)",
       "what": "Dùng khi bài toán có NHIỀU ĐIỀU KIỆN KẾT HỢP với nhau ('combinations of inputs' — ví dụ: Có thẻ Citibank + Hạng phòng Bạc thì có được nâng hạng không?).",
       "points": [
-        "Coi chừng lộn tên: 'Decision TABLE' là Black-box (#90), còn 'Decision TESTING' là White-box soi lệnh IF (#28)!"
+        "Coi chừng lộn tên: 'Decision TABLE' là Black-box, còn 'Decision TESTING' là White-box soi lệnh IF!"
       ],
       "triggers": [
         "decision table",
@@ -1425,7 +1425,7 @@ window.SWT301_STUDY = {
       "term": "Cyclomatic Complexity (Đo xem code rẽ nhánh rối cỡ nào)",
       "what": "Con số White-box đếm số đường đi độc lập trong code — số này càng to thì code càng rối và CÀNG KHÓ TEST ('Difficult to test').",
       "points": [
-        "Công thức duy nhất cần nhớ: L - N + 2P (#216)."
+        "Công thức duy nhất cần nhớ: L - N + 2P."
       ],
       "triggers": [
         "cyclomatic complexity",
@@ -1444,7 +1444,7 @@ window.SWT301_STUDY = {
       "term": "Error Guessing (Đoán lỗi) & Exploratory Testing (Vừa mò app vừa test luôn)",
       "what": "Cả 2 đều dựa vào KINH NGHIỆM nghề nghiệp ('Experience-based'): Error guessing là đoán chỗ hay sai (nhập rỗng, số 0...), còn Exploratory là vừa khám phá app vừa nghĩ test chạy luôn.",
       "points": [
-        "Error guessing nên làm SAU KHI đã test bài bản (#322). Exploratory cực hợp khi GẤP THỜI GIAN và thiếu tài liệu chi tiết (#294)."
+        "Error guessing nên làm SAU KHI đã test bài bản. Exploratory cực hợp khi GẤP THỜI GIAN và thiếu tài liệu chi tiết."
       ],
       "triggers": [
         "experience-based",
@@ -1471,7 +1471,7 @@ window.SWT301_STUDY = {
       "term": "Test Leader / Manager vs Tester (Sếp quản lý vs Lính trực tiếp test)",
       "what": "Leader lo quản lý: lập kế hoạch, chia việc, làm việc với hãng bán tool, chốt báo cáo tổng kết. Tester lo thực chiến: viết test spec, tạo data, bấm chạy test.",
       "points": [
-        "Cứ thấy 'Create Test Specifications / Prepare Test Data' là việc của Tester (sai với Leader #193); thấy 'Tool Vendor / Summary Report' là việc của Leader (sai với Tester #195)."
+        "Cứ thấy 'Create Test Specifications / Prepare Test Data' là việc của Tester; thấy 'Tool Vendor / Summary Report' là việc của Leader."
       ],
       "triggers": [
         "test lead",
@@ -1493,7 +1493,7 @@ window.SWT301_STUDY = {
       "term": "Test Plan (Bản kế hoạch tổng thể — Cái gì không nhét vào đây?)",
       "what": "Tài liệu cấp quản lý ghi phạm vi (cái gì test/không test), lịch trình, nhân sự, môi trường — KHÔNG ghi chi tiết từng câu test nhỏ lẻ.",
       "points": [
-        "4 thứ KHÔNG nằm trong Test Plan: Expected results (#15, #34), Quality plans (#23), Test specification (#144), Test Scripts (#199)."
+        "4 thứ KHÔNG nằm trong Test Plan: Expected results, Quality plans, Test specification, Test Scripts."
       ],
       "triggers": [
         "test plan",
@@ -1520,9 +1520,9 @@ window.SWT301_STUDY = {
     {
       "id": "entry-exit-stop-testing",
       "term": "Entry Criteria (Đủ đồ mới làm) & Exit Criteria (Đạt chuẩn mới nghỉ)",
-      "what": "Entry = có môi trường & nguồn lực mới bắt đầu test (#78). Exit / Completion criteria = tiêu chí đặt ra từ đầu để biết khi nào một đợt test ĐÃ XONG và được dừng.",
+      "what": "Entry = có môi trường & nguồn lực mới bắt đầu test. Exit / Completion criteria = tiêu chí đặt ra từ đầu để biết khi nào một đợt test ĐÃ XONG và được dừng.",
       "points": [
-        "Hỏi 'Khi nào dừng test?': Ưu tiên 1 chọn câu có chữ 'risks' (#210) ➔ Ưu tiên 2 chọn 'completion criteria met' (#363) ➔ Ưu tiên 3 mới chọn 'time expires' (#298)."
+        "Hỏi 'Khi nào dừng test?': Ưu tiên 1 chọn câu có chữ 'risks' ➔ Ưu tiên 2 chọn 'completion criteria met' ➔ Ưu tiên 3 mới chọn 'time expires'."
       ],
       "triggers": [
         "entry criteria",
@@ -1555,7 +1555,7 @@ window.SWT301_STUDY = {
       "term": "Estimation (Nhắm công sức) · Monitoring (Theo dõi) · Control (Điều chỉnh)",
       "what": "Estimation = nhắm tốn bao nhiêu công; Monitoring = nhìn số liệu xem chạy tới đâu rồi; Control = thấy trễ thì điều người/sửa kế hoạch.",
       "points": [
-        "Measurement dysfunction (#362): Chạy theo bệnh thành tích làm đẹp con số báo cáo nhưng chất lượng thật bị nát."
+        "Measurement dysfunction: Chạy theo bệnh thành tích làm đẹp con số báo cáo nhưng chất lượng thật bị nát."
       ],
       "triggers": [
         "test estimation",
@@ -1579,7 +1579,7 @@ window.SWT301_STUDY = {
       "term": "Project Risk (Rủi ro con người/lịch trình) vs Product Risk (Rủi ro bản thân con app)",
       "what": "Project risk = chuyện nội bộ dự án (thiếu người, trễ lịch, nhà cung cấp trễ, tổ chức rối). Product risk = bản thân phần mềm dởm, hay lỗi, chạy sai.",
       "points": [
-        "Mức độ rủi ro = Khả năng xảy ra (Likelihood) × Thiệt hại gây ra (Impact) (#270)."
+        "Mức độ rủi ro = Khả năng xảy ra (Likelihood) × Thiệt hại gây ra (Impact)."
       ],
       "triggers": [
         "project risk",
@@ -1602,7 +1602,7 @@ window.SWT301_STUDY = {
       "term": "Severity (Nặng cỡ nào) vs Priority (Gấp cỡ nào) & Báo cáo lỗi",
       "what": "Severity = lỗi làm HỎNG HỆ THỐNG nặng tới đâu. Priority = cần ưu tiên SỬA TRƯỚC HAY SAU. (Ví dụ: Sai chính tả logo trang chủ là Severity nhẹ nhưng Priority gấp!).",
       "points": [
-        "Vòng đời bug: Open ➔ Assigned ➔ Fixed ➔ Closed. Phiếu báo lỗi (Incident report) chỉ mô tả lỗi, KHÔNG dạy Dev cách sửa code ('how to fix' #14, #24)!"
+        "Vòng đời bug: Open ➔ Assigned ➔ Fixed ➔ Closed. Phiếu báo lỗi (Incident report) chỉ mô tả lỗi, KHÔNG dạy Dev cách sửa code!"
       ],
       "triggers": [
         "incident report",
@@ -1631,7 +1631,7 @@ window.SWT301_STUDY = {
       "term": "Configuration Management — CM (Quản lý phiên bản kiểu Git)",
       "what": "Đánh số phiên bản và lưu kho có kiểm soát cho cả code lẫn bộ test case (Testware) để không bị test nhầm bản cũ.",
       "points": [
-        "Bắt đầu làm từ lúc Test Planning (#95); quản lý kho lưu trữ gọi là Configuration Control (#152); KHÔNG liên quan tới kiểm toán ISO 9001 (#19)."
+        "Bắt đầu làm từ lúc Test Planning; quản lý kho lưu trữ gọi là Configuration Control; KHÔNG liên quan tới kiểm toán ISO 9001."
       ],
       "triggers": [
         "configuration management",
@@ -1654,7 +1654,7 @@ window.SWT301_STUDY = {
       "term": "Requirements Tool vs Test Management Tool vs Test Design Tool",
       "what": "Requirements tool = lưu yêu cầu & nối dây truy vết (traceable). Test management tool = lên lịch chạy & quản lý tiến độ/log bug. Test design tool = hỗ trợ đẻ ra test case.",
       "points": [
-        "Bẫy #11: Test management tool chỉ quản lý chứ KHÔNG tự đẻ ra dữ liệu test ('Generating test data')."
+        "Bẫy: Test management tool chỉ quản lý chứ KHÔNG tự đẻ ra dữ liệu test ('Generating test data')."
       ],
       "triggers": [
         "requirements management tools",
@@ -1676,9 +1676,9 @@ window.SWT301_STUDY = {
     {
       "id": "test-execution-automation-tools",
       "term": "Test Execution / Capture-Playback Tool (Tool tự bấm chạy lại kịch bản)",
-      "what": "Thu lại thao tác chuột/phím rồi tự chạy lặp lại — giúp tiết kiệm tiền nhiều nhất (#80) và cực sướng khi CHẠY Regression test (#295).",
+      "what": "Thu lại thao tác chuột/phím rồi tự chạy lặp lại — giúp tiết kiệm tiền nhiều nhất và cực sướng khi CHẠY Regression test.",
       "points": [
-        "Tool là máy nên KHÔNG tự biết kết quả đúng phải là gì ('Generating expected outputs' #10). Data-driven = tách file dữ liệu riêng ra khỏi code kịch bản (#238)."
+        "Tool là máy nên KHÔNG tự biết kết quả đúng phải là gì. Data-driven = tách file dữ liệu riêng ra khỏi code kịch bản."
       ],
       "triggers": [
         "test execution tool",
@@ -1707,9 +1707,9 @@ window.SWT301_STUDY = {
     {
       "id": "tool-selection-rollout",
       "term": "Mua & Áp dụng Tool mới (Đừng quăng ngay vào dự án đang cháy!)",
-      "what": "Bước 1 khi muốn tìm tool: Xem kỹ mình thực sự cần gì ('Analyze your needs' #168). Khi mua về rồi: Đưa cho 1 NHÓM NHỎ dùng thử nghiệm trước ('A small team' #299).",
+      "what": "Bước 1 khi muốn tìm tool: Xem kỹ mình thực sự cần gì. Khi mua về rồi: Đưa cho 1 NHÓM NHỎ dùng thử nghiệm trước.",
       "points": [
-        "Tuyệt đối không đem tool mới tinh áp vào dự án đang trễ deadline (#189) và không đú theo công nghệ của đối thủ (#20)."
+        "Tuyệt đối không đem tool mới tinh áp vào dự án đang trễ deadline và không đú theo công nghệ của đối thủ."
       ],
       "triggers": [
         "tool selection",
@@ -3811,5 +3811,6249 @@ window.SWT301_STUDY = {
         }
       ]
     }
-  ]
+  ],
+  "roteSheet": {
+    "rows": [
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "All of the others",
+        "avoid": "All of them are true / All of i, ii, iii",
+        "qIds": [
+          39,
+          127,
+          158,
+          297,
+          339,
+          346,
+          348,
+          362
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Requirements management tools",
+        "avoid": "Incident management tools / Configuration management tools",
+        "qIds": [
+          87,
+          157
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Bottom-up integration",
+        "avoid": "Top-down integration / None of the others",
+        "qIds": [
+          155,
+          235
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "1 test for statement coverage, 2 for branch coverage",
+        "avoid": "3 for branch coverage",
+        "qIds": [
+          219,
+          225
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "information for a risk based decision about release",
+        "avoid": "find all remaining defects",
+        "qIds": [
+          262,
+          358
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "How much of the code has been covered",
+        "avoid": "Variables not defined in the code",
+        "qIds": [
+          336,
+          356
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "Generating expected outputs",
+        "avoid": "Recording test inputs",
+        "qIds": [
+          10
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "Generating test data",
+        "avoid": "Scheduling tests / Logging test results",
+        "qIds": [
+          11
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "developed a library, helping to improve",
+        "avoid": "Thiếu người / Trễ lịch",
+        "qIds": [
+          13
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "How to fix the fault",
+        "avoid": "How to reproduce the fault / Test environment details",
+        "qIds": [
+          14
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Memory leaks",
+        "avoid": "Unreachable (\"dead\") code / Array bound violations",
+        "qIds": [
+          16
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Big-bang",
+        "avoid": "Top down / Bottom up",
+        "qIds": [
+          17
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "State-Transition",
+        "avoid": "Usability / Performance",
+        "qIds": [
+          18
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Auditing conformance to IS09001",
+        "avoid": "Identification of test versions / Controlled library access",
+        "qIds": [
+          19
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "technologies used by the competitors",
+        "avoid": "Evaluation of tools against clear...",
+        "qIds": [
+          20
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "IEEE610",
+        "avoid": "IEEE829 / BS7925-1",
+        "qIds": [
+          21
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "Use of automated test execution tools",
+        "avoid": "Testing performed by users",
+        "qIds": [
+          22
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Quality plans",
+        "avoid": "What is not to be tested / Test environments",
+        "qIds": [
+          23
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Suggestions as to how to fix",
+        "avoid": "Actual and expected results",
+        "qIds": [
+          24
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Error-prone software delivered",
+        "avoid": "Supplier issues / Organization factors",
+        "qIds": [
+          26
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Debugging defects",
+        "avoid": "Finding defects / Preventing defects",
+        "qIds": [
+          27
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "understand the source code",
+        "avoid": "Should be able to understand a functional...",
+        "qIds": [
+          32
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Reducing the need for documentation",
+        "avoid": "Reducing testing cost and time",
+        "qIds": [
+          33
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Top-down integration testing",
+        "avoid": "Business process-based testing / Requirements-based testing",
+        "qIds": [
+          37
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "Designing the Tests",
+        "avoid": "Comparing actual results",
+        "qIds": [
+          38
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "(ii) Structural Testing",
+        "avoid": "(i) Functional testing / Both of (i) and (ii)",
+        "qIds": [
+          40
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "All members of the reviewing team are responsible",
+        "avoid": "Defects and issues are identified and...",
+        "qIds": [
+          41
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Deliverable base-lining",
+        "avoid": "Defect prevention / Management reporting",
+        "qIds": [
+          42
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "not be very confident",
+        "avoid": "Component testing should be black box,...",
+        "qIds": [
+          43
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "hard to find with dynamic testing",
+        "avoid": "Static analysis is not necessary",
+        "qIds": [
+          44
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "non-functional requirement was not specified",
+        "avoid": "This is an acceptable risk of a...",
+        "qIds": [
+          45
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Planning -> Initiate review -> Individual review",
+        "avoid": "Kick-off đứng đầu",
+        "qIds": [
+          46
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "proportion of decision outcomes",
+        "avoid": "statement outcomes",
+        "qIds": [
+          47
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Supportability",
+        "avoid": "Functionality / Usability",
+        "qIds": [
+          48
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Improvements suggested by users",
+        "avoid": "Requirements / Documentation",
+        "qIds": [
+          49
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Alpha release",
+        "avoid": "Beta release / Test release document",
+        "qIds": [
+          50
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Verification process",
+        "avoid": "Design process / Validation process",
+        "qIds": [
+          53
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Improve software accuracy",
+        "avoid": "Find faults / Assure quality",
+        "qIds": [
+          55
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Unit, integration, system, validation",
+        "avoid": "None of the above",
+        "qIds": [
+          57
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Supplies inputs to the software",
+        "avoid": "Schedules tests / Manages software incidents",
+        "qIds": [
+          58
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Checking coding standards",
+        "avoid": "Executing the code / Testing system performance",
+        "qIds": [
+          59
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "To identify defects in software",
+        "avoid": "To increase software complexity / To reduce software features",
+        "qIds": [
+          60
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Closing the incident report",
+        "avoid": "Logging the incident",
+        "qIds": [
+          61
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Confirmation and regression testing",
+        "avoid": "Performance and stress testing / Usability and compliance testing",
+        "qIds": [
+          62
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Missing requirements or design defects",
+        "avoid": "Performance-related defects / Defects in user interface design",
+        "qIds": [
+          64
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "(2) Record/Playback",
+        "avoid": "(1) Performance / Both of (1) and (2)",
+        "qIds": [
+          65
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "impact of the defect on the system",
+        "avoid": "urgency / priority",
+        "qIds": [
+          67
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Robustness",
+        "avoid": "Operability / Observability",
+        "qIds": [
+          68
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "De-bugging",
+        "avoid": "Estimating test duration / Incident Management",
+        "qIds": [
+          69
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Scenario, Dry Run, Peer Group",
+        "avoid": "Pre Meeting Preparations / Formal Follow Up Process",
+        "qIds": [
+          70
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "Capture/Playback",
+        "avoid": "Data tester / Boundary tester",
+        "qIds": [
+          71
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Allocate the individual roles",
+        "avoid": "Log defects / Gather metrics",
+        "qIds": [
+          77
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Experience-based testing",
+        "avoid": "Black-box testing / White-box testing",
+        "qIds": [
+          92
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Branch coverage testing",
+        "avoid": "Basis path coverage testing / Statement coverage testing",
+        "qIds": [
+          93
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "During test planning",
+        "avoid": "During test analysis / During test execution",
+        "qIds": [
+          95
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Experience-based",
+        "avoid": "Specification-based / Structure-based",
+        "qIds": [
+          96
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "A failure",
+        "avoid": "An error / A fault",
+        "qIds": [
+          97
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "user-friendliness, while performance testing measures",
+        "avoid": "Usability testing measures how fast the...",
+        "qIds": [
+          100
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Statement and branch testing",
+        "avoid": "Usability testing / Security testing",
+        "qIds": [
+          103
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Plain language specification model",
+        "avoid": "Process flow model / State transaction model",
+        "qIds": [
+          104
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Difficult to test",
+        "avoid": "Large / Small",
+        "qIds": [
+          105
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Computer Aided Software Testing",
+        "avoid": "Computer Aided Software Tools / None of the others",
+        "qIds": [
+          110
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Process improvement",
+        "avoid": "Review process itself / Metrics analysis",
+        "qIds": [
+          112
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "End User License Agreement",
+        "avoid": "End Usability License Agreement / End User License Arrangement",
+        "qIds": [
+          115
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Is impractical and impossible",
+        "avoid": "Is impractical but possible / Is practically possible",
+        "qIds": [
+          116
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Planning, Review meeting, Rework, Follow up",
+        "avoid": "Planning, Review meeting, Rework, Kick off",
+        "qIds": [
+          117
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Poor software and poor testing",
+        "avoid": "Insufficient time for testing / Bad luck",
+        "qIds": [
+          118
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Project status report",
+        "avoid": "Interim Test report / Final test report",
+        "qIds": [
+          119
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "A static analysis tool",
+        "avoid": "Code reviews / Code inspections",
+        "qIds": [
+          120
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Requirements Phase",
+        "avoid": "Analysis and Design Phase / Development Phase",
+        "qIds": [
+          122
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Extemal failure",
+        "avoid": "Internal failure / Appraisal",
+        "qIds": [
+          123
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "Lack of Objectivity",
+        "avoid": "Lack of technical documentation / Lack of training",
+        "qIds": [
+          124
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Random testing",
+        "avoid": "Data Flow testing / Statement testing",
+        "qIds": [
+          125
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Pole Coverage",
+        "avoid": "Statement Coverage / Condition Coverage",
+        "qIds": [
+          126
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Reducing test time",
+        "avoid": "No change / Increasing test time",
+        "qIds": [
+          128
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Mediates between people",
+        "avoid": "Takes minutes of the meeting / Takes telephone calls",
+        "qIds": [
+          129
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Plan, Do, Check, Act",
+        "avoid": "Plan, Do, Correct, Act / Plan, Debug, Check, Act",
+        "qIds": [
+          135
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Conformance to requirements",
+        "avoid": "Quality is job one / Zero defects",
+        "qIds": [
+          136
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Only Product risks",
+        "avoid": "Only Project risks / Project risks and Product risks",
+        "qIds": [
+          137
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Business scenarios",
+        "avoid": "Performance testing / Unit testing",
+        "qIds": [
+          138
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Purchased/contracted software",
+        "avoid": "Traditional system development / Iterative development",
+        "qIds": [
+          139
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Model based testing approach",
+        "avoid": "Heuristic testing approach / Methodical testing approach",
+        "qIds": [
+          140
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Viability",
+        "avoid": "Correctness / Usability",
+        "qIds": [
+          142
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Field testing",
+        "avoid": "Alpha testing / Performance testing",
+        "qIds": [
+          145
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Procedures and standards",
+        "avoid": "Tools and techniques / Processes and walkthroughs",
+        "qIds": [
+          146
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Configuration Control",
+        "avoid": "Status Accounting / Configuration Identification",
+        "qIds": [
+          152
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Generating many transactions",
+        "avoid": "Measuring response time / Measuring transaction rates",
+        "qIds": [
+          154
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Selecting the personnel, allocating roles",
+        "avoid": "Explaining the objectives / Follow up",
+        "qIds": [
+          156
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "User Acceptance Test Cases",
+        "avoid": "Integration Level Test Cases / Unit Level Test Cases",
+        "qIds": [
+          161
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Open, Assigned, Fixed, Closed",
+        "avoid": "Open, Fixed, Assigned, Closed / Assigned, Open, Closed, Fixed",
+        "qIds": [
+          163
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "Analyze your needs and requirements",
+        "avoid": "Attend a tool exhibition / Invite a vendor to give a demo",
+        "qIds": [
+          168
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "ISO 9126",
+        "avoid": "ISO 829 / ISO 1012",
+        "qIds": [
+          172
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "8 characters",
+        "avoid": "7 characters / 13 characters",
+        "qIds": [
+          173
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "32, 37, 40",
+        "avoid": "23, 24, 25 / 0, 12, 25",
+        "qIds": [
+          174
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "3,10,22",
+        "avoid": "10,11,21 / 3,20,21",
+        "qIds": [
+          176
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "15, 19 and 25",
+        "avoid": "17, 18 and 19 / 18, 20 and 22",
+        "qIds": [
+          177
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "4, 5, 99",
+        "avoid": "5, 6, 20 / 4, 5, 80",
+        "qIds": [
+          178
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "40-50",
+        "avoid": "10-20 / 70-80",
+        "qIds": [
+          179
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "9,10,21,22",
+        "avoid": "9,10,11,22 / 10,11,21,22",
+        "qIds": [
+          180
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "1899,1900,2004,2005",
+        "avoid": "0,1900,2004,2005 / 1900,2004",
+        "qIds": [
+          181
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "22,23,24",
+        "avoid": "12,16,22 / 24,27,17",
+        "qIds": [
+          184
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "All of them are valid reasons for failure",
+        "avoid": "2 is a valid reason; 1,3,4 & 5 are not",
+        "qIds": [
+          185
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "ii is true and i, iii, iv are false",
+        "avoid": "Options i, ii, iii, iv are true",
+        "qIds": [
+          207
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "depends on the risks for the system",
+        "avoid": "All faults fixed / All tests executed",
+        "qIds": [
+          210
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "i, v, iv, ii, iii, vi",
+        "avoid": "i, ii, iii, iv, v, vi / vi, i, ii, iii, iv, v",
+        "qIds": [
+          214
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "(i) Identifying defects",
+        "avoid": "(ii) Fixing defects / (i) and (ii)",
+        "qIds": [
+          215
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "L - N + 2P",
+        "avoid": "N - L + 2P / N - L + P",
+        "qIds": [
+          216
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Boo01k",
+        "avoid": "BOOK / Book",
+        "qIds": [
+          232
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Test Effectiveness",
+        "avoid": "Defects / Trends analysis",
+        "qIds": [
+          233
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "without executing the software",
+        "avoid": "To execute the software and identify defects",
+        "qIds": [
+          237
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "separate test data from scripts",
+        "avoid": "They do not require external data",
+        "qIds": [
+          238
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "defects in process flows related to typical use",
+        "avoid": "To identify defects in the connections...",
+        "qIds": [
+          239
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "behavior from an external perspective",
+        "avoid": "internal code structure",
+        "qIds": [
+          240
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Static testing does not involve executing the code",
+        "avoid": "Static testing involves executing the...",
+        "qIds": [
+          241
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Integration testing, system testing, acceptance testing",
+        "avoid": "System testing, integration testing,...",
+        "qIds": [
+          244
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "To verify that the system behaves correctly under load",
+        "avoid": "To ensure that the system meets...",
+        "qIds": [
+          245
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "integrates testing throughout the development phases",
+        "avoid": "less costly and time-consuming",
+        "qIds": [
+          246
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "individual units or components in isolation",
+        "avoid": "To perform performance testing",
+        "qIds": [
+          247
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "how well the system performs",
+        "avoid": "It is always performed after functional...",
+        "qIds": [
+          248
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "misunderstandings and reduced software quality",
+        "avoid": "It enhances the efficiency of the...",
+        "qIds": [
+          249
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "vary based on the specific context",
+        "avoid": "It is irrelevant since all testing...",
+        "qIds": [
+          250
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "clarifies what is included and excluded",
+        "avoid": "It outlines the geographical areas where...",
+        "qIds": [
+          251
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "changes in state within an application",
+        "avoid": "The visual aspects of the user interface",
+        "qIds": [
+          252
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "interfaces between components, interactions",
+        "avoid": "It is unit, module and program testing,...",
+        "qIds": [
+          253
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "educate participants and gather feedback",
+        "avoid": "To detect critical defects / To automate review processes",
+        "qIds": [
+          254
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Same tests over time detect fewer issues",
+        "avoid": "Testing must be exhaustive",
+        "qIds": [
+          255
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "functions according to the specified requirements",
+        "avoid": "To assess the system's non-functional...",
+        "qIds": [
+          256
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "bug fixes and enhancements do not introduce new defects",
+        "avoid": "To ensure that new features disrupt...",
+        "qIds": [
+          257
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "areas of the software most likely to have defects",
+        "avoid": "By performing minimal testing on all features",
+        "qIds": [
+          258
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "interaction and effectiveness of the testing team",
+        "avoid": "It allows for complete automation of the...",
+        "qIds": [
+          259
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Inexpensive way to get some benefit",
+        "avoid": "Find defects",
+        "qIds": [
+          260
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "only one value in the range becomes a test case",
+        "avoid": "every value in the range",
+        "qIds": [
+          261
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "To plan when to stop testing",
+        "avoid": "To know when a specific test has finished...",
+        "qIds": [
+          263
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Preventative tests are designed early; reactive tests",
+        "avoid": "Preventative tests and reactive tests are...",
+        "qIds": [
+          264
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Cultural difference",
+        "avoid": "Does not meet people needs / Relinquishments of control",
+        "qIds": [
+          265
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "identify defects in any software work product",
+        "avoid": "To identify potential application...",
+        "qIds": [
+          266
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "prevent defects from being introduced",
+        "avoid": "It is cheaper than designing tests during...",
+        "qIds": [
+          267
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "incorrect behavior of the system in operation",
+        "avoid": "A mistake made by a developer",
+        "qIds": [
+          268
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Integration of all components at once",
+        "avoid": "Detailed and extensive planning / User involvement is mandatory",
+        "qIds": [
+          269
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "likelihood of an adverse event and the impact",
+        "avoid": "The cost of dealing with an adverse event...",
+        "qIds": [
+          270
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "continuation or stoppage of testing",
+        "avoid": "Finalizing the software release without...",
+        "qIds": [
+          271
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "Test planning and execution occur simultaneously",
+        "avoid": "Ability to strictly adhere to test scripts",
+        "qIds": [
+          272
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "risk level and complexity of the project",
+        "avoid": "The personal preferences of the test team",
+        "qIds": [
+          273
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Planning — Initiate review — Individual review",
+        "avoid": "Individual review đứng đầu",
+        "qIds": [
+          275
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "how much regression testing to do",
+        "avoid": "Impact analysis assesses the effect on...",
+        "qIds": [
+          276
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "executing Software for the purpose of finding defects",
+        "avoid": "The goal / purpose of testing is to...",
+        "qIds": [
+          277
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "impact of a defect on the system, while priority",
+        "avoid": "Severity refers to the importance of a...",
+        "qIds": [
+          278
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "inspection is led by a moderator and a walkthrough is led by the author",
+        "avoid": "Both inspections and walkthroughs...",
+        "qIds": [
+          279
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Reporting discrepancies as incidents",
+        "avoid": "Measuring and analyzing results",
+        "qIds": [
+          280
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Scheduling test analysis and design tasks",
+        "avoid": "Initiating corrective actions / Measuring and analyzing results",
+        "qIds": [
+          281
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Available skills and experience in the proposed techniques",
+        "avoid": "Availability of tools to support the...",
+        "qIds": [
+          282
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Faults in requirements are the most expensive to fix",
+        "avoid": "Faults in program specifications are the...",
+        "qIds": [
+          283
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Designed by a person from a different organization",
+        "avoid": "Designed by another person",
+        "qIds": [
+          284
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Identifying defects early and thereby reducing rework costs",
+        "avoid": "Decreasing the amount of documentation...",
+        "qIds": [
+          285
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Management of the testing process and resources",
+        "avoid": "Direct involvement in software programming",
+        "qIds": [
+          286
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Static analysis of a software model",
+        "avoid": "Technical review of a functional...",
+        "qIds": [
+          288
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "which modules to combine when and how many at once",
+        "avoid": "all of the small modules",
+        "qIds": [
+          289
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "discovered every bug in the program",
+        "avoid": "You have tested every statement, branch,...",
+        "qIds": [
+          290
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "check unchanged areas of the software",
+        "avoid": "check only changed areas",
+        "qIds": [
+          291
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "constructive feedback and respect",
+        "avoid": "Minimizing interaction between testers...",
+        "qIds": [
+          292
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "testers focus on test execution",
+        "avoid": "A test leader focuses on test execution...",
+        "qIds": [
+          293
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "limited time and no detailed specifications",
+        "avoid": "When detailed specifications are available",
+        "qIds": [
+          294
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "Running regression tests",
+        "avoid": "Designing new test cases",
+        "qIds": [
+          295
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "open defects compared to closed defects",
+        "avoid": "Number of passed requirements per code line",
+        "qIds": [
+          296
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "scheduled time for testing expires",
+        "avoid": "None of the others",
+        "qIds": [
+          298
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 6,
+        "cue": null,
+        "pick": "A small team to establish the best way",
+        "avoid": "All teams at once",
+        "qIds": [
+          299
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "dynamic and adapt to new findings",
+        "avoid": "After receiving comprehensive training in...",
+        "qIds": [
+          300
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "difference between the system and the requirement",
+        "avoid": "We are looking for errors and fixing them",
+        "qIds": [
+          301
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "At all test levels",
+        "avoid": "At all levels above integration",
+        "qIds": [
+          302
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "finding defects early when they are cheaper to fix",
+        "avoid": "By delaying defect detection until after...",
+        "qIds": [
+          303
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "use risks and priorities to focus testing",
+        "avoid": "Exhaustive testing is possible",
+        "qIds": [
+          304
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "beyond normal operational capacity, while load testing",
+        "avoid": "Stress testing examines system...",
+        "qIds": [
+          305
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "check compliance with standards",
+        "avoid": "By focusing solely on end-user needs",
+        "qIds": [
+          306
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "led by a trained moderator and follow a defined process",
+        "avoid": "Technical reviews are less structured and...",
+        "qIds": [
+          307
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "environment needs to be ready for executing",
+        "avoid": "It is only relevant during test case design",
+        "qIds": [
+          308
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "how changes might affect the existing system",
+        "avoid": "It determines the effect of a new...",
+        "qIds": [
+          309
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "all branches in decision points are executed",
+        "avoid": "It measures the software's performance...",
+        "qIds": [
+          310
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "divides input data into valid and invalid partitions",
+        "avoid": "It requires thorough knowledge of the...",
+        "qIds": [
+          311
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "consistency and thoroughness in defect identification",
+        "avoid": "To reduce the time spent on discussions",
+        "qIds": [
+          312
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "unlikely to cause a failure",
+        "avoid": "Is likely to be fault-free",
+        "qIds": [
+          313
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "process for selecting test cases",
+        "avoid": "A process for determining expected outputs",
+        "qIds": [
+          314
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "build confidence in the software's functionality",
+        "avoid": "To gather evidence for a lawsuit / To train the users",
+        "qIds": [
+          315
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Eliminate some of the requirements",
+        "avoid": "Add more testers / Work overtime",
+        "qIds": [
+          316
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "during testing if it contains all incidents",
+        "avoid": "Only records defects / Is of limited value",
+        "qIds": [
+          317
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "see other and different defects and are unbiased",
+        "avoid": "Independent testers are much more...",
+        "qIds": [
+          318
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "partial measure of test thoroughness",
+        "avoid": "complete measure",
+        "qIds": [
+          319
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "As soon as the software requirements have been approved",
+        "avoid": "After coding is complete",
+        "qIds": [
+          320
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "supplement to formal test design techniques",
+        "avoid": "replace formal techniques",
+        "qIds": [
+          321
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "After more formal techniques have been applied",
+        "avoid": "Before formal techniques",
+        "qIds": [
+          322
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Before the test is executed",
+        "avoid": "After the test is executed",
+        "qIds": [
+          323
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "appropriate to all levels of testing",
+        "avoid": "A black box testing technique used only...",
+        "qIds": [
+          324
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "measure the size of the functionality",
+        "avoid": "To measure the functional flow",
+        "qIds": [
+          326
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Error condition hiding another error condition",
+        "avoid": "Masking a fault by developer / Masking a fault by a tester",
+        "qIds": [
+          327
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Configuration management tools — Check for consistence",
+        "avoid": "Test data preparation tools — Manipulate...",
+        "qIds": [
+          328
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Instead of exhaustive testing, we use risks and priorities",
+        "avoid": "Math formulas for reports that the...",
+        "qIds": [
+          329
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "confirm that the defect has indeed been fixed",
+        "avoid": "Validate the expected results",
+        "qIds": [
+          332
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Wait for the person to pause, acknowledge",
+        "avoid": "Confront the person",
+        "qIds": [
+          333
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Entity Outside the Project's sphere of influence",
+        "avoid": "Done by the Developer / Done by the Test Engineers",
+        "qIds": [
+          334
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "How much regression testing should be done",
+        "avoid": "Exit Criteria",
+        "qIds": [
+          335
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "difficult to determine if the test has passed or failed",
+        "avoid": "We cannot run the test",
+        "qIds": [
+          337
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Testing the system when combined with other systems",
+        "avoid": "Testing a sub-system using stubs and drivers",
+        "qIds": [
+          338
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "tester's experience, knowledge and intuition",
+        "avoid": "Randomly generated test cases",
+        "qIds": [
+          340
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "analyze what was done and what could be improved",
+        "avoid": "To plan the next phases of the project",
+        "qIds": [
+          341
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Tests by the person who wrote the source code",
+        "avoid": "Tests by the person who wrote the item...",
+        "qIds": [
+          342
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Non-functional and Functional requirements",
+        "avoid": "Non-functional requirements only not...",
+        "qIds": [
+          343
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Inputs and expected results",
+        "avoid": "It is easy to execute / It is unlikely to delay progress",
+        "qIds": [
+          344
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "best testing in the time available",
+        "avoid": "You do more effective testing / You find more faults",
+        "qIds": [
+          345
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Needs configuration management just like requirements",
+        "avoid": "Should be newly constructed for each new...",
+        "qIds": [
+          347
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "Increases as we move the product towards live use",
+        "avoid": "Is not important / Can never be determined",
+        "qIds": [
+          349
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "regression testing looks for unexpected side effects",
+        "avoid": "Re-testing looks for unexpected side...",
+        "qIds": [
+          350
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "test execution and logging",
+        "avoid": "Tool support for static testing",
+        "qIds": [
+          352
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "None, existing test cases can be used",
+        "avoid": "One more / Two more test cases",
+        "qIds": [
+          353
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "The objective of the test",
+        "avoid": "How well you know a particular technique",
+        "qIds": [
+          354
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Static testing requires the running of tests",
+        "avoid": "Static testing includes desk checking",
+        "qIds": [
+          357
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "eliminate every defect prior to release",
+        "avoid": "Determine the productivity of programmers",
+        "qIds": [
+          359
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 1,
+        "cue": null,
+        "pick": "fault has been built into more documentation, code",
+        "avoid": "None of the others",
+        "qIds": [
+          360
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 4,
+        "cue": null,
+        "pick": "on, below and above the edges",
+        "avoid": "Is the same as equivalence partitioning tests",
+        "qIds": [
+          361
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "test completion criteria have been met",
+        "avoid": "When time for testing has run out",
+        "qIds": [
+          363
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "define when a test level is complete",
+        "avoid": "To determine when a test has completed",
+        "qIds": [
+          364
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "depends on the risk for your industry",
+        "avoid": "This question is easy to answer",
+        "qIds": [
+          365
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 2,
+        "cue": null,
+        "pick": "Component testing does not involve regression testing",
+        "avoid": "Component testing should be performed by...",
+        "qIds": [
+          366
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 5,
+        "cue": null,
+        "pick": "Skill and staff shortages",
+        "avoid": "Poor software characteristics",
+        "qIds": [
+          367
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 5,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Expected results",
+        "avoid": "Actual and expected results / Validate expected results",
+        "qIds": [
+          15,
+          34
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 1,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Exhaustive testing",
+        "avoid": "Exhaustive testing is possible / Regression testing",
+        "qIds": [
+          31,
+          134
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 4,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Decision testing",
+        "avoid": "Decision table testing (Black-box)",
+        "qIds": [
+          28
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 1,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Development cost",
+        "avoid": "Usability / Reliability / Maintainability",
+        "qIds": [
+          30
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 1,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Test scenario",
+        "avoid": "Test Case / Test Suite",
+        "qIds": [
+          52
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 2,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Driver",
+        "avoid": "Drivers (số nhiều) / Stub",
+        "qIds": [
+          63
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 1,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Dynamic analysis",
+        "avoid": "Memory analysis / Static analysis",
+        "qIds": [
+          73
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 3,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Code inspection",
+        "avoid": "Unit / Integration / System testing",
+        "qIds": [
+          75
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 4,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Black box testing",
+        "avoid": "Glass / Clear / Structural / White box",
+        "qIds": [
+          76
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 5,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Test execution",
+        "avoid": "Test planning / Test analysis",
+        "qIds": [
+          80
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 5,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Implementation and execution",
+        "avoid": "Planning / Analysis and design",
+        "qIds": [
+          83
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 2,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Stress Testing",
+        "avoid": "Load / Performance / Regression testing",
+        "qIds": [
+          85
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 3,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Code review",
+        "avoid": "Unit / System / Usability testing",
+        "qIds": [
+          86
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 6,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Dynamic analysis tool",
+        "avoid": "Static analysis tool / Memory analysis",
+        "qIds": [
+          88
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 6,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Test design tool",
+        "avoid": "Test management / Execution tool",
+        "qIds": [
+          91
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 3,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Scribe",
+        "avoid": "Moderator / Author / Manager",
+        "qIds": [
+          98
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 2,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Procedure",
+        "avoid": "Process / Standard / Methodology",
+        "qIds": [
+          101
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 4,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Branch coverage",
+        "avoid": "Condition coverage / Statement testing",
+        "qIds": [
+          106
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 4,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "White box",
+        "avoid": "Black box / Gray box",
+        "qIds": [
+          108
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 6,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "User requirements",
+        "avoid": "Regression testing / GUI",
+        "qIds": [
+          109
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 3,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Technical Review",
+        "avoid": "Walkthrough / Inspection",
+        "qIds": [
+          132
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 3,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Management",
+        "avoid": "Developers / Testers / Analysts",
+        "qIds": [
+          133
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 5,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Test specification",
+        "avoid": "Features to be tested / Schedule / Risks",
+        "qIds": [
+          144
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 2,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Test Suite",
+        "avoid": "Test Case / Test Scenario",
+        "qIds": [
+          151
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 1,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Specifications",
+        "avoid": "Test cases / Test data / Test scripts",
+        "qIds": [
+          153
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 2,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Re-testing",
+        "avoid": "Sanity / Unit / Stress testing",
+        "qIds": [
+          166
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 1,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "10000,50000,99999",
+        "avoid": "Bộ số có 0 hoặc 100000",
+        "qIds": [
+          183
+        ]
+      },
+      {
+        "mode": "standalone",
+        "chapter": 3,
+        "cue": "Đứng lẻ 1 mình",
+        "pick": "Explaining the objective",
+        "avoid": "Allocating roles (thuộc Planning)",
+        "qIds": [
+          274
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "4 đáp án là số 1 / 2 / 3 / 4",
+        "pick": "2",
+        "avoid": "1, 3, 4",
+        "qIds": [
+          169,
+          170,
+          175
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "not a static testing technique",
+        "pick": "Error guessing",
+        "avoid": "Walkthrough / Inspection",
+        "qIds": [
+          25,
+          35
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "Beta ... at developing organization's site",
+        "pick": "False",
+        "avoid": "True (đảo ngược vị trí Alpha & Beta)",
+        "qIds": [
+          1
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Configuration and compatibility ... outsourcing",
+        "pick": "True",
+        "avoid": "False",
+        "qIds": [
+          2
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Drivers ... control and operate",
+        "pick": "True",
+        "avoid": "False",
+        "qIds": [
+          3
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Defects are recorded into three major purposes",
+        "pick": "True",
+        "avoid": "False",
+        "qIds": [
+          4
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Exhaustive testing is possible",
+        "pick": "False",
+        "avoid": "True",
+        "qIds": [
+          5
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Quality Assurance ... product quality is compared",
+        "pick": "False",
+        "avoid": "True (so sánh sản phẩm là QC)",
+        "qIds": [
+          6
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Verification ... building the product right",
+        "pick": "True",
+        "avoid": "False",
+        "qIds": [
+          7
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "control statements equals the cyclomatic complexity",
+        "pick": "True",
+        "avoid": "False",
+        "qIds": [
+          8
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "goal of a software tester is to find bugs ... early",
+        "pick": "True",
+        "avoid": "False",
+        "qIds": [
+          9
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "What is NOT test type?",
+        "pick": "Performance testing",
+        "avoid": "Functional / Structural / Statement",
+        "qIds": [
+          12
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "not the fundamental test process",
+        "pick": "None of the others",
+        "avoid": "3 pha có chữ Test ở đầu",
+        "qIds": [
+          29
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "NOT a White box technique",
+        "pick": "Boundary value analysis",
+        "avoid": "Statement / Condition coverage",
+        "qIds": [
+          36
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "single unit of code in an isolated manner",
+        "pick": "Unit Testing",
+        "avoid": "Integration / System Testing",
+        "qIds": [
+          51
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "both Black box and White Box (Gray & Hybrid)",
+        "pick": "Both of (i) and (ii)",
+        "avoid": "None of (i) nor (ii)",
+        "qIds": [
+          54
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "input and output coverage",
+        "pick": "Equivalence partitioning",
+        "avoid": "Boundary value analysis",
+        "qIds": [
+          56
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "internet banking solution",
+        "pick": "Non-functional testing.",
+        "avoid": "Functional / System / Requirements testing",
+        "qIds": [
+          66
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "black box design technique?",
+        "pick": "Equivalence partitioning",
+        "avoid": "Statement / Branch / Decision testing",
+        "qIds": [
+          72
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "defines the expected results of a test",
+        "pick": "Test case specification.",
+        "avoid": "Test design / Test procedure specification",
+        "qIds": [
+          74
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "common entry criteria (Choose 2)",
+        "pick": "Availability of test environment + Availability of necessary resources",
+        "avoid": "Exit criteria / Defect fixes",
+        "qIds": [
+          78
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "a type of non-functional testing?",
+        "pick": "Usability testing.",
+        "avoid": "Unit / Integration / Regression",
+        "qIds": [
+          79
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "Which is the non-functional testing",
+        "pick": "Performance testing",
+        "avoid": "Regression / Unit / Sanity testing",
+        "qIds": [
+          81
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "formal assessment ... trained moderator",
+        "pick": "Inspection",
+        "avoid": "Walkthrough / Peer review",
+        "qIds": [
+          82
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "individual units or components",
+        "pick": "Unit testing",
+        "avoid": "Integration / System / Acceptance",
+        "qIds": [
+          84
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "meets business requirements",
+        "pick": "Acceptance testing",
+        "avoid": "Unit / Integration / System",
+        "qIds": [
+          89
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "different combinations of inputs",
+        "pick": "Decision table testing",
+        "avoid": "Boundary value / Equivalence",
+        "qIds": [
+          90
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "confirm that the original defect has been successfully removed",
+        "pick": "Confirmation testing",
+        "avoid": "Regression testing",
+        "qIds": [
+          94
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "USUALLY perform debugging activities",
+        "pick": "Developers.",
+        "avoid": "Testers / Analysts",
+        "qIds": [
+          99
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 6,
+        "cue": "supports traceability, recording of incidents or scheduling",
+        "pick": "A test management tool",
+        "avoid": "Dynamic / Static / Execution tool",
+        "qIds": [
+          102
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "determine the exit criteria?",
+        "pick": "Test planning.",
+        "avoid": "Evaluating exit criteria and reporting",
+        "qIds": [
+          107
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "Contract and regulation testing",
+        "pick": "Acceptance testing",
+        "avoid": "System / Integration testing",
+        "qIds": [
+          111
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "faults be found most cost effectively",
+        "pick": "Design",
+        "avoid": "Execution / Planning / Check Exit",
+        "qIds": [
+          113
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Designing the test environment set-up",
+        "pick": "Test Analysis and Design",
+        "avoid": "Test Implementation and execution",
+        "qIds": [
+          114
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Handover of Testware",
+        "pick": "Test Closure Activities",
+        "avoid": "Evaluating exit criteria and reporting",
+        "qIds": [
+          121
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "interfaces and interaction between integrated components",
+        "pick": "Integration testing",
+        "avoid": "Unit / System testing",
+        "qIds": [
+          130
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Reviewing the test Basis",
+        "pick": "Test Analysis and Design",
+        "avoid": "Evaluating exit criteria and reporting",
+        "qIds": [
+          131
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "Static analysis tools are typically used by",
+        "pick": "Developers",
+        "avoid": "Testers / Analysts",
+        "qIds": [
+          141
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "steps required to operate the system and exercise test cases",
+        "pick": "Test Procedure Specification",
+        "avoid": "Test Case / Test Design Specification",
+        "qIds": [
+          143
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "principal attributes of tools and automation",
+        "pick": "Both of (1) and (2)",
+        "avoid": "None of (1) nor (2)",
+        "qIds": [
+          147
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "leads the review ... planning ... running the meeting",
+        "pick": "Moderator",
+        "avoid": "Author / Scribe / Reviewer",
+        "qIds": [
+          148
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "interfaces and interaction between integrated components",
+        "pick": "Integration level testing",
+        "avoid": "Component / System level",
+        "qIds": [
+          149
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "varying workloads to measure and evaluate performance",
+        "pick": "Load Testing",
+        "avoid": "Stress / Volume / Recovery testing",
+        "qIds": [
+          150
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "inputs for developing a test plan are taken from",
+        "pick": "Project plan",
+        "avoid": "Business plan / Support plan",
+        "qIds": [
+          159
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "White Box Techniques are also called as",
+        "pick": "Structural Testing",
+        "avoid": "Design based / Error guessing",
+        "qIds": [
+          160
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "possible to remove all defects",
+        "pick": "False",
+        "avoid": "True",
+        "qIds": [
+          162
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "testing the entire system",
+        "pick": "System Testing",
+        "avoid": "Unit / Integration / Acceptance",
+        "qIds": [
+          164
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Reporting Discrepancies as incidents",
+        "pick": "Test Implementation and execution",
+        "avoid": "Evaluating exit criteria and reporting",
+        "qIds": [
+          165
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "Drivers are also known as",
+        "pick": "ii, iii are true and i is false",
+        "avoid": "All of i, ii and iii are true",
+        "qIds": [
+          167
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "component test standard",
+        "pick": "BS7925-2",
+        "avoid": "IEEE 829 / IEEE 610 / BS7925-1",
+        "qIds": [
+          171
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Equivalence Partitioning ... discount (Select all)",
+        "pick": "Chọn đủ 3 khoảng tuổi (1—12, 13-64, 65+)",
+        "avoid": "None of the others",
+        "qIds": [
+          182
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "defects is use case testing MOST likely to uncover",
+        "pick": "i, iii.",
+        "avoid": "ii, iv",
+        "qIds": [
+          186
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "5 main activities of a formal review",
+        "pick": "1, 2, 4, 7, 8",
+        "avoid": "Các dãy số khác",
+        "qIds": [
+          187
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "TRUE for Technical Review",
+        "pick": "I, III and IV",
+        "avoid": "Câu có II (Management)",
+        "qIds": [
+          188
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 6,
+        "cue": "implementation of a testing tool",
+        "pick": "i, ii, iv",
+        "avoid": "Câu có iii (dự án đang trễ lịch)",
+        "qIds": [
+          189
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 6,
+        "cue": "benefits ... using test tools",
+        "pick": "i and iv",
+        "avoid": "ii and iii",
+        "qIds": [
+          190
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "characteristic of regression testing",
+        "pick": "ii, iii",
+        "avoid": "Câu có i (chỉ chạy 1 lần)",
+        "qIds": [
+          191
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "monitoring the test progress",
+        "pick": "i, ii, iii is correct",
+        "avoid": "Câu có iv",
+        "qIds": [
+          192
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "task of a Test Lead / Leader",
+        "pick": "i, ii, iii is true and iv is false",
+        "avoid": "iv (Create Test Specifications)",
+        "qIds": [
+          193
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "part of Test Closure Activities",
+        "pick": "All of them are true",
+        "avoid": "Các câu loại trừ 1 ý",
+        "qIds": [
+          194
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 6,
+        "cue": "task of a Tester",
+        "pick": "ii, iii, iv is true and i is false",
+        "avoid": "ii, iii, iv ARE true / câu i (Tool Vendor)",
+        "qIds": [
+          195
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "Formal Review / Inspection",
+        "pick": "i, iii, iv are true and ii is false",
+        "avoid": "Câu có ii (led by author)",
+        "qIds": [
+          196
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "activities belong to Test Planning",
+        "pick": "ii & iii are true, i, iv & v are false.",
+        "avoid": "Các tổ hợp khác",
+        "qIds": [
+          197
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "persons involved in a Formal Review",
+        "pick": "i, ii, iii are true and iv is false.",
+        "avoid": "ii, iii, iv are true",
+        "qIds": [
+          198
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Test Plan Outline contains",
+        "pick": "i, iii, iv are true and ii is false",
+        "avoid": "Câu có ii (Test Scripts)",
+        "qIds": [
+          199
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "early test design",
+        "pick": "i, iii & iv are true, ii & v are false",
+        "avoid": "Các tổ hợp khác",
+        "qIds": [
+          200
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Deciding How much testing is enough",
+        "pick": "i, ii are true and iii, iv are false",
+        "avoid": "ii, iii, iv are true",
+        "qIds": [
+          201
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "found by static analysis tools",
+        "pick": "i, ii, iii, iv is correct",
+        "avoid": "Các câu thiếu ý",
+        "qIds": [
+          202
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Exit criteria may consist of",
+        "pick": "i, ii, iii is correct and iv is incorrect",
+        "avoid": "Các tổ hợp khác",
+        "qIds": [
+          203
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "purpose of Configuration Management",
+        "pick": "i, ii and iv",
+        "avoid": "Câu có iii",
+        "qIds": [
+          204
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "characteristics of White Box testing",
+        "pick": "i, ii are true and iii and iv are false",
+        "avoid": "Các tổ hợp khác",
+        "qIds": [
+          205
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "Match V-model test levels",
+        "pick": "i-c, ii-a, iii-d, iv-b",
+        "avoid": "Các cặp ghép khác",
+        "qIds": [
+          206
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "success factors for a review",
+        "pick": "ii, iii, iv are correct and i is incorrect",
+        "avoid": "Câu có i (no predefined objective)",
+        "qIds": [
+          208
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "tools are geared more for developer use",
+        "pick": "ii and iv are more for developers",
+        "avoid": "Test management / Performance tools",
+        "qIds": [
+          209
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Test planning has which ... major tasks",
+        "pick": "i, ii, iv are true and iii is false",
+        "avoid": "ii, iii, iv are true",
+        "qIds": [
+          211
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "selection of a test approach",
+        "pick": "i, ii, iii, iv are true",
+        "avoid": "ii, iii, iv are true",
+        "qIds": [
+          212
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Test Implementation and execution ... major tasks",
+        "pick": "i, ii, iii are true and iv is false",
+        "avoid": "ii, iii, iv are true",
+        "qIds": [
+          213
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "Match 4 test design techniques",
+        "pick": "1Y, 2Z, 3X, 4W",
+        "avoid": "Các cặp ghép khác",
+        "qIds": [
+          217
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Pick up and read the newspaper",
+        "pick": "SC = 2 and DC = 3",
+        "avoid": "SC = 1 / DC = 2",
+        "qIds": [
+          218
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Defect clustering & Pareto (1 and 2)",
+        "pick": "1 and 2 are true, 3 and 4 are false",
+        "avoid": "Các tổ hợp khác",
+        "qIds": [
+          220
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "Regression testing should be performed",
+        "pick": "w & y are true, v, x & z are false",
+        "avoid": "All of them are true",
+        "qIds": [
+          221
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 5,
+        "cue": "Match Estimation / Control / Monitoring",
+        "pick": "1-b, 2-c, 3-a",
+        "avoid": "Các cặp ghép khác",
+        "qIds": [
+          222
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "Match 4 types of Reviews (s, t, u, v)",
+        "pick": "s = 4 and 5, t = 3, u = 2, v = 1",
+        "avoid": "Các cặp ghép khác",
+        "qIds": [
+          223
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "Minimum Test ... Statement Coverage (Order-qty)",
+        "pick": "Statement coverage is 1",
+        "avoid": "Statement coverage is 2, 3, 4",
+        "qIds": [
+          224
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "IF A > B THEN ... ELSE ... ENDIF (có chữ ELSE)",
+        "pick": "2 tests for statement coverage, 2 for branch coverage",
+        "avoid": "1 test for statement / 3 for branch",
+        "qIds": [
+          226
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "Sơ đồ đường đi vwy, vwz, vxy, vxz",
+        "pick": "A",
+        "avoid": "ABCD, ABD, ACD",
+        "qIds": [
+          227
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "Sơ đồ công tắc OFF / ON / FAULT (invalid)",
+        "pick": "FAULT to ON",
+        "avoid": "OFF to ON / ON to FAULT",
+        "qIds": [
+          228
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "Sơ đồ Giỏ hàng Login - Browse - Basket",
+        "pick": "Login Browse Basket Checkout Basket Logout",
+        "avoid": "3 câu có chữ Pay",
+        "qIds": [
+          229
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Bảng quyết định thẻ Citibank (Silver room)",
+        "pick": "A - Offer upgrade to Gold, B - Don't offer any upgrade",
+        "avoid": "Các phương án khác",
+        "qIds": [
+          230
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "Component Testing is also called as",
+        "pick": "i, ii, iii are true and iv is false",
+        "avoid": "All of them are true",
+        "qIds": [
+          231
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "reliability, performance, security, and usability",
+        "pick": "Non-functional testing",
+        "avoid": "Functional / Requirements testing",
+        "qIds": [
+          234
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 4,
+        "cue": "sequences of statements (paths)",
+        "pick": "4 Test Cases",
+        "avoid": "2 / 3 Test Cases",
+        "qIds": [
+          236
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "What is static testing?",
+        "pick": "examined manually, or with a set of tools, but not executed",
+        "avoid": "Software is executed...",
+        "qIds": [
+          242
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "What is dynamic testing?",
+        "pick": "Software is executed using a set of input values",
+        "avoid": "not executed",
+        "qIds": [
+          243
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "minimize psychological conflicts (Select all)",
+        "pick": "Chọn 3 câu tích cực (Fostering, Ensuring, Encouraging)",
+        "avoid": "Câu có chữ belittles the coder",
+        "qIds": [
+          287
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "static analysis MOST likely to find",
+        "pick": "Unreachable (\"dead\") code",
+        "avoid": "Memory leaks (thuộc câu NOT find)",
+        "qIds": [
+          325
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "explanation of 'Early testing'",
+        "pick": "start as early as possible in the software or system development life cycle",
+        "avoid": "Các giải thích nguyên lý khác",
+        "qIds": [
+          330
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 2,
+        "cue": "explanation of 'Testing shows presence of defects'",
+        "pick": "can show that defects are present, but cannot prove that there are no defects",
+        "avoid": "Các giải thích nguyên lý khác",
+        "qIds": [
+          331
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 1,
+        "cue": "Test Cases Derived from use cases",
+        "pick": "uncovering defects in the process flows during real world use",
+        "avoid": "individual components / boundary defects",
+        "qIds": [
+          351
+        ]
+      },
+      {
+        "mode": "glance",
+        "chapter": 3,
+        "cue": "Which TWO ... static analysis",
+        "pick": "need not be performed before... + hard to find with dynamic testing",
+        "avoid": "2 câu còn lại",
+        "qIds": [
+          355
+        ]
+      }
+    ],
+    "zeroTraps": [
+      {
+        "bad": "All of them are true",
+        "note": "Cấm khoanh bừa! Chỉ đúng duy nhất khi đề hỏi Test Closure Activities",
+        "qIds": [
+          221,
+          231
+        ]
+      },
+      {
+        "bad": "All of i, ii and iii are true",
+        "note": "Bẫy câu Drivers (Spade là tên giả, chỉ chọn ii & iii)",
+        "qIds": [
+          167
+        ]
+      },
+      {
+        "bad": "None of the above / None of (i) nor (ii) / None of the mentioned",
+        "note": "Sai tuyệt đối ở mọi câu — thấy là gạch ngay",
+        "qIds": [
+          40,
+          52,
+          54,
+          57,
+          65,
+          94,
+          147,
+          215
+        ]
+      },
+      {
+        "bad": "None of the others",
+        "note": "Gạch bỏ! Chỉ đúng duy nhất khi đề hỏi 'not the fundamental test process'",
+        "qIds": [
+          42,
+          63,
+          87,
+          110,
+          141,
+          143,
+          155,
+          298
+        ]
+      },
+      {
+        "bad": "ii, iii, iv are true and i is false",
+        "note": "Tổ hợp La Mã mồi nhử — gặp là loại đầu tiên",
+        "qIds": [
+          198,
+          201,
+          211,
+          212,
+          213
+        ]
+      },
+      {
+        "bad": "i, iv are true and ii is false",
+        "note": "Tổ hợp La Mã mồi nhử — không bao giờ đúng",
+        "qIds": [
+          193,
+          195,
+          199
+        ]
+      },
+      {
+        "bad": "Walkthrough (đứng lẻ 1 mình)",
+        "note": "Khi đứng riêng 1 mình làm đáp án luôn là bẫy",
+        "qIds": [
+          25,
+          35,
+          82,
+          132
+        ]
+      },
+      {
+        "bad": "Evaluating exit criteria and reporting",
+        "note": "Đứng làm đáp án hỏi pha kiểm thử đều sai",
+        "qIds": [
+          107,
+          121,
+          131,
+          165
+        ]
+      },
+      {
+        "bad": "Functional testing (đứng lẻ 1 mình)",
+        "note": "Đứng trơ trọi 1 mình luôn sai (Internet Banking chọn Non-functional)",
+        "qIds": [
+          12,
+          66,
+          234
+        ]
+      },
+      {
+        "bad": "Regression testing (đứng lẻ 1 mình)",
+        "note": "Đứng lẻ 1 mình luôn sai (chỉ đúng khi đi đôi 'Confirmation and regression testing')",
+        "qIds": [
+          81,
+          94,
+          134
+        ]
+      },
+      {
+        "bad": "Usability (thiếu chữ testing) / Testers (đứng lẻ)",
+        "note": "Từ đơn đặt làm mồi nhử — gạch thẳng tay",
+        "qIds": [
+          18,
+          30,
+          48,
+          99,
+          133,
+          141,
+          142
+        ]
+      },
+      {
+        "bad": "State / Memory / Coverage / Data flow / Trends / Metrics analysis",
+        "note": "Toàn bộ 6 cụm '... analysis' này đứng lẻ đều là đáp án giả",
+        "qIds": [
+          73,
+          106,
+          112,
+          120,
+          233
+        ]
+      },
+      {
+        "bad": "Sanity / Smoke / Recovery / Volume / Requirements testing",
+        "note": "Tên testing phụ gây nhiễu — gặp đứng lẻ là loại",
+        "qIds": [
+          66,
+          81,
+          85,
+          150,
+          166,
+          234
+        ]
+      },
+      {
+        "bad": "Condition coverage / 1 test for statement, 3 for branch",
+        "note": "Bẫy phần White-box (1 lệnh IF không bao giờ sinh ra 3 branch)",
+        "qIds": [
+          36,
+          93,
+          106,
+          126,
+          219,
+          225,
+          226
+        ]
+      }
+    ]
+  },
+  "questionTips": {
+    "1": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "Beta ... at developing organization's site",
+      "pick": "False",
+      "avoid": "True (đảo ngược vị trí Alpha & Beta)"
+    },
+    "2": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Configuration and compatibility ... outsourcing",
+      "pick": "True",
+      "avoid": "False"
+    },
+    "3": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Drivers ... control and operate",
+      "pick": "True",
+      "avoid": "False"
+    },
+    "4": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Defects are recorded into three major purposes",
+      "pick": "True",
+      "avoid": "False"
+    },
+    "5": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Exhaustive testing is possible",
+      "pick": "False",
+      "avoid": "True"
+    },
+    "6": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Quality Assurance ... product quality is compared",
+      "pick": "False",
+      "avoid": "True (so sánh sản phẩm là QC)"
+    },
+    "7": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Verification ... building the product right",
+      "pick": "True",
+      "avoid": "False"
+    },
+    "8": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "control statements equals the cyclomatic complexity",
+      "pick": "True",
+      "avoid": "False"
+    },
+    "9": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "goal of a software tester is to find bugs ... early",
+      "pick": "True",
+      "avoid": "False"
+    },
+    "10": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "Generating expected outputs",
+      "avoid": "Recording test inputs"
+    },
+    "11": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "Generating test data",
+      "avoid": "Scheduling tests / Logging test results"
+    },
+    "12": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "What is NOT test type?",
+      "pick": "Performance testing",
+      "avoid": "Functional / Structural / Statement"
+    },
+    "13": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "developed a library, helping to improve",
+      "avoid": "Thiếu người / Trễ lịch"
+    },
+    "14": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "How to fix the fault",
+      "avoid": "How to reproduce the fault / Test environment details"
+    },
+    "15": {
+      "mode": "standalone",
+      "chapter": 5,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Expected results",
+      "avoid": "Actual and expected results / Validate expected results"
+    },
+    "16": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Memory leaks",
+      "avoid": "Unreachable (\"dead\") code / Array bound violations"
+    },
+    "17": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Big-bang",
+      "avoid": "Top down / Bottom up"
+    },
+    "18": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "State-Transition",
+      "avoid": "Usability / Performance"
+    },
+    "19": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Auditing conformance to IS09001",
+      "avoid": "Identification of test versions / Controlled library access"
+    },
+    "20": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "technologies used by the competitors",
+      "avoid": "Evaluation of tools against clear..."
+    },
+    "21": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "IEEE610",
+      "avoid": "IEEE829 / BS7925-1"
+    },
+    "22": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "Use of automated test execution tools",
+      "avoid": "Testing performed by users"
+    },
+    "23": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Quality plans",
+      "avoid": "What is not to be tested / Test environments"
+    },
+    "24": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Suggestions as to how to fix",
+      "avoid": "Actual and expected results"
+    },
+    "25": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "not a static testing technique",
+      "pick": "Error guessing",
+      "avoid": "Walkthrough / Inspection"
+    },
+    "26": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Error-prone software delivered",
+      "avoid": "Supplier issues / Organization factors"
+    },
+    "27": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Debugging defects",
+      "avoid": "Finding defects / Preventing defects"
+    },
+    "28": {
+      "mode": "standalone",
+      "chapter": 4,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Decision testing",
+      "avoid": "Decision table testing (Black-box)"
+    },
+    "29": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "not the fundamental test process",
+      "pick": "None of the others",
+      "avoid": "3 pha có chữ Test ở đầu"
+    },
+    "30": {
+      "mode": "standalone",
+      "chapter": 1,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Development cost",
+      "avoid": "Usability / Reliability / Maintainability"
+    },
+    "31": {
+      "mode": "standalone",
+      "chapter": 1,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Exhaustive testing",
+      "avoid": "Exhaustive testing is possible / Regression testing"
+    },
+    "32": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "understand the source code",
+      "avoid": "Should be able to understand a functional..."
+    },
+    "33": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Reducing the need for documentation",
+      "avoid": "Reducing testing cost and time"
+    },
+    "34": {
+      "mode": "standalone",
+      "chapter": 5,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Expected results",
+      "avoid": "Actual and expected results / Validate expected results"
+    },
+    "35": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "not a static testing technique",
+      "pick": "Error guessing",
+      "avoid": "Walkthrough / Inspection"
+    },
+    "36": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "NOT a White box technique",
+      "pick": "Boundary value analysis",
+      "avoid": "Statement / Condition coverage"
+    },
+    "37": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Top-down integration testing",
+      "avoid": "Business process-based testing / Requirements-based testing"
+    },
+    "38": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "Designing the Tests",
+      "avoid": "Comparing actual results"
+    },
+    "39": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "All of the others",
+      "avoid": "All of them are true / All of i, ii, iii"
+    },
+    "40": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "(ii) Structural Testing",
+      "avoid": "(i) Functional testing / Both of (i) and (ii)"
+    },
+    "41": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "All members of the reviewing team are responsible",
+      "avoid": "Defects and issues are identified and..."
+    },
+    "42": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Deliverable base-lining",
+      "avoid": "Defect prevention / Management reporting"
+    },
+    "43": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "not be very confident",
+      "avoid": "Component testing should be black box,..."
+    },
+    "44": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "hard to find with dynamic testing",
+      "avoid": "Static analysis is not necessary"
+    },
+    "45": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "non-functional requirement was not specified",
+      "avoid": "This is an acceptable risk of a..."
+    },
+    "46": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Planning -> Initiate review -> Individual review",
+      "avoid": "Kick-off đứng đầu"
+    },
+    "47": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "proportion of decision outcomes",
+      "avoid": "statement outcomes"
+    },
+    "48": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Supportability",
+      "avoid": "Functionality / Usability"
+    },
+    "49": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Improvements suggested by users",
+      "avoid": "Requirements / Documentation"
+    },
+    "50": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Alpha release",
+      "avoid": "Beta release / Test release document"
+    },
+    "51": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "single unit of code in an isolated manner",
+      "pick": "Unit Testing",
+      "avoid": "Integration / System Testing"
+    },
+    "52": {
+      "mode": "standalone",
+      "chapter": 1,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Test scenario",
+      "avoid": "Test Case / Test Suite"
+    },
+    "53": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Verification process",
+      "avoid": "Design process / Validation process"
+    },
+    "54": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "both Black box and White Box (Gray & Hybrid)",
+      "pick": "Both of (i) and (ii)",
+      "avoid": "None of (i) nor (ii)"
+    },
+    "55": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Improve software accuracy",
+      "avoid": "Find faults / Assure quality"
+    },
+    "56": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "input and output coverage",
+      "pick": "Equivalence partitioning",
+      "avoid": "Boundary value analysis"
+    },
+    "57": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Unit, integration, system, validation",
+      "avoid": "None of the above"
+    },
+    "58": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Supplies inputs to the software",
+      "avoid": "Schedules tests / Manages software incidents"
+    },
+    "59": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Checking coding standards",
+      "avoid": "Executing the code / Testing system performance"
+    },
+    "60": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "To identify defects in software",
+      "avoid": "To increase software complexity / To reduce software features"
+    },
+    "61": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Closing the incident report",
+      "avoid": "Logging the incident"
+    },
+    "62": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Confirmation and regression testing",
+      "avoid": "Performance and stress testing / Usability and compliance testing"
+    },
+    "63": {
+      "mode": "standalone",
+      "chapter": 2,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Driver",
+      "avoid": "Drivers (số nhiều) / Stub"
+    },
+    "64": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Missing requirements or design defects",
+      "avoid": "Performance-related defects / Defects in user interface design"
+    },
+    "65": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "(2) Record/Playback",
+      "avoid": "(1) Performance / Both of (1) and (2)"
+    },
+    "66": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "internet banking solution",
+      "pick": "Non-functional testing.",
+      "avoid": "Functional / System / Requirements testing"
+    },
+    "67": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "impact of the defect on the system",
+      "avoid": "urgency / priority"
+    },
+    "68": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Robustness",
+      "avoid": "Operability / Observability"
+    },
+    "69": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "De-bugging",
+      "avoid": "Estimating test duration / Incident Management"
+    },
+    "70": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Scenario, Dry Run, Peer Group",
+      "avoid": "Pre Meeting Preparations / Formal Follow Up Process"
+    },
+    "71": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "Capture/Playback",
+      "avoid": "Data tester / Boundary tester"
+    },
+    "72": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "black box design technique?",
+      "pick": "Equivalence partitioning",
+      "avoid": "Statement / Branch / Decision testing"
+    },
+    "73": {
+      "mode": "standalone",
+      "chapter": 1,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Dynamic analysis",
+      "avoid": "Memory analysis / Static analysis"
+    },
+    "74": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "defines the expected results of a test",
+      "pick": "Test case specification.",
+      "avoid": "Test design / Test procedure specification"
+    },
+    "75": {
+      "mode": "standalone",
+      "chapter": 3,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Code inspection",
+      "avoid": "Unit / Integration / System testing"
+    },
+    "76": {
+      "mode": "standalone",
+      "chapter": 4,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Black box testing",
+      "avoid": "Glass / Clear / Structural / White box"
+    },
+    "77": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Allocate the individual roles",
+      "avoid": "Log defects / Gather metrics"
+    },
+    "78": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "common entry criteria (Choose 2)",
+      "pick": "Availability of test environment + Availability of necessary resources",
+      "avoid": "Exit criteria / Defect fixes"
+    },
+    "79": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "a type of non-functional testing?",
+      "pick": "Usability testing.",
+      "avoid": "Unit / Integration / Regression"
+    },
+    "80": {
+      "mode": "standalone",
+      "chapter": 5,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Test execution",
+      "avoid": "Test planning / Test analysis"
+    },
+    "81": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "Which is the non-functional testing",
+      "pick": "Performance testing",
+      "avoid": "Regression / Unit / Sanity testing"
+    },
+    "82": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "formal assessment ... trained moderator",
+      "pick": "Inspection",
+      "avoid": "Walkthrough / Peer review"
+    },
+    "83": {
+      "mode": "standalone",
+      "chapter": 5,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Implementation and execution",
+      "avoid": "Planning / Analysis and design"
+    },
+    "84": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "individual units or components",
+      "pick": "Unit testing",
+      "avoid": "Integration / System / Acceptance"
+    },
+    "85": {
+      "mode": "standalone",
+      "chapter": 2,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Stress Testing",
+      "avoid": "Load / Performance / Regression testing"
+    },
+    "86": {
+      "mode": "standalone",
+      "chapter": 3,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Code review",
+      "avoid": "Unit / System / Usability testing"
+    },
+    "87": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Requirements management tools",
+      "avoid": "Incident management tools / Configuration management tools"
+    },
+    "88": {
+      "mode": "standalone",
+      "chapter": 6,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Dynamic analysis tool",
+      "avoid": "Static analysis tool / Memory analysis"
+    },
+    "89": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "meets business requirements",
+      "pick": "Acceptance testing",
+      "avoid": "Unit / Integration / System"
+    },
+    "90": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "different combinations of inputs",
+      "pick": "Decision table testing",
+      "avoid": "Boundary value / Equivalence"
+    },
+    "91": {
+      "mode": "standalone",
+      "chapter": 6,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Test design tool",
+      "avoid": "Test management / Execution tool"
+    },
+    "92": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Experience-based testing",
+      "avoid": "Black-box testing / White-box testing"
+    },
+    "93": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Branch coverage testing",
+      "avoid": "Basis path coverage testing / Statement coverage testing"
+    },
+    "94": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "confirm that the original defect has been successfully removed",
+      "pick": "Confirmation testing",
+      "avoid": "Regression testing"
+    },
+    "95": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "During test planning",
+      "avoid": "During test analysis / During test execution"
+    },
+    "96": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Experience-based",
+      "avoid": "Specification-based / Structure-based"
+    },
+    "97": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "A failure",
+      "avoid": "An error / A fault"
+    },
+    "98": {
+      "mode": "standalone",
+      "chapter": 3,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Scribe",
+      "avoid": "Moderator / Author / Manager"
+    },
+    "99": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "USUALLY perform debugging activities",
+      "pick": "Developers.",
+      "avoid": "Testers / Analysts"
+    },
+    "100": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "user-friendliness, while performance testing measures",
+      "avoid": "Usability testing measures how fast the..."
+    },
+    "101": {
+      "mode": "standalone",
+      "chapter": 2,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Procedure",
+      "avoid": "Process / Standard / Methodology"
+    },
+    "102": {
+      "mode": "glance",
+      "chapter": 6,
+      "cue": "supports traceability, recording of incidents or scheduling",
+      "pick": "A test management tool",
+      "avoid": "Dynamic / Static / Execution tool"
+    },
+    "103": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Statement and branch testing",
+      "avoid": "Usability testing / Security testing"
+    },
+    "104": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Plain language specification model",
+      "avoid": "Process flow model / State transaction model"
+    },
+    "105": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Difficult to test",
+      "avoid": "Large / Small"
+    },
+    "106": {
+      "mode": "standalone",
+      "chapter": 4,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Branch coverage",
+      "avoid": "Condition coverage / Statement testing"
+    },
+    "107": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "determine the exit criteria?",
+      "pick": "Test planning.",
+      "avoid": "Evaluating exit criteria and reporting"
+    },
+    "108": {
+      "mode": "standalone",
+      "chapter": 4,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "White box",
+      "avoid": "Black box / Gray box"
+    },
+    "109": {
+      "mode": "standalone",
+      "chapter": 6,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "User requirements",
+      "avoid": "Regression testing / GUI"
+    },
+    "110": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Computer Aided Software Testing",
+      "avoid": "Computer Aided Software Tools / None of the others"
+    },
+    "111": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "Contract and regulation testing",
+      "pick": "Acceptance testing",
+      "avoid": "System / Integration testing"
+    },
+    "112": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Process improvement",
+      "avoid": "Review process itself / Metrics analysis"
+    },
+    "113": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "faults be found most cost effectively",
+      "pick": "Design",
+      "avoid": "Execution / Planning / Check Exit"
+    },
+    "114": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Designing the test environment set-up",
+      "pick": "Test Analysis and Design",
+      "avoid": "Test Implementation and execution"
+    },
+    "115": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "End User License Agreement",
+      "avoid": "End Usability License Agreement / End User License Arrangement"
+    },
+    "116": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Is impractical and impossible",
+      "avoid": "Is impractical but possible / Is practically possible"
+    },
+    "117": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Planning, Review meeting, Rework, Follow up",
+      "avoid": "Planning, Review meeting, Rework, Kick off"
+    },
+    "118": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Poor software and poor testing",
+      "avoid": "Insufficient time for testing / Bad luck"
+    },
+    "119": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Project status report",
+      "avoid": "Interim Test report / Final test report"
+    },
+    "120": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "A static analysis tool",
+      "avoid": "Code reviews / Code inspections"
+    },
+    "121": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Handover of Testware",
+      "pick": "Test Closure Activities",
+      "avoid": "Evaluating exit criteria and reporting"
+    },
+    "122": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Requirements Phase",
+      "avoid": "Analysis and Design Phase / Development Phase"
+    },
+    "123": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Extemal failure",
+      "avoid": "Internal failure / Appraisal"
+    },
+    "124": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "Lack of Objectivity",
+      "avoid": "Lack of technical documentation / Lack of training"
+    },
+    "125": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Random testing",
+      "avoid": "Data Flow testing / Statement testing"
+    },
+    "126": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Pole Coverage",
+      "avoid": "Statement Coverage / Condition Coverage"
+    },
+    "127": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "All of the others",
+      "avoid": "All of them are true / All of i, ii, iii"
+    },
+    "128": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Reducing test time",
+      "avoid": "No change / Increasing test time"
+    },
+    "129": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Mediates between people",
+      "avoid": "Takes minutes of the meeting / Takes telephone calls"
+    },
+    "130": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "interfaces and interaction between integrated components",
+      "pick": "Integration testing",
+      "avoid": "Unit / System testing"
+    },
+    "131": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Reviewing the test Basis",
+      "pick": "Test Analysis and Design",
+      "avoid": "Evaluating exit criteria and reporting"
+    },
+    "132": {
+      "mode": "standalone",
+      "chapter": 3,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Technical Review",
+      "avoid": "Walkthrough / Inspection"
+    },
+    "133": {
+      "mode": "standalone",
+      "chapter": 3,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Management",
+      "avoid": "Developers / Testers / Analysts"
+    },
+    "134": {
+      "mode": "standalone",
+      "chapter": 1,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Exhaustive Testing",
+      "avoid": "Exhaustive testing is possible / Regression testing"
+    },
+    "135": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Plan, Do, Check, Act",
+      "avoid": "Plan, Do, Correct, Act / Plan, Debug, Check, Act"
+    },
+    "136": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Conformance to requirements",
+      "avoid": "Quality is job one / Zero defects"
+    },
+    "137": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Only Product risks",
+      "avoid": "Only Project risks / Project risks and Product risks"
+    },
+    "138": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Business scenarios",
+      "avoid": "Performance testing / Unit testing"
+    },
+    "139": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Purchased/contracted software",
+      "avoid": "Traditional system development / Iterative development"
+    },
+    "140": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Model based testing approach",
+      "avoid": "Heuristic testing approach / Methodical testing approach"
+    },
+    "141": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "Static analysis tools are typically used by",
+      "pick": "Developers",
+      "avoid": "Testers / Analysts"
+    },
+    "142": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Viability",
+      "avoid": "Correctness / Usability"
+    },
+    "143": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "steps required to operate the system and exercise test cases",
+      "pick": "Test Procedure Specification",
+      "avoid": "Test Case / Test Design Specification"
+    },
+    "144": {
+      "mode": "standalone",
+      "chapter": 5,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Test specification",
+      "avoid": "Features to be tested / Schedule / Risks"
+    },
+    "145": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Field testing",
+      "avoid": "Alpha testing / Performance testing"
+    },
+    "146": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Procedures and standards",
+      "avoid": "Tools and techniques / Processes and walkthroughs"
+    },
+    "147": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "principal attributes of tools and automation",
+      "pick": "Both of (1) and (2)",
+      "avoid": "None of (1) nor (2)"
+    },
+    "148": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "leads the review ... planning ... running the meeting",
+      "pick": "Moderator",
+      "avoid": "Author / Scribe / Reviewer"
+    },
+    "149": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "interfaces and interaction between integrated components",
+      "pick": "Integration level testing",
+      "avoid": "Component / System level"
+    },
+    "150": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "varying workloads to measure and evaluate performance",
+      "pick": "Load Testing",
+      "avoid": "Stress / Volume / Recovery testing"
+    },
+    "151": {
+      "mode": "standalone",
+      "chapter": 2,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Test Suite",
+      "avoid": "Test Case / Test Scenario"
+    },
+    "152": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Configuration Control",
+      "avoid": "Status Accounting / Configuration Identification"
+    },
+    "153": {
+      "mode": "standalone",
+      "chapter": 1,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Specifications",
+      "avoid": "Test cases / Test data / Test scripts"
+    },
+    "154": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Generating many transactions",
+      "avoid": "Measuring response time / Measuring transaction rates"
+    },
+    "155": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Bottom-up integration",
+      "avoid": "Top-down integration / None of the others"
+    },
+    "156": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Selecting the personnel, allocating roles",
+      "avoid": "Explaining the objectives / Follow up"
+    },
+    "157": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Requirements management tools",
+      "avoid": "Incident management tools / Configuration management tools"
+    },
+    "158": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "All of the others",
+      "avoid": "All of them are true / All of i, ii, iii"
+    },
+    "159": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "inputs for developing a test plan are taken from",
+      "pick": "Project plan",
+      "avoid": "Business plan / Support plan"
+    },
+    "160": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "White Box Techniques are also called as",
+      "pick": "Structural Testing",
+      "avoid": "Design based / Error guessing"
+    },
+    "161": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "User Acceptance Test Cases",
+      "avoid": "Integration Level Test Cases / Unit Level Test Cases"
+    },
+    "162": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "possible to remove all defects",
+      "pick": "False",
+      "avoid": "True"
+    },
+    "163": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Open, Assigned, Fixed, Closed",
+      "avoid": "Open, Fixed, Assigned, Closed / Assigned, Open, Closed, Fixed"
+    },
+    "164": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "testing the entire system",
+      "pick": "System Testing",
+      "avoid": "Unit / Integration / Acceptance"
+    },
+    "165": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Reporting Discrepancies as incidents",
+      "pick": "Test Implementation and execution",
+      "avoid": "Evaluating exit criteria and reporting"
+    },
+    "166": {
+      "mode": "standalone",
+      "chapter": 2,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Re-testing",
+      "avoid": "Sanity / Unit / Stress testing"
+    },
+    "167": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "Drivers are also known as",
+      "pick": "ii, iii are true and i is false",
+      "avoid": "All of i, ii and iii are true"
+    },
+    "168": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "Analyze your needs and requirements",
+      "avoid": "Attend a tool exhibition / Invite a vendor to give a demo"
+    },
+    "169": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "4 đáp án là số 1 / 2 / 3 / 4",
+      "pick": "2",
+      "avoid": "1, 3, 4"
+    },
+    "170": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "4 đáp án là số 1 / 2 / 3 / 4",
+      "pick": "2",
+      "avoid": "1, 3, 4"
+    },
+    "171": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "component test standard",
+      "pick": "BS7925-2",
+      "avoid": "IEEE 829 / IEEE 610 / BS7925-1"
+    },
+    "172": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "ISO 9126",
+      "avoid": "ISO 829 / ISO 1012"
+    },
+    "173": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "8 characters",
+      "avoid": "7 characters / 13 characters"
+    },
+    "174": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "32, 37, 40",
+      "avoid": "23, 24, 25 / 0, 12, 25"
+    },
+    "175": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "4 đáp án là số 1 / 2 / 3 / 4",
+      "pick": "2",
+      "avoid": "1, 3, 4"
+    },
+    "176": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "3,10,22",
+      "avoid": "10,11,21 / 3,20,21"
+    },
+    "177": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "15, 19 and 25",
+      "avoid": "17, 18 and 19 / 18, 20 and 22"
+    },
+    "178": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "4, 5, 99",
+      "avoid": "5, 6, 20 / 4, 5, 80"
+    },
+    "179": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "40-50",
+      "avoid": "10-20 / 70-80"
+    },
+    "180": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "9,10,21,22",
+      "avoid": "9,10,11,22 / 10,11,21,22"
+    },
+    "181": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "1899,1900,2004,2005",
+      "avoid": "0,1900,2004,2005 / 1900,2004"
+    },
+    "182": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Equivalence Partitioning ... discount (Select all)",
+      "pick": "Chọn đủ 3 khoảng tuổi (1—12, 13-64, 65+)",
+      "avoid": "None of the others"
+    },
+    "183": {
+      "mode": "standalone",
+      "chapter": 1,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "10000,50000,99999",
+      "avoid": "Bộ số có 0 hoặc 100000"
+    },
+    "184": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "22,23,24",
+      "avoid": "12,16,22 / 24,27,17"
+    },
+    "185": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "All of them are valid reasons for failure",
+      "avoid": "2 is a valid reason; 1,3,4 & 5 are not"
+    },
+    "186": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "defects is use case testing MOST likely to uncover",
+      "pick": "i, iii.",
+      "avoid": "ii, iv"
+    },
+    "187": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "5 main activities of a formal review",
+      "pick": "1, 2, 4, 7, 8",
+      "avoid": "Các dãy số khác"
+    },
+    "188": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "TRUE for Technical Review",
+      "pick": "I, III and IV",
+      "avoid": "Câu có II (Management)"
+    },
+    "189": {
+      "mode": "glance",
+      "chapter": 6,
+      "cue": "implementation of a testing tool",
+      "pick": "i, ii, iv",
+      "avoid": "Câu có iii (dự án đang trễ lịch)"
+    },
+    "190": {
+      "mode": "glance",
+      "chapter": 6,
+      "cue": "benefits ... using test tools",
+      "pick": "i and iv",
+      "avoid": "ii and iii"
+    },
+    "191": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "characteristic of regression testing",
+      "pick": "ii, iii",
+      "avoid": "Câu có i (chỉ chạy 1 lần)"
+    },
+    "192": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "monitoring the test progress",
+      "pick": "i, ii, iii is correct",
+      "avoid": "Câu có iv"
+    },
+    "193": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "task of a Test Lead / Leader",
+      "pick": "i, ii, iii is true and iv is false",
+      "avoid": "iv (Create Test Specifications)"
+    },
+    "194": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "part of Test Closure Activities",
+      "pick": "All of them are true",
+      "avoid": "Các câu loại trừ 1 ý"
+    },
+    "195": {
+      "mode": "glance",
+      "chapter": 6,
+      "cue": "task of a Tester",
+      "pick": "ii, iii, iv is true and i is false",
+      "avoid": "ii, iii, iv ARE true / câu i (Tool Vendor)"
+    },
+    "196": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "Formal Review / Inspection",
+      "pick": "i, iii, iv are true and ii is false",
+      "avoid": "Câu có ii (led by author)"
+    },
+    "197": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "activities belong to Test Planning",
+      "pick": "ii & iii are true, i, iv & v are false.",
+      "avoid": "Các tổ hợp khác"
+    },
+    "198": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "persons involved in a Formal Review",
+      "pick": "i, ii, iii are true and iv is false.",
+      "avoid": "ii, iii, iv are true"
+    },
+    "199": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Test Plan Outline contains",
+      "pick": "i, iii, iv are true and ii is false",
+      "avoid": "Câu có ii (Test Scripts)"
+    },
+    "200": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "early test design",
+      "pick": "i, iii & iv are true, ii & v are false",
+      "avoid": "Các tổ hợp khác"
+    },
+    "201": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Deciding How much testing is enough",
+      "pick": "i, ii are true and iii, iv are false",
+      "avoid": "ii, iii, iv are true"
+    },
+    "202": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "found by static analysis tools",
+      "pick": "i, ii, iii, iv is correct",
+      "avoid": "Các câu thiếu ý"
+    },
+    "203": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Exit criteria may consist of",
+      "pick": "i, ii, iii is correct and iv is incorrect",
+      "avoid": "Các tổ hợp khác"
+    },
+    "204": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "purpose of Configuration Management",
+      "pick": "i, ii and iv",
+      "avoid": "Câu có iii"
+    },
+    "205": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "characteristics of White Box testing",
+      "pick": "i, ii are true and iii and iv are false",
+      "avoid": "Các tổ hợp khác"
+    },
+    "206": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "Match V-model test levels",
+      "pick": "i-c, ii-a, iii-d, iv-b",
+      "avoid": "Các cặp ghép khác"
+    },
+    "207": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "ii is true and i, iii, iv are false",
+      "avoid": "Options i, ii, iii, iv are true"
+    },
+    "208": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "success factors for a review",
+      "pick": "ii, iii, iv are correct and i is incorrect",
+      "avoid": "Câu có i (no predefined objective)"
+    },
+    "209": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "tools are geared more for developer use",
+      "pick": "ii and iv are more for developers",
+      "avoid": "Test management / Performance tools"
+    },
+    "210": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "depends on the risks for the system",
+      "avoid": "All faults fixed / All tests executed"
+    },
+    "211": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Test planning has which ... major tasks",
+      "pick": "i, ii, iv are true and iii is false",
+      "avoid": "ii, iii, iv are true"
+    },
+    "212": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "selection of a test approach",
+      "pick": "i, ii, iii, iv are true",
+      "avoid": "ii, iii, iv are true"
+    },
+    "213": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Test Implementation and execution ... major tasks",
+      "pick": "i, ii, iii are true and iv is false",
+      "avoid": "ii, iii, iv are true"
+    },
+    "214": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "i, v, iv, ii, iii, vi",
+      "avoid": "i, ii, iii, iv, v, vi / vi, i, ii, iii, iv, v"
+    },
+    "215": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "(i) Identifying defects",
+      "avoid": "(ii) Fixing defects / (i) and (ii)"
+    },
+    "216": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "L - N + 2P",
+      "avoid": "N - L + 2P / N - L + P"
+    },
+    "217": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "Match 4 test design techniques",
+      "pick": "1Y, 2Z, 3X, 4W",
+      "avoid": "Các cặp ghép khác"
+    },
+    "218": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Pick up and read the newspaper",
+      "pick": "SC = 2 and DC = 3",
+      "avoid": "SC = 1 / DC = 2"
+    },
+    "219": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "1 test for statement coverage, 2 for branch coverage",
+      "avoid": "3 for branch coverage"
+    },
+    "220": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Defect clustering & Pareto (1 and 2)",
+      "pick": "1 and 2 are true, 3 and 4 are false",
+      "avoid": "Các tổ hợp khác"
+    },
+    "221": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "Regression testing should be performed",
+      "pick": "w & y are true, v, x & z are false",
+      "avoid": "All of them are true"
+    },
+    "222": {
+      "mode": "glance",
+      "chapter": 5,
+      "cue": "Match Estimation / Control / Monitoring",
+      "pick": "1-b, 2-c, 3-a",
+      "avoid": "Các cặp ghép khác"
+    },
+    "223": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "Match 4 types of Reviews (s, t, u, v)",
+      "pick": "s = 4 and 5, t = 3, u = 2, v = 1",
+      "avoid": "Các cặp ghép khác"
+    },
+    "224": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "Minimum Test ... Statement Coverage (Order-qty)",
+      "pick": "Statement coverage is 1",
+      "avoid": "Statement coverage is 2, 3, 4"
+    },
+    "225": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "1 test for statement coverage, 2 for branch coverage",
+      "avoid": "3 for branch coverage"
+    },
+    "226": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "IF A > B THEN ... ELSE ... ENDIF (có chữ ELSE)",
+      "pick": "2 tests for statement coverage, 2 for branch coverage",
+      "avoid": "1 test for statement / 3 for branch"
+    },
+    "227": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "Sơ đồ đường đi vwy, vwz, vxy, vxz",
+      "pick": "A",
+      "avoid": "ABCD, ABD, ACD"
+    },
+    "228": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "Sơ đồ công tắc OFF / ON / FAULT (invalid)",
+      "pick": "FAULT to ON",
+      "avoid": "OFF to ON / ON to FAULT"
+    },
+    "229": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "Sơ đồ Giỏ hàng Login - Browse - Basket",
+      "pick": "Login Browse Basket Checkout Basket Logout",
+      "avoid": "3 câu có chữ Pay"
+    },
+    "230": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Bảng quyết định thẻ Citibank (Silver room)",
+      "pick": "A - Offer upgrade to Gold, B - Don't offer any upgrade",
+      "avoid": "Các phương án khác"
+    },
+    "231": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "Component Testing is also called as",
+      "pick": "i, ii, iii are true and iv is false",
+      "avoid": "All of them are true"
+    },
+    "232": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Boo01k",
+      "avoid": "BOOK / Book"
+    },
+    "233": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Test Effectiveness",
+      "avoid": "Defects / Trends analysis"
+    },
+    "234": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "reliability, performance, security, and usability",
+      "pick": "Non-functional testing",
+      "avoid": "Functional / Requirements testing"
+    },
+    "235": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Bottom-up integration",
+      "avoid": "Top-down integration / None of the others"
+    },
+    "236": {
+      "mode": "glance",
+      "chapter": 4,
+      "cue": "sequences of statements (paths)",
+      "pick": "4 Test Cases",
+      "avoid": "2 / 3 Test Cases"
+    },
+    "237": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "without executing the software",
+      "avoid": "To execute the software and identify defects"
+    },
+    "238": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "separate test data from scripts",
+      "avoid": "They do not require external data"
+    },
+    "239": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "defects in process flows related to typical use",
+      "avoid": "To identify defects in the connections..."
+    },
+    "240": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "behavior from an external perspective",
+      "avoid": "internal code structure"
+    },
+    "241": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Static testing does not involve executing the code",
+      "avoid": "Static testing involves executing the..."
+    },
+    "242": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "What is static testing?",
+      "pick": "examined manually, or with a set of tools, but not executed",
+      "avoid": "Software is executed..."
+    },
+    "243": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "What is dynamic testing?",
+      "pick": "Software is executed using a set of input values",
+      "avoid": "not executed"
+    },
+    "244": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Integration testing, system testing, acceptance testing",
+      "avoid": "System testing, integration testing,..."
+    },
+    "245": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "To verify that the system behaves correctly under load",
+      "avoid": "To ensure that the system meets..."
+    },
+    "246": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "integrates testing throughout the development phases",
+      "avoid": "less costly and time-consuming"
+    },
+    "247": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "individual units or components in isolation",
+      "avoid": "To perform performance testing"
+    },
+    "248": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "how well the system performs",
+      "avoid": "It is always performed after functional..."
+    },
+    "249": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "misunderstandings and reduced software quality",
+      "avoid": "It enhances the efficiency of the..."
+    },
+    "250": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "vary based on the specific context",
+      "avoid": "It is irrelevant since all testing..."
+    },
+    "251": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "clarifies what is included and excluded",
+      "avoid": "It outlines the geographical areas where..."
+    },
+    "252": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "changes in state within an application",
+      "avoid": "The visual aspects of the user interface"
+    },
+    "253": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "interfaces between components, interactions",
+      "avoid": "It is unit, module and program testing,..."
+    },
+    "254": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "educate participants and gather feedback",
+      "avoid": "To detect critical defects / To automate review processes"
+    },
+    "255": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Same tests over time detect fewer issues",
+      "avoid": "Testing must be exhaustive"
+    },
+    "256": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "functions according to the specified requirements",
+      "avoid": "To assess the system's non-functional..."
+    },
+    "257": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "bug fixes and enhancements do not introduce new defects",
+      "avoid": "To ensure that new features disrupt..."
+    },
+    "258": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "areas of the software most likely to have defects",
+      "avoid": "By performing minimal testing on all features"
+    },
+    "259": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "interaction and effectiveness of the testing team",
+      "avoid": "It allows for complete automation of the..."
+    },
+    "260": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Inexpensive way to get some benefit",
+      "avoid": "Find defects"
+    },
+    "261": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "only one value in the range becomes a test case",
+      "avoid": "every value in the range"
+    },
+    "262": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "information for a risk based decision about release",
+      "avoid": "find all remaining defects"
+    },
+    "263": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "To plan when to stop testing",
+      "avoid": "To know when a specific test has finished..."
+    },
+    "264": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Preventative tests are designed early; reactive tests",
+      "avoid": "Preventative tests and reactive tests are..."
+    },
+    "265": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Cultural difference",
+      "avoid": "Does not meet people needs / Relinquishments of control"
+    },
+    "266": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "identify defects in any software work product",
+      "avoid": "To identify potential application..."
+    },
+    "267": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "prevent defects from being introduced",
+      "avoid": "It is cheaper than designing tests during..."
+    },
+    "268": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "incorrect behavior of the system in operation",
+      "avoid": "A mistake made by a developer"
+    },
+    "269": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Integration of all components at once",
+      "avoid": "Detailed and extensive planning / User involvement is mandatory"
+    },
+    "270": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "likelihood of an adverse event and the impact",
+      "avoid": "The cost of dealing with an adverse event..."
+    },
+    "271": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "continuation or stoppage of testing",
+      "avoid": "Finalizing the software release without..."
+    },
+    "272": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "Test planning and execution occur simultaneously",
+      "avoid": "Ability to strictly adhere to test scripts"
+    },
+    "273": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "risk level and complexity of the project",
+      "avoid": "The personal preferences of the test team"
+    },
+    "274": {
+      "mode": "standalone",
+      "chapter": 3,
+      "cue": "Đứng lẻ 1 mình",
+      "pick": "Explaining the objective",
+      "avoid": "Allocating roles (thuộc Planning)"
+    },
+    "275": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Planning — Initiate review — Individual review",
+      "avoid": "Individual review đứng đầu"
+    },
+    "276": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "how much regression testing to do",
+      "avoid": "Impact analysis assesses the effect on..."
+    },
+    "277": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "executing Software for the purpose of finding defects",
+      "avoid": "The goal / purpose of testing is to..."
+    },
+    "278": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "impact of a defect on the system, while priority",
+      "avoid": "Severity refers to the importance of a..."
+    },
+    "279": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "inspection is led by a moderator and a walkthrough is led by the author",
+      "avoid": "Both inspections and walkthroughs..."
+    },
+    "280": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Reporting discrepancies as incidents",
+      "avoid": "Measuring and analyzing results"
+    },
+    "281": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Scheduling test analysis and design tasks",
+      "avoid": "Initiating corrective actions / Measuring and analyzing results"
+    },
+    "282": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Available skills and experience in the proposed techniques",
+      "avoid": "Availability of tools to support the..."
+    },
+    "283": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Faults in requirements are the most expensive to fix",
+      "avoid": "Faults in program specifications are the..."
+    },
+    "284": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Designed by a person from a different organization",
+      "avoid": "Designed by another person"
+    },
+    "285": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Identifying defects early and thereby reducing rework costs",
+      "avoid": "Decreasing the amount of documentation..."
+    },
+    "286": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Management of the testing process and resources",
+      "avoid": "Direct involvement in software programming"
+    },
+    "287": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "minimize psychological conflicts (Select all)",
+      "pick": "Chọn 3 câu tích cực (Fostering, Ensuring, Encouraging)",
+      "avoid": "Câu có chữ belittles the coder"
+    },
+    "288": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Static analysis of a software model",
+      "avoid": "Technical review of a functional..."
+    },
+    "289": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "which modules to combine when and how many at once",
+      "avoid": "all of the small modules"
+    },
+    "290": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "discovered every bug in the program",
+      "avoid": "You have tested every statement, branch,..."
+    },
+    "291": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "check unchanged areas of the software",
+      "avoid": "check only changed areas"
+    },
+    "292": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "constructive feedback and respect",
+      "avoid": "Minimizing interaction between testers..."
+    },
+    "293": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "testers focus on test execution",
+      "avoid": "A test leader focuses on test execution..."
+    },
+    "294": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "limited time and no detailed specifications",
+      "avoid": "When detailed specifications are available"
+    },
+    "295": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "Running regression tests",
+      "avoid": "Designing new test cases"
+    },
+    "296": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "open defects compared to closed defects",
+      "avoid": "Number of passed requirements per code line"
+    },
+    "297": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "All of the others",
+      "avoid": "All of them are true / All of i, ii, iii"
+    },
+    "298": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "scheduled time for testing expires",
+      "avoid": "None of the others"
+    },
+    "299": {
+      "mode": "instant",
+      "chapter": 6,
+      "cue": null,
+      "pick": "A small team to establish the best way",
+      "avoid": "All teams at once"
+    },
+    "300": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "dynamic and adapt to new findings",
+      "avoid": "After receiving comprehensive training in..."
+    },
+    "301": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "difference between the system and the requirement",
+      "avoid": "We are looking for errors and fixing them"
+    },
+    "302": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "At all test levels",
+      "avoid": "At all levels above integration"
+    },
+    "303": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "finding defects early when they are cheaper to fix",
+      "avoid": "By delaying defect detection until after..."
+    },
+    "304": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "use risks and priorities to focus testing",
+      "avoid": "Exhaustive testing is possible"
+    },
+    "305": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "beyond normal operational capacity, while load testing",
+      "avoid": "Stress testing examines system..."
+    },
+    "306": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "check compliance with standards",
+      "avoid": "By focusing solely on end-user needs"
+    },
+    "307": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "led by a trained moderator and follow a defined process",
+      "avoid": "Technical reviews are less structured and..."
+    },
+    "308": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "environment needs to be ready for executing",
+      "avoid": "It is only relevant during test case design"
+    },
+    "309": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "how changes might affect the existing system",
+      "avoid": "It determines the effect of a new..."
+    },
+    "310": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "all branches in decision points are executed",
+      "avoid": "It measures the software's performance..."
+    },
+    "311": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "divides input data into valid and invalid partitions",
+      "avoid": "It requires thorough knowledge of the..."
+    },
+    "312": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "consistency and thoroughness in defect identification",
+      "avoid": "To reduce the time spent on discussions"
+    },
+    "313": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "unlikely to cause a failure",
+      "avoid": "Is likely to be fault-free"
+    },
+    "314": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "process for selecting test cases",
+      "avoid": "A process for determining expected outputs"
+    },
+    "315": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "build confidence in the software's functionality",
+      "avoid": "To gather evidence for a lawsuit / To train the users"
+    },
+    "316": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Eliminate some of the requirements",
+      "avoid": "Add more testers / Work overtime"
+    },
+    "317": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "during testing if it contains all incidents",
+      "avoid": "Only records defects / Is of limited value"
+    },
+    "318": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "see other and different defects and are unbiased",
+      "avoid": "Independent testers are much more..."
+    },
+    "319": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "partial measure of test thoroughness",
+      "avoid": "complete measure"
+    },
+    "320": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "As soon as the software requirements have been approved",
+      "avoid": "After coding is complete"
+    },
+    "321": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "supplement to formal test design techniques",
+      "avoid": "replace formal techniques"
+    },
+    "322": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "After more formal techniques have been applied",
+      "avoid": "Before formal techniques"
+    },
+    "323": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Before the test is executed",
+      "avoid": "After the test is executed"
+    },
+    "324": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "appropriate to all levels of testing",
+      "avoid": "A black box testing technique used only..."
+    },
+    "325": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "static analysis MOST likely to find",
+      "pick": "Unreachable (\"dead\") code",
+      "avoid": "Memory leaks (thuộc câu NOT find)"
+    },
+    "326": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "measure the size of the functionality",
+      "avoid": "To measure the functional flow"
+    },
+    "327": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Error condition hiding another error condition",
+      "avoid": "Masking a fault by developer / Masking a fault by a tester"
+    },
+    "328": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Configuration management tools — Check for consistence",
+      "avoid": "Test data preparation tools — Manipulate..."
+    },
+    "329": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Instead of exhaustive testing, we use risks and priorities",
+      "avoid": "Math formulas for reports that the..."
+    },
+    "330": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "explanation of 'Early testing'",
+      "pick": "start as early as possible in the software or system development life cycle",
+      "avoid": "Các giải thích nguyên lý khác"
+    },
+    "331": {
+      "mode": "glance",
+      "chapter": 2,
+      "cue": "explanation of 'Testing shows presence of defects'",
+      "pick": "can show that defects are present, but cannot prove that there are no defects",
+      "avoid": "Các giải thích nguyên lý khác"
+    },
+    "332": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "confirm that the defect has indeed been fixed",
+      "avoid": "Validate the expected results"
+    },
+    "333": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Wait for the person to pause, acknowledge",
+      "avoid": "Confront the person"
+    },
+    "334": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Entity Outside the Project's sphere of influence",
+      "avoid": "Done by the Developer / Done by the Test Engineers"
+    },
+    "335": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "How much regression testing should be done",
+      "avoid": "Exit Criteria"
+    },
+    "336": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "How much of the code has been covered",
+      "avoid": "Variables not defined in the code"
+    },
+    "337": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "difficult to determine if the test has passed or failed",
+      "avoid": "We cannot run the test"
+    },
+    "338": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Testing the system when combined with other systems",
+      "avoid": "Testing a sub-system using stubs and drivers"
+    },
+    "339": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "All of the others",
+      "avoid": "All of them are true / All of i, ii, iii"
+    },
+    "340": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "tester's experience, knowledge and intuition",
+      "avoid": "Randomly generated test cases"
+    },
+    "341": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "analyze what was done and what could be improved",
+      "avoid": "To plan the next phases of the project"
+    },
+    "342": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Tests by the person who wrote the source code",
+      "avoid": "Tests by the person who wrote the item..."
+    },
+    "343": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Non-functional and Functional requirements",
+      "avoid": "Non-functional requirements only not..."
+    },
+    "344": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Inputs and expected results",
+      "avoid": "It is easy to execute / It is unlikely to delay progress"
+    },
+    "345": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "best testing in the time available",
+      "avoid": "You do more effective testing / You find more faults"
+    },
+    "346": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "All of the others",
+      "avoid": "All of them are true / All of i, ii, iii"
+    },
+    "347": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Needs configuration management just like requirements",
+      "avoid": "Should be newly constructed for each new..."
+    },
+    "348": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "All of the others",
+      "avoid": "All of them are true / All of i, ii, iii"
+    },
+    "349": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "Increases as we move the product towards live use",
+      "avoid": "Is not important / Can never be determined"
+    },
+    "350": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "regression testing looks for unexpected side effects",
+      "avoid": "Re-testing looks for unexpected side..."
+    },
+    "351": {
+      "mode": "glance",
+      "chapter": 1,
+      "cue": "Test Cases Derived from use cases",
+      "pick": "uncovering defects in the process flows during real world use",
+      "avoid": "individual components / boundary defects"
+    },
+    "352": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "test execution and logging",
+      "avoid": "Tool support for static testing"
+    },
+    "353": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "None, existing test cases can be used",
+      "avoid": "One more / Two more test cases"
+    },
+    "354": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "The objective of the test",
+      "avoid": "How well you know a particular technique"
+    },
+    "355": {
+      "mode": "glance",
+      "chapter": 3,
+      "cue": "Which TWO ... static analysis",
+      "pick": "need not be performed before... + hard to find with dynamic testing",
+      "avoid": "2 câu còn lại"
+    },
+    "356": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "How much of the code has been covered",
+      "avoid": "Variables not defined in the code"
+    },
+    "357": {
+      "mode": "instant",
+      "chapter": 3,
+      "cue": null,
+      "pick": "Static testing requires the running of tests",
+      "avoid": "Static testing includes desk checking"
+    },
+    "358": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "information for a risk based decision about release",
+      "avoid": "find all remaining defects"
+    },
+    "359": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "eliminate every defect prior to release",
+      "avoid": "Determine the productivity of programmers"
+    },
+    "360": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "fault has been built into more documentation, code",
+      "avoid": "None of the others"
+    },
+    "361": {
+      "mode": "instant",
+      "chapter": 4,
+      "cue": null,
+      "pick": "on, below and above the edges",
+      "avoid": "Is the same as equivalence partitioning tests"
+    },
+    "362": {
+      "mode": "instant",
+      "chapter": 1,
+      "cue": null,
+      "pick": "All of the others",
+      "avoid": "All of them are true / All of i, ii, iii"
+    },
+    "363": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "test completion criteria have been met",
+      "avoid": "When time for testing has run out"
+    },
+    "364": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "define when a test level is complete",
+      "avoid": "To determine when a test has completed"
+    },
+    "365": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "depends on the risk for your industry",
+      "avoid": "This question is easy to answer"
+    },
+    "366": {
+      "mode": "instant",
+      "chapter": 2,
+      "cue": null,
+      "pick": "Component testing does not involve regression testing",
+      "avoid": "Component testing should be performed by..."
+    },
+    "367": {
+      "mode": "instant",
+      "chapter": 5,
+      "cue": null,
+      "pick": "Skill and staff shortages",
+      "avoid": "Poor software characteristics"
+    }
+  }
 };
