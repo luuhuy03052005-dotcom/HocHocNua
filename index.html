@@ -15,23 +15,23 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-35">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-35">
-  <script defer src="data/questions.js?v=multi-course-35"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-35"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-35"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-35"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-35"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-35"></script>
-  <script defer src="data/study-prj301.js?v=multi-course-35"></script>
-  <script defer src="data/study-swt301.js?v=multi-course-35"></script>
-  <script defer src="js/storage.js?v=multi-course-35"></script>
-  <script defer src="js/concept-helper.js?v=multi-course-35"></script>
-  <script defer src="js/practice.js?v=multi-course-35"></script>
-  <script defer src="js/exam.js?v=multi-course-35"></script>
-  <script defer src="js/keyword.js?v=multi-course-35"></script>
-  <script defer src="js/study.js?v=multi-course-35"></script>
-  <script defer src="js/app.js?v=multi-course-35"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-36">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-36">
+  <script defer src="data/questions.js?v=multi-course-36"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-36"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-36"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-36"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-36"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-36"></script>
+  <script defer src="data/study-prj301.js?v=multi-course-36"></script>
+  <script defer src="data/study-swt301.js?v=multi-course-36"></script>
+  <script defer src="js/storage.js?v=multi-course-36"></script>
+  <script defer src="js/concept-helper.js?v=multi-course-36"></script>
+  <script defer src="js/practice.js?v=multi-course-36"></script>
+  <script defer src="js/exam.js?v=multi-course-36"></script>
+  <script defer src="js/keyword.js?v=multi-course-36"></script>
+  <script defer src="js/study.js?v=multi-course-36"></script>
+  <script defer src="js/app.js?v=multi-course-36"></script>
 </head>
 <body>
   <header class="topbar">
@@ -352,13 +352,241 @@
           <nav id="study-quick-jump" class="study-quick-jump card" aria-label="Đi nhanh đến phần ôn tập" hidden>
             <span class="study-quick-jump-label">Đi nhanh đến mục:</span>
             <div class="study-quick-jump-actions">
+              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="families" id="study-jump-families">🧭 Mẹo gỡ rối họ Analyse &amp; các dạng Test</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="concepts" id="study-jump-concepts">📘 Khái niệm &amp; Phân tích 6 chương</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="shortcuts">⚡ Mẹo &amp; Keyword Auto chọn</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="same-options" id="study-jump-same-options">🎯 Các đáp án giống nhau</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="similar-questions" id="study-jump-similar-questions">🔍 Câu hỏi gần giống nhau</button>
-              <button type="button" class="btn btn-ghost btn-sm" data-study-jump="all" id="study-jump-all-distinctions">📚 Xem tất cả câu dễ nhầm</button>
             </div>
           </nav>
+
+          <section class="study-shortcuts card" id="study-word-families-swt301" aria-labelledby="study-word-families-swt301-title" hidden>
+            <div class="study-section-heading">
+              <div class="study-shortcuts-header-top">
+                <span class="badge badge-warning">Chuyên trị đáp án na ná nhau</span>
+                <span class="badge badge-success">Thống kê chính xác 100% trên 367 câu</span>
+              </div>
+              <h2 id="study-word-families-swt301-title">Bí kíp chốt đáp án khi gặp một rừng chữ "Analyse / Analysis" &amp; "Các dạng Test / Testing"</h2>
+              <p class="study-shortcuts-lead">Khi 4 đáp án toàn các từ hao hao nhau (<em>Static / Dynamic / Coverage / Memory analysis</em> hoặc <em>Unit / System / Performance / Regression / Confirmation testing...</em>), chỉ cần áp dụng đúng 2 bảng loại trừ &amp; khóa từ khóa dưới đây:</p>
+            </div>
+
+            <!-- HỌ 1: ANALYSE / ANALYSIS -->
+            <div class="shortcut-block shortcut-block-accent">
+              <div class="shortcut-block-head">
+                <span class="badge badge-accent">HỌ TỪ 1</span>
+                <h3>1. GẶP HỌ "ANALYSE / ANALYSIS" — Gạch sạch 8 từ giả 0%, chỉ chọn đúng 5 dấu hiệu</h3>
+              </div>
+              <p class="shortcut-block-desc">
+                ❌ <strong>GẠCH BỎ NGAY LẬP TỨC (0% ĐÚNG trong toàn bộ 367 câu):</strong>
+                <code>Data flow analysis</code> (0/2), <code>Coverage analysis</code> (0/2), <code>State analysis</code> (0/1), <code>Memory analysis</code> (0/1), <code>Metrics analysis</code> (0/1), <code>Trends analysis</code> (0/1), <code>Analysis and design</code> (thiếu chữ Test ở đầu: 0/2), <code>Analysts</code> (0/2), <code>Measuring and analyzing results</code> (0/2).
+              </p>
+              <div class="table-wrapper">
+                <table class="data-table shortcut-table">
+                  <thead>
+                    <tr>
+                      <th style="inline-size: 32%;">Thấy chữ này trên Đề bài</th>
+                      <th style="inline-size: 28%;">Chốt ngay Đáp án họ Analysis</th>
+                      <th>Lưu ý chống bẫy &amp; Câu luyện</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong><code>memory leak</code></strong> / <strong><code>unassigned pointers</code></strong></td>
+                      <td><code class="shortcut-code-pick">Dynamic analysis</code> / <code class="shortcut-code-pick">Dynamic analysis tool</code></td>
+                      <td>
+                        Cấm bị lừa chọn <em>Memory analysis</em> hay <em>Static analysis tool</em>! Rò rỉ bộ nhớ chỉ bắt được lúc code đang chạy (Dynamic).
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="73">Câu #73</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="88">Câu #88</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="16">Câu #16 (Static NOT find)</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong><code>Unreachable code</code></strong> / <strong><code>performed by developers</code></strong> / <strong><code>true of static analysis</code></strong></td>
+                      <td><code class="shortcut-code-pick">Static analysis...</code></td>
+                      <td>
+                        Code chết, biến chưa khai báo, kiểm tra mô hình/chuẩn code không chạy chương trình &rarr; luôn là <code>Static analysis</code>. (Câu #355 hỏi <em>TWO</em> thì chọn cả B &amp; C).
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="120">Câu #120</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="288">Câu #288</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="44">Câu #44</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="355">Câu #355</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Hỏi câu nào đúng về <strong><code>Impact analysis</code></strong></td>
+                      <td><code class="shortcut-code-pick">Impact analysis assesses the effect of a change... how much regression testing to do</code></td>
+                      <td>
+                        <code>Impact analysis</code> luôn gắn chặt với cặp từ khóa <strong>change</strong> &rarr; <strong>how much regression testing</strong>.
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="276">Câu #276</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="335">Câu #335</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="309">Câu #309</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong><code>NOT a White box technique?</code></strong></td>
+                      <td><code class="shortcut-code-pick">Boundary value analysis</code></td>
+                      <td>
+                        Trong 3 lần chữ <code>Boundary value analysis</code> xuất hiện làm đáp án (#36, #56, #90), nó <strong>CHỈ ĐÚNG ở #36</strong> (khi hỏi cái nào không phải White-box!).
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="36">Câu #36</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong><code>Reviewing the test Basis</code></strong> hoặc <strong><code>Designing the test environment</code></strong></td>
+                      <td><code class="shortcut-code-pick">Test Analysis and Design</code></td>
+                      <td>
+                        Chỉ chọn pha này khi đề bắt đầu bằng <code>Reviewing test Basis</code> (#131) hoặc <code>Designing test environment</code> (#114). Còn muốn mua tool mới (#168) &rarr; <code>Analyze your needs and requirements</code>; đóng dự án (#341) &rarr; <code>analyze what was done</code>.
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="114">Câu #114</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="131">Câu #131</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="168">Câu #168</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="341">Câu #341</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- HỌ 2: CÁC DẠNG TEST / TESTING -->
+            <div class="shortcut-block shortcut-block-success">
+              <div class="shortcut-block-head">
+                <span class="badge badge-success">HỌ TỪ 2</span>
+                <h3>2. GẶP MỘT RỪNG CÁC DẠNG "... TESTING" — Gạch ngay đáp án mồi 0% &amp; Khóa đúng 1 từ trên đề</h3>
+              </div>
+              <p class="shortcut-block-desc">
+                ❌ <strong>BẤT NGỜ LỚN — CÁC TỪ "... TESTING" ĐỨNG RIÊNG LẺ CÓ TỈ LỆ ĐÚNG 0% (Gặp đứng một mình là GẠCH!):</strong><br>
+                • <code>Functional testing</code> đứng một mình: <strong>0/3 (0% ĐÚNG!)</strong> (#12, #66, #234 đều sai!).<br>
+                • <code>Regression testing</code> đứng một mình: <strong>0/3 (0% ĐÚNG!)</strong> (#81, #94, #134 đều sai — chỉ đúng khi đi đôi <code>Confirmation and regression testing</code> ở #62!).<br>
+                • <code>Requirements testing</code> (0/2), <code>Sanity testing</code> (0/2), <code>Smoke testing</code> (0/1), <code>Statement testing</code> lẻ (0/2), <code>Recovery testing</code> (0/2), <code>Component testing</code> lẻ (0/2), <code>Validation Testing</code> (0/1), <code>Volume testing</code> (0/1), <code>Dataflow testing</code> (0/2) &rarr; <strong>SAI SẠCH 100%!</strong>
+              </p>
+              <div class="table-wrapper">
+                <table class="data-table shortcut-table">
+                  <thead>
+                    <tr>
+                      <th style="inline-size: 26%;">Tên dạng Testing</th>
+                      <th style="inline-size: 14%; text-align: center;">Tỉ lệ thắng</th>
+                      <th>CHỈ ĐƯỢC CHỌN khi trên Đề bài có đúng cụm chữ này (còn lại bỏ hết!)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><code class="shortcut-code-pick">Unit testing</code></td>
+                      <td style="text-align: center;"><span class="badge badge-warning">2/5 câu</span></td>
+                      <td>
+                        Chỉ chọn khi đề có <strong><code>single unit ... isolated</code></strong> (#51) hoặc <strong><code>individual units or components</code></strong> (#84).
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="51">Câu #51</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="84">Câu #84</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code class="shortcut-code-pick">Integration testing</code></td>
+                      <td style="text-align: center;"><span class="badge badge-warning">2/8 câu</span></td>
+                      <td>
+                        Chỉ chọn khi đề có <strong><code>interfaces and interaction between integrated components</code></strong> (#130, #149). <em>(Từ module lá <code>terminal / leaf</code> &rarr; <code>Bottom-up</code> #155, #235; <code>NOT part of system testing</code> &rarr; <code>Top-down integration</code> #37; <code>not incremental</code> &rarr; <code>Big-bang</code> #17).</em>
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="130">Câu #130</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="149">Câu #149</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="37">Câu #37</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code class="shortcut-code-pick">System Testing</code></td>
+                      <td style="text-align: center;"><span class="badge badge-danger">1/8 câu!</span></td>
+                      <td>
+                        Xuất hiện tới 8 lần làm mồi nhưng <strong>CHỈ ĐÚNG DUY NHẤT 1 CÂU #164</strong> khi đề có chữ <strong><code>testing the entire system</code></strong>! 7 câu còn lại không có chữ <code>entire system</code> thì đừng bao giờ khoanh!
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="164">Câu #164</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code class="shortcut-code-pick">Acceptance testing</code></td>
+                      <td style="text-align: center;"><span class="badge badge-warning">2/5 câu</span></td>
+                      <td>
+                        Chỉ chọn khi đề có <strong><code>meets business requirements</code></strong> (#89) hoặc <strong><code>Contract and regulation testing</code></strong> (#111). <em>(Tại <code>client own locations</code> &rarr; <code>Field testing</code> #145).</em>
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="89">Câu #89</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="111">Câu #111</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="145">Câu #145</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code class="shortcut-code-pick">Non-functional testing</code><br>vs <code class="shortcut-code-pick">Performance</code><br>vs <code class="shortcut-code-pick">Usability</code></td>
+                      <td style="text-align: center;"><span class="badge badge-accent">Móc khóa 1-1</span></td>
+                      <td>
+                        • Đề có <strong><code>internet banking</code></strong> &rarr; <strong><code>Non-functional testing</code></strong> (#66, #234).<br>
+                        • Đề hỏi <strong><code>What is not test type?</code></strong> (#12) HOẶC <strong><code>Which is the non-functional testing</code></strong> (#81) &rarr; <strong><code>Performance testing</code></strong> (5 câu khác có <em>Performance testing</em> bỏ hết!).<br>
+                        • Đề hỏi <strong><code>Which of the following is a type of non-functional testing?</code></strong> (#79) &rarr; <strong><code>Usability testing.</code></strong> (4 câu khác có <em>Usability testing</em> bỏ hết!).
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="66">Câu #66</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="234">Câu #234</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="12">Câu #12</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="81">Câu #81</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="79">Câu #79</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code class="shortcut-code-pick">Load Testing</code> vs <code class="shortcut-code-pick">Stress Testing</code></td>
+                      <td style="text-align: center;"><span class="badge badge-success">Đúng 100%</span></td>
+                      <td>
+                        • Đề có <strong><code>varying workloads</code></strong> &rarr; <strong><code>Load Testing</code></strong> (#150).<br>
+                        • Đề có <strong><code>limitations have been exceeded</code></strong> &rarr; <strong><code>Stress Testing</code></strong> (#85).
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="150">Câu #150</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="85">Câu #85</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="305">Câu #305</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code class="shortcut-code-pick">Confirmation</code> vs <code class="shortcut-code-pick">Re-testing</code></td>
+                      <td style="text-align: center;"><span class="badge badge-success">Đúng 100%</span></td>
+                      <td>
+                        • Đề có <strong><code>change-related testing include</code></strong> &rarr; <strong><code>Confirmation and regression testing</code></strong> (#62).<br>
+                        • Đề có <strong><code>confirm ... original defect removed</code></strong> &rarr; <strong><code>Confirmation testing</code></strong> (#94).<br>
+                        • Đề có <strong><code>performing Maintenance Testing</code></strong> &rarr; <strong><code>Re-testing</code></strong> (#166 — không chọn Confirmation ở câu này!).
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="62">Câu #62</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="94">Câu #94</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="166">Câu #166</button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Kỹ thuật thiết kế:<br><code class="shortcut-code-pick">Equivalence</code> / <code class="shortcut-code-pick">Decision table</code> / <code class="shortcut-code-pick">Decision testing</code> / <code class="shortcut-code-pick">Structural</code></td>
+                      <td style="text-align: center;"><span class="badge badge-success">Đúng 100%</span></td>
+                      <td>
+                        • <strong><code>input and output coverage</code></strong> (#56) hoặc <strong><code>black box design technique</code></strong> (#72) &rarr; <strong><code>Equivalence partitioning</code></strong>.<br>
+                        • <strong><code>different combinations of inputs</code></strong> (#90) &rarr; <strong><code>Decision table testing</code></strong> (Black-box) &ne; <strong><code>not a black box technique</code></strong> (#28) &rarr; <strong><code>Decision testing</code></strong> (White-box)!<br>
+                        • <strong><code>White Box ... also called</code></strong> (#160) hoặc <strong><code>not mimic real world</code></strong> (#40) &rarr; <strong><code>Structural Testing</code></strong> &ne; <strong><code>odd one out</code></strong> (#76) &rarr; <strong><code>Black box testing</code></strong>!<br>
+                        • <strong><code>skills, intuition, experience</code></strong> (#92) &rarr; <strong><code>Experience-based testing</code></strong> | <strong><code>component test</code></strong> (#103) &rarr; <strong><code>Statement and branch testing</code></strong> | <strong><code>not white box BS7925-II</code></strong> (#125) &rarr; <strong><code>Random testing</code></strong>.
+                        <div class="shortcut-q-links">
+                          <button type="button" class="shortcut-q-btn" data-open-q="28">Câu #28</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="90">Câu #90</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="56">Câu #56</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="76">Câu #76</button>
+                          <button type="button" class="shortcut-q-btn" data-open-q="103">Câu #103</button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
 
           <section class="study-concepts card" id="study-concepts-swt301" aria-labelledby="study-concepts-swt301-title" hidden>
             <div class="study-section-heading">

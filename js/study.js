@@ -593,6 +593,12 @@
     const conceptsSwt = byId('study-concepts-swt301');
     if (conceptsSwt) conceptsSwt.hidden = (courseCode !== 'SWT301') || !swtChapters.length;
 
+    const familiesSwt = byId('study-word-families-swt301');
+    if (familiesSwt) familiesSwt.hidden = (courseCode !== 'SWT301');
+
+    const jumpFamiliesBtn = byId('study-jump-families');
+    if (jumpFamiliesBtn) jumpFamiliesBtn.hidden = (courseCode !== 'SWT301');
+
     const jumpConceptsBtn = byId('study-jump-concepts');
     if (jumpConceptsBtn) {
       jumpConceptsBtn.textContent = courseCode === 'SWT301'
@@ -724,7 +730,9 @@
         const jumpBtn = event.target.closest('[data-study-jump]');
         if (!jumpBtn) return;
         const target = jumpBtn.getAttribute('data-study-jump');
-        if (target === 'concepts') {
+        if (target === 'families') {
+          byId('study-word-families-swt301')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (target === 'concepts') {
           const elConcept = activeCourseCode === 'SWT301'
             ? byId('study-concepts-swt301')
             : byId('study-lesson-list');
