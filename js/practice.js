@@ -18,6 +18,10 @@
     clearAutoNext();
     selectedKeys = new Set();
     graded = wasRevealed = lastCorrect = false;
+    SWTApp.conceptHelper?.resetConceptBox(
+      SWTApp.utils.byId('practice-concept-btn'),
+      SWTApp.utils.byId('practice-concept-box')
+    );
   }
 
   function setDisabledList(ids, disabled) {
@@ -522,7 +526,7 @@
     const fbEl = byId('practice-feedback');
     if (!optsEl) return;
     optsEl.replaceChildren();
-    const actionIds = ['practice-prev-btn', 'practice-next-btn', 'practice-reveal-btn', 'practice-star-btn'];
+    const actionIds = ['practice-prev-btn', 'practice-next-btn', 'practice-reveal-btn', 'practice-star-btn', 'practice-concept-btn'];
     updateClusterProgress();
 
     if (deck.length === 0) {
@@ -595,6 +599,12 @@
       }
     }
     renderPracticeKnowledge(q);
+    SWTApp.conceptHelper?.refreshIfOpen({
+      button: byId('practice-concept-btn'),
+      box: byId('practice-concept-box'),
+      question: q,
+      showDistinction: graded
+    });
 
     if (byId('practice-prev-btn')) byId('practice-prev-btn').disabled = index <= 0;
     if (byId('practice-next-btn')) byId('practice-next-btn').disabled = false;
@@ -887,12 +897,13 @@
     if (!preview || !ansBox) return;
     preview.replaceChildren();
     ansBox.replaceChildren();
-    const btns = ['fc-flip-btn', 'fc-grade-hard', 'fc-grade-good', 'fc-grade-easy'];
+    const btns = ['fc-flip-btn', 'fc-grade-hard', 'fc-grade-good', 'fc-grade-easy', 'fc-concept-btn'];
 
     if (fcDeck.length === 0) {
       setText('fc-counter', '0 / 0');
       setText('fc-stem', 'Đã thuộc hết các thẻ trong bộ lọc hiện tại. Tắt "Chỉ câu chưa thuộc" để ôn lại toàn bộ.');
       renderImages(byId('fc-images'), []);
+      SWTApp.conceptHelper?.resetConceptBox(byId('fc-concept-btn'), byId('fc-concept-box'));
       setDisabledList(btns, true);
       return;
     }
@@ -943,6 +954,7 @@
     else fcIndex = (fcIndex + 1) % Math.max(1, fcDeck.length);
     if (fcIndex >= fcDeck.length) fcIndex = 0;
     setFlipped(false);
+    SWTApp.conceptHelper?.resetConceptBox(SWTApp.utils.byId('fc-concept-btn'), SWTApp.utils.byId('fc-concept-box'));
     renderFlashcard();
   }
 
@@ -974,6 +986,16 @@
       byId('practice-reveal-btn')?.addEventListener('click', revealCurrent);
       byId('practice-flip-options-btn')?.addEventListener('click', flipPracticeCard);
       byId('practice-star-btn')?.addEventListener('click', () => this.toggleStar());
+      byId('practice-concept-btn')?.addEventListener('click', () => {
+        clearAutoNext();
+        if (!deck[index]) return;
+        SWTApp.conceptHelper?.toggleConceptBox({
+          button: byId('practice-concept-btn'),
+          box: byId('practice-concept-box'),
+          question: deck[index],
+          showDistinction: graded
+        });
+      });
       document.querySelectorAll('[data-practice-answer-key]').forEach((button) => {
         button.addEventListener('click', () => selectOption(button.dataset.practiceAnswerKey));
       });
@@ -1012,7 +1034,17 @@
       const blurPointer = (e) => { if (e.detail > 0) e.currentTarget?.blur(); };
       byId('fc-flip-btn')?.addEventListener('click', (e) => { blurPointer(e); setFlipped(!isFlipped()); });
       byId('fc-star-btn')?.addEventListener('click', (e) => { e.stopPropagation(); this.toggleCardStar(); });
-      byId('fc-card')?.addEventListener('click', (e) => { if (!e.target.closest('button, a')) setFlipped(!isFlipped()); });
+      byId('fc-concept-btn')?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!fcDeck[fcIndex]) return;
+        SWTApp.conceptHelper?.toggleConceptBox({
+          button: byId('fc-concept-btn'),
+          box: byId('fc-concept-box'),
+          question: fcDeck[fcIndex],
+          showDistinction: isFlipped()
+        });
+      });
+      byId('fc-card')?.addEventListener('click', (e) => { if (!e.target.closest('button, a, .q-concept-box')) setFlipped(!isFlipped()); });
       [['fc-grade-hard', 'hard'], ['fc-grade-good', 'good'], ['fc-grade-easy', 'easy']].forEach(([id, lv]) =>
         byId(id)?.addEventListener('click', (e) => { blurPointer(e); gradeCard(lv); })
       );
@@ -1079,7 +1111,14 @@
     flipCard() { if (fcDeck.length > 0) setFlipped(!isFlipped()); },
     isCardFlipped: isFlipped,
     gradeCard,
-    stepCard(d) { if (fcDeck.length > 0) { fcIndex = Math.min(fcDeck.length - 1, Math.max(0, fcIndex + d)); setFlipped(false); renderFlashcard(); } },
+    stepCard(d) {
+      if (fcDeck.length > 0) {
+        fcIndex = Math.min(fcDeck.length - 1, Math.max(0, fcIndex + d));
+        setFlipped(false);
+        SWTApp.conceptHelper?.resetConceptBox(SWTApp.utils.byId('fc-concept-btn'), SWTApp.utils.byId('fc-concept-box'));
+        renderFlashcard();
+      }
+    },
     toggleCardStar() {
       if (fcDeck[fcIndex]) {
         SWTApp.storage.toggleStar(fcDeck[fcIndex].id);

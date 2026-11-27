@@ -14,6 +14,7 @@
   let rangeStart = 1;
   let rangeEnd = 1;
   let orderedPool = [];
+  let lastExamQId = null;
 
   function isRandomEnabled() {
     return Boolean(SWTApp.utils.byId('exam-random-questions')?.checked);
@@ -187,6 +188,8 @@
     currentIdx = 0;
     answers = new Map();
     flagged = new Set();
+    lastExamQId = null;
+    SWTApp.conceptHelper?.resetConceptBox(SWTApp.utils.byId('exam-concept-btn'), SWTApp.utils.byId('exam-concept-box'));
     startedAt = Date.now();
     endAt = startedAt + mins * 60 * 1000;
 
@@ -246,6 +249,17 @@
     const sel = answers.get(q.id) || new Set();
     const correctSet = new Set(q.correctKeys || []);
     const graded = isQuestionGradedInActiveExam(q, sel);
+    if (lastExamQId !== q.id) {
+      lastExamQId = q.id;
+      SWTApp.conceptHelper?.resetConceptBox(byId('exam-concept-btn'), byId('exam-concept-box'));
+    } else {
+      SWTApp.conceptHelper?.refreshIfOpen({
+        button: byId('exam-concept-btn'),
+        box: byId('exam-concept-box'),
+        question: q,
+        showDistinction: graded
+      });
+    }
     optsEl.replaceChildren();
     (q.options || []).forEach((opt) =>
       optsEl.appendChild(
@@ -327,17 +341,30 @@
         const card = el('article', 'review-item ' + (ok ? 'is-correct' : 'is-wrong'));
         const statusText = ok ? 'Đúng' : sel.size === 0 ? 'Bỏ trống' : 'Sai';
         const head = el('div', 'question-meta');
+        const cBtn = el('button', 'btn btn-ghost btn-sm q-concept-btn');
+        cBtn.type = 'button';
+        cBtn.setAttribute('aria-expanded', 'false');
+        cBtn.title = 'Xem khái niệm & kiến thức câu này';
+        cBtn.append(el('span', 'q-concept-icon', '?'), el('span', '', 'Kiến thức'));
+        const metaActions = el('div', 'question-meta-actions');
+        metaActions.appendChild(cBtn);
         head.append(
           el('span', 'badge ' + (ok ? 'badge-success' : 'badge-danger'), 'Câu ' + (idx + 1) + ' — ' + statusText),
           el('span', 'badge', q.slideNumber ? 'Slide ' + q.slideNumber : '#' + q.id),
-          el('span', 'badge', tKey)
+          el('span', 'badge', tKey),
+          metaActions
         );
+        const cBox = el('div', 'q-concept-box');
+        cBox.hidden = true;
+        cBtn.addEventListener('click', () => {
+          SWTApp.conceptHelper?.toggleConceptBox({ button: cBtn, box: cBox, question: q, showDistinction: true });
+        });
         const optsWrap = el('div', 'options-list');
         const rightSet = new Set(q.correctKeys || []);
         (q.options || []).forEach((opt) => optsWrap.appendChild(createOptionBtn(opt, { selected: sel.has(opt.key), graded: true, isCorrectKey: rightSet.has(opt.key), disabled: true })));
         const stemEl = el('div', 'question-stem');
         SWTApp.utils.renderRichText(stemEl, q.question);
-        card.append(head, stemEl, optsWrap);
+        card.append(head, stemEl, cBox, optsWrap);
         if (q.explanation) card.appendChild(el('p', 'feedback-box', q.explanation));
         reviewEl.appendChild(card);
       }
@@ -526,6 +553,18 @@
       byId('exam-prev-btn')?.addEventListener('click', () => this.step(-1));
       byId('exam-next-btn')?.addEventListener('click', () => this.step(1));
       byId('exam-flag-btn')?.addEventListener('click', () => this.toggleFlag());
+      byId('exam-concept-btn')?.addEventListener('click', () => {
+        const q = examQs[currentIdx];
+        if (!q) return;
+        const sel = answers.get(q.id) || new Set();
+        const graded = isQuestionGradedInActiveExam(q, sel);
+        SWTApp.conceptHelper?.toggleConceptBox({
+          button: byId('exam-concept-btn'),
+          box: byId('exam-concept-box'),
+          question: q,
+          showDistinction: graded
+        });
+      });
       byId('exam-new-btn')?.addEventListener('click', () => { stopTimer(); setHidden('exam-active', true); setHidden('exam-result', true); setHidden('exam-setup', false); });
       byId('exam-retry-wrong-btn')?.addEventListener('click', () => { if (lastWrongIds.length > 0) { SWTApp.practice?.startRetrySet(lastWrongIds); SWTApp.app?.selectTab('tab-practice'); } });
       byId('bank-search-input')?.addEventListener('input', renderBank);

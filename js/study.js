@@ -14,6 +14,9 @@
   let distinctionsCategory = 'all';
   let distinctionsKind = 'all';
   let expandAllOptions = false;
+  let swtChapters = [];
+  let swtChapterFilter = 'all';
+  let swtConceptsQuery = '';
   let activeCourseCode = '';
   let listenersBound = false;
 
@@ -432,6 +435,125 @@
     document.querySelectorAll('#study-lesson-list details').forEach((item) => { item.open = open; });
   }
 
+  function swtChapterMatches(ch) {
+    if (swtChapterFilter !== 'all' && String(ch.number) !== swtChapterFilter) return false;
+    if (!swtConceptsQuery) return true;
+    const blob = [
+      ch.number,
+      ch.title,
+      ch.flow,
+      ...(ch.concepts || []).flatMap((c) => [c.term, c.what, ...(c.bullets || []), ...(c.qIds || [])]),
+      ...(ch.questionPatterns || []).flatMap((p) => [p.type, p.cue, ...(p.qIds || [])])
+    ].join(' ');
+    return normalize(blob).includes(swtConceptsQuery);
+  }
+
+  function createQButtons(qIds) {
+    const { el } = SWTApp.utils;
+    const wrap = el('div', 'shortcut-q-links');
+    (qIds || []).slice(0, 10).forEach((qid) => {
+      const btn = el('button', 'shortcut-q-btn', '#' + qid);
+      btn.type = 'button';
+      btn.setAttribute('data-open-q', String(qid));
+      btn.title = 'Mở câu #' + qid + ' trong Luyện nhanh';
+      wrap.appendChild(btn);
+    });
+    return wrap;
+  }
+
+  function renderSwtConcepts() {
+    const { byId, el } = SWTApp.utils;
+    const section = byId('study-concepts-swt301');
+    const pillsWrap = byId('swt-chapter-pills');
+    const listWrap = byId('swt-concepts-list');
+    const emptyEl = byId('swt-concepts-empty');
+    if (!section || !listWrap || !pillsWrap) return;
+
+    if (!swtChapters || !swtChapters.length) {
+      section.hidden = true;
+      return;
+    }
+    section.hidden = false;
+
+    pillsWrap.replaceChildren();
+    const allBtn = el('button', 'distinction-kind-btn' + (swtChapterFilter === 'all' ? ' is-active' : ''), 'Tất cả 6 chương');
+    allBtn.type = 'button';
+    allBtn.dataset.swtChapter = 'all';
+    pillsWrap.appendChild(allBtn);
+
+    swtChapters.forEach((ch) => {
+      const pBtn = el(
+        'button',
+        'distinction-kind-btn' + (swtChapterFilter === String(ch.number) ? ' is-active' : ''),
+        `Chương ${ch.number} (${ch.badge})`
+      );
+      pBtn.type = 'button';
+      pBtn.dataset.swtChapter = String(ch.number);
+      pillsWrap.appendChild(pBtn);
+    });
+
+    const filtered = swtChapters.filter(swtChapterMatches);
+    listWrap.replaceChildren();
+
+    filtered.forEach((ch, idx) => {
+      const details = el('details', 'swt-chapter-card');
+      details.id = 'swt-chapter-' + ch.number;
+      if (idx === 0 || swtChapterFilter !== 'all' || swtConceptsQuery) details.open = true;
+
+      const summary = el('summary', 'swt-chapter-summary');
+      summary.append(
+        el('span', 'study-lesson-number', 'Chương ' + ch.number),
+        el('strong', 'swt-chapter-title', ch.title),
+        el('span', 'badge badge-accent', ch.badge)
+      );
+
+      const body = el('div', 'swt-chapter-body');
+      if (ch.flow) {
+        const flowBox = el('div', 'swt-chapter-flow');
+        flowBox.append(el('strong', '', '🧭 Sơ đồ cốt lõi: '), el('span', '', ch.flow));
+        body.appendChild(flowBox);
+      }
+
+      if (ch.concepts?.length) {
+        body.appendChild(el('h4', 'swt-subhead', '1. Khái niệm cốt lõi (Là gì & Điểm chính cần nhớ)'));
+        const cGrid = el('div', 'swt-concept-grid');
+        ch.concepts.forEach((c) => {
+          const card = el('article', 'swt-concept-card');
+          card.appendChild(el('h5', 'swt-concept-title', c.term));
+          const whatLine = el('p', 'swt-concept-what');
+          whatLine.append(el('strong', '', 'Là gì: '), el('span', '', c.what));
+          card.appendChild(whatLine);
+          if (c.bullets?.length) {
+            const ul = el('ul', 'swt-concept-bullets');
+            c.bullets.forEach((b) => ul.appendChild(el('li', '', b)));
+            card.appendChild(ul);
+          }
+          if (c.qIds?.length) card.appendChild(createQButtons(c.qIds));
+          cGrid.appendChild(card);
+        });
+        body.appendChild(cGrid);
+      }
+
+      if (ch.questionPatterns?.length) {
+        body.appendChild(el('h4', 'swt-subhead', '2. Phân tích & Phân loại các dạng câu hỏi trong chương'));
+        const pGrid = el('div', 'swt-pattern-grid');
+        ch.questionPatterns.forEach((p) => {
+          const pCard = el('article', 'swt-pattern-card');
+          pCard.appendChild(el('div', 'swt-pattern-type', '🎯 ' + p.type));
+          pCard.appendChild(el('p', 'swt-pattern-cue', p.cue));
+          if (p.qIds?.length) pCard.appendChild(createQButtons(p.qIds));
+          pGrid.appendChild(pCard);
+        });
+        body.appendChild(pGrid);
+      }
+
+      details.append(summary, body);
+      listWrap.appendChild(details);
+    });
+
+    if (emptyEl) emptyEl.hidden = filtered.length !== 0;
+  }
+
   function init(courseCode) {
     const { byId, setText } = SWTApp.utils;
     const data = courseCode === 'SSG105'
@@ -450,6 +572,9 @@
     activeCourseCode = courseCode;
     studyMeta = data?.meta || {};
     lessons = data && Array.isArray(data.lessons) ? data.lessons : [];
+    swtChapters = courseCode === 'SWT301' && Array.isArray(data?.chapters) ? data.chapters : [];
+    swtChapterFilter = 'all';
+    swtConceptsQuery = '';
     distinctionsData = data && Array.isArray(data.distinctions) ? data.distinctions : [];
     distinctionsQuery = '';
     distinctionsCategory = 'all';
@@ -464,6 +589,16 @@
 
     const shortcutsSwt = byId('study-shortcuts-swt301');
     if (shortcutsSwt) shortcutsSwt.hidden = (courseCode !== 'SWT301');
+
+    const conceptsSwt = byId('study-concepts-swt301');
+    if (conceptsSwt) conceptsSwt.hidden = (courseCode !== 'SWT301') || !swtChapters.length;
+
+    const jumpConceptsBtn = byId('study-jump-concepts');
+    if (jumpConceptsBtn) {
+      jumpConceptsBtn.textContent = courseCode === 'SWT301'
+        ? '📘 Khái niệm & Phân tích 6 chương'
+        : '📘 Khái niệm cốt lõi (8 bài)';
+    }
 
     const hasDistinctions = Boolean(distinctionsData && distinctionsData.length);
     const distSection = byId('study-distinctions');
@@ -497,8 +632,8 @@
       recallLesson = 'all';
 
       if (courseCode === 'SWT301') {
-        setText('study-intro-title', 'Mẹo thi & Kiến thức trọng tâm SWT301');
-        setText('study-intro-description', 'Bảng tra cứu phản xạ 1 giây, từ khóa auto chọn, auto gạch, bộ đáp án giống nhau và các câu hỏi gần giống nhau.');
+        setText('study-intro-title', 'Kiến thức nền tảng, Phân tích câu hỏi & Mẹo thi SWT301');
+        setText('study-intro-description', 'Khái niệm cốt lõi 6 chương ISTQB, phân tích các dạng câu hỏi, từ khóa auto chọn/gạch và 30 nhóm câu dễ nhầm.');
         setText('study-total-count', '367');
         const totalUnit = document.querySelector('.study-total-box span');
         if (totalUnit) totalUnit.textContent = 'câu hỏi';
@@ -535,8 +670,11 @@
       if (distCategory) {
         distCategory.replaceChildren(new Option('Tất cả chuyên đề', 'all'));
       }
+      const swtSearch = byId('swt-concepts-search');
+      if (swtSearch) swtSearch.value = '';
       const recallSelect = byId('study-recall-lesson');
       if (recallSelect) recallSelect.replaceChildren(new Option('Tất cả Lesson', 'all'));
+      renderSwtConcepts();
       renderDistinctions();
       renderExtra();
       render();
@@ -544,6 +682,22 @@
 
     if (!listenersBound) {
       listenersBound = true;
+      byId('swt-chapter-pills')?.addEventListener('click', (event) => {
+        const btn = event.target.closest('[data-swt-chapter]');
+        if (!btn) return;
+        swtChapterFilter = btn.getAttribute('data-swt-chapter') || 'all';
+        renderSwtConcepts();
+      });
+      byId('swt-concepts-search')?.addEventListener('input', (event) => {
+        swtConceptsQuery = normalize(event.target.value);
+        renderSwtConcepts();
+      });
+      byId('swt-concepts-open-all')?.addEventListener('click', () => {
+        document.querySelectorAll('#swt-concepts-list details').forEach((d) => { d.open = true; });
+      });
+      byId('swt-concepts-close-all')?.addEventListener('click', () => {
+        document.querySelectorAll('#swt-concepts-list details').forEach((d) => { d.open = false; });
+      });
       byId('study-distinctions-search')?.addEventListener('input', (event) => {
         distinctionsQuery = normalize(event.target.value);
         renderDistinctions();
@@ -570,7 +724,12 @@
         const jumpBtn = event.target.closest('[data-study-jump]');
         if (!jumpBtn) return;
         const target = jumpBtn.getAttribute('data-study-jump');
-        if (target === 'shortcuts') {
+        if (target === 'concepts') {
+          const elConcept = activeCourseCode === 'SWT301'
+            ? byId('study-concepts-swt301')
+            : byId('study-lesson-list');
+          elConcept?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (target === 'shortcuts') {
           const elTarget = activeCourseCode === 'SWT301'
             ? byId('study-shortcuts-swt301')
             : (byId('study-shortcuts-prj301') || byId('study-shortcuts'));

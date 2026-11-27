@@ -1,16 +1,2180 @@
 window.SWT301_STUDY = {
   "meta": {
     "course": "SWT301",
-    "title": "Mẹo thi & Kiến thức trọng tâm SWT301",
-    "description": "Bảng tra cứu phản xạ 1 giây, từ khóa auto chọn, auto gạch, các câu có bộ đáp án giống nhau và câu hỏi gần giống nhau.",
+    "title": "Kiến thức nền tảng, Phân tích câu hỏi & Mẹo thi SWT301",
+    "description": "Trọn bộ khái niệm cốt lõi 6 chương ISTQB, phân tích các dạng câu hỏi, bảng từ khóa auto chọn/gạch và 30 nhóm câu dễ nhầm cho 367 câu SWT301.",
     "questionCount": 367,
     "source": "Software Testing — Semester 5",
     "knowledgeOnly": true,
-    "searchPlaceholder": "Tìm kiếm mẹo hoặc từ khóa SWT301...",
+    "searchPlaceholder": "Tìm khái niệm, dạng câu hỏi hoặc từ khóa SWT301...",
     "recallPlaceholder": "Ví dụ: verification, validation, inspection, decision table...",
     "distinctionsPlaceholder": "Ví dụ: static analysis, Test Plan, branch coverage, exit criteria, stop testing..."
   },
   "lessons": [],
+  "chapters": [
+    {
+      "number": 1,
+      "title": "Fundamentals of Testing — Nền tảng Kiểm thử",
+      "badge": "108 câu",
+      "flow": "Human Error (Con người nhầm) ➔ Defect / Fault / Bug (Lỗi trong code/tài liệu) ➔ Failure (Hành vi sai khi chạy) · 7 Nguyên lý · 5 Bước quy trình test",
+      "concepts": [
+        {
+          "term": "Error ➔ Defect (Fault) ➔ Failure & Fault Masking",
+          "what": "Chuỗi nhân quả gây sự cố phần mềm và hiện tượng lỗi che khuất nhau.",
+          "bullets": [
+            "Error/Mistake: Con người nhầm lẫn ➔ sinh ra Defect/Fault nằm tĩnh trong yêu cầu/code.",
+            "Failure: Sai lệch biểu hiện ra ngoài khi chạy hệ thống (#97, #268); mọi loại fault đều gây được failure (#185).",
+            "Đa số lỗi sinh ra ở pha Requirements (#122) và sửa đắt nhất khi để lọt về cuối (#283, #349, #360).",
+            "Fault Masking (#327): Điều kiện lỗi này che khuất điều kiện lỗi khác."
+          ],
+          "qIds": [
+            4,
+            97,
+            122,
+            185,
+            268,
+            283,
+            327,
+            349,
+            360
+          ]
+        },
+        {
+          "term": "Mục tiêu Testing vs Debugging & Quality (QA / QC / ISO 9126)",
+          "what": "Phân định rõ vai trò tìm lỗi, gỡ lỗi và đảm bảo chất lượng.",
+          "bullets": [
+            "Testing (Tester): Tìm lỗi, ngăn ngừa lỗi sớm, đánh giá chất lượng & cung cấp thông tin rủi ro (#9, #60, #262, #277).",
+            "Debugging (Developer — #99): Tìm nguyên nhân trong code & sửa lỗi (KHÔNG phải mục tiêu testing #27, #69).",
+            "Quality = 'Conformance to requirements' (#136) · QA tuân thủ quy trình/chuẩn (#306) ≠ QC kiểm tra chất lượng sản phẩm (#6: False).",
+            "ISO 9126 (#172): 6 đặc tính chất lượng — KHÔNG có Supportability (#48), Development cost (#30), Viability (#142). Testability KHÔNG gồm Robustness (#68)."
+          ],
+          "qIds": [
+            6,
+            27,
+            30,
+            48,
+            68,
+            69,
+            99,
+            136,
+            142,
+            172,
+            306
+          ]
+        },
+        {
+          "term": "Verification vs Validation & 7 Nguyên lý ISTQB",
+          "what": "Hai câu hỏi kiểm chứng kinh điển và 7 quy luật bất biến của kiểm thử.",
+          "bullets": [
+            "Verification = 'Building the product RIGHT' (#7, gồm Review/Inspection #53) · Validation = 'Built the RIGHT product' (#207).",
+            "7 Nguyên lý: (1) Chứng minh có lỗi, không chứng minh sạch lỗi (#162, #331) · (2) Exhaustive testing bất khả thi (#5, #116, #329) ➔ dùng Risk & Priority · (3) Early testing rẻ hơn (#200, #303, #330) · (4) Defect clustering (#220, #258) · (5) Pesticide paradox (#255) · (6) Context dependent (#250) · (7) Absence-of-errors fallacy."
+          ],
+          "qIds": [
+            5,
+            7,
+            31,
+            53,
+            116,
+            162,
+            207,
+            250,
+            255,
+            329,
+            330,
+            331
+          ]
+        },
+        {
+          "term": "5 Bước Quy trình Test, Tài liệu IEEE 829 & Tâm lý / Độc lập",
+          "what": "Khung làm việc từ lập kế hoạch đến đóng dự án, đặc tả test và giao tiếp.",
+          "bullets": [
+            "5 pha: Planning & Control ➔ Analysis & Design ➔ Implementation & Execution ➔ Evaluating Exit Criteria & Reporting ➔ Test Closure.",
+            "IEEE 829: Test Case Spec chứa Expected results (#74, phải định nghĩa trước khi chạy #323, #344) · Test Procedure Spec chứa các bước thao tác (#143) · Test Scenario phủ luồng end-to-end (#52).",
+            "Tâm lý & Độc lập: Dev thiếu khách quan ('Lack of Objectivity' #124); độc lập cao nhất là tổ chức bên ngoài (#284, #334); phản hồi lỗi lịch sự, xây dựng ('constructive feedback' #287, #292, #297)."
+          ],
+          "qIds": [
+            52,
+            74,
+            124,
+            143,
+            284,
+            292,
+            297,
+            323,
+            334,
+            342,
+            344
+          ]
+        }
+      ],
+      "questionPatterns": [
+        {
+          "type": "Dạng 1: Hỏi phủ định 'NOT / False / Incorrect'",
+          "cue": "Hay gài bẫy đảo 1 từ: 'Exhaustive testing' không có chữ impossible (#31), 'Debugging' trộn vào mục tiêu test (#27), 'Supportability / Robustness' trộn vào đặc tính (#48, #68), hoặc đảo định nghĩa QC sang QA (#6).",
+          "qIds": [
+            5,
+            6,
+            21,
+            27,
+            30,
+            31,
+            48,
+            55,
+            68,
+            342
+          ]
+        },
+        {
+          "type": "Dạng 2: Ghép đúng lời giải thích của 7 Nguyên lý",
+          "cue": "4 đáp án rất dài giống hệt nhau (#329, #330, #331) — chỉ cần quét đúng cụm neo: 'start as early', 'cannot prove no defects', 'all combinations ... not feasible', 'same tests over time'.",
+          "qIds": [
+            250,
+            255,
+            329,
+            330,
+            331
+          ]
+        },
+        {
+          "type": "Dạng 3: Tình huống giao tiếp & chi phí kiểm thử",
+          "cue": "Chi phí test chiếm 40–50% (#179); sửa lỗi Requirements đắt nhất (#283); luôn chọn phương án khách quan, tôn trọng và hợp tác giữa Tester – Developer (#287, #292, #297, #333).",
+          "qIds": [
+            179,
+            249,
+            283,
+            287,
+            292,
+            297,
+            333
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "title": "Testing Throughout SDLC — Vòng đời, Mức độ & Loại Kiểm thử",
+      "badge": "67 câu",
+      "flow": "Unit (Cô lập, Dev, Driver/Stub) ➔ Integration (Giao diện, Top-down/Bottom-up) ➔ System (Toàn hệ thống: Func + Non-func) ➔ Acceptance (Business needs, Alpha/Beta)",
+      "concepts": [
+        {
+          "term": "Mô hình SDLC: V-Model, Waterfall & COTS",
+          "what": "Gắn kết từng pha phát triển với một mức kiểm thử đối xứng.",
+          "bullets": [
+            "V-Model (#206, #246): Tích hợp test sớm xuyên suốt các pha — Business Req ↔ Acceptance · Hi-level Design ↔ System · Low-level Design ↔ Integration · Code ↔ Unit.",
+            "Quy trình test bắt đầu ngay khi Requirements được duyệt (#320); thiết kế test sớm giúp ngăn ngừa lỗi đi vào code (#267).",
+            "Phần mềm mua sẵn COTS (#139, #315): Không biết cấu trúc code bên trong, chạy Acceptance test để tạo niềm tin ('build confidence')."
+          ],
+          "qIds": [
+            139,
+            206,
+            244,
+            246,
+            267,
+            315,
+            320
+          ]
+        },
+        {
+          "term": "4 Test Levels: Unit ➔ Integration ➔ System ➔ Acceptance",
+          "what": "4 tầng kiểm thử từ đơn vị code nhỏ nhất đến nghiệm thu nghiệp vụ.",
+          "bullets": [
+            "Unit / Component (#51, #84, #103, #231, #247): Test từng hàm/class/module cô lập, thường dùng Statement & Branch, vẫn có regression (#366).",
+            "Integration (#130, #149, #155, #235, #253): Test giao diện (interfaces) & tương tác. Bottom-up bắt đầu từ module lá, dùng Driver (#63, #167: Test harness / Scaffolding); Top-down dùng Stub; Big-bang ghép hết 1 lần không test trước (#17, #269). Small = giữa các module (#289) vs Large = giữa các hệ thống (#338).",
+            "System (#37, #164, #343): Test toàn hệ thống cả Functional & Non-functional.",
+            "Acceptance (#1, #50, #89, #111, #145): Xác nhận đạt business requirements & hợp đồng/quy định; Alpha tại site dev, Beta/Field tại địa điểm khách hàng."
+          ],
+          "qIds": [
+            1,
+            51,
+            63,
+            84,
+            89,
+            111,
+            130,
+            155,
+            164,
+            167,
+            235,
+            289,
+            338,
+            343
+          ]
+        },
+        {
+          "term": "4 Test Types: Functional, Non-functional, Structural & Change-related",
+          "what": "4 nhóm phân loại mục tiêu kiểm thử chuẩn ISTQB (#12).",
+          "bullets": [
+            "Functional (#256, #302): Hệ thống làm gì ('what'), thực hiện ở MỌI mức test.",
+            "Non-functional (#66, #79, #81, #85, #100, #150, #234, #248, #305): Hệ thống chạy tốt thế nào ('how well') — gồm Usability, Security, Performance, Load (tải bình thường kỳ vọng) vs Stress (vượt quá giới hạn thiết kế).",
+            "Change-related (#62, #94, #191, #221, #291, #332, #350): Confirmation/Re-testing (chạy lại xác nhận lỗi đã sửa xong) vs Regression (kiểm tra vùng KHÔNG SỬA 'unchanged areas' tìm tác dụng phụ).",
+            "Maintenance & Impact Analysis (#166, #257, #276, #309, #335): Đánh giá tác động của thay đổi để quyết định khối lượng Regression testing."
+          ],
+          "qIds": [
+            12,
+            62,
+            66,
+            85,
+            94,
+            150,
+            166,
+            234,
+            276,
+            291,
+            305,
+            332,
+            335,
+            350
+          ]
+        }
+      ],
+      "questionPatterns": [
+        {
+          "type": "Dạng 1: Chọn đúng 1 trong 4 Test Levels (bộ đáp án giống nhau, đảo A/B/C/D)",
+          "cue": "Nhìn từ khóa đối tượng: 'single/individual unit, isolated' ➔ Unit · 'interfaces & interaction' ➔ Integration · 'entire system' ➔ System · 'business requirements / contract' ➔ Acceptance.",
+          "qIds": [
+            51,
+            84,
+            89,
+            111,
+            130,
+            149,
+            164
+          ]
+        },
+        {
+          "type": "Dạng 2: Phân biệt cặp dễ nhầm (Load vs Stress, Re-test vs Regression, Alpha vs Beta)",
+          "cue": "Load = varying/normal workloads vs Stress = exceeded/beyond capacity · Re-test = confirm defect fixed vs Regression = unchanged areas / side effects · Alpha = dev site vs Beta/Field = client site.",
+          "qIds": [
+            1,
+            85,
+            94,
+            145,
+            150,
+            291,
+            305,
+            332,
+            350
+          ]
+        },
+        {
+          "type": "Dạng 3: Bẫy phân cấp 'What is NOT test type?' (#12)",
+          "cue": "Performance testing là con của Non-functional nên khi đặt cạnh Functional, Non-functional, Structural, Change-related thì chọn Performance testing!",
+          "qIds": [
+            12,
+            18,
+            37,
+            79,
+            81
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "title": "Static Testing — Kiểm thử Tĩnh, Review & Static Analysis",
+      "badge": "52 câu",
+      "flow": "Static Testing (Không chạy code: Reviews + Static Analysis) · 4 Loại Review: Informal ➔ Walkthrough (Author) ➔ Technical/Peer (No Manager) ➔ Inspection (Moderator)",
+      "concepts": [
+        {
+          "term": "Static Testing vs Dynamic Testing",
+          "what": "Kiểm tra sản phẩm thủ công hoặc bằng công cụ mà KHÔNG chạy code (#237, #241, #242).",
+          "bullets": [
+            "Áp dụng sớm ở mọi pha Requirements, Design, Coding (#127); tìm ra lỗi thiếu yêu cầu/thiết kế dễ hơn Dynamic (#64).",
+            "Giúp giảm chi phí & thời gian sửa lỗi, tăng giao tiếp nhóm — nhưng KHÔNG làm giảm nhu cầu viết tài liệu (#33) và KHÔNG yêu cầu chạy test qua code (#357).",
+            "Error guessing KHÔNG phải kỹ thuật Static testing (#25, #35)."
+          ],
+          "qIds": [
+            25,
+            33,
+            35,
+            64,
+            75,
+            86,
+            127,
+            237,
+            241,
+            242,
+            243,
+            357
+          ]
+        },
+        {
+          "term": "Quy trình Formal Review & 5 Vai trò chuẩn",
+          "what": "Các bước tổ chức review bài bản và trách nhiệm từng cá nhân.",
+          "bullets": [
+            "5 bước mới (#46, #187, #275): Planning ➔ Initiate review ➔ Individual review ➔ Issue communication & analysis ➔ Fixing & Reporting.",
+            "6 bước truyền thống (#214): Planning ➔ Kick Off ➔ Individual Preparations ➔ Review Meeting ➔ Rework ➔ Follow Up.",
+            "Planning = chọn người & phân vai (#77, #156) ≠ Kick-off = giải thích mục tiêu (#274).",
+            "Moderator: Lên kế hoạch, điều hành họp & hòa giải (#129, #148) · Scribe: Ghi chép toàn bộ lỗi & open points (#98) · Author: Viết & sửa tài liệu."
+          ],
+          "qIds": [
+            46,
+            77,
+            98,
+            117,
+            129,
+            148,
+            156,
+            187,
+            198,
+            214,
+            274,
+            275
+          ]
+        },
+        {
+          "term": "So sánh 4 Loại Review & Công cụ Static Analysis",
+          "what": "Phân biệt người chủ trì, mục đích của 4 kiểu review và phạm vi của Static Analysis.",
+          "bullets": [
+            "Informal (#260): Không biên bản, rẻ · Walkthrough (#70, #254, #279): AUTHOR dẫn dắt, Scenario/Dry run, đào tạo & lấy góp ý.",
+            "Technical / Peer Review (#132, #133, #188, #307): Chuyên gia ngang hàng, có Scribe, KHÔNG có Management tham gia.",
+            "Inspection (#82, #196, #223, #312, #336, #356): Trained MODERATOR dẫn dắt, dùng Rules/Checklists/Entry-Exit/Metrics; KHÔNG đo được Code coverage!",
+            "Static Analysis Tool (#16, #44, #59, #120, #141, #202, #325, #346, #355): Dev dùng để tìm dead/unreachable code, biến chưa khai báo, vi phạm coding standards — KHÔNG tìm được Memory leaks (#16, phải dùng Dynamic analysis #73, #88)."
+          ],
+          "qIds": [
+            16,
+            44,
+            59,
+            70,
+            73,
+            82,
+            88,
+            120,
+            132,
+            133,
+            141,
+            188,
+            196,
+            202,
+            223,
+            254,
+            260,
+            279,
+            307,
+            312,
+            325,
+            336,
+            346,
+            355,
+            356
+          ]
+        }
+      ],
+      "questionPatterns": [
+        {
+          "type": "Dạng 1: Hỏi cái gì Static Analysis / Inspection KHÔNG tìm được",
+          "cue": "Static analysis KHÔNG tìm được 'Memory leaks' (#16 — phải dùng Dynamic analysis #73, #88); Inspection KHÔNG đo được 'How much of the code has been covered' (#336, #356).",
+          "qIds": [
+            16,
+            73,
+            88,
+            336,
+            356
+          ]
+        },
+        {
+          "type": "Dạng 2: Sắp xếp thứ tự các pha của Formal Review",
+          "cue": "Nhớ quy tắc bất di bất dịch: Planning luôn ĐẦU TIÊN ➔ Kick-off / Initiate ĐỨNG TRƯỚC Individual review/preparation ➔ sau đó mới họp & sửa lỗi!",
+          "qIds": [
+            46,
+            117,
+            187,
+            214,
+            275
+          ]
+        },
+        {
+          "type": "Dạng 3: Phân biệt người dẫn dắt & thành phần tham dự Review",
+          "cue": "Walkthrough = Author dẫn dắt · Inspection = Trained Moderator dẫn dắt · Technical/Peer review = KHÔNG có Management (#133) · Formal review = không có Assistant Manager (#198).",
+          "qIds": [
+            98,
+            129,
+            133,
+            148,
+            188,
+            198,
+            223,
+            279,
+            307
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "Test Analysis & Design — Kỹ thuật Thiết kế Test Case & Tính Coverage",
+      "badge": "54 câu",
+      "flow": "Black-box (EP, BVA, Decision Table, State Transition, Use Case) · White-box (Statement, Branch/Decision, Path, Cyclomatic V=L-N+2P) · Experience (Error Guessing, Exploratory)",
+      "concepts": [
+        {
+          "term": "Black-box: Equivalence Partitioning (EP) & Boundary Value Analysis (BVA)",
+          "what": "Chia miền giá trị tương đương và kiểm tra sát ranh giới hợp lệ/không hợp lệ.",
+          "bullets": [
+            "EP (#56, #261, #311, #324): Chia dữ liệu thành miền valid & invalid, mỗi miền lấy 1 giá trị đại diện; phủ cả input/output ở mọi test level.",
+            "BVA (#36, #173, #178, #180, #181, #361): Test ngay tại biên, dưới biên và trên biên — với đoạn [a, b] thì 4 biên chuẩn là (a-1, a, b, b+1)."
+          ],
+          "qIds": [
+            36,
+            56,
+            72,
+            173,
+            174,
+            176,
+            177,
+            178,
+            180,
+            181,
+            182,
+            183,
+            184,
+            232,
+            261,
+            311,
+            324,
+            361
+          ]
+        },
+        {
+          "term": "Black-box nâng cao: Decision Table, State Transition & Use Case",
+          "what": "Kiểm thử logic tổ hợp điều kiện, biểu đồ trạng thái và luồng kịch bản thực tế.",
+          "bullets": [
+            "Decision Table (#90, #217, #230): Tổ hợp nhiều điều kiện đầu vào ('combinations of inputs') tạo ra các action khác nhau.",
+            "State Transition (#18, #228, #229, #252): Tập trung vào thay đổi trạng thái ('changes in state') và phát hiện các phép chuyển KHÔNG hợp lệ (invalid transitions).",
+            "Use Case (#138, #186, #239, #351): Kiểm tra luồng quy trình nghiệp vụ thực tế ('process flows during real-world use') và lỗi giao tiếp giữa các thành phần."
+          ],
+          "qIds": [
+            18,
+            90,
+            138,
+            186,
+            217,
+            228,
+            229,
+            230,
+            239,
+            252,
+            351
+          ]
+        },
+        {
+          "term": "White-box: Statement, Branch/Decision, Path & Cyclomatic Complexity",
+          "what": "Đo độ phủ mã nguồn bên trong (Structural / Glass / Clear box — #76, #160).",
+          "bullets": [
+            "Statement Coverage (SC): Phủ mọi câu lệnh · Branch/Decision Coverage (BC/DC — #47, #93, #106, #310): Phủ mọi nhánh kết quả True/False của các quyết định.",
+            "Quy tắc đếm nhanh: IF không có ELSE ➔ SC = 1, BC = 2 (#219, #224, #225) · IF có ELSE ➔ SC = 2, BC = 2 (#170, #175, #226) · 2 IF độc lập hỏi Paths ➔ 2 × 2 = 4 (#236).",
+            "Cyclomatic Complexity (#8, #105, #108, #216): V(G) = L - N + 2P; số càng cao càng khó test ('Difficult to test'). Pole Coverage là sai (#126); Random testing không thuộc White-box BS7925-2 (#125)."
+          ],
+          "qIds": [
+            8,
+            28,
+            47,
+            76,
+            93,
+            105,
+            106,
+            108,
+            125,
+            126,
+            160,
+            169,
+            170,
+            175,
+            205,
+            216,
+            218,
+            219,
+            224,
+            225,
+            226,
+            227,
+            233,
+            236,
+            310,
+            319,
+            353
+          ]
+        },
+        {
+          "term": "Experience-based: Error Guessing & Exploratory Testing",
+          "what": "Tận dụng trực giác, kỹ năng và kinh nghiệm của tester (#92).",
+          "bullets": [
+            "Error Guessing (#96, #321, #322, #340): Đoán lỗi theo kinh nghiệm — dùng tốt nhất SAU KHI đã áp dụng các kỹ thuật chính thống.",
+            "Exploratory Testing (#272, #294, #300): Lập kế hoạch và chạy test đồng thời ('simultaneously'), hiệu quả khi ít thời gian & thiếu đặc tả chi tiết."
+          ],
+          "qIds": [
+            92,
+            96,
+            272,
+            294,
+            300,
+            321,
+            322,
+            340
+          ]
+        }
+      ],
+      "questionPatterns": [
+        {
+          "type": "Dạng 1: Bài tập cho miền số [a, b] — Phân biệt EP vs BVA vs Valid-only",
+          "cue": "Đọc câu cuối: Hỏi 'equivalence partitions' ➔ lấy mỗi miền 1 số (#176: 3,10,22) · Hỏi 'boundary values' ➔ lấy sát mép a-1, a, b, b+1 (#180: 9,10,21,22) · Hỏi 'ONLY valid' ➔ bỏ biên ngoài (#183: 10000,50000,99999).",
+          "qIds": [
+            173,
+            174,
+            176,
+            177,
+            178,
+            180,
+            181,
+            183,
+            184
+          ]
+        },
+        {
+          "type": "Dạng 2: Bài tập đọc đoạn giả mã tính số Test Case tối thiểu",
+          "cue": "Kiểm tra 3 điểm: (1) Có ELSE không? (Không ELSE ➔ 1 SC, 2 BC; Có ELSE ➔ 2 SC, 2 BC) · (2) Hỏi Branch hay hỏi Paths (#236 = 4)? · (3) Có chữ 'How many MORE' khi đã đủ 100% rồi không (#353 = None)?",
+          "qIds": [
+            169,
+            170,
+            175,
+            218,
+            219,
+            224,
+            225,
+            226,
+            227,
+            236,
+            353
+          ]
+        },
+        {
+          "type": "Dạng 3: Bẫy tên kỹ thuật Black-box vs White-box",
+          "cue": "'Decision table' là Black-box (#90), còn 'Decision testing' là White-box (#28)! Gray-box & Hybrid kết hợp cả hai (#54).",
+          "qIds": [
+            28,
+            36,
+            54,
+            72,
+            76,
+            90,
+            125
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "title": "Managing Test Activities — Quản lý Kiểm thử, Rủi ro, Sự cố & Cấu hình",
+      "badge": "68 câu",
+      "flow": "Test Leader vs Tester · Test Plan (IEEE 829) · Entry & Exit Criteria ('When to stop?') · Project Risk vs Product Risk · Severity vs Priority · Configuration Management",
+      "concepts": [
+        {
+          "term": "Vai trò Test Leader vs Tester & Tài liệu Test Plan (IEEE 829)",
+          "what": "Phân công quản lý – thực thi và cấu trúc bản kế hoạch kiểm thử.",
+          "bullets": [
+            "Test Leader/Manager (#193, #286, #293): Quản lý quy trình/tài nguyên, làm việc với Tool Vendor, quyết định Automation, viết Test Summary Report · Tester (#195): Viết Test Spec, chuẩn bị Test Data, chạy & log test.",
+            "Test Plan (#15, #23, #34, #144, #159, #197, #199, #251, #281): Lấy từ Project Plan, định nghĩa Scope, Approach (ưu tiên kỹ năng sẵn có #282), Resources, Schedule & Exit criteria — KHÔNG chứa Expected results, Quality plans, Test specification, Test scripts."
+          ],
+          "qIds": [
+            15,
+            23,
+            34,
+            144,
+            159,
+            193,
+            195,
+            197,
+            199,
+            251,
+            273,
+            281,
+            282,
+            286,
+            293
+          ]
+        },
+        {
+          "term": "Entry / Exit Criteria, Tiến độ & Khi nào dừng kiểm thử",
+          "what": "Điều kiện bắt đầu, tiêu chí kết thúc một mức test và theo dõi thực thi.",
+          "bullets": [
+            "Entry Criteria (#78): Sẵn sàng môi trường & nguồn lực · Exit Criteria (#107, #203, #263, #348, #364): Định nghĩa ở pha Test Planning để biết khi nào hoàn tất 1 test level.",
+            "Khi nào dừng test? Phụ thuộc RỦI RO (#210, #304, #365), đạt Completion criteria (#363), hoặc hết thời gian lịch trình (#298). Trễ 6 tuần mà cấm lùi ngày & cấm giảm chất lượng ➔ cắt bớt requirement chưa làm (#316).",
+            "Estimation (ước tính effort) · Monitoring (theo dõi tiến độ #192, #296) · Control (điều phối lại nguồn lực #222). Tránh Measurement dysfunction (#362)."
+          ],
+          "qIds": [
+            78,
+            107,
+            119,
+            192,
+            201,
+            203,
+            210,
+            222,
+            263,
+            271,
+            296,
+            298,
+            304,
+            316,
+            348,
+            362,
+            363,
+            364,
+            365
+          ]
+        },
+        {
+          "term": "Risk Management, Incident (Severity vs Priority) & Configuration Management",
+          "what": "Quản trị rủi ro, vòng đời xử lý lỗi và kiểm soát phiên bản.",
+          "bullets": [
+            "Mức độ rủi ro = Likelihood × Impact (#270) · Project Risk = tổ chức, nhà cung cấp, nhân sự (#26, #367) ≠ Product Risk = chất lượng phần mềm kém, hay lỗi (#26, #137).",
+            "Severity = mức độ ảnh hưởng kỹ thuật lên hệ thống (#67, #278) ≠ Priority = thứ tự ưu tiên sửa lỗi (#278). Bug life cycle: Open ➔ Assigned ➔ Fixed ➔ Closed (#61, #163). Incident report KHÔNG ghi cách sửa code (#14, #24) và không mở cho đề xuất cải tiến (#49).",
+            "Configuration Management (#19, #95, #152, #204, #347): Triển khai từ Test Planning, quản lý thư viện (Configuration Control), định danh version SUT & Testware; KHÔNG gồm kiểm toán ISO 9001 (#19)."
+          ],
+          "qIds": [
+            13,
+            14,
+            19,
+            24,
+            26,
+            42,
+            49,
+            61,
+            67,
+            95,
+            137,
+            152,
+            163,
+            204,
+            270,
+            278,
+            317,
+            328,
+            347,
+            367
+          ]
+        }
+      ],
+      "questionPatterns": [
+        {
+          "type": "Dạng 1: Hỏi 'Thuộc pha nào của quy trình test?'",
+          "cue": "Determine exit criteria = Planning (#107, #211) · Review test basis & DESIGN test environment = Analysis & Design (#114, #131) · Set-up/Verify environment, Create test suites & Report incidents = Implementation & Execution (#83, #165, #213, #308) · Handover/Archive testware & Lessons = Closure (#121, #194, #341).",
+          "qIds": [
+            38,
+            83,
+            107,
+            114,
+            121,
+            131,
+            165,
+            194,
+            211,
+            213,
+            280,
+            308,
+            341
+          ]
+        },
+        {
+          "type": "Dạng 2: Bộ 3 câu 'When to stop testing?' (#210, #363, #298)",
+          "cue": "Ưu tiên theo thứ tự xuất hiện trong đáp án: (1) 'depends on the risks' (#210) ➔ (2) 'test completion criteria have been met' (#363) ➔ (3) 'scheduled time expires' (#298).",
+          "qIds": [
+            210,
+            298,
+            363
+          ]
+        },
+        {
+          "type": "Dạng 3: Phân biệt cặp khái niệm Quản lý (Project vs Product Risk, Severity vs Priority, Lead vs Tester)",
+          "cue": "Project = con người/tổ chức/lịch trình vs Product = bản thân phần mềm lỗi · Severity = tác động lên hệ thống vs Priority = thứ tự sửa.",
+          "qIds": [
+            26,
+            67,
+            137,
+            193,
+            195,
+            278,
+            293,
+            367
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "title": "Test Tools — Công cụ Kiểm thử (CAST) & Triển khai Tự động hóa",
+      "badge": "18 câu",
+      "flow": "Needs Analysis (#168) ➔ PoC & Đánh giá khách quan (#20, #189) ➔ Pilot với Small Team (#299) ➔ Coaching & Rollout · Tiết kiệm nhất ở Test Execution (#80)",
+      "concepts": [
+        {
+          "term": "Phân loại các nhóm công cụ CAST",
+          "what": "Nhận diện đúng chức năng và giới hạn của từng loại công cụ kiểm thử.",
+          "bullets": [
+            "Requirements Management (#87, #157): Lưu yêu cầu, kiểm tra nhất quán (consistency) & truy vết · Test Management (#11, #102): Lập lịch, log kết quả/incident, quản lý tiến độ (KHÔNG tự sinh test data #11).",
+            "Test Design (#91): Hỗ trợ sinh test cases/inputs · Static Analysis (#141, #325): Kiểm tra chuẩn code, dead code · Dynamic Analysis (#73, #88): Bắt memory leaks.",
+            "Test Execution / Capture-Playback & Comparator (#10, #65, #71, #80, #109, #238, #295, #352): Chạy lại script, dễ CHẠY regression test (#295), tiết kiệm chi phí lớn nhất (#80) nhưng KHÔNG tự sinh expected outputs (#10) và ít dùng cho User requirements (#109). Data-driven giúp tách dữ liệu khỏi script (#238)."
+          ],
+          "qIds": [
+            10,
+            11,
+            65,
+            71,
+            80,
+            87,
+            88,
+            91,
+            102,
+            109,
+            147,
+            157,
+            238,
+            295,
+            328,
+            352
+          ]
+        },
+        {
+          "term": "Lựa chọn & Triển khai Công cụ mới (Selection & Pilot)",
+          "what": "Các bước đưa tool vào dự án để tránh thất bại tự động hóa.",
+          "bullets": [
+            "Bắt đầu bằng việc phân tích nhu cầu & yêu cầu của tổ chức ('Analyze your needs and requirements' — #168), đánh giá độ trưởng thành, chi phí/lợi ích và chạy Proof of Concept (#20, #189; không chạy theo đối thủ #20).",
+            "Khi mới mua về: Cho MỘT NHÓM NHỎ dùng thử trước (Pilot — #299) và đào tạo/coaching (#189); KHÔNG đưa ngay vào dự án đang trễ hạn!",
+            "Lợi ích thực tế (#147, #190): Nhanh, chính xác, dễ truy cập thông tin & tăng tính nhất quán (vẫn cần chi phí bảo trì testware!)."
+          ],
+          "qIds": [
+            20,
+            168,
+            189,
+            190,
+            299
+          ]
+        }
+      ],
+      "questionPatterns": [
+        {
+          "type": "Dạng 1: Hỏi giới hạn công cụ ('EXCEPT / NOT a feature / Least likely')",
+          "cue": "Test execution tool KHÔNG tự sinh Expected outputs (#10) · Test management tool KHÔNG sinh Test data (#11) · Capture/replay ít dùng cho User requirements (#109) · Chọn tool KHÔNG xét công nghệ đối thủ (#20).",
+          "qIds": [
+            10,
+            11,
+            20,
+            22,
+            109,
+            328
+          ]
+        },
+        {
+          "type": "Dạng 2: Hỏi bước đầu tiên khi tìm mua vs khi đã mua Tool mới",
+          "cue": "Muốn tìm tool mới (#168) ➔ 'Analyze your needs and requirements' · Đã mua tool về (#299) ➔ 'A small team to establish the best way' (Pilot).",
+          "qIds": [
+            168,
+            189,
+            190,
+            299
+          ]
+        }
+      ]
+    }
+  ],
+  "conceptBank": [
+    {
+      "id": "error-mistake",
+      "term": "Error / Mistake (Lỗi con người)",
+      "what": "Hành động nhầm lẫn của con người (lập trình viên, BA, tester) tạo ra kết quả sai.",
+      "points": [
+        "Là nguyên nhân gốc rễ dẫn tới Defect/Fault trong tài liệu hoặc mã nguồn.",
+        "Chuỗi nhân quả chuẩn ISTQB: Human Error ➔ Defect (Fault/Bug) ➔ Failure."
+      ],
+      "triggers": [
+        "an error",
+        "a mistake",
+        "mistakes of the requirement",
+        "mistake made by a developer"
+      ],
+      "qIds": [
+        97,
+        268,
+        301
+      ]
+    },
+    {
+      "id": "defect-fault-bug",
+      "term": "Defect / Fault / Bug (Khiếm khuyết trong sản phẩm)",
+      "what": "Lỗi tĩnh nằm bên trong mã nguồn, tài liệu yêu cầu hoặc thiết kế.",
+      "points": [
+        "Đa số lỗi hệ thống bắt nguồn từ pha Requirements (#122) và lỗi ở Requirements tốn chi phí sửa đắt nhất (#283).",
+        "Ghi nhận defect nhằm 3 mục đích: sửa lỗi, báo cáo trạng thái ứng dụng, cải tiến quy trình phát triển (#4).",
+        "Càng phát hiện muộn về gần lúc vận hành thực tế (live use), chi phí sửa càng cao (#349, #360)."
+      ],
+      "triggers": [
+        "a fault",
+        "a defect",
+        "faults in requirements",
+        "cost of fixing a fault",
+        "defects are recorded"
+      ],
+      "qIds": [
+        4,
+        9,
+        118,
+        122,
+        283,
+        349,
+        360
+      ]
+    },
+    {
+      "id": "failure",
+      "term": "Failure (Sự cố / Hỏng hóc khi vận hành)",
+      "what": "Sự sai lệch hiển thị ra ngoài của hệ thống so với hành vi mong đợi khi chương trình được thực thi.",
+      "points": [
+        "Chỉ xuất hiện khi chạy phần mềm (in operation / visible to end-users) — không phải lúc nào có Defect cũng gây ra Failure.",
+        "Có thể bắt nguồn từ lỗi phần mềm, thiết kế, kiểm thử, môi trường hoặc tài liệu (#185).",
+        "Hệ thống đáng tin cậy (reliable system) là hệ thống ít có khả năng gây ra failure (#313)."
+      ],
+      "triggers": [
+        "a failure",
+        "\"failure\"",
+        "reason for a failure",
+        "visible to end-users is a deviation",
+        "cause a failure",
+        "extemal failure",
+        "external failure"
+      ],
+      "qIds": [
+        97,
+        123,
+        185,
+        268,
+        313
+      ]
+    },
+    {
+      "id": "fault-masking",
+      "term": "Fault Masking (Che khuất lỗi)",
+      "what": "Hiện tượng một điều kiện lỗi làm ẩn đi một điều kiện lỗi khác khiến lỗi bị che không biểu hiện ra ngoài.",
+      "points": [
+        "Ví dụ: Lỗi A làm nhánh code chứa lỗi B không được gọi tới.",
+        "Dấu hiệu nhận diện: 'Error condition hiding another error condition' (#327)."
+      ],
+      "triggers": [
+        "fault masking"
+      ],
+      "qIds": [
+        327
+      ]
+    },
+    {
+      "id": "testing-objectives",
+      "term": "Software Testing & Objectives (Mục tiêu kiểm thử)",
+      "what": "Quá trình kiểm tra sản phẩm phần mềm (tĩnh và động) nhằm tìm lỗi, đánh giá chất lượng và giảm thiểu rủi ro.",
+      "points": [
+        "4 mục tiêu chính: Tìm lỗi (finding defects), ngăn ngừa lỗi sớm (preventing defects), tăng độ tự tin về chất lượng, cung cấp thông tin ra quyết định.",
+        "KHÔNG bao gồm Debugging (gỡ/sửa code lỗi là việc của Developer — #27, #99) và KHÔNG giúp 'improve software accuracy' trực tiếp (#55).",
+        "Trước khi release, lý do chính để test là cung cấp thông tin cho quyết định phát hành dựa trên rủi ro (#262, #358)."
+      ],
+      "triggers": [
+        "testing objectives",
+        "objectives for software testing",
+        "best definition for testing",
+        "software testing is necessary",
+        "testing does not help"
+      ],
+      "qIds": [
+        9,
+        27,
+        43,
+        55,
+        60,
+        179,
+        258,
+        262,
+        277,
+        301,
+        358,
+        359
+      ]
+    },
+    {
+      "id": "debugging",
+      "term": "Debugging (Gỡ lỗi mã nguồn)",
+      "what": "Hoạt động của lập trình viên (Developer) nhằm định vị nguyên nhân gốc trong code và sửa khiếm khuyết.",
+      "points": [
+        "Testing là làm bộc lộ lỗi (Tester); Debugging là tìm nguyên nhân trong code và sửa lỗi (Developer — #99).",
+        "Debugging KHÔNG phải mục tiêu kiểm thử (#27) và ít quan trọng nhất trong quản lý kiểm thử (#69)."
+      ],
+      "triggers": [
+        "debugging",
+        "de-bugging"
+      ],
+      "qIds": [
+        27,
+        69,
+        99
+      ]
+    },
+    {
+      "id": "quality-qa-qc",
+      "term": "Quality, QA vs QC (Chất lượng, Đảm bảo & Kiểm soát chất lượng)",
+      "what": "Quality là mức độ đáp ứng yêu cầu đặc tả ('Conformance to requirements' — #136).",
+      "points": [
+        "QA (Quality Assurance): Tập trung vào QUY TRÌNH & tuân thủ chuẩn (standards compliance — #306) để ngăn ngừa lỗi.",
+        "QC (Quality Control): Tập trung vào SẢN PHẨM — so sánh chất lượng sản phẩm với chuẩn và xử lý khi không đạt (câu #6 gán mô tả này cho QA nên là False!).",
+        "Cải thiện phương pháp phát triển để nâng chất lượng giúp GIẢM thời gian kiểm thử ('Reducing test time' — #128)."
+      ],
+      "triggers": [
+        "quality assurance",
+        "definition of quality",
+        "software quality is not relevant",
+        "better development methods"
+      ],
+      "qIds": [
+        6,
+        128,
+        136,
+        142,
+        306
+      ]
+    },
+    {
+      "id": "iso-9126-testability",
+      "term": "ISO 9126 & Testability (Đặc tính chất lượng phần mềm)",
+      "what": "ISO 9126 (#172) quy định 6 đặc tính chất lượng sản phẩm phần mềm chuẩn quốc tế.",
+      "points": [
+        "6 đặc tính ISO 9126: Functionality, Reliability, Usability, Efficiency, Maintainability, Portability.",
+        "KHÔNG thuộc ISO 9126 / Software characteristics: Supportability (#48), Development cost (#30), Viability (#142).",
+        "Testability (khả năng kiểm thử được) gồm Operability, Observability, Simplicity... nhưng KHÔNG gồm Robustness (#68)."
+      ],
+      "triggers": [
+        "iso 9126",
+        "testability",
+        "software characteristics",
+        "supportability",
+        "maintainability",
+        "reliability"
+      ],
+      "qIds": [
+        30,
+        48,
+        68,
+        142,
+        172
+      ]
+    },
+    {
+      "id": "verification-vs-validation",
+      "term": "Verification vs Validation (Xác minh vs Thẩm định)",
+      "what": "Hai hoạt động kiểm tra bổ trợ nhau xuyên suốt vòng đời phát triển phần mềm.",
+      "points": [
+        "Verification ('Are we building the product right?' — #7): Kiểm tra sản phẩm có đúng đặc tả/thiết kế không (gồm Reviews, Walkthroughs, Inspections — #53).",
+        "Validation ('Have we built the right product?' — #207): Kiểm tra sản phẩm có đáp ứng đúng nhu cầu thực tế của người dùng không.",
+        "IV&V (Independent V&V — #334): Thực hiện bởi một đơn vị độc lập nằm ngoài phạm vi ảnh hưởng của dự án."
+      ],
+      "triggers": [
+        "verification",
+        "validation"
+      ],
+      "qIds": [
+        7,
+        53,
+        57,
+        207,
+        334
+      ]
+    },
+    {
+      "id": "exhaustive-complete-testing",
+      "term": "Exhaustive Testing, Complete Testing & Test Prioritization",
+      "what": "Kiểm thử vét cạn mọi tổ hợp đầu vào/điều kiện là bất khả thi nên phải ưu tiên kiểm thử theo rủi ro.",
+      "points": [
+        "Exhaustive testing là BẤT KHẢ THI ('impractical and impossible' — #5, #116, #329); không thể chứng minh phần mềm sạch 100% lỗi (#162, #339).",
+        "Test Prioritization (#345): Sắp xếp ưu tiên test case để thực hiện việc kiểm thử TỐT NHẤT trong quỹ thời gian cho phép ('do the best testing in the time available' — dựa trên rủi ro #304).",
+        "Định nghĩa lý thuyết: Test mọi path & condition gọi là Exhaustive Testing (#134); Complete testing là đã tìm ra mọi bug (#290)."
+      ],
+      "triggers": [
+        "exhaustive testing",
+        "complete testing",
+        "remove all defects",
+        "testing shows presence of defects",
+        "test are prioritized",
+        "prioritized"
+      ],
+      "qIds": [
+        5,
+        31,
+        116,
+        134,
+        162,
+        290,
+        329,
+        331,
+        339,
+        345
+      ]
+    },
+    {
+      "id": "seven-principles",
+      "term": "7 Testing Principles (7 Nguyên lý kiểm thử ISTQB)",
+      "what": "7 quy luật nền tảng định hướng toàn bộ hoạt động kiểm thử phần mềm.",
+      "points": [
+        "1. Shows presence of defects (chứng minh có lỗi, không chứng minh hết lỗi #331) · 2. Exhaustive testing is impossible (#329) · 3. Early testing (test càng sớm sửa càng rẻ #303, #330).",
+        "4. Defect clustering (lỗi tập trung ở một vài module #220, #258) · 5. Pesticide paradox (lặp lại mãi bộ test cũ sẽ tìm ít lỗi mới đi #255).",
+        "6. Testing is context dependent (tùy ngữ cảnh hệ thống #250) · 7. Absence-of-errors fallacy (sạch lỗi nhưng sai nhu cầu user vẫn vô dụng)."
+      ],
+      "triggers": [
+        "testing principle",
+        "early testing",
+        "pesticide paradox",
+        "defect clustering",
+        "context in testing",
+        "early test design"
+      ],
+      "qIds": [
+        31,
+        200,
+        220,
+        250,
+        255,
+        258,
+        267,
+        303,
+        329,
+        330,
+        331
+      ]
+    },
+    {
+      "id": "fundamental-test-process",
+      "term": "Fundamental Test Process (5 bước quy trình kiểm thử cơ bản)",
+      "what": "Quy trình kiểm thử chuẩn ISTQB gồm 5 pha liên kết tuần tự và lặp lại.",
+      "points": [
+        "1. Planning & Control (xác định scope, risk, approach, exit criteria #107, #211) ➔ 2. Analysis & Design (review test basis #131, thiết kế test & môi trường #114).",
+        "3. Implementation & Execution (tạo test suites #83, dựng môi trường #308, chạy test, log incidents #165, #280).",
+        "4. Evaluating Exit Criteria & Reporting (đánh giá hoàn thành, viết Test Summary Report #271) ➔ 5. Test Closure (bàn giao/lưu trữ testware #121, bài học kinh nghiệm #194, #341)."
+      ],
+      "triggers": [
+        "fundamental test process",
+        "planning and control",
+        "test analysis and design",
+        "test implementation and execution",
+        "evaluating exit criteria",
+        "test closure"
+      ],
+      "qIds": [
+        29,
+        38,
+        83,
+        107,
+        113,
+        114,
+        121,
+        131,
+        165,
+        194,
+        211,
+        213,
+        271,
+        280,
+        281,
+        308,
+        341
+      ]
+    },
+    {
+      "id": "testware-ieee829-specs",
+      "term": "Testware & IEEE 829 Specifications (Tài liệu đặc tả kiểm thử)",
+      "what": "Các sản phẩm tạo ra trong quá trình kiểm thử (test plan, đặc tả, script, dữ liệu, môi trường).",
+      "points": [
+        "Test Condition: Điều kiện cần test rút ra từ Specifications (#153) · Test Scenario: Chuỗi test phủ luồng end-to-end (#52) · Test Suite: Nhóm các test case để lên lịch chạy (#151).",
+        "Test Design Spec (xác định tính năng/điều kiện test) ➔ Test Case Spec (xác định input & Expected results — #74) ➔ Test Procedure Spec (các bước thao tác chạy hệ thống — #143).",
+        "Expected results phải được xác định TRƯỚC khi thực thi test (#323, #337, #344); Testware phải được quản lý cấu hình (CM) như code (#347)."
+      ],
+      "triggers": [
+        "test case specification",
+        "test design specification",
+        "test procedure specification",
+        "test scenario",
+        "test suite",
+        "test conditions",
+        "expected results",
+        "testware"
+      ],
+      "qIds": [
+        52,
+        74,
+        143,
+        151,
+        153,
+        323,
+        337,
+        344,
+        347
+      ]
+    },
+    {
+      "id": "psychology-independence",
+      "term": "Psychology & Independent Testing (Tâm lý học & Độ độc lập)",
+      "what": "Tư duy phản biện khách quan và cách giao tiếp xây dựng giữa Tester với Developer.",
+      "points": [
+        "Developer khó tự test code mình do thiếu tính khách quan ('Lack of Objectivity' — #124); Tester độc lập không thiên kiến nên nhìn ra lỗi khác (#318).",
+        "Thang độc lập tăng dần: Tự dev test (thấp nhất, #342) ➔ Đồng nghiệp cùng nhóm ➔ Nhóm test độc lập nội bộ ➔ Tổ chức bên ngoài (cao nhất — #284, #334).",
+        "Giao tiếp hiệu quả: Phản hồi lịch sự, mang tính xây dựng ('constructive feedback' — #292, #297, #287), tránh chê bai cá nhân để không gây hiểu lầm làm giảm chất lượng (#249)."
+      ],
+      "triggers": [
+        "independent testing",
+        "level of independence",
+        "lack of objectivity",
+        "psychological",
+        "testers and developers",
+        "reporting faults found to developers"
+      ],
+      "qIds": [
+        124,
+        249,
+        259,
+        265,
+        284,
+        287,
+        292,
+        297,
+        318,
+        333,
+        334,
+        342
+      ]
+    },
+    {
+      "id": "standards-acronyms",
+      "term": "Standards & Acronyms (Chuẩn quốc tế & Từ viết tắt)",
+      "what": "Các bộ tiêu chuẩn IEEE/BS/ISO và thuật ngữ viết tắt xuất hiện trong đề thi SWT301.",
+      "points": [
+        "IEEE 829: Chuẩn tài liệu kiểm thử · BS7925-1: Thuật ngữ kiểm thử · BS7925-2: Chuẩn Component Testing (#171) · IEEE 610: Chuẩn thuật ngữ SE chung, KHÔNG phải chuẩn riêng về test (#21). Tổ chức chuẩn quốc tế: ISO, IEC, IEEE (#39).",
+        "CAST = Computer Aided Software Testing (#110) · EULA = End User License Agreement (#115) · PDCA = Plan, Do, Check, Act (#135) · FPA = Đo kích thước chức năng hệ thống thông tin (#326).",
+        "Procedure = phương pháp từng bước đảm bảo đạt chuẩn (#101); Workbench dùng Procedures & standards (#146)."
+      ],
+      "triggers": [
+        "ieee829",
+        "ieee 829",
+        "ieee610",
+        "ieee 610",
+        "bs7925-1",
+        "bs7925-2",
+        "cast stands for",
+        "eula stands for",
+        "pdca",
+        "fpa is used",
+        "procedure",
+        "workbenches"
+      ],
+      "qIds": [
+        21,
+        39,
+        101,
+        110,
+        115,
+        135,
+        146,
+        171,
+        326
+      ]
+    },
+    {
+      "id": "sdlc-models-vmodel-waterfall",
+      "term": "SDLC Models: V-Model, Waterfall & COTS (Mô hình phát triển)",
+      "what": "Cách tổ chức các mức kiểm thử tương ứng với từng giai đoạn phát triển phần mềm.",
+      "points": [
+        "V-Model (#206, #246): Tích hợp kiểm thử xuyên suốt các pha phát triển — Business Req ↔ Acceptance · Hi-level Design ↔ System · Low-level Design ↔ Integration · Code ↔ Unit.",
+        "Waterfall (#244): Thực thi tuần tự Integration ➔ System ➔ Acceptance; quy trình test bắt đầu ngay khi Requirements được phê duyệt (#320).",
+        "Purchased / COTS software (#139, #315): Không biết cấu trúc code bên trong ('Structure is unknown'), chạy Acceptance test để xây dựng niềm tin ('build confidence')."
+      ],
+      "triggers": [
+        "v-model",
+        "waterfall model",
+        "development life cycle",
+        "purchased/contracted software",
+        "commercial off-the-shelf",
+        "test process start",
+        "preventative and reactive",
+        "stochastic testing"
+      ],
+      "qIds": [
+        57,
+        139,
+        140,
+        158,
+        206,
+        244,
+        246,
+        264,
+        315,
+        320
+      ]
+    },
+    {
+      "id": "unit-testing",
+      "term": "Unit Testing / Component Testing (Kiểm thử đơn vị)",
+      "what": "Kiểm thử từng đơn vị code nhỏ nhất (hàm, phương thức, class, module) một cách cô lập (isolated).",
+      "points": [
+        "Còn gọi là Component, Module hoặc Program testing (KHÔNG gọi là System Component testing — #231).",
+        "Thường do Developer thực hiện, hay áp dụng kỹ thuật White-box (Statement & Branch testing — #103) và vẫn cần Regression testing + tiêu chí hoàn thành (#366).",
+        "Cần dùng Driver (giả lập module gọi cấp trên) và Stub (giả lập module bị gọi cấp dưới) để test cô lập."
+      ],
+      "triggers": [
+        "unit testing",
+        "unit level",
+        "component testing",
+        "component test",
+        "single unit of code",
+        "individual units"
+      ],
+      "qIds": [
+        51,
+        84,
+        103,
+        231,
+        247,
+        366
+      ]
+    },
+    {
+      "id": "integration-testing",
+      "term": "Integration Testing (Kiểm thử tích hợp)",
+      "what": "Kiểm thử nhằm phát hiện lỗi ở giao diện (interfaces) và sự tương tác giữa các thành phần đã tích hợp hoặc giữa các hệ thống.",
+      "points": [
+        "2 cấp độ: Integration in the small (ghép các module nội bộ theo chiến lược — #289) và Integration in the large (ghép hệ thống với các hệ thống bên ngoài — #338).",
+        "Chiến lược tăng dần (Incremental): Top-down (từ module điều khiển xuống, dùng Stub), Bottom-up (từ module lá/terminal đi lên, dùng Driver — #155, #235), Functional incrementation.",
+        "Big-bang (#17, #269): Ghép tất cả thành phần cùng một lúc không qua kiểm thử từng phần — KHÔNG phải incremental!"
+      ],
+      "triggers": [
+        "integration testing",
+        "integration level",
+        "system integration",
+        "top-down integration",
+        "bottom-up integration",
+        "module integration",
+        "big-bang",
+        "terminal modules",
+        "lowest-level (leaf) modules"
+      ],
+      "qIds": [
+        17,
+        37,
+        130,
+        149,
+        155,
+        235,
+        253,
+        269,
+        289,
+        338
+      ]
+    },
+    {
+      "id": "driver-stub-harness",
+      "term": "Driver, Stub & Test Harness (Bộ khung giả lập kiểm thử)",
+      "what": "Các đoạn mã/công cụ giả lập phần còn thiếu để chạy kiểm thử đơn vị và tích hợp.",
+      "points": [
+        "Driver (#3, #63, #167): Đóng vai trò hàm GỌI (caller) — điều khiển, truyền dữ liệu đầu vào cho module đang test (dùng trong Bottom-up); còn gọi là Test Harness / Scaffolding (#58, #167).",
+        "Stub: Đóng vai trò hàm BỊ GỌI giả lập cấp dưới (callee) trả kết quả cứng (dùng trong Top-down)."
+      ],
+      "triggers": [
+        "driver",
+        "drivers",
+        "stub",
+        "test harness",
+        "scaffolding"
+      ],
+      "qIds": [
+        3,
+        58,
+        63,
+        167
+      ]
+    },
+    {
+      "id": "system-testing",
+      "term": "System Testing (Kiểm thử hệ thống)",
+      "what": "Kiểm thử hành vi của toàn bộ hệ thống hoàn chỉnh nhằm xác minh đạt mọi yêu cầu đặc tả.",
+      "points": [
+        "Bắt buộc kiểm tra cả Functional requirements lẫn Non-functional requirements (#164, #343).",
+        "Thực hiện trên môi trường kiểm thử sát với môi trường vận hành thực tế nhất; thường do nhóm Test độc lập đảm nhiệm.",
+        "KHÔNG bao gồm Top-down integration testing (#37 — vì thuộc mức Integration)."
+      ],
+      "triggers": [
+        "system testing",
+        "system level testing",
+        "testing the entire system"
+      ],
+      "qIds": [
+        37,
+        164,
+        343
+      ]
+    },
+    {
+      "id": "acceptance-testing",
+      "term": "Acceptance Testing (Kiểm thử nghiệm thu)",
+      "what": "Mức kiểm thử cuối xác nhận hệ thống đáp ứng nhu cầu nghiệp vụ (business requirements) và quy định sử dụng.",
+      "points": [
+        "Mục đích chính là tạo sự tự tin ('build confidence' — #315), không phải săn tìm thật nhiều lỗi mới; lấy đầu vào từ Requirement Specification (#161) và thường do User thực hiện (ít đặc trưng bởi tool chạy tự động — #22).",
+        "Gồm: User Acceptance Testing (UAT), Operational Acceptance, Contract & Regulation testing (#111), và Alpha / Beta / Field testing.",
+        "Alpha testing (#1, #50): Thực hiện TẠI SITE CỦA TỔ CHỨC PHÁT TRIỂN (bản build sớm) · Beta / Field testing (#1, #145): Thực hiện TẠI ĐỊA ĐIỂM CỦA KHÁCH HÀNG."
+      ],
+      "triggers": [
+        "acceptance testing",
+        "user acceptance",
+        "alpha testing",
+        "alpha release",
+        "beta testing",
+        "beta release",
+        "field testing",
+        "contract and regulation testing"
+      ],
+      "qIds": [
+        1,
+        22,
+        50,
+        89,
+        111,
+        145,
+        161,
+        315
+      ]
+    },
+    {
+      "id": "functional-testing",
+      "term": "Functional Testing (Kiểm thử chức năng)",
+      "what": "Loại kiểm thử đánh giá hệ thống LÀM CÁI GÌ ('what the system does') dựa trên đặc tả yêu cầu chức năng.",
+      "points": [
+        "Có thể thực hiện ở TẤT CẢ các mức kiểm thử ('At all test levels' — #302: Unit, Integration, System, Acceptance).",
+        "Thường áp dụng kỹ thuật Black-box; bao gồm cả Security testing về mặt chức năng phân quyền. Không dùng 'Plain language specification model' làm mô hình hình thức (#104)."
+      ],
+      "triggers": [
+        "functional testing",
+        "requirements testing",
+        "requirements-based testing",
+        "business process-based testing"
+      ],
+      "qIds": [
+        12,
+        104,
+        256,
+        302
+      ]
+    },
+    {
+      "id": "non-functional-usability",
+      "term": "Non-functional & Usability Testing (Kiểm thử phi chức năng & Khả dụng)",
+      "what": "Đánh giá hệ thống hoạt động TỐT NHƯ THẾ NÀO ('how well the system performs' — #248).",
+      "points": [
+        "Gồm Performance, Load, Stress, Usability, Reliability, Security, Compatibility/Configuration (dễ outsourcing #2); trọng tâm ở hệ thống đa người dùng & Internet Banking (#45, #66, #234).",
+        "Usability testing (#79, #100): Đánh giá mức độ dễ hiểu, dễ học và thân thiện với người dùng ('user-friendliness').",
+        "Lưu ý #12: 4 Test Types cấp cao chuẩn ISTQB là Functional, Non-functional, Structural, Change-related (Performance testing chỉ là nhánh con trong Non-functional)."
+      ],
+      "triggers": [
+        "non-functional",
+        "usability testing",
+        "usability",
+        "compatibility testing",
+        "not test type"
+      ],
+      "qIds": [
+        2,
+        12,
+        18,
+        45,
+        66,
+        79,
+        81,
+        100,
+        234,
+        248
+      ]
+    },
+    {
+      "id": "performance-load-stress",
+      "term": "Performance, Load & Stress Testing (Hiệu năng, Tải & Quá tải)",
+      "what": "Nhóm kiểm thử phi chức năng đo tốc độ phản hồi, độ ổn định và giới hạn chịu tải của hệ thống.",
+      "points": [
+        "Performance testing (#81, #100, #245): Đo năng lực vận hành, tốc độ phản hồi và hành vi hệ thống dưới tải.",
+        "Load testing (#150, #305): Kiểm tra hệ thống dưới các mức tải thay đổi trong ngưỡng vận hành bình thường kỳ vọng ('varying workloads / normal usage conditions').",
+        "Stress testing (#85, #305): Đẩy tải VƯỢT QUÁ giới hạn/công suất thiết kế ('beyond normal operational capacity / limitations exceeded')."
+      ],
+      "triggers": [
+        "performance testing",
+        "load testing",
+        "stress testing",
+        "volume testing",
+        "recovery testing"
+      ],
+      "qIds": [
+        81,
+        85,
+        100,
+        150,
+        245,
+        305
+      ]
+    },
+    {
+      "id": "confirmation-retesting",
+      "term": "Confirmation Testing / Re-testing (Kiểm thử xác nhận)",
+      "what": "Chạy lại chính xác các test case từng bị fail để xác nhận lỗi gốc đã được sửa thành công (#94, #332).",
+      "points": [
+        "Thuộc nhóm Change-related testing cùng với Regression testing (#62).",
+        "Chỉ kiểm tra đúng chỗ lỗi vừa sửa ('confirm defect has been fixed'), KHÔNG phải đi tìm lỗi lan sang chỗ khác (#350). Trong câu #166, Re-testing cũng là phương pháp dùng trong Maintenance testing."
+      ],
+      "triggers": [
+        "confirmation testing",
+        "re-testing"
+      ],
+      "qIds": [
+        62,
+        94,
+        166,
+        332,
+        350
+      ]
+    },
+    {
+      "id": "regression-maintenance-impact",
+      "term": "Regression, Maintenance Testing & Impact Analysis (Kiểm thử hồi quy & Bảo trì)",
+      "what": "Kiểm tra các vùng KHÔNG SỬA ('unchanged areas' — #291) xem việc thay đổi code/môi trường có gây lỗi phụ ngoài ý muốn không.",
+      "points": [
+        "Regression testing (#191, #221, #257, #291, #350): Thực hiện nhiều lần sau khi sửa code hoặc đổi môi trường; là ứng viên số 1 để tự động hóa bằng Record/Capture-Playback (#65, #71, #295).",
+        "Maintenance testing & Impact Analysis (#276, #309, #335): Áp dụng cho hệ thống đã phát hành; dùng Impact Analysis đánh giá ảnh hưởng của thay đổi để quyết định CẦN BAO NHIÊU Regression testing."
+      ],
+      "triggers": [
+        "regression testing",
+        "regression test",
+        "maintenance testing",
+        "impact analysis",
+        "change-related testing"
+      ],
+      "qIds": [
+        62,
+        65,
+        71,
+        191,
+        221,
+        257,
+        276,
+        291,
+        309,
+        335,
+        350
+      ]
+    },
+    {
+      "id": "static-vs-dynamic-testing",
+      "term": "Static Testing vs Dynamic Testing (Kiểm thử tĩnh vs Kiểm thử động)",
+      "what": "Static kiểm tra tài liệu/code KHÔNG chạy chương trình; Dynamic kiểm tra bằng cách CHẠY chương trình với dữ liệu test.",
+      "points": [
+        "Static testing (#237, #241, #242, #357): Gồm Reviews (thủ công) và Static Analysis (bằng tool); dùng được ở MỌI pha Requirements, Design, Coding (#127); tìm hiệu quả lỗi thiếu yêu cầu/thiết kế (#64), giảm chi phí sửa lỗi sớm (#285) nhưng KHÔNG giảm nhu cầu viết tài liệu (#33).",
+        "Dynamic testing (#243): Thực thi phần mềm với input cụ thể và so sánh kết quả thực tế với expected.",
+        "Cả Reviews, Static analysis và Dynamic testing đều chung mục tiêu là Tìm lỗi ('Identifying defects' — #215)."
+      ],
+      "triggers": [
+        "static testing",
+        "static test",
+        "dynamic testing",
+        "code review",
+        "desk checking"
+      ],
+      "qIds": [
+        25,
+        33,
+        35,
+        64,
+        75,
+        86,
+        127,
+        215,
+        237,
+        241,
+        242,
+        243,
+        285,
+        357
+      ]
+    },
+    {
+      "id": "formal-review-process",
+      "term": "Formal Review Process (Quy trình buổi Review chính thức)",
+      "what": "Quy trình kiểm tra tài liệu có cấu trúc chặt chẽ từ khâu lập kế hoạch đến theo dõi sửa lỗi.",
+      "points": [
+        "Chuẩn 5 bước mới (#46, #187, #275): Planning ➔ Initiate review ➔ Individual review ➔ Issue communication & analysis ➔ Fixing & Reporting.",
+        "Chuẩn 6 bước truyền thống (#214): Planning ➔ Kick Off ➔ Individual Preparations ➔ Review Meeting ➔ Rework ➔ Follow Up (4 bước rút gọn #117: Planning, Review meeting, Rework, Follow up).",
+        "Phân biệt nhiệm vụ: Planning = chọn nhân sự & phân vai ('allocating roles' — #77, #156); Kick-off = giải thích mục tiêu & tài liệu ('explaining the objective' — #274). Chi phí review KHÔNG tính 'Process improvement' (#112); đánh giá sản phẩm chứ không công kích tác giả (#41, #208)."
+      ],
+      "triggers": [
+        "formal review",
+        "review planning phase",
+        "kick-off phase",
+        "work product review process",
+        "phases of a formal review",
+        "cost of the reviews",
+        "success factors for a review",
+        "rule should not be followed for reviews"
+      ],
+      "qIds": [
+        41,
+        46,
+        77,
+        112,
+        117,
+        156,
+        187,
+        196,
+        208,
+        214,
+        266,
+        274,
+        275
+      ]
+    },
+    {
+      "id": "review-moderator",
+      "term": "Moderator / Review Leader (Người điều phối buổi Review)",
+      "what": "Người dẫn dắt toàn bộ quy trình Formal Review / Inspection (không phải tác giả tài liệu).",
+      "points": [
+        "Lên kế hoạch review, điều hành buổi họp và theo dõi sửa lỗi (follow-up) sau họp (#148).",
+        "Giữ vai trò trung gian hòa giải các quan điểm trái chiều trong cuộc họp ('mediates between people' — #129)."
+      ],
+      "triggers": [
+        "moderator"
+      ],
+      "qIds": [
+        98,
+        129,
+        148,
+        198,
+        279,
+        307
+      ]
+    },
+    {
+      "id": "review-scribe-author",
+      "term": "Scribe (Recorder), Author & Reviewers (Thư ký, Tác giả & Người duyệt)",
+      "what": "Các vai trò tham gia trực tiếp trong buổi họp đánh giá tài liệu.",
+      "points": [
+        "Scribe / Recorder (#98): Chịu trách nhiệm ghi chép biên bản toàn bộ lỗi, vấn đề và câu hỏi mở (open points) phát hiện trong cuộc họp.",
+        "Author: Tác giả tạo ra tài liệu đem review, chủ trì Walkthrough (#279) và trực tiếp sửa lỗi (Rework) · Reviewers: Các chuyên gia kiểm tra tài liệu tìm khiếm khuyết (Management KHÔNG dự Technical review #133)."
+      ],
+      "triggers": [
+        "scribe",
+        "recorder",
+        "author",
+        "reviewers"
+      ],
+      "qIds": [
+        98,
+        133,
+        188,
+        198
+      ]
+    },
+    {
+      "id": "walkthrough-informal",
+      "term": "Informal Review & Walkthrough (Review không chính thức & Duyệt dẫn)",
+      "what": "Hai hình thức review nhẹ nhàng không yêu cầu Moderator chuyên biệt.",
+      "points": [
+        "Informal review (#223, #260): Không biên bản (undocumented), thực hiện linh hoạt chi phí thấp để thu lợi ích nhanh.",
+        "Walkthrough (#70, #223, #254, #279): Do chính AUTHOR (tác giả) dẫn dắt; đặc trưng bởi Scenario, Dry Run, Peer Group nhằm hướng dẫn/chia sẻ kiến thức (educate) và thu thập góp ý."
+      ],
+      "triggers": [
+        "informal review",
+        "walkthrough",
+        "walk through"
+      ],
+      "qIds": [
+        25,
+        35,
+        70,
+        223,
+        254,
+        260,
+        279,
+        307
+      ]
+    },
+    {
+      "id": "technical-review-inspection",
+      "term": "Technical Review (Peer Review) & Inspection (Thanh tra chính thức)",
+      "what": "Hai hình thức review bài bản có quy trình rõ ràng để phát hiện lỗi sớm.",
+      "points": [
+        "Technical / Peer Review (#132, #133, #188, #223, #307): Gồm các chuyên gia đồng cấp (peers), bắt buộc có Scribe, KHÔNG có Management tham gia (#133), nhằm tìm lỗi & đạt đồng thuận kỹ thuật.",
+        "Inspection (#75, #82, #196, #223, #279, #312, #336, #356): Nghiêm ngặt nhất — do Trained MODERATOR chủ trì, chuẩn bị cá nhân trước họp, dùng Rules/Checklists, Entry/Exit criteria & Follow-up. Không đo được Code coverage (#336, #356)!"
+      ],
+      "triggers": [
+        "technical review",
+        "peer review",
+        "peer reviews",
+        "inspection",
+        "inspections"
+      ],
+      "qIds": [
+        25,
+        35,
+        75,
+        82,
+        132,
+        133,
+        188,
+        196,
+        223,
+        279,
+        307,
+        312,
+        336,
+        356
+      ]
+    },
+    {
+      "id": "static-vs-dynamic-analysis-tools",
+      "term": "Static Analysis vs Dynamic Analysis Tools (Phân tích tĩnh vs động)",
+      "what": "Công cụ kiểm tra mã nguồn tự động không chạy code (Static) so với công cụ theo dõi lúc chương trình đang chạy (Dynamic).",
+      "points": [
+        "Static Analysis Tool (#44, #59, #120, #141, #202, #288, #325, #346, #355): Thường do Developer dùng (trình biên dịch compiler cũng là 1 dạng static analysis!); phát hiện code chết ('unreachable code'), biến chưa gán/không dùng, hàm không được gọi, vi phạm chuẩn lập trình ('coding standards'), lỗ hổng bảo mật, tính Cyclomatic complexity.",
+        "Dynamic Analysis Tool (#16, #73, #88, #209): Chạy lúc thực thi code (cũng thiên về Developer) — chuyên bắt rò rỉ bộ nhớ ('Memory leaks') và con trỏ lỗi ('unassigned pointers') mà Static analysis KHÔNG THỂ tìm thấy (#16)!"
+      ],
+      "triggers": [
+        "static analysis",
+        "data flow analysis",
+        "dynamic analysis",
+        "memory leak",
+        "memory leaks",
+        "unreachable code",
+        "unreachable (\"dead\") code",
+        "coding standards"
+      ],
+      "qIds": [
+        16,
+        44,
+        59,
+        73,
+        88,
+        120,
+        141,
+        202,
+        209,
+        288,
+        325,
+        346,
+        355
+      ]
+    },
+    {
+      "id": "blackbox-whitebox-graybox",
+      "term": "Black-box, White-box & Gray-box Testing (Các hướng thiết kế test)",
+      "what": "Phân nhóm kỹ thuật chọn test case(#314) theo mức độ tiếp cận cấu trúc bên trong của phần mềm.",
+      "points": [
+        "Black-box (Specification-based — #32, #72, #240): Dựa trên đặc tả yêu cầu và đánh giá hành vi từ bên ngoài ('external perspective'), KHÔNG cần đọc source code (#32).",
+        "White-box (Structural / Glass / Clear / Transparent box — #40, #76, #160, #205): Dựa trên cấu trúc code & luồng logic bên trong; có thể không mô phỏng tình huống người dùng thực tế (#40). BS7925-2 không xếp Random testing vào White-box (#125).",
+        "Gray-box / Hybrid Testing (#54): Kết hợp đặc điểm của cả Black-box và White-box."
+      ],
+      "triggers": [
+        "black box",
+        "black-box",
+        "specification-based",
+        "white box",
+        "white-box",
+        "structural testing",
+        "structure-based",
+        "glass box",
+        "clear box",
+        "gray box",
+        "hybrid testing",
+        "test design technique is",
+        "deciding what testing technique"
+      ],
+      "qIds": [
+        28,
+        32,
+        36,
+        40,
+        54,
+        72,
+        76,
+        125,
+        160,
+        205,
+        240,
+        314,
+        354
+      ]
+    },
+    {
+      "id": "equivalence-partitioning",
+      "term": "Equivalence Partitioning — EP (Phân vùng tương đương)",
+      "what": "Kỹ thuật Black-box chia miền dữ liệu input/output thành các phân vùng hợp lệ (valid) và không hợp lệ (invalid) sao cho mọi giá trị trong cùng vùng được xử lý tương đương nhau.",
+      "points": [
+        "Mỗi phân vùng chỉ cần chọn 1 giá trị đại diện làm test case (#261); dùng để đạt cả input & output coverage (#56) ở MỌI mức kiểm thử (#324).",
+        "Mẹo giải bài tập EP: Nếu đề hỏi 'cover ALL equivalence partitions' (#176, #177) ➔ lấy mỗi miền (invalid thấp, valid giữa, invalid cao) đúng 1 số; nếu hỏi 'SAME class' (#184) ➔ cả 3 số phải nằm trong cùng 1 khoảng!"
+      ],
+      "triggers": [
+        "equivalence partitioning",
+        "equivalence partition",
+        "equivalence partitions",
+        "equivalence class",
+        "equivalence classes",
+        "equivalence values"
+      ],
+      "qIds": [
+        56,
+        72,
+        174,
+        176,
+        177,
+        182,
+        183,
+        184,
+        232,
+        261,
+        311,
+        324
+      ]
+    },
+    {
+      "id": "boundary-value-analysis",
+      "term": "Boundary Value Analysis — BVA (Phân tích giá trị biên)",
+      "what": "Kỹ thuật Black-box tập trung kiểm tra các giá trị ngay tại biên, sát dưới biên và sát trên biên của các phân vùng tương đương (#361).",
+      "points": [
+        "Với miền hợp lệ [min, max] (số nguyên): Bộ 4 biên chuẩn gồm (min - 1, min, max, max + 1) — ví dụ [10..21] ➔ 9, 10, 21, 22 (#180); [1900..2004] ➔ 1899, 1900, 2004, 2005 (#181).",
+        "Đọc kỹ yêu cầu đề: Hỏi 'VALID boundary' của [8..12] ➔ chọn 8 (#173); hỏi 'ONLY valid classes & boundaries' của [10000..99999] ➔ 10000, 50000, 99999 (#183); bài mực in min 5, giảm giá >=100 ➔ 4, 5, 99 (#178)."
+      ],
+      "triggers": [
+        "boundary value",
+        "boundary values",
+        "valid boundary"
+      ],
+      "qIds": [
+        36,
+        173,
+        178,
+        180,
+        181,
+        183,
+        361
+      ]
+    },
+    {
+      "id": "decision-table-testing",
+      "term": "Decision Table Testing (Kiểm thử bảng quyết định)",
+      "what": "Kỹ thuật Black-box lập bảng xử lý các TỔ HỢP điều kiện đầu vào ('combinations of inputs') dẫn đến các hành động/kết quả khác nhau (#90, #217, #230).",
+      "points": [
+        "Rất hiệu quả khi quy tắc nghiệp vụ có nhiều điều kiện logic kết hợp (ví dụ hạng thẻ Citibank + loại phòng #230).",
+        "Cẩn thận bẫy chữ: 'Decision table' là Black-box, còn 'Decision testing' là White-box (#28)!"
+      ],
+      "triggers": [
+        "decision table",
+        "decision tables",
+        "citibank"
+      ],
+      "qIds": [
+        28,
+        90,
+        217,
+        230
+      ]
+    },
+    {
+      "id": "state-transition-usecase",
+      "term": "State Transition & Use Case Testing (Chuyển trạng thái & Ca sử dụng)",
+      "what": "Hai kỹ thuật Black-box kiểm thử hành vi theo trạng thái hệ thống và luồng kịch bản người dùng.",
+      "points": [
+        "State Transition Testing (#18, #217, #228, #229, #252): Kiểm tra thay đổi trạng thái ('changes in state') hợp lệ & KHÔNG hợp lệ (invalid transitions) theo sự kiện đầu vào.",
+        "Use Case Testing (#138, #186, #239, #351): Mô phỏng kịch bản nghiệp vụ ('business scenarios'), phát hiện lỗi trong luồng quy trình sử dụng thực tế ('process flows during real-world use') và tương tác tích hợp."
+      ],
+      "triggers": [
+        "state transition",
+        "state-transition",
+        "use case",
+        "use cases"
+      ],
+      "qIds": [
+        18,
+        138,
+        186,
+        217,
+        228,
+        229,
+        239,
+        252,
+        351
+      ]
+    },
+    {
+      "id": "whitebox-coverage-metrics",
+      "term": "Statement, Branch / Decision & Path Coverage (Độ phủ mã nguồn White-box)",
+      "what": "Thước đo mức độ đầy đủ (thoroughness / effectiveness — #233, #319) của các câu lệnh, nhánh quyết định và đường đi trong code đã được test thực thi.",
+      "points": [
+        "Statement Coverage (SC): Tỷ lệ câu lệnh thực thi ít nhất 1 lần. Nếu chỉ có IF...THEN (KHÔNG có ELSE — #219, #224, #225), chỉ cần 1 test True là đạt 100% SC! Nếu CÓ ELSE (#175, #226), tối thiểu cần 2 tests.",
+        "Branch / Decision Coverage (BC/DC — #47, #93, #106, #310): Tỷ lệ nhánh kết quả quyết định (True & False của IF, WHILE, CASE) được chạy. 100% Decision coverage luôn kéo theo 100% Statement coverage (nhưng ngược lại thì KHÔNG!).",
+        "Path Coverage (#236): Phủ mọi chuỗi đường đi độc lập/tổ hợp (2 lệnh IF độc lập tạo 2 × 2 = 4 paths). Lưu ý 'Pole Coverage' là tên bịa không tồn tại (#126)."
+      ],
+      "triggers": [
+        "statement coverage",
+        "statement testing",
+        "branch coverage",
+        "branch/decision coverage",
+        "decision coverage",
+        "decision testing",
+        "condition coverage",
+        "path coverage",
+        "logic coverage",
+        "code coverage",
+        "coverage measurement",
+        "sequences of statements (paths)"
+      ],
+      "qIds": [
+        28,
+        47,
+        93,
+        106,
+        126,
+        169,
+        170,
+        175,
+        218,
+        219,
+        224,
+        225,
+        226,
+        227,
+        233,
+        236,
+        310,
+        319,
+        353
+      ]
+    },
+    {
+      "id": "cyclomatic-complexity",
+      "term": "Cyclomatic Complexity — V(G) (Độ phức tạp chu trình McCabe)",
+      "what": "Thước đo White-box (#108) tính số lượng đường đi tuyến tính độc lập (independent paths) trong đồ thị luồng điều khiển.",
+      "points": [
+        "Công thức chuẩn: V(G) = L - N + 2P (#216, với L: cạnh/links, N: đỉnh/nodes, P: thành phần liên thông) hoặc = Số điểm quyết định nhị phân + 1.",
+        "Bằng số test cần thiết để kiểm tra mọi lệnh điều khiển cơ sở (#8); độ phức tạp càng cao thì chương trình càng KHÓ KIỂM THỬ ('Difficult to test' — #105)."
+      ],
+      "triggers": [
+        "cyclomatic complexity",
+        "cyclometic complexity",
+        "l - n + 2p"
+      ],
+      "qIds": [
+        8,
+        105,
+        108,
+        216
+      ]
+    },
+    {
+      "id": "error-guessing-exploratory",
+      "term": "Experience-based: Error Guessing & Exploratory Testing (Dựa trên kinh nghiệm)",
+      "what": "Kỹ thuật kiểm thử tận dụng kỹ năng, trực giác và kinh nghiệm thực chiến của tester (#92) để bổ sung cho kỹ thuật chính thống.",
+      "points": [
+        "Error Guessing (#96, #321, #322, #340): Dự đoán các lỗi thường gặp dựa trên kinh nghiệm & trực giác (KHÔNG phải kỹ thuật static #25/#35); dùng TỐT NHẤT SAU KHI đã áp dụng các kỹ thuật chính thống ('After more formal techniques' — #322).",
+        "Exploratory Testing (#217, #272, #294, #300): Thiết kế, thực thi và học hỏi ĐỒNG THỜI ('plan and execute simultaneously' — #272); lý tưởng khi ÍT THỜI GIAN, thiếu tài liệu chi tiết (#294) và cần linh hoạt thích ứng kết quả mới (#300)."
+      ],
+      "triggers": [
+        "experience-based",
+        "error guessing",
+        "error-guessing",
+        "exploratory testing"
+      ],
+      "qIds": [
+        25,
+        35,
+        92,
+        96,
+        217,
+        272,
+        294,
+        300,
+        321,
+        322,
+        340
+      ]
+    },
+    {
+      "id": "test-roles-leader-vs-tester",
+      "term": "Test Manager / Test Leader vs Tester (Phân vai trong tổ chức kiểm thử)",
+      "what": "Sự phân tách trách nhiệm giữa người quản lý quy trình kiểm thử và người trực tiếp thiết kế/thực thi test.",
+      "points": [
+        "Test Manager / Leader (#193, #286, #293): Quản lý quy trình & tài nguyên, lập Test Plan, làm việc với Tool Vendor, quyết định mức độ Automation, viết Test Summary Report.",
+        "Tester (#195, #293): Tạo Test Specifications, chuẩn bị/thu thập Test Data, thực thi & ghi log test trên các mức kiểm thử.",
+        "Cấu trúc tổ chức nhóm test phụ thuộc vào mức độ rủi ro và độ phức tạp của dự án (#273)."
+      ],
+      "triggers": [
+        "test lead",
+        "test leader",
+        "test manager",
+        "task of a tester",
+        "test organization"
+      ],
+      "qIds": [
+        193,
+        195,
+        273,
+        286,
+        293
+      ]
+    },
+    {
+      "id": "test-plan-scope-approach",
+      "term": "Test Plan, Scope & Test Approach (Kế hoạch & Chiến lược kiểm thử)",
+      "what": "Tài liệu hoạch định mục tiêu, phạm vi, nguồn lực, lịch trình, môi trường và rủi ro kiểm thử theo chuẩn IEEE 829.",
+      "points": [
+        "Lấy đầu vào từ Project Plan (#159); xác định Scope để làm rõ phần nào ĐƯỢC test và KHÔNG test (#251); công việc chính gồm xác định approach, phân bổ nguồn lực (#197) và lên lịch trình ('Scheduling' — #281).",
+        "CÓ trong Test Plan: Test items, Features to be tested/not tested, Approach, Environments, Suspension/Exit criteria, Deliverables, Responsibilities, Schedules.",
+        "KHÔNG có trong Test Plan: Expected results (#15, #34), Quality plans (#23), Test specification (#144), Test Scripts chi tiết (#199). Khi chọn Test approach, quan trọng nhất là kỹ năng & kinh nghiệm sẵn có (#212, #282)."
+      ],
+      "triggers": [
+        "test plan",
+        "test planning",
+        "test approach",
+        "suspension criteria",
+        "features to be tested"
+      ],
+      "qIds": [
+        15,
+        23,
+        34,
+        144,
+        159,
+        197,
+        199,
+        211,
+        212,
+        251,
+        281,
+        282
+      ]
+    },
+    {
+      "id": "entry-exit-stop-testing",
+      "term": "Entry Criteria, Exit / Completion Criteria & When to Stop Testing",
+      "what": "Điều kiện cần có để BẮT ĐẦU (Entry) và điều kiện cần đạt để KẾT THÚC một mức kiểm thử (Exit / Completion).",
+      "points": [
+        "Entry Criteria (#78): Môi trường test sẵn sàng ('Availability of test environment') và đủ nguồn lực cần thiết ('Availability of necessary resources').",
+        "Exit / Completion Criteria (#107, #203, #263, #348, #364): Xác định ngay ở pha Test Planning (#107) để định nghĩa KHI NÀO MỘT TEST LEVEL HOÀN TẤT / DỪNG TEST; gồm độ phủ (coverage), mật độ lỗi (defect density) và rủi ro còn lại (residual risk — #203).",
+        "Khi nào dừng test & Test bao nhiêu là đủ? Phụ thuộc vào RỦI RO (#201, #210, #304, #365), đạt Completion criteria (#363), hoặc hết thời gian lịch trình khi không có tiêu chí khác (#298; nếu dự án trễ lịch mà cấm giảm chất lượng thì phải cắt bớt requirement chưa làm — #316)."
+      ],
+      "triggers": [
+        "entry criteria",
+        "exit criteria",
+        "completion criteria",
+        "stop testing",
+        "testing should be stopped",
+        "how much testing is enough",
+        "behind schedule"
+      ],
+      "qIds": [
+        78,
+        107,
+        201,
+        203,
+        210,
+        263,
+        271,
+        298,
+        304,
+        316,
+        348,
+        363,
+        364,
+        365
+      ]
+    },
+    {
+      "id": "estimation-monitoring-control",
+      "term": "Test Estimation, Monitoring, Control & Measurement Dysfunction",
+      "what": "Ước lượng nỗ lực, theo dõi tiến độ bằng số liệu (metrics) và điều chỉnh nguồn lực kiểm thử.",
+      "points": [
+        "Ghép cặp chuẩn (#222): Estimation = ước tính nỗ lực (effort) · Monitoring = đo lường theo dõi tiến trình (#192, #296: tỷ lệ test đã chạy, số lỗi mở/đóng) · Control = phân bổ lại nguồn lực / hành động khắc phục.",
+        "Function/Test matrix thuộc loại Project status report (#119).",
+        "Measurement dysfunction (#362): Lệch lạc đo lường xảy ra khi chạy theo làm đẹp con số thống kê nhưng làm giảm chất lượng công việc thực, hoặc đo sai chỉ số dẫn tới kết luận sai."
+      ],
+      "triggers": [
+        "test estimation",
+        "test monitoring",
+        "test control",
+        "monitoring the test progress",
+        "monitor the progress",
+        "function/test matrix",
+        "measurement dysfunction"
+      ],
+      "qIds": [
+        119,
+        192,
+        222,
+        296,
+        362
+      ]
+    },
+    {
+      "id": "project-vs-product-risk",
+      "term": "Risk Management: Project Risk vs Product Risk (Quản lý rủi ro)",
+      "what": "Rủi ro là khả năng xảy ra sự kiện bất lợi; Mức độ rủi ro = Khả năng xảy ra (Likelihood) × Mức độ thiệt hại (Impact) (#270).",
+      "points": [
+        "Project Risk (Rủi ro dự án — #26, #367): Vấn đề ảnh hưởng tiến độ/khả năng hoàn thành dự án như nhân sự nghỉ ốm/thiếu kỹ năng (#13), yếu tố tổ chức ('Organizational factors'), vấn đề nhà cung cấp ('Supplier issues'), kỹ thuật.",
+        "Product Risk (Rủi ro sản phẩm — #26, #137, #367): Vấn đề nằm trực tiếp ở chất lượng phần mềm bàn giao ('Poor software characteristics', 'Error-prone software delivered').",
+        "Lưu ý #13: Thành viên viết thư viện giúp TĂNG hiệu suất làm việc là điểm tích cực, KHÔNG phải Risk!"
+      ],
+      "triggers": [
+        "project risk",
+        "project risks",
+        "product risk",
+        "product risks",
+        "level of risk",
+        "not risk"
+      ],
+      "qIds": [
+        13,
+        26,
+        137,
+        270,
+        367
+      ]
+    },
+    {
+      "id": "incident-severity-priority",
+      "term": "Incident / Defect Management, Severity vs Priority & Bug Life Cycle",
+      "what": "Quy trình ghi nhận, phân loại, theo dõi và đóng các sự cố/khiếm khuyết phát hiện trong kiểm thử.",
+      "points": [
+        "Severity vs Priority (#67, #278): Severity = mức độ tác động kỹ thuật của lỗi lên hệ thống ('impact on the system'); Priority = mức độ khẩn cấp / thứ tự ưu tiên cần sửa trước hay sau ('order to be fixed').",
+        "Incident Report (#14, #24, #49, #317): Ghi các bước tái hiện, môi trường, kết quả thực tế vs mong đợi, severity/priority; KHÔNG ghi cách sửa code ('how to fix') và KHÔNG tạo incident cho góp ý cải tiến của user (#49).",
+        "Bug Life Cycle (#61, #163): Open ➔ Assigned ➔ Fixed ➔ Closed (bước cuối là Closing report #61). Defect Management KHÔNG bao gồm 'Deliverable base-lining' (#42 — thuộc CM)."
+      ],
+      "triggers": [
+        "incident report",
+        "incident management",
+        "incident logging",
+        "defect management",
+        "severity",
+        "priority",
+        "bug life cycle",
+        "incidents normally not be raised"
+      ],
+      "qIds": [
+        14,
+        24,
+        42,
+        49,
+        61,
+        67,
+        163,
+        278,
+        317
+      ]
+    },
+    {
+      "id": "configuration-management",
+      "term": "Configuration Management — CM (Quản lý cấu hình)",
+      "what": "Quản lý phiên bản, kiểm soát thư viện và theo dõi mọi thay đổi của mã nguồn, tài liệu và testware.",
+      "points": [
+        "Triển khai thủ tục CM ngay từ pha Test Planning (#95); quản lý thư viện chứa các mục cấu hình gọi là Configuration Control (#152).",
+        "Với Testing (#204, #347): Định danh phiên bản phần mềm đang test (SUT), kiểm soát phiên bản & lịch sử thay đổi của Testware.",
+        "CM KHÔNG bao gồm kiểm toán tuân thủ ISO 9001 ('Auditing conformance to ISO9001' — #19) và công cụ CM KHÔNG dùng để 'Check for consistence' của yêu cầu (#328)."
+      ],
+      "triggers": [
+        "configuration management",
+        "configuration control",
+        "status accounting",
+        "deliverable base-lining"
+      ],
+      "qIds": [
+        19,
+        42,
+        95,
+        152,
+        204,
+        328,
+        347
+      ]
+    },
+    {
+      "id": "req-test-management-tools",
+      "term": "Requirements Management & Test Management Tools (Công cụ quản lý)",
+      "what": "Nhóm công cụ quản lý yêu cầu, kế hoạch, lịch trình và truy vết kiểm thử.",
+      "points": [
+        "Requirements Management Tool (#87, #157, #328): Lưu các câu yêu cầu, kiểm tra tính nhất quán (consistency), gán độ ưu tiên và truy vết (traceability) từng test tới yêu cầu.",
+        "Test Management Tool (#11, #102): Hỗ trợ lập lịch test, ghi log kết quả/sự cố, theo dõi tiến độ & traceability — KHÔNG tự sinh dữ liệu test ('Generating test data' là của Test data preparation tool — #11, #328); còn hỗ trợ tạo test case là Test Design Tool (#91)."
+      ],
+      "triggers": [
+        "requirements management tools",
+        "requirement management tools",
+        "test management tool",
+        "test design tool",
+        "test design tools",
+        "test data preparation tools"
+      ],
+      "qIds": [
+        11,
+        87,
+        91,
+        102,
+        157,
+        328
+      ]
+    },
+    {
+      "id": "test-execution-automation-tools",
+      "term": "Test Execution, Capture/Playback & Comparator Tools (Công cụ chạy tự động)",
+      "what": "Nhóm công cụ tự động phát lại kịch bản kiểm thử và đối chiếu kết quả thực tế với mong đợi.",
+      "points": [
+        "Test Execution / Capture-Playback (#10, #65, #71, #80, #109, #295): Mang lại khoản tiết kiệm chi phí lớn nhất của CAST (#80), giúp dễ dàng CHẠY kiểm thử hồi quy ('run regression tests' — #295); KHÔNG tự nghĩ ra expected outputs (#10) và ít dùng cho User requirements (#109).",
+        "Data-driven scripts (#238): Tách dữ liệu test ra file riêng khỏi mã kịch bản giúp linh hoạt bảo trì · Test Comparator (#352): Thuộc nhóm công cụ hỗ trợ thực thi & ghi log (test execution and logging)."
+      ],
+      "triggers": [
+        "test execution tool",
+        "test execution tools",
+        "capture/playback",
+        "capture and replay",
+        "record/playback",
+        "test comparator",
+        "data-driven scripts",
+        "cost saving from use of cast",
+        "attributes of tools and automation"
+      ],
+      "qIds": [
+        10,
+        65,
+        71,
+        80,
+        109,
+        147,
+        154,
+        238,
+        295,
+        352
+      ]
+    },
+    {
+      "id": "tool-selection-rollout",
+      "term": "Tool Selection & Pilot Implementation (Lựa chọn & Triển khai Tool mới)",
+      "what": "Quy trình bài bản để đánh giá, mua và đưa công cụ kiểm thử mới vào tổ chức an toàn.",
+      "points": [
+        "Bước ĐẦU TIÊN khi muốn tìm tool mới (#168): Phân tích nhu cầu & yêu cầu nội bộ ('Analyze your needs and requirements'), đánh giá độ trưởng thành tổ chức, tỷ lệ chi phí/lợi ích và chạy Proof of Concept (#20, #189 — KHÔNG chọn theo công nghệ đối thủ #20!).",
+        "Khi ĐÃ MUA tool mới về (#299): Đưa cho MỘT NHÓM NHỎ dùng thử trước (Pilot project — 'A small team to establish the best way to use the tool') và xác định nhu cầu huấn luyện/mentoring (#189).",
+        "Tuyệt đối KHÔNG áp dụng lần đầu trên dự án đang trễ tiến độ (#189) và lưu ý tool vẫn tốn chi phí bảo trì testware (#190: lợi ích chính là dễ truy cập thông tin & tăng tính nhất quán)."
+      ],
+      "triggers": [
+        "tool selection",
+        "new testing tool",
+        "(new) test tool",
+        "implementation of a testing tool",
+        "using test tools"
+      ],
+      "qIds": [
+        20,
+        168,
+        189,
+        190,
+        299
+      ]
+    }
+  ],
   "distinctions": [
     {
       "id": "static-analysis-1-vs-2-answers",

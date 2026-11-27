@@ -15,22 +15,23 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-34">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-34">
-  <script defer src="data/questions.js?v=multi-course-34"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-34"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-34"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-34"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-34"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-34"></script>
-  <script defer src="data/study-prj301.js?v=multi-course-34"></script>
-  <script defer src="data/study-swt301.js?v=multi-course-34"></script>
-  <script defer src="js/storage.js?v=multi-course-34"></script>
-  <script defer src="js/practice.js?v=multi-course-34"></script>
-  <script defer src="js/exam.js?v=multi-course-34"></script>
-  <script defer src="js/keyword.js?v=multi-course-34"></script>
-  <script defer src="js/study.js?v=multi-course-34"></script>
-  <script defer src="js/app.js?v=multi-course-34"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-35">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-35">
+  <script defer src="data/questions.js?v=multi-course-35"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-35"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-35"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-35"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-35"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-35"></script>
+  <script defer src="data/study-prj301.js?v=multi-course-35"></script>
+  <script defer src="data/study-swt301.js?v=multi-course-35"></script>
+  <script defer src="js/storage.js?v=multi-course-35"></script>
+  <script defer src="js/concept-helper.js?v=multi-course-35"></script>
+  <script defer src="js/practice.js?v=multi-course-35"></script>
+  <script defer src="js/exam.js?v=multi-course-35"></script>
+  <script defer src="js/keyword.js?v=multi-course-35"></script>
+  <script defer src="js/study.js?v=multi-course-35"></script>
+  <script defer src="js/app.js?v=multi-course-35"></script>
 </head>
 <body>
   <header class="topbar">
@@ -132,13 +133,20 @@
             <span id="practice-slide-badge" class="badge">Slide -</span>
             <span id="practice-topic-badge" class="badge">Môn học</span>
             <span id="practice-multi-badge" class="badge badge-accent" hidden>Chọn nhiều đáp án</span>
-            <button type="button" id="practice-star-btn" class="btn btn-ghost btn-sm icon-toggle" aria-pressed="false" title="Đánh dấu câu hỏi (S)">
-              <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-              <span>Đánh dấu</span>
-            </button>
+            <div class="question-meta-actions">
+              <button type="button" id="practice-concept-btn" class="btn btn-ghost btn-sm q-concept-btn" aria-expanded="false" aria-controls="practice-concept-box" title="Xem khái niệm &amp; kiến thức của câu hỏi này">
+                <span class="q-concept-icon" aria-hidden="true">?</span>
+                <span>Kiến thức</span>
+              </button>
+              <button type="button" id="practice-star-btn" class="btn btn-ghost btn-sm icon-toggle" aria-pressed="false" title="Đánh dấu câu hỏi (S)">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                <span>Đánh dấu</span>
+              </button>
+            </div>
           </div>
           <div id="practice-stem" class="question-stem">Đang tải bộ câu hỏi...</div>
           <div id="practice-images" class="question-images" hidden></div>
+          <div id="practice-concept-box" class="q-concept-box" hidden></div>
           <button type="button" id="practice-flip-options-btn" class="practice-flip-options-btn" aria-controls="practice-feedback">Lật flashcard · xem đáp án đúng</button>
           <div id="practice-options" class="options-list" role="group" aria-label="Các lựa chọn trả lời"></div>
           <div><button type="button" id="practice-submit-multi-btn" class="btn btn-primary" hidden>Chốt đáp án (Enter)</button></div>
@@ -178,13 +186,20 @@
           <div class="question-meta">
             <span id="fc-slide-badge" class="badge">Slide -</span>
             <span id="fc-topic-badge" class="badge">Môn học</span>
-            <button type="button" id="fc-star-btn" class="btn btn-ghost btn-sm icon-toggle" aria-pressed="false" title="Đánh dấu câu hỏi (S)">
-              <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-              <span>Đánh dấu</span>
-            </button>
+            <div class="question-meta-actions">
+              <button type="button" id="fc-concept-btn" class="btn btn-ghost btn-sm q-concept-btn" aria-expanded="false" aria-controls="fc-concept-box" title="Xem khái niệm &amp; kiến thức của thẻ này">
+                <span class="q-concept-icon" aria-hidden="true">?</span>
+                <span>Kiến thức</span>
+              </button>
+              <button type="button" id="fc-star-btn" class="btn btn-ghost btn-sm icon-toggle" aria-pressed="false" title="Đánh dấu câu hỏi (S)">
+                <svg class="icon-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m19 21-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+                <span>Đánh dấu</span>
+              </button>
+            </div>
           </div>
           <div id="fc-stem" class="question-stem">Đang tải thẻ ghi nhớ...</div>
           <div id="fc-images" class="question-images" hidden></div>
+          <div id="fc-concept-box" class="q-concept-box" hidden></div>
           <div id="fc-options-preview" class="fc-options-list"></div>
           <div id="fc-answer-box" role="status" aria-live="polite"></div>
         </article>
@@ -246,8 +261,15 @@
           </div>
           <div class="exam-workspace">
             <article class="card">
-              <div id="exam-stem" class="question-stem"></div>
+              <div class="exam-stem-row">
+                <div id="exam-stem" class="question-stem"></div>
+                <button type="button" id="exam-concept-btn" class="btn btn-ghost btn-sm q-concept-btn" aria-expanded="false" aria-controls="exam-concept-box" title="Xem khái niệm &amp; kiến thức của câu hỏi này">
+                  <span class="q-concept-icon" aria-hidden="true">?</span>
+                  <span>Kiến thức</span>
+                </button>
+              </div>
               <div id="exam-images" class="question-images" hidden></div>
+              <div id="exam-concept-box" class="q-concept-box" hidden></div>
               <div id="exam-options" class="options-list" role="group" aria-label="Lựa chọn bài thi"></div>
               <div id="exam-feedback" class="feedback-box" role="status" aria-live="polite" hidden></div>
               <div class="action-bar">
@@ -330,12 +352,35 @@
           <nav id="study-quick-jump" class="study-quick-jump card" aria-label="Đi nhanh đến phần ôn tập" hidden>
             <span class="study-quick-jump-label">Đi nhanh đến mục:</span>
             <div class="study-quick-jump-actions">
+              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="concepts" id="study-jump-concepts">📘 Khái niệm &amp; Phân tích 6 chương</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="shortcuts">⚡ Mẹo &amp; Keyword Auto chọn</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="same-options" id="study-jump-same-options">🎯 Các đáp án giống nhau</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="similar-questions" id="study-jump-similar-questions">🔍 Câu hỏi gần giống nhau</button>
               <button type="button" class="btn btn-ghost btn-sm" data-study-jump="all" id="study-jump-all-distinctions">📚 Xem tất cả câu dễ nhầm</button>
             </div>
           </nav>
+
+          <section class="study-concepts card" id="study-concepts-swt301" aria-labelledby="study-concepts-swt301-title" hidden>
+            <div class="study-section-heading">
+              <div class="study-shortcuts-header-top">
+                <span class="badge badge-accent">Nền tảng &amp; Bản chất ISTQB</span>
+                <span class="badge badge-success">6 Chương · Phân tích 367 câu</span>
+              </div>
+              <h2 id="study-concepts-swt301-title">Khái niệm cốt lõi &amp; Phân loại dạng câu hỏi SWT301</h2>
+              <p class="study-shortcuts-lead">Tóm gọn từng khái niệm (<em>Là gì — Có điểm gì chính</em>) kết hợp phân tích các dạng câu hỏi thực tế trong 367 câu. Ngắn gọn, dễ hiểu, bấm vào số câu để luyện ngay.</p>
+              <div class="swt-concepts-controls">
+                <div class="swt-chapter-pills" id="swt-chapter-pills" role="group" aria-label="Chọn chương kiến thức"></div>
+                <div class="swt-concepts-search-row">
+                  <label for="swt-concepts-search" class="sr-only">Tìm khái niệm hoặc dạng câu hỏi</label>
+                  <input type="search" id="swt-concepts-search" placeholder="Tìm nhanh: Unit testing, V-model, Inspection, BVA, Cyclomatic, Risk, Severity...">
+                  <button type="button" class="btn btn-secondary btn-sm" id="swt-concepts-open-all">Mở cả 6 chương</button>
+                  <button type="button" class="btn btn-ghost btn-sm" id="swt-concepts-close-all">Thu gọn</button>
+                </div>
+              </div>
+            </div>
+            <div id="swt-concepts-list" class="swt-concepts-list"></div>
+            <div id="swt-concepts-empty" class="study-empty" hidden>Không tìm thấy khái niệm hoặc dạng câu hỏi phù hợp.</div>
+          </section>
 
           <section class="study-shortcuts card" id="study-shortcuts-prj301" aria-labelledby="study-shortcuts-prj301-title" hidden>
             <div class="study-section-heading">
