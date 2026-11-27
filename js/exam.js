@@ -81,7 +81,7 @@
 
   function getEligibleQuestions(start, end) {
     const { source, topic } = getCurrentFilters();
-    if (source === 'same-options' || source === 'similar-questions' || source === 'confusing-all') {
+    if (source === 'same-options' || source === 'similar-questions' || source === 'confusing-all' || source === 'roman-combos') {
       const confusingSet = new Set(SWTApp.conceptHelper?.getConfusingQuestionIds?.(source) || []);
       return getQuestionsInRange(start, end).filter((q) =>
         confusingSet.has(Number(q.id)) && (topic === 'all' || q.topic === topic)
@@ -547,7 +547,7 @@
       });
       byId('exam-source-select')?.addEventListener('change', (e) => {
         const val = e.target.value;
-        if ((val === 'same-options' || val === 'similar-questions' || val === 'confusing-all') && allQuestions.length > 0) {
+        if ((val === 'same-options' || val === 'similar-questions' || val === 'confusing-all' || val === 'roman-combos') && allQuestions.length > 0) {
           rangeStart = 1;
           rangeEnd = allQuestions.length;
           if (byId('exam-start-question')) byId('exam-start-question').value = '1';

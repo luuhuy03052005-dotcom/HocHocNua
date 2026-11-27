@@ -4152,52 +4152,84 @@ window.SWT301_STUDY = {
         ]
       },
       {
-        "title": "9. Bộ Tổ Hợp La Mã (i, ii, iii, iv are true / false)",
-        "optionsPreview": "i, ii, iii are true and iv is false | ii, iii, iv are true and i is false | All of them are true",
-        "eliminate": "ii, iii, iv ARE true and i is false & i, iv are true and ii is false (luôn sai!)",
+        "title": "9. Bộ 25 Câu Tổ Hợp La Mã (i, ii, iii, iv — Tìm 1 dòng nói xạo là ra!)",
+        "optionsPreview": "i, ii, iii are true and iv is false | ii, iii, iv are true | i, ii, iv are true | All of them are true",
+        "eliminate": "Câu 'chỉ 1 ý đúng, 3 ý sai' (trừ Validation) + 'ii, iii, iv ARE true and i is false' + 'i, iv are true/correct' (luôn sai!)",
         "rules": [
           {
-            "cue": "Test Lead / Leader",
-            "pick": "i, ii, iii is true and iv is false",
+            "cue": "Loại dòng cuối iv tào lao (Progress, Leader, Review persons, Exit criteria, Implementation, Component)",
+            "pick": "i, ii, iii đúng — iv sai",
             "qIds": [
-              193
-            ]
-          },
-          {
-            "cue": "task of a Tester (chú ý chữ IS true)",
-            "pick": "ii, iii, iv is true and i is false",
-            "qIds": [
-              195
-            ]
-          },
-          {
-            "cue": "Formal Review persons / Implementation tasks / Component Testing",
-            "pick": "i, ii, iii are true and iv is false",
-            "qIds": [
+              192,
+              193,
               198,
+              203,
               213,
-              231
+              231,
+              220
             ]
           },
           {
-            "cue": "Formal Review / Test Plan Outline",
-            "pick": "i, iii, iv are true and ii is false",
+            "cue": "Loại dòng đầu i nói bậy (Drivers Spade, Tester Vendor, Success review no objective)",
+            "pick": "ii, iii (hoặc ii, iii, iv) đúng — i sai",
+            "qIds": [
+              167,
+              195,
+              208
+            ]
+          },
+          {
+            "cue": "Loại dòng ii nói bậy (Inspection no prep, Test Plan có Scripts, Early design đắt)",
+            "pick": "i, iii, iv đúng — ii sai",
             "qIds": [
               196,
-              199
+              199,
+              200
             ]
           },
           {
-            "cue": "Test Closure Activities (câu duy nhất chọn All of them are true!)",
-            "pick": "All of them are true",
+            "cue": "Loại dòng iii nói bậy (Tool dự án trễ lịch, CM chế mới, Planning review basis)",
+            "pick": "i, ii, iv đúng — iii sai",
             "qIds": [
-              194
+              189,
+              204,
+              211
             ]
           },
           {
-            "cue": "Regression testing should be performed",
-            "pick": "w & y are true, v, x & z are false",
+            "cue": "Chỉ 3 câu CẢ 4 Ý ĐỀU ĐÚNG (Test Closure, Static analysis defects, Test approach)",
+            "pick": "All of them / i, ii, iii, iv đúng",
             "qIds": [
+              194,
+              202,
+              212
+            ]
+          },
+          {
+            "cue": "2 dòng đầu đúng (How much testing enough & White Box features)",
+            "pick": "i, ii are true — iii, iv false",
+            "qIds": [
+              201,
+              205
+            ]
+          },
+          {
+            "cue": "Validation (câu DUY NHẤT chọn 1 ý đúng: built the right product)",
+            "pick": "ii is true — i, iii, iv false",
+            "qIds": [
+              207
+            ]
+          },
+          {
+            "cue": "Các câu chọn cặp ngắn (Use case->i,iii | Tech Review->I,III,IV | Tool->i,iv | Regress->ii,iii & w,y | Plan->ii,iii | Dev tool->ii,iv)",
+            "pick": "Khóa theo cặp trên đề",
+            "qIds": [
+              186,
+              188,
+              190,
+              191,
+              197,
+              209,
               221
             ]
           }
@@ -5278,16 +5310,6 @@ window.SWT301_STUDY = {
         "avoid": "2 is a valid reason; 1,3,4 & 5 are not",
         "qIds": [
           185
-        ]
-      },
-      {
-        "mode": "instant",
-        "chapter": 1,
-        "cue": null,
-        "pick": "ii is true and i, iii, iv are false",
-        "avoid": "Options i, ii, iii, iv are true",
-        "qIds": [
-          207
         ]
       },
       {
@@ -7248,7 +7270,7 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 2,
-        "cue": "Drivers are also known as",
+        "cue": "Drivers (loại i: Spade là tên giả)",
         "pick": "ii, iii are true and i is false",
         "avoid": "All of i, ii and iii are true",
         "qIds": [
@@ -7278,7 +7300,7 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 4,
-        "cue": "defects is use case testing MOST likely to uncover",
+        "cue": "use case testing MOST likely to uncover",
         "pick": "i, iii.",
         "avoid": "ii, iv",
         "qIds": [
@@ -7298,9 +7320,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 3,
-        "cue": "TRUE for Technical Review",
+        "cue": "Technical Review (loại II: led by author & V: optional)",
         "pick": "I, III and IV",
-        "avoid": "Câu có II (Management)",
+        "avoid": "Câu có II hoặc V",
         "qIds": [
           188
         ]
@@ -7308,9 +7330,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 6,
-        "cue": "implementation of a testing tool",
+        "cue": "implementation of tool (loại iii: dự án đang trễ lịch)",
         "pick": "i, ii, iv",
-        "avoid": "Câu có iii (dự án đang trễ lịch)",
+        "avoid": "Câu có iii",
         "qIds": [
           189
         ]
@@ -7318,7 +7340,7 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 6,
-        "cue": "benefits ... using test tools",
+        "cue": "benefits ... test tools (loại ii & iii: rẻ, ít bảo trì)",
         "pick": "i and iv",
         "avoid": "ii and iii",
         "qIds": [
@@ -7328,9 +7350,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 2,
-        "cue": "characteristic of regression testing",
+        "cue": "characteristic of regression (loại i: chạy 1 lần & iv: khỏi bảo trì)",
         "pick": "ii, iii",
-        "avoid": "Câu có i (chỉ chạy 1 lần)",
+        "avoid": "Câu có i hoặc iv",
         "qIds": [
           191
         ]
@@ -7338,9 +7360,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 1,
-        "cue": "monitoring the test progress",
-        "pick": "i, ii, iii is correct",
-        "avoid": "Câu có iv",
+        "cue": "monitoring Test Progress (loại iv: Size of Team)",
+        "pick": "i,ii,iii are correct and iv is incorrect",
+        "avoid": "Câu 1 ý đúng (iv) & câu i, iv",
         "qIds": [
           192
         ]
@@ -7348,9 +7370,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "task of a Test Lead / Leader",
+        "cue": "Test Lead / Leader (loại iv: Create Test Spec là của Tester)",
         "pick": "i, ii, iii is true and iv is false",
-        "avoid": "iv (Create Test Specifications)",
+        "avoid": "Câu 1 ý đúng & i, iv",
         "qIds": [
           193
         ]
@@ -7358,9 +7380,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "part of Test Closure Activities",
+        "cue": "Test Closure Activities (cả 4 ý đều đúng!)",
         "pick": "All of them are true",
-        "avoid": "Các câu loại trừ 1 ý",
+        "avoid": "Các câu loại bớt 1 ý",
         "qIds": [
           194
         ]
@@ -7368,9 +7390,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 6,
-        "cue": "task of a Tester",
+        "cue": "task of a Tester (loại i: Tool Vendor là của Leader)",
         "pick": "ii, iii, iv is true and i is false",
-        "avoid": "ii, iii, iv ARE true / câu i (Tool Vendor)",
+        "avoid": "i, ii, iii is true",
         "qIds": [
           195
         ]
@@ -7378,9 +7400,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 3,
-        "cue": "Formal Review / Inspection",
+        "cue": "Formal Review / Inspection (loại ii: No Pre Meeting)",
         "pick": "i, iii, iv are true and ii is false",
-        "avoid": "Câu có ii (led by author)",
+        "avoid": "Câu có ii đúng",
         "qIds": [
           196
         ]
@@ -7388,9 +7410,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "activities belong to Test Planning",
+        "cue": "activities form part of test planning (chỉ lấy ii: approach & iii: resources)",
         "pick": "ii & iii are true, i, iv & v are false.",
-        "avoid": "Các tổ hợp khác",
+        "avoid": "Các câu có i, iv, v đúng",
         "qIds": [
           197
         ]
@@ -7398,9 +7420,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 3,
-        "cue": "persons involved in a Formal Review",
+        "cue": "persons in Formal Review (loại iv: Assistant Manager tự chế)",
         "pick": "i, ii, iii are true and iv is false.",
-        "avoid": "ii, iii, iv are true",
+        "avoid": "ii, iii, iv are true / i, iv",
         "qIds": [
           198
         ]
@@ -7408,9 +7430,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "Test Plan Outline contains",
+        "cue": "Test Plan Outline (loại ii: Test Scripts chi tiết)",
         "pick": "i, iii, iv are true and ii is false",
-        "avoid": "Câu có ii (Test Scripts)",
+        "avoid": "Câu có ii đúng",
         "qIds": [
           199
         ]
@@ -7418,9 +7440,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 1,
-        "cue": "early test design",
+        "cue": "early test design (loại ii: đắt hơn & v: tốn công hơn)",
         "pick": "i, iii & iv are true, ii & v are false",
-        "avoid": "Các tổ hợp khác",
+        "avoid": "Câu chỉ có 1-2 ý đúng",
         "qIds": [
           200
         ]
@@ -7428,9 +7450,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "Deciding How much testing is enough",
+        "cue": "How much testing is enough (loại iii, iv: Size of Team)",
         "pick": "i, ii are true and iii, iv are false",
-        "avoid": "ii, iii, iv are true",
+        "avoid": "ii, iii, iv are true / i, iv",
         "qIds": [
           201
         ]
@@ -7438,9 +7460,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 3,
-        "cue": "found by static analysis tools",
+        "cue": "discovered by static analysis tools (cả 4 ý đều đúng!)",
         "pick": "i, ii, iii, iv is correct",
-        "avoid": "Các câu thiếu ý",
+        "avoid": "Câu 1 ý đúng / tất cả sai",
         "qIds": [
           202
         ]
@@ -7448,9 +7470,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "Exit criteria may consist of",
+        "cue": "Exit Criteria (loại iv: Verifying Environment thuộc lúc chạy)",
         "pick": "i, ii, iii is correct and iv is incorrect",
-        "avoid": "Các tổ hợp khác",
+        "avoid": "Câu 1 ý đúng",
         "qIds": [
           203
         ]
@@ -7458,9 +7480,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "purpose of Configuration Management",
+        "cue": "Configuration Management (loại iii & v: chế mới testware)",
         "pick": "i, ii and iv",
-        "avoid": "Câu có iii",
+        "avoid": "Câu có iii hoặc v",
         "qIds": [
           204
         ]
@@ -7468,9 +7490,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 4,
-        "cue": "characteristics of White Box testing",
+        "cue": "Features of White Box (loại iii: performance & iv: functionality)",
         "pick": "i, ii are true and iii and iv are false",
-        "avoid": "Các tổ hợp khác",
+        "avoid": "Câu có iii hoặc iv đúng",
         "qIds": [
           205
         ]
@@ -7487,10 +7509,20 @@ window.SWT301_STUDY = {
       },
       {
         "mode": "glance",
+        "chapter": 1,
+        "cue": "Validation (câu DUY NHẤT chọn 1 ý đúng: built the right product)",
+        "pick": "ii is true and i, iii, iv are false",
+        "avoid": "Options i, ii, iii, iv are true",
+        "qIds": [
+          207
+        ]
+      },
+      {
+        "mode": "glance",
         "chapter": 3,
-        "cue": "success factors for a review",
+        "cue": "Success Factors for a review (loại i: does NOT have objective)",
         "pick": "ii, iii, iv are correct and i is incorrect",
-        "avoid": "Câu có i (no predefined objective)",
+        "avoid": "Câu có i đúng",
         "qIds": [
           208
         ]
@@ -7498,9 +7530,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 1,
-        "cue": "tools are geared more for developer use",
+        "cue": "tools ... more for developer use (Coverage + Dynamic)",
         "pick": "ii and iv are more for developers",
-        "avoid": "Test management / Performance tools",
+        "avoid": "Câu có i, iii",
         "qIds": [
           209
         ]
@@ -7508,9 +7540,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "Test planning has which ... major tasks",
+        "cue": "Test planning major tasks (loại iii: Reviewing Test Basis)",
         "pick": "i, ii, iv are true and iii is false",
-        "avoid": "ii, iii, iv are true",
+        "avoid": "ii, iii, iv are true / i, iv",
         "qIds": [
           211
         ]
@@ -7518,9 +7550,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "selection of a test approach",
+        "cue": "selection of a test approach (cả 4 ý đều đúng!)",
         "pick": "i, ii, iii, iv are true",
-        "avoid": "ii, iii, iv are true",
+        "avoid": "ii, iii, iv are true / i, iv",
         "qIds": [
           212
         ]
@@ -7528,9 +7560,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 5,
-        "cue": "Test Implementation and execution ... major tasks",
+        "cue": "Test Implementation & execution (loại iv: Determining exit criteria)",
         "pick": "i, ii, iii are true and iv is false",
-        "avoid": "ii, iii, iv are true",
+        "avoid": "ii, iii, iv are true / i, iv",
         "qIds": [
           213
         ]
@@ -7558,9 +7590,9 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 1,
-        "cue": "Defect clustering & Pareto (1 and 2)",
-        "pick": "1 and 2 are true, 3 and 4 are false",
-        "avoid": "Các tổ hợp khác",
+        "cue": "what tests ... perform (loại 3: easiest functionalities)",
+        "pick": "1 & 2 are true and 3 is false",
+        "avoid": "1, 2 & 3 are true",
         "qIds": [
           220
         ]
@@ -7568,7 +7600,7 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 2,
-        "cue": "Regression testing should be performed",
+        "cue": "Regression testing (chỉ khi software/environment changed)",
         "pick": "w & y are true, v, x & z are false",
         "avoid": "All of them are true",
         "qIds": [
@@ -7658,7 +7690,7 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 2,
-        "cue": "Component Testing is also called as",
+        "cue": "Component Testing also called (loại iv: System Component tự chế)",
         "pick": "i, ii, iii are true and iv is false",
         "avoid": "All of them are true",
         "qIds": [
@@ -9085,7 +9117,7 @@ window.SWT301_STUDY = {
     "167": {
       "mode": "glance",
       "chapter": 2,
-      "cue": "Drivers are also known as",
+      "cue": "Drivers (loại i: Spade là tên giả)",
       "pick": "ii, iii are true and i is false",
       "avoid": "All of i, ii and iii are true"
     },
@@ -9218,7 +9250,7 @@ window.SWT301_STUDY = {
     "186": {
       "mode": "glance",
       "chapter": 4,
-      "cue": "defects is use case testing MOST likely to uncover",
+      "cue": "use case testing MOST likely to uncover",
       "pick": "i, iii.",
       "avoid": "ii, iv"
     },
@@ -9232,128 +9264,128 @@ window.SWT301_STUDY = {
     "188": {
       "mode": "glance",
       "chapter": 3,
-      "cue": "TRUE for Technical Review",
+      "cue": "Technical Review (loại II: led by author & V: optional)",
       "pick": "I, III and IV",
-      "avoid": "Câu có II (Management)"
+      "avoid": "Câu có II hoặc V"
     },
     "189": {
       "mode": "glance",
       "chapter": 6,
-      "cue": "implementation of a testing tool",
+      "cue": "implementation of tool (loại iii: dự án đang trễ lịch)",
       "pick": "i, ii, iv",
-      "avoid": "Câu có iii (dự án đang trễ lịch)"
+      "avoid": "Câu có iii"
     },
     "190": {
       "mode": "glance",
       "chapter": 6,
-      "cue": "benefits ... using test tools",
+      "cue": "benefits ... test tools (loại ii & iii: rẻ, ít bảo trì)",
       "pick": "i and iv",
       "avoid": "ii and iii"
     },
     "191": {
       "mode": "glance",
       "chapter": 2,
-      "cue": "characteristic of regression testing",
+      "cue": "characteristic of regression (loại i: chạy 1 lần & iv: khỏi bảo trì)",
       "pick": "ii, iii",
-      "avoid": "Câu có i (chỉ chạy 1 lần)"
+      "avoid": "Câu có i hoặc iv"
     },
     "192": {
       "mode": "glance",
       "chapter": 1,
-      "cue": "monitoring the test progress",
-      "pick": "i, ii, iii is correct",
-      "avoid": "Câu có iv"
+      "cue": "monitoring Test Progress (loại iv: Size of Team)",
+      "pick": "i,ii,iii are correct and iv is incorrect",
+      "avoid": "Câu 1 ý đúng (iv) & câu i, iv"
     },
     "193": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "task of a Test Lead / Leader",
+      "cue": "Test Lead / Leader (loại iv: Create Test Spec là của Tester)",
       "pick": "i, ii, iii is true and iv is false",
-      "avoid": "iv (Create Test Specifications)"
+      "avoid": "Câu 1 ý đúng & i, iv"
     },
     "194": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "part of Test Closure Activities",
+      "cue": "Test Closure Activities (cả 4 ý đều đúng!)",
       "pick": "All of them are true",
-      "avoid": "Các câu loại trừ 1 ý"
+      "avoid": "Các câu loại bớt 1 ý"
     },
     "195": {
       "mode": "glance",
       "chapter": 6,
-      "cue": "task of a Tester",
+      "cue": "task of a Tester (loại i: Tool Vendor là của Leader)",
       "pick": "ii, iii, iv is true and i is false",
-      "avoid": "ii, iii, iv ARE true / câu i (Tool Vendor)"
+      "avoid": "i, ii, iii is true"
     },
     "196": {
       "mode": "glance",
       "chapter": 3,
-      "cue": "Formal Review / Inspection",
+      "cue": "Formal Review / Inspection (loại ii: No Pre Meeting)",
       "pick": "i, iii, iv are true and ii is false",
-      "avoid": "Câu có ii (led by author)"
+      "avoid": "Câu có ii đúng"
     },
     "197": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "activities belong to Test Planning",
+      "cue": "activities form part of test planning (chỉ lấy ii: approach & iii: resources)",
       "pick": "ii & iii are true, i, iv & v are false.",
-      "avoid": "Các tổ hợp khác"
+      "avoid": "Các câu có i, iv, v đúng"
     },
     "198": {
       "mode": "glance",
       "chapter": 3,
-      "cue": "persons involved in a Formal Review",
+      "cue": "persons in Formal Review (loại iv: Assistant Manager tự chế)",
       "pick": "i, ii, iii are true and iv is false.",
-      "avoid": "ii, iii, iv are true"
+      "avoid": "ii, iii, iv are true / i, iv"
     },
     "199": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "Test Plan Outline contains",
+      "cue": "Test Plan Outline (loại ii: Test Scripts chi tiết)",
       "pick": "i, iii, iv are true and ii is false",
-      "avoid": "Câu có ii (Test Scripts)"
+      "avoid": "Câu có ii đúng"
     },
     "200": {
       "mode": "glance",
       "chapter": 1,
-      "cue": "early test design",
+      "cue": "early test design (loại ii: đắt hơn & v: tốn công hơn)",
       "pick": "i, iii & iv are true, ii & v are false",
-      "avoid": "Các tổ hợp khác"
+      "avoid": "Câu chỉ có 1-2 ý đúng"
     },
     "201": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "Deciding How much testing is enough",
+      "cue": "How much testing is enough (loại iii, iv: Size of Team)",
       "pick": "i, ii are true and iii, iv are false",
-      "avoid": "ii, iii, iv are true"
+      "avoid": "ii, iii, iv are true / i, iv"
     },
     "202": {
       "mode": "glance",
       "chapter": 3,
-      "cue": "found by static analysis tools",
+      "cue": "discovered by static analysis tools (cả 4 ý đều đúng!)",
       "pick": "i, ii, iii, iv is correct",
-      "avoid": "Các câu thiếu ý"
+      "avoid": "Câu 1 ý đúng / tất cả sai"
     },
     "203": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "Exit criteria may consist of",
+      "cue": "Exit Criteria (loại iv: Verifying Environment thuộc lúc chạy)",
       "pick": "i, ii, iii is correct and iv is incorrect",
-      "avoid": "Các tổ hợp khác"
+      "avoid": "Câu 1 ý đúng"
     },
     "204": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "purpose of Configuration Management",
+      "cue": "Configuration Management (loại iii & v: chế mới testware)",
       "pick": "i, ii and iv",
-      "avoid": "Câu có iii"
+      "avoid": "Câu có iii hoặc v"
     },
     "205": {
       "mode": "glance",
       "chapter": 4,
-      "cue": "characteristics of White Box testing",
+      "cue": "Features of White Box (loại iii: performance & iv: functionality)",
       "pick": "i, ii are true and iii and iv are false",
-      "avoid": "Các tổ hợp khác"
+      "avoid": "Câu có iii hoặc iv đúng"
     },
     "206": {
       "mode": "glance",
@@ -9363,25 +9395,25 @@ window.SWT301_STUDY = {
       "avoid": "Các cặp ghép khác"
     },
     "207": {
-      "mode": "instant",
+      "mode": "glance",
       "chapter": 1,
-      "cue": null,
+      "cue": "Validation (câu DUY NHẤT chọn 1 ý đúng: built the right product)",
       "pick": "ii is true and i, iii, iv are false",
       "avoid": "Options i, ii, iii, iv are true"
     },
     "208": {
       "mode": "glance",
       "chapter": 3,
-      "cue": "success factors for a review",
+      "cue": "Success Factors for a review (loại i: does NOT have objective)",
       "pick": "ii, iii, iv are correct and i is incorrect",
-      "avoid": "Câu có i (no predefined objective)"
+      "avoid": "Câu có i đúng"
     },
     "209": {
       "mode": "glance",
       "chapter": 1,
-      "cue": "tools are geared more for developer use",
+      "cue": "tools ... more for developer use (Coverage + Dynamic)",
       "pick": "ii and iv are more for developers",
-      "avoid": "Test management / Performance tools"
+      "avoid": "Câu có i, iii"
     },
     "210": {
       "mode": "instant",
@@ -9393,23 +9425,23 @@ window.SWT301_STUDY = {
     "211": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "Test planning has which ... major tasks",
+      "cue": "Test planning major tasks (loại iii: Reviewing Test Basis)",
       "pick": "i, ii, iv are true and iii is false",
-      "avoid": "ii, iii, iv are true"
+      "avoid": "ii, iii, iv are true / i, iv"
     },
     "212": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "selection of a test approach",
+      "cue": "selection of a test approach (cả 4 ý đều đúng!)",
       "pick": "i, ii, iii, iv are true",
-      "avoid": "ii, iii, iv are true"
+      "avoid": "ii, iii, iv are true / i, iv"
     },
     "213": {
       "mode": "glance",
       "chapter": 5,
-      "cue": "Test Implementation and execution ... major tasks",
+      "cue": "Test Implementation & execution (loại iv: Determining exit criteria)",
       "pick": "i, ii, iii are true and iv is false",
-      "avoid": "ii, iii, iv are true"
+      "avoid": "ii, iii, iv are true / i, iv"
     },
     "214": {
       "mode": "instant",
@@ -9456,14 +9488,14 @@ window.SWT301_STUDY = {
     "220": {
       "mode": "glance",
       "chapter": 1,
-      "cue": "Defect clustering & Pareto (1 and 2)",
-      "pick": "1 and 2 are true, 3 and 4 are false",
-      "avoid": "Các tổ hợp khác"
+      "cue": "what tests ... perform (loại 3: easiest functionalities)",
+      "pick": "1 & 2 are true and 3 is false",
+      "avoid": "1, 2 & 3 are true"
     },
     "221": {
       "mode": "glance",
       "chapter": 2,
-      "cue": "Regression testing should be performed",
+      "cue": "Regression testing (chỉ khi software/environment changed)",
       "pick": "w & y are true, v, x & z are false",
       "avoid": "All of them are true"
     },
@@ -9533,7 +9565,7 @@ window.SWT301_STUDY = {
     "231": {
       "mode": "glance",
       "chapter": 2,
-      "cue": "Component Testing is also called as",
+      "cue": "Component Testing also called (loại iv: System Component tự chế)",
       "pick": "i, ii, iii are true and iv is false",
       "avoid": "All of them are true"
     },

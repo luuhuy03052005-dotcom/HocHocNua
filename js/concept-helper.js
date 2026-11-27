@@ -337,6 +337,11 @@
       }
     };
 
+    if (kind === 'roman-combos') {
+      if (code !== 'SWT301') return [];
+      return [167, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 207, 208, 209, 211, 212, 213, 220, 221, 231];
+    }
+
     const wantSame = !kind || kind === 'confusing-all' || kind === 'same-options';
     const wantSim = !kind || kind === 'confusing-all' || kind === 'similar-questions';
 

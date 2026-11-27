@@ -441,7 +441,7 @@
     const banner = byId('practice-custom-banner');
     if (!banner) return;
     const mode = byId('practice-filter-mode')?.value || 'all';
-    const isConfusingMode = !customSubsetIds && (mode === 'same-options' || mode === 'similar-questions' || mode === 'confusing-all');
+    const isConfusingMode = !customSubsetIds && (mode === 'same-options' || mode === 'similar-questions' || mode === 'confusing-all' || mode === 'roman-combos');
     if (!customSubsetIds && !isConfusingMode) {
       banner.hidden = true;
       return;
@@ -454,8 +454,10 @@
         ? 'Các câu có bộ đáp án giống nhau'
         : mode === 'similar-questions'
         ? 'Các câu có đề bài gần giống nhau'
+        : mode === 'roman-combos'
+        ? 'Trọn bộ câu tổ hợp La Mã (i, ii, iii, iv)'
         : 'Tất cả câu dễ nhầm lẫn';
-      setText('practice-custom-banner-text', '🎯 Chế độ chống nhầm: ' + lbl + ' (' + filteredQuestions.length + ' câu xếp cạnh nhau theo cặp)');
+      setText('practice-custom-banner-text', '🎯 Chế độ chống nhầm: ' + lbl + ' (' + filteredQuestions.length + ' câu)');
     }
   }
 
@@ -477,7 +479,7 @@
       return;
     }
 
-    if (mode === 'same-options' || mode === 'similar-questions' || mode === 'confusing-all') {
+    if (mode === 'same-options' || mode === 'similar-questions' || mode === 'confusing-all' || mode === 'roman-combos') {
       const orderedIds = conceptHelper?.getConfusingQuestionIds?.(mode) || [];
       filteredQuestions = orderedIds
         .map((id) => qMap.get(Number(id)))
@@ -1013,6 +1015,7 @@
       const hasConfusingPool = (SWTApp.conceptHelper?.getConfusingQuestionIds?.('confusing-all') || []).length > 0;
       const quickConfusingBtn = byId('practice-confusing-quick-btn');
       if (quickConfusingBtn) quickConfusingBtn.hidden = !hasConfusingPool;
+      const hasRomanPool = (SWTApp.conceptHelper?.getConfusingQuestionIds?.('roman-combos') || []).length > 0;
       ['practice-filter-mode', 'exam-source-select'].forEach((selId) => {
         const sel = byId(selId);
         if (!sel) return;
@@ -1020,7 +1023,9 @@
           const opt = sel.querySelector(`option[value="${val}"]`);
           if (opt) opt.hidden = !hasConfusingPool;
         });
-        if (!hasConfusingPool && ['same-options', 'similar-questions', 'confusing-all'].includes(sel.value)) {
+        const rOpt = sel.querySelector('option[value="roman-combos"]');
+        if (rOpt) rOpt.hidden = !hasRomanPool;
+        if ((!hasConfusingPool && ['same-options', 'similar-questions', 'confusing-all'].includes(sel.value)) || (!hasRomanPool && sel.value === 'roman-combos')) {
           sel.value = 'all';
         }
       });
