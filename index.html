@@ -15,23 +15,24 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-42">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-42">
-  <script defer src="data/questions.js?v=multi-course-42"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-42"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-42"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-42"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-42"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-42"></script>
-  <script defer src="data/study-prj301.js?v=multi-course-42"></script>
-  <script defer src="data/study-swt301.js?v=multi-course-42"></script>
-  <script defer src="js/storage.js?v=multi-course-42"></script>
-  <script defer src="js/concept-helper.js?v=multi-course-42"></script>
-  <script defer src="js/practice.js?v=multi-course-42"></script>
-  <script defer src="js/exam.js?v=multi-course-42"></script>
-  <script defer src="js/keyword.js?v=multi-course-42"></script>
-  <script defer src="js/study.js?v=multi-course-42"></script>
-  <script defer src="js/app.js?v=multi-course-42"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-43">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-43">
+  <script defer src="data/questions.js?v=multi-course-43"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-43"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-43"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-43"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-43"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-43"></script>
+  <script defer src="data/study-prj301.js?v=multi-course-43"></script>
+  <script defer src="data/study-swt301.js?v=multi-course-43"></script>
+  <script defer src="js/storage.js?v=multi-course-43"></script>
+  <script defer src="js/concept-helper.js?v=multi-course-43"></script>
+  <script defer src="js/practice.js?v=multi-course-43"></script>
+  <script defer src="js/exam.js?v=multi-course-43"></script>
+  <script defer src="js/keyword.js?v=multi-course-43"></script>
+  <script defer src="js/study.js?v=multi-course-43"></script>
+  <script defer src="js/notes.js?v=multi-course-43"></script>
+  <script defer src="js/app.js?v=multi-course-43"></script>
 </head>
 <body>
   <header class="topbar">
@@ -1682,5 +1683,55 @@
       <button type="button" id="confirm-reset-btn" class="btn btn-danger">Xóa tiến độ</button>
     </div>
   </dialog>
+
+  <!-- BONG BÓNG & KHUNG GHI CHÚ CHUNG CHO MỌI TRANG -->
+  <button type="button" id="fn-bubble" class="fn-bubble" aria-label="Mở ghi chú cá nhân (Kéo để di chuyển)" title="Ghi chú chung (Bấm để mở · Kéo để di chuyển)">
+    <svg class="fn-bubble-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 20h9"/>
+      <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>
+    </svg>
+    <span id="fn-bubble-count" class="fn-bubble-count" hidden>1</span>
+  </button>
+
+  <aside id="fn-panel" class="fn-panel" aria-label="Khung ghi chú cá nhân" hidden>
+    <div class="fn-resize-handle fn-resize-n" data-fn-resize="n" aria-hidden="true"></div>
+    <div class="fn-resize-handle fn-resize-s" data-fn-resize="s" aria-hidden="true"></div>
+    <div class="fn-resize-handle fn-resize-e" data-fn-resize="e" aria-hidden="true"></div>
+    <div class="fn-resize-handle fn-resize-w" data-fn-resize="w" aria-hidden="true"></div>
+    <div class="fn-resize-handle fn-resize-ne" data-fn-resize="ne" aria-hidden="true"></div>
+    <div class="fn-resize-handle fn-resize-nw" data-fn-resize="nw" aria-hidden="true"></div>
+    <div class="fn-resize-handle fn-resize-se" data-fn-resize="se" aria-hidden="true" title="Kéo để chỉnh kích thước tự do"></div>
+    <div class="fn-resize-handle fn-resize-sw" data-fn-resize="sw" aria-hidden="true"></div>
+
+    <header id="fn-drag-handle" class="fn-header" title="Kéo thanh này để di chuyển khung ghi chú">
+      <div class="fn-header-left">
+        <span class="fn-drag-grip" aria-hidden="true">⋮⋮</span>
+        <span class="fn-header-title">Ghi chú</span>
+      </div>
+      <div class="fn-header-actions">
+        <button type="button" id="fn-add-btn" class="fn-icon-btn fn-add-btn" title="Thêm ghi chú mới">+ Mới</button>
+        <button type="button" id="fn-delete-btn" class="fn-icon-btn fn-delete-btn" title="Xóa ghi chú đang mở">Xóa</button>
+        <button type="button" id="fn-minimize-btn" class="fn-icon-btn" title="Thu vào bong bóng (Esc)" aria-label="Thu gọn vào bong bóng">—</button>
+      </div>
+    </header>
+
+    <div id="fn-notes-strip" class="fn-notes-strip" role="group" aria-label="Danh sách các ghi chú"></div>
+
+    <div id="fn-toolbar" class="fn-toolbar" role="toolbar" aria-label="Định dạng văn bản">
+      <button type="button" class="fn-fmt-btn" data-fn-cmd="bold" title="Tô đậm (Ctrl+B)"><strong>B</strong></button>
+      <button type="button" class="fn-fmt-btn" data-fn-cmd="underline" title="Gạch chân (Ctrl+U)"><span style="text-decoration: underline;">U</span></button>
+      <button type="button" class="fn-fmt-btn" data-fn-cmd="insertUnorderedList" title="Gạch đầu dòng (Hoặc gõ - + cách ở đầu dòng)">• List</button>
+      <span class="fn-toolbar-sep" aria-hidden="true"></span>
+      <button type="button" class="fn-hl-swatch" data-fn-hl="#fef08a" style="--hl-sw: #fef08a;" title="Highlight Vàng" aria-label="Highlight Vàng"></button>
+      <button type="button" class="fn-hl-swatch" data-fn-hl="#bbf7d0" style="--hl-sw: #bbf7d0;" title="Highlight Xanh lá" aria-label="Highlight Xanh lá"></button>
+      <button type="button" class="fn-hl-swatch" data-fn-hl="#bae6fd" style="--hl-sw: #bae6fd;" title="Highlight Xanh dương" aria-label="Highlight Xanh dương"></button>
+      <button type="button" class="fn-hl-swatch" data-fn-hl="#fecdd3" style="--hl-sw: #fecdd3;" title="Highlight Hồng đỏ" aria-label="Highlight Hồng đỏ"></button>
+      <button type="button" class="fn-fmt-btn fn-hl-clear" data-fn-hl="none" title="Xóa màu highlight">× Màu</button>
+    </div>
+
+    <input type="text" id="fn-title-input" class="fn-title-input" placeholder="Tiêu đề ghi chú..." autocomplete="off">
+
+    <div id="fn-editor" class="fn-editor" contenteditable="true" spellcheck="false" data-placeholder="Gõ ghi chú... (Mẹo: gõ - rồi bấm cách để tự tạo gạch đầu dòng)"></div>
+  </aside>
 </body>
 </html>
