@@ -81,6 +81,12 @@
 
   function getEligibleQuestions(start, end) {
     const { source, topic } = getCurrentFilters();
+    if (source === 'same-options' || source === 'similar-questions' || source === 'confusing-all') {
+      const confusingSet = new Set(SWTApp.conceptHelper?.getConfusingQuestionIds?.(source) || []);
+      return getQuestionsInRange(start, end).filter((q) =>
+        confusingSet.has(Number(q.id)) && (topic === 'all' || q.topic === topic)
+      );
+    }
     return getQuestionsInRange(start, end).filter((q) =>
       (topic === 'all' || q.topic === topic) && SWTApp.storage.matchesStatus(q.id, source)
     );
@@ -539,7 +545,14 @@
         if (startSelect && endSelect && Number(endSelect.value) < Number(startSelect.value)) startSelect.value = endSelect.value;
         updateRangePreview();
       });
-      byId('exam-source-select')?.addEventListener('change', () => {
+      byId('exam-source-select')?.addEventListener('change', (e) => {
+        const val = e.target.value;
+        if ((val === 'same-options' || val === 'similar-questions' || val === 'confusing-all') && allQuestions.length > 0) {
+          rangeStart = 1;
+          rangeEnd = allQuestions.length;
+          if (byId('exam-start-question')) byId('exam-start-question').value = '1';
+          if (byId('exam-end-question')) byId('exam-end-question').value = String(allQuestions.length);
+        }
         updateRangeSummary();
         updateRangePreview();
         if (getEligibleQuestions(rangeStart, rangeEnd).length > 0) setSetupNotice('');

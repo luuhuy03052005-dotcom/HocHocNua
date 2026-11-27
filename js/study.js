@@ -349,6 +349,25 @@
         el('span', 'badge', (group.items?.length || 0) + ' câu')
       );
       header.append(badgeWrap, el('h3', 'distinction-title', (index + 1) + '. ' + group.title));
+      const groupIds = Array.from(new Set((group.items || []).map((it) => Number(it.id)).filter(Boolean)));
+      if (groupIds.length > 0) {
+        const groupActions = el('div', 'distinction-group-actions');
+        const drillBtn = el('button', 'btn btn-primary btn-sm', `▶ Luyện nhóm này (${groupIds.length} câu)`);
+        drillBtn.type = 'button';
+        drillBtn.addEventListener('click', () => {
+          SWTApp.app?.selectTab('tab-practice');
+          SWTApp.practice?.startCustomSet(groupIds, group.title);
+        });
+        const examGroupBtn = el('button', 'btn btn-secondary btn-sm', '📝 Thi thử nhóm này');
+        examGroupBtn.type = 'button';
+        examGroupBtn.addEventListener('click', () => {
+          if (SWTApp.exam?.startWithQuestions(groupIds)) {
+            SWTApp.app?.selectTab('tab-exam');
+          }
+        });
+        groupActions.append(drillBtn, examGroupBtn);
+        header.appendChild(groupActions);
+      }
       card.appendChild(header);
 
       const ruleBox = el('div', 'distinction-rule');
@@ -588,7 +607,28 @@
       sets.forEach((s) => {
         const card = el('article', 'rote-set-card');
         const head = el('div', 'rote-set-head');
-        head.appendChild(el('h3', 'rote-set-title', s.title));
+        const setIds = Array.from(new Set((s.rules || []).flatMap((r) => r.qIds || []).map(Number).filter(Boolean)));
+        const titleRow = el('div', 'rote-set-title-row');
+        titleRow.appendChild(el('h3', 'rote-set-title', s.title));
+        if (setIds.length > 0) {
+          const setActions = el('div', 'rote-set-actions');
+          const drillSetBtn = el('button', 'btn btn-primary btn-sm', `▶ Luyện bộ này (${setIds.length} câu)`);
+          drillSetBtn.type = 'button';
+          drillSetBtn.addEventListener('click', () => {
+            SWTApp.app?.selectTab('tab-practice');
+            SWTApp.practice?.startCustomSet(setIds, s.title);
+          });
+          const examSetBtn = el('button', 'btn btn-ghost btn-sm', '📝 Thi thử');
+          examSetBtn.type = 'button';
+          examSetBtn.addEventListener('click', () => {
+            if (SWTApp.exam?.startWithQuestions(setIds)) {
+              SWTApp.app?.selectTab('tab-exam');
+            }
+          });
+          setActions.append(drillSetBtn, examSetBtn);
+          titleRow.appendChild(setActions);
+        }
+        head.appendChild(titleRow);
         head.appendChild(el('div', 'rote-set-preview', 'Bộ đáp án: ' + s.optionsPreview));
         if (s.eliminate) {
           const elim = el('div', 'rote-set-elim');
@@ -966,6 +1006,22 @@
     if (studyContent && !studyContent.dataset.boundOpenQ) {
       studyContent.dataset.boundOpenQ = 'true';
       studyContent.addEventListener('click', (event) => {
+        const drillBtn = event.target.closest('[data-drill-confusing]');
+        if (drillBtn) {
+          const mode = drillBtn.getAttribute('data-drill-confusing') || 'confusing-all';
+          SWTApp.app?.selectTab('tab-practice');
+          SWTApp.practice?.startConfusingMode(mode);
+          return;
+        }
+        const examBtn = event.target.closest('[data-exam-confusing]');
+        if (examBtn) {
+          const mode = examBtn.getAttribute('data-exam-confusing') || 'confusing-all';
+          const ids = SWTApp.conceptHelper?.getConfusingQuestionIds?.(mode) || [];
+          if (ids.length > 0 && SWTApp.exam?.startWithQuestions(ids)) {
+            SWTApp.app?.selectTab('tab-exam');
+          }
+          return;
+        }
         const btn = event.target.closest('[data-open-q]');
         if (!btn) return;
         const qId = Number(btn.getAttribute('data-open-q'));

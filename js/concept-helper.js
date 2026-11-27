@@ -316,10 +316,53 @@
     renderBoxContent(box, button, question, { showDistinction: Boolean(showDistinction) });
   }
 
+  function getConfusingQuestionIds(kind) {
+    const code = getCourseCode();
+    const studyData = code === 'SWT301'
+      ? window.SWT301_STUDY
+      : code === 'PRJ301'
+      ? window.PRJ301_STUDY
+      : code === 'SSG105'
+      ? window.SSG105_STUDY
+      : null;
+    if (!studyData) return [];
+
+    const ordered = [];
+    const seen = new Set();
+    const pushId = (rawId) => {
+      const n = Number(rawId);
+      if (n && !seen.has(n)) {
+        seen.add(n);
+        ordered.push(n);
+      }
+    };
+
+    const wantSame = !kind || kind === 'confusing-all' || kind === 'same-options';
+    const wantSim = !kind || kind === 'confusing-all' || kind === 'similar-questions';
+
+    if (wantSame && code === 'SWT301' && Array.isArray(studyData.roteSheet?.optionSets)) {
+      studyData.roteSheet.optionSets.forEach((s) => {
+        (s.rules || []).forEach((r) => (r.qIds || []).forEach(pushId));
+      });
+    }
+
+    (studyData.distinctions || []).forEach((g) => {
+      const gKind = (g.kind === 'same-options' || g.kind === 'similar-questions')
+        ? g.kind
+        : (/đáp án|lựa chọn/i.test(g.badge || '') ? 'same-options' : 'similar-questions');
+      if ((gKind === 'same-options' && wantSame) || (gKind === 'similar-questions' && wantSim)) {
+        (g.items || []).forEach((it) => pushId(it.id));
+      }
+    });
+
+    return ordered;
+  }
+
   SWTApp.conceptHelper = {
     getConceptsForQuestion,
     getDistinctionForQuestion,
     getQuestionTip,
+    getConfusingQuestionIds,
     toggleConceptBox,
     resetConceptBox,
     refreshIfOpen

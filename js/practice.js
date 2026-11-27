@@ -5,6 +5,7 @@
   const CLUSTER_SIZE = 10;
   const REQUIRED_RECALLS = 2;
   let allQuestions = [], filteredQuestions = [], clusterQuestions = [], deck = [], index = 0, customSubsetIds = null;
+  let customSubsetOrder = null, customSubsetLabel = '';
   let clusterIndex = 0, recallStreaks = {};
   let pickerClusterIndex = 0;
   let selectedKeys = new Set(), graded = false, wasRevealed = false, lastCorrect = false;
@@ -291,7 +292,7 @@
     const { byId, setText } = SWTApp.utils;
     const mode = byId('practice-filter-mode');
     const topic = byId('practice-filter-topic');
-    const modeText = customSubsetIds ? 'Bộ câu luyện lại' : (mode?.selectedOptions?.[0]?.textContent || 'Tất cả câu hỏi');
+    const modeText = customSubsetIds ? (customSubsetLabel || 'Bộ câu luyện riêng') : (mode?.selectedOptions?.[0]?.textContent || 'Tất cả câu hỏi');
     const topicText = topic?.selectedOptions?.[0]?.textContent || 'Tất cả chủ đề';
     setText('practice-cluster-filter-summary', modeText + ' · ' + topicText + ' · ' + filteredQuestions.length + ' câu');
   }
@@ -435,13 +436,60 @@
     });
   }
 
+  function updateCustomBanner() {
+    const { byId, setText } = SWTApp.utils;
+    const banner = byId('practice-custom-banner');
+    if (!banner) return;
+    const mode = byId('practice-filter-mode')?.value || 'all';
+    const isConfusingMode = !customSubsetIds && (mode === 'same-options' || mode === 'similar-questions' || mode === 'confusing-all');
+    if (!customSubsetIds && !isConfusingMode) {
+      banner.hidden = true;
+      return;
+    }
+    banner.hidden = false;
+    if (customSubsetIds) {
+      setText('practice-custom-banner-text', '🎯 Đang luyện riêng: ' + (customSubsetLabel || 'Nhóm câu đã chọn') + ' (' + filteredQuestions.length + ' câu)');
+    } else {
+      const lbl = mode === 'same-options'
+        ? 'Các câu có bộ đáp án giống nhau'
+        : mode === 'similar-questions'
+        ? 'Các câu có đề bài gần giống nhau'
+        : 'Tất cả câu dễ nhầm lẫn';
+      setText('practice-custom-banner-text', '🎯 Chế độ chống nhầm: ' + lbl + ' (' + filteredQuestions.length + ' câu xếp cạnh nhau theo cặp)');
+    }
+  }
+
   function rebuildFilteredQuestions() {
-    const { storage, utils } = SWTApp;
+    const { storage, utils, conceptHelper } = SWTApp;
     const mode = utils.byId('practice-filter-mode')?.value || 'all';
     const topic = utils.byId('practice-filter-topic')?.value || 'all';
+    const qMap = new Map(allQuestions.map((q) => [Number(q.id), q]));
+
+    if (customSubsetIds) {
+      if (Array.isArray(customSubsetOrder) && customSubsetOrder.length > 0) {
+        filteredQuestions = customSubsetOrder
+          .map((id) => qMap.get(Number(id)))
+          .filter(Boolean);
+      } else {
+        filteredQuestions = allQuestions.filter((q) => customSubsetIds.has(q.id));
+      }
+      updateCustomBanner();
+      return;
+    }
+
+    if (mode === 'same-options' || mode === 'similar-questions' || mode === 'confusing-all') {
+      const orderedIds = conceptHelper?.getConfusingQuestionIds?.(mode) || [];
+      filteredQuestions = orderedIds
+        .map((id) => qMap.get(Number(id)))
+        .filter((q) => q && (topic === 'all' || q.topic === topic));
+      updateCustomBanner();
+      return;
+    }
+
     filteredQuestions = allQuestions.filter((q) =>
-      customSubsetIds ? customSubsetIds.has(q.id) : (topic === 'all' || q.topic === topic) && storage.matchesStatus(q.id, mode)
+      (topic === 'all' || q.topic === topic) && storage.matchesStatus(q.id, mode)
     );
+    updateCustomBanner();
   }
 
   function buildClusterDeck(cluster, avoidFirstId) {
@@ -962,6 +1010,20 @@
     init(questions) {
       allQuestions = Array.isArray(questions) ? questions : [];
       const { byId } = SWTApp.utils;
+      const hasConfusingPool = (SWTApp.conceptHelper?.getConfusingQuestionIds?.('confusing-all') || []).length > 0;
+      const quickConfusingBtn = byId('practice-confusing-quick-btn');
+      if (quickConfusingBtn) quickConfusingBtn.hidden = !hasConfusingPool;
+      ['practice-filter-mode', 'exam-source-select'].forEach((selId) => {
+        const sel = byId(selId);
+        if (!sel) return;
+        ['same-options', 'similar-questions', 'confusing-all'].forEach((val) => {
+          const opt = sel.querySelector(`option[value="${val}"]`);
+          if (opt) opt.hidden = !hasConfusingPool;
+        });
+        if (!hasConfusingPool && ['same-options', 'similar-questions', 'confusing-all'].includes(sel.value)) {
+          sel.value = 'all';
+        }
+      });
       const prefs = SWTApp.storage.getPrefs();
       const practiceState = SWTApp.storage.getPracticeState();
       recallStreaks = practiceState.recallStreaks;
@@ -978,8 +1040,27 @@
         node.addEventListener('change', () => { SWTApp.storage.setPref(key, node.checked); if (fn) fn(); });
       });
 
-      byId('practice-filter-mode')?.addEventListener('change', (e) => { customSubsetIds = null; clusterIndex = 0; SWTApp.storage.setPracticeClusterIndex(0); SWTApp.storage.setPref('practiceFilterMode', e.target.value); buildPracticeDeck(null, true); });
-      byId('practice-filter-topic')?.addEventListener('change', (e) => { customSubsetIds = null; clusterIndex = 0; SWTApp.storage.setPracticeClusterIndex(0); SWTApp.storage.setPref('practiceFilterTopic', e.target.value); buildPracticeDeck(null, true); });
+      byId('practice-filter-mode')?.addEventListener('change', (e) => { customSubsetIds = null; customSubsetOrder = null; customSubsetLabel = ''; clusterIndex = 0; SWTApp.storage.setPracticeClusterIndex(0); SWTApp.storage.setPref('practiceFilterMode', e.target.value); buildPracticeDeck(null, true); });
+      byId('practice-filter-topic')?.addEventListener('change', (e) => { customSubsetIds = null; customSubsetOrder = null; customSubsetLabel = ''; clusterIndex = 0; SWTApp.storage.setPracticeClusterIndex(0); SWTApp.storage.setPref('practiceFilterTopic', e.target.value); buildPracticeDeck(null, true); });
+      byId('practice-confusing-quick-btn')?.addEventListener('click', () => {
+        this.startConfusingMode('confusing-all');
+      });
+      byId('practice-exit-custom-btn')?.addEventListener('click', () => {
+        customSubsetIds = null;
+        customSubsetOrder = null;
+        customSubsetLabel = '';
+        if (byId('practice-filter-mode')) byId('practice-filter-mode').value = 'all';
+        SWTApp.storage.setPref('practiceFilterMode', 'all');
+        clusterIndex = 0;
+        SWTApp.storage.setPracticeClusterIndex(0);
+        buildPracticeDeck(null, true);
+      });
+      byId('practice-custom-exam-btn')?.addEventListener('click', () => {
+        const ids = filteredQuestions.map((q) => q.id);
+        if (ids.length > 0 && SWTApp.exam?.startWithQuestions(ids)) {
+          SWTApp.app?.selectTab('tab-exam');
+        }
+      });
       byId('practice-submit-multi-btn')?.addEventListener('click', gradeCurrent);
       byId('practice-prev-btn')?.addEventListener('click', () => goPractice(-1));
       byId('practice-next-btn')?.addEventListener('click', () => goPractice(1));
@@ -1070,19 +1151,42 @@
         }
       }
     },
-    startRetrySet(ids) {
+    startCustomSet(ids, label) {
       if (!Array.isArray(ids) || ids.length === 0) return;
-      customSubsetIds = new Set(ids);
+      const cleanIds = Array.from(new Set(ids.map(Number).filter(Boolean)));
+      customSubsetIds = new Set(cleanIds);
+      customSubsetOrder = cleanIds;
+      customSubsetLabel = label || 'Nhóm câu dễ nhầm';
       const { byId } = SWTApp.utils;
-      if (byId('practice-filter-mode')) byId('practice-filter-mode').value = 'mistakes';
       if (byId('practice-filter-topic')) byId('practice-filter-topic').value = 'all';
       clusterIndex = 0;
       SWTApp.storage.setPracticeClusterIndex(0);
       index = 0;
+      buildPracticeDeck(cleanIds[0], true);
+      scrollQuestionIntoView();
+    },
+    startConfusingMode(mode) {
+      const targetMode = mode || 'confusing-all';
+      customSubsetIds = null;
+      customSubsetOrder = null;
+      customSubsetLabel = '';
+      const { byId } = SWTApp.utils;
+      if (byId('practice-filter-mode')) byId('practice-filter-mode').value = targetMode;
+      if (byId('practice-filter-topic')) byId('practice-filter-topic').value = 'all';
+      SWTApp.storage.setPref('practiceFilterMode', targetMode);
+      clusterIndex = 0;
+      SWTApp.storage.setPracticeClusterIndex(0);
+      index = 0;
       buildPracticeDeck(null, true);
+      scrollQuestionIntoView();
+    },
+    startRetrySet(ids) {
+      this.startCustomSet(ids, 'Các câu sai bài thi');
     },
     openQuestion(id) {
       customSubsetIds = null;
+      customSubsetOrder = null;
+      customSubsetLabel = '';
       const { byId } = SWTApp.utils;
       if (!filteredQuestions.some((q) => q.id === id)) {
         if (byId('practice-filter-mode')) byId('practice-filter-mode').value = 'all';

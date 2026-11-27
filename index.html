@@ -15,23 +15,23 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-39">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-39">
-  <script defer src="data/questions.js?v=multi-course-39"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-39"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-39"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-39"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-39"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-39"></script>
-  <script defer src="data/study-prj301.js?v=multi-course-39"></script>
-  <script defer src="data/study-swt301.js?v=multi-course-39"></script>
-  <script defer src="js/storage.js?v=multi-course-39"></script>
-  <script defer src="js/concept-helper.js?v=multi-course-39"></script>
-  <script defer src="js/practice.js?v=multi-course-39"></script>
-  <script defer src="js/exam.js?v=multi-course-39"></script>
-  <script defer src="js/keyword.js?v=multi-course-39"></script>
-  <script defer src="js/study.js?v=multi-course-39"></script>
-  <script defer src="js/app.js?v=multi-course-39"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-40">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-40">
+  <script defer src="data/questions.js?v=multi-course-40"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-40"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-40"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-40"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-40"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-40"></script>
+  <script defer src="data/study-prj301.js?v=multi-course-40"></script>
+  <script defer src="data/study-swt301.js?v=multi-course-40"></script>
+  <script defer src="js/storage.js?v=multi-course-40"></script>
+  <script defer src="js/concept-helper.js?v=multi-course-40"></script>
+  <script defer src="js/practice.js?v=multi-course-40"></script>
+  <script defer src="js/exam.js?v=multi-course-40"></script>
+  <script defer src="js/keyword.js?v=multi-course-40"></script>
+  <script defer src="js/study.js?v=multi-course-40"></script>
+  <script defer src="js/app.js?v=multi-course-40"></script>
 </head>
 <body>
   <header class="topbar">
@@ -92,6 +92,9 @@
           <label for="practice-filter-mode" class="sr-only">Chế độ lọc câu hỏi</label>
           <select id="practice-filter-mode">
             <option value="all">Tất cả câu hỏi</option>
+            <option value="same-options">🎯 Các đáp án giống nhau (Dễ nhầm)</option>
+            <option value="similar-questions">🔍 Câu hỏi gần giống nhau (Dễ nhầm)</option>
+            <option value="confusing-all">⚡ Tất cả câu dễ nhầm lẫn</option>
             <option value="unmastered">Chưa thuộc</option>
             <option value="mistakes">Câu hay sai</option>
             <option value="starred">Đã đánh dấu</option>
@@ -103,7 +106,16 @@
           <label class="switch-control"><input type="checkbox" id="practice-shuffle-options" switch> Trộn đáp án</label>
           <label class="switch-control"><input type="checkbox" id="practice-instant-next" switch> Tự qua câu đúng</label>
           <div class="toolbar-spacer practice-toolbar-actions">
+            <button type="button" class="btn btn-sm btn-primary" id="practice-confusing-quick-btn" title="Chỉ luyện riêng các câu có đáp án giống nhau &amp; câu hỏi gần giống nhau">🎯 Luyện câu dễ nhầm</button>
             <button type="button" class="btn btn-sm btn-secondary" data-learned-exam-trigger>Thi câu đã học</button>
+          </div>
+        </div>
+
+        <div id="practice-custom-banner" class="practice-custom-banner card" hidden>
+          <span id="practice-custom-banner-text" class="practice-custom-banner-text">Đang luyện bộ câu riêng</span>
+          <div class="practice-custom-banner-actions">
+            <button type="button" id="practice-custom-exam-btn" class="btn btn-sm btn-secondary">📝 Thi thử bộ này</button>
+            <button type="button" id="practice-exit-custom-btn" class="btn btn-sm btn-ghost">× Quay lại tất cả câu</button>
           </div>
         </div>
 
@@ -231,6 +243,9 @@
             <label class="field-group">Nguồn câu hỏi
               <select id="exam-source-select">
                 <option value="all">Tất cả câu hỏi</option>
+                <option value="same-options">🎯 Câu có đáp án giống nhau</option>
+                <option value="similar-questions">🔍 Câu có đề gần giống nhau</option>
+                <option value="confusing-all">⚡ Tất cả câu dễ nhầm lẫn</option>
                 <option value="unmastered">Câu chưa thuộc</option>
                 <option value="mistakes">Câu hay sai</option>
                 <option value="starred">Câu đã đánh dấu</option>
@@ -373,6 +388,13 @@
                 <span class="rote-arrow">&rarr;</span>
                 <span class="rote-chip rote-chip-pick">Khoanh ngay chữ này</span>
                 <span class="rote-chip rote-chip-avoid">Không chọn chữ này</span>
+              </div>
+              <div class="confusing-drill-bar" aria-label="Luyện nhanh câu dễ nhầm">
+                <span class="confusing-drill-label">🔥 Luyện riêng cho khỏi nhầm:</span>
+                <button type="button" class="btn btn-primary btn-sm" data-drill-confusing="same-options">▶ Luyện câu Đáp án giống nhau</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-drill-confusing="similar-questions">▶ Luyện câu Đề gần giống nhau</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-drill-confusing="confusing-all">▶ Luyện tất cả câu dễ nhầm</button>
+                <button type="button" class="btn btn-ghost btn-sm" data-exam-confusing="confusing-all">📝 Thi thử câu dễ nhầm</button>
               </div>
             </div>
 
@@ -1391,6 +1413,13 @@
                 <button type="button" class="distinction-kind-btn" data-dist-kind="same-options" id="dist-kind-same">🎯 Các đáp án giống nhau</button>
                 <button type="button" class="distinction-kind-btn" data-dist-kind="similar-questions" id="dist-kind-similar">🔍 Câu hỏi gần giống nhau</button>
                 <button type="button" class="btn btn-ghost btn-sm distinction-expand-opts-btn" id="study-distinctions-expand-opts">Hiện tất cả bộ đáp án A/B/C/D</button>
+              </div>
+              <div class="confusing-drill-bar" aria-label="Luyện tập các nhóm câu dễ nhầm">
+                <span class="confusing-drill-label">🔥 Luyện phản xạ trực tiếp:</span>
+                <button type="button" class="btn btn-primary btn-sm" data-drill-confusing="same-options">▶ Luyện các đáp án giống nhau</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-drill-confusing="similar-questions">▶ Luyện câu hỏi gần giống nhau</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-drill-confusing="confusing-all">▶ Luyện gộp tất cả</button>
+                <button type="button" class="btn btn-ghost btn-sm" data-exam-confusing="confusing-all">📝 Thi thử tất cả câu dễ nhầm</button>
               </div>
               <div class="study-distinctions-toolbar">
                 <label for="study-distinctions-search" class="sr-only">Tìm câu hoặc từ khóa phân biệt</label>
