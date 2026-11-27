@@ -515,13 +515,13 @@
       }
 
       if (ch.concepts?.length) {
-        body.appendChild(el('h4', 'swt-subhead', '1. Khái niệm cốt lõi (Là gì & Điểm chính cần nhớ)'));
+        body.appendChild(el('h4', 'swt-subhead', '1. Giải thích bình dân dễ hiểu (Đọc 5 giây nắm ngay bản chất)'));
         const cGrid = el('div', 'swt-concept-grid');
         ch.concepts.forEach((c) => {
           const card = el('article', 'swt-concept-card');
           card.appendChild(el('h5', 'swt-concept-title', c.term));
           const whatLine = el('p', 'swt-concept-what');
-          whatLine.append(el('strong', '', 'Là gì: '), el('span', '', c.what));
+          whatLine.append(el('strong', '', 'Hiểu nhanh: '), el('span', '', c.what));
           card.appendChild(whatLine);
           if (c.bullets?.length) {
             const ul = el('ul', 'swt-concept-bullets');
@@ -535,7 +535,7 @@
       }
 
       if (ch.questionPatterns?.length) {
-        body.appendChild(el('h4', 'swt-subhead', '2. Phân tích & Phân loại các dạng câu hỏi trong chương'));
+        body.appendChild(el('h4', 'swt-subhead', '2. Mẹo bắt bài & Bẫy hay gặp trong chương'));
         const pGrid = el('div', 'swt-pattern-grid');
         ch.questionPatterns.forEach((p) => {
           const pCard = el('article', 'swt-pattern-card');

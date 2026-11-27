@@ -60,7 +60,7 @@
       return 0;
     });
 
-    return scored.slice(0, 5).map((s) => ({
+    return scored.slice(0, 4).map((s) => ({
       term: s.concept.term,
       what: s.concept.what,
       points: s.concept.points || []
@@ -176,16 +176,16 @@
   }
 
   const FAKE_OR_ZERO_OPTIONS = new Map([
-    ['state analysis', 'Thuật ngữ nhiễu đặt bẫy (0% đúng) — không phải tên công cụ chuẩn ISTQB.'],
-    ['memory analysis', 'Thuật ngữ nhiễu đặt bẫy theo chữ "memory leak" (0% đúng) — phải dùng Dynamic analysis!'],
-    ['coverage analysis', 'Đo độ phủ code khi thực thi (0% đúng khi đứng làm đáp án lẻ trong bộ đề này).'],
-    ['data flow analysis', 'Kỹ thuật phân tích luồng dữ liệu tĩnh (0/2 lần đúng khi đứng làm lựa chọn lẻ).'],
-    ['trends analysis', 'Phân tích xu hướng (không phải thước đo của Code coverage).'],
-    ['metrics analysis', 'Phân tích chỉ số đo lường (thuộc chi phí review, không phải khoản bị loại trừ).'],
-    ['sanity testing', 'Kiểm thử nhanh phạm vi hẹp sau thay đổi nhỏ (đứng làm lựa chọn lẻ 0% đúng trong bộ đề).'],
-    ['smoke testing', 'Kiểm thử khói kiểm tra các chức năng cốt lõi bản build mới (0% đúng khi đứng lẻ trong bộ đề).'],
-    ['requirements testing', 'Phương án nhiễu (0% đúng) — kiểm thử chất lượng phi chức năng như Internet Banking phải chọn Non-functional testing.'],
-    ['pole coverage', 'Tên gọi BỊA không tồn tại trong kiểm thử phần mềm (chọn khi đề hỏi Incorrect form of Logic coverage).']
+    ['state analysis', 'Đáp án bẫy (0% đúng) — tên không chuẩn, gặp là gạch!'],
+    ['memory analysis', 'Đáp án bẫy nhử theo chữ "memory leak" (0% đúng) — bắt rò bộ nhớ lúc chạy phải chọn Dynamic analysis!'],
+    ['coverage analysis', 'Đo % code đã chạy (0% đúng khi đứng lẻ làm đáp án trong bộ đề này).'],
+    ['data flow analysis', 'Soi đường đi của biến trong code tĩnh (0% đúng khi đứng lẻ làm đáp án).'],
+    ['trends analysis', 'Phân tích xu hướng — không phải thước đo độ phủ code (0% đúng).'],
+    ['metrics analysis', 'Phân tích số liệu — vẫn nằm trong chi phí review (0% đúng).'],
+    ['sanity testing', 'Test lướt nhanh chỗ vừa sửa nhỏ (0% đúng khi đứng lẻ trong bộ đề — gạch!).'],
+    ['smoke testing', 'Test lướt các tính năng chính xem bản mới có chạy nổi không (0% đúng trong bộ đề — gạch!).'],
+    ['requirements testing', 'Đáp án nhiễu (0% đúng) — gặp Internet Banking chọn ngay Non-functional testing!'],
+    ['pole coverage', 'Tên BỊA không có thật — khoanh câu này khi đề hỏi cái nào SAI (Incorrect form of Logic coverage)!']
   ]);
 
   function getOptionFamilyTip(q) {
@@ -195,10 +195,10 @@
     const testingCount = optsLow.filter((t) => /\btesting\b/.test(t) && t.split(/\s+/).length <= 5).length;
 
     if (analysisCount >= 2) {
-      return '🧭 Mẹo gỡ rối họ "Analysis": Gạch ngay State / Memory / Coverage / Data flow / Trends / Metrics analysis (0% đúng). Thấy "memory leak" ➔ Dynamic analysis; thấy "unreachable code / coding standards / developers" ➔ Static analysis; thấy "Reviewing test Basis / Designing environment" ➔ Test Analysis and Design.';
+      return '💡 Chốt nhanh họ "Analysis": Gạch State / Memory / Coverage / Data flow (0% đúng). Thấy "memory leak" ➔ Dynamic analysis · "unreachable code / coding standards" ➔ Static analysis · "Reviewing test Basis / Designing environment" ➔ Test Analysis and Design.';
     }
     if (testingCount >= 2) {
-      return '🧭 Mẹo gỡ rối các dạng "... Testing": Functional testing lẻ & Regression testing lẻ đều 0% đúng! Nhìn từ khóa trên đề: single/individual unit ➔ Unit | interfaces & interaction ➔ Integration | entire system ➔ System | business/contract ➔ Acceptance | internet banking ➔ Non-functional | varying workloads ➔ Load | limitations exceeded ➔ Stress | confirm defect removed ➔ Confirmation | Maintenance Testing ➔ Re-testing.';
+      return '💡 Chốt nhanh "... Testing": Functional lẻ & Regression lẻ đều 0% đúng! Đọc từ khóa trên đề: 1 hàm lẻ (single/individual) ➔ Unit · mối nối (interfaces) ➔ Integration · nguyên app (entire system) ➔ System · khách/kinh doanh (business) ➔ Acceptance · ngân hàng (internet banking) ➔ Non-functional · tải thường (varying workloads) ➔ Load · quá tải (exceeded) ➔ Stress.';
     }
     return null;
   }
@@ -247,7 +247,7 @@
         const card = el('div', 'q-concept-item');
         const termEl = el('div', 'q-concept-term', '• ' + item.term);
         const whatEl = el('div', 'q-concept-what');
-        whatEl.append(el('strong', '', 'Là gì: '), el('span', '', cleanPointText(item.what)));
+        whatEl.append(el('strong', '', 'Hiểu nhanh: '), el('span', '', cleanPointText(item.what)));
         card.append(termEl, whatEl);
 
         if (item.points && item.points.length > 0) {
