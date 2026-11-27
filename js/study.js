@@ -864,8 +864,31 @@
     distinctionsKind = 'all';
     expandAllOptions = false;
     const hasStudy = lessons.length > 0 || courseCode === 'PRJ301' || courseCode === 'SWT301';
+    const unavail = byId('study-unavailable');
+    if (unavail && !hasStudy) {
+      const curCourse = SWTApp.app?.getCourse?.();
+      if (curCourse?.isCustom) {
+        unavail.replaceChildren();
+        const { el } = SWTApp.utils;
+        const headBadge = el('span', 'badge badge-accent', curCourse.code || 'Bộ đề tự tạo');
+        const h2 = el('h2', '', curCourse.customSet?.title || curCourse.subtitle || 'Bộ đề tự tạo');
+        const btnRow = el('div', 'action-group');
+        btnRow.style.justifyContent = 'center';
+        const kwBtn = el('button', 'btn btn-primary btn-sm', 'Xem Keyword tự động');
+        kwBtn.type = 'button';
+        kwBtn.addEventListener('click', () => SWTApp.app?.selectTab('tab-keyword'));
+        const editBtn = el('button', 'btn btn-secondary btn-sm', 'Sửa / Thêm câu hỏi');
+        editBtn.type = 'button';
+        editBtn.addEventListener('click', () => {
+          SWTApp.app?.selectTab('tab-sets');
+          SWTApp.customSets?.openEditorForSet?.(curCourse.id);
+        });
+        btnRow.append(kwBtn, editBtn);
+        unavail.append(headBadge, h2, btnRow);
+      }
+    }
     byId('study-content').hidden = !hasStudy;
-    byId('study-unavailable').hidden = hasStudy;
+    if (unavail) unavail.hidden = hasStudy;
 
     const shortcutsPrj = byId('study-shortcuts-prj301') || byId('study-shortcuts');
     if (shortcutsPrj) shortcutsPrj.hidden = (courseCode !== 'PRJ301');

@@ -2,19 +2,33 @@
   'use strict';
 
   const SWTApp = (window.SWTApp = window.SWTApp || {});
-  const TAB_IDS = ['tab-practice', 'tab-flashcard', 'tab-exam', 'tab-keyword', 'tab-study', 'tab-bank'];
+  const TAB_IDS = ['tab-practice', 'tab-flashcard', 'tab-exam', 'tab-keyword', 'tab-study', 'tab-bank', 'tab-sets'];
   const COURSE_CONFIG = {
-    SWT301: { code: 'SWT301', subtitle: 'SWT301 — Software Testing — Semester 5', dataKey: 'SWT301_DATA' },
-    SSG105: { code: 'SSG105', subtitle: 'SSG105 — Communication & Teamwork Skills — Semester 4', dataKey: 'SSG105_DATA' },
-    PRJ301: { code: 'PRJ301', subtitle: 'PRJ301 — Java Web Application Development — Semester 4', dataKey: 'PRJ301_DATA' }
+    SWT301: { id: 'SWT301', code: 'SWT301', subtitle: 'SWT301 — Software Testing — Semester 5', dataKey: 'SWT301_DATA', isCustom: false },
+    SSG105: { id: 'SSG105', code: 'SSG105', subtitle: 'SSG105 — Communication & Teamwork Skills — Semester 4', dataKey: 'SSG105_DATA', isCustom: false },
+    PRJ301: { id: 'PRJ301', code: 'PRJ301', subtitle: 'PRJ301 — Java Web Application Development — Semester 4', dataKey: 'PRJ301_DATA', isCustom: false }
   };
   let questions = [];
   let activeTabId = 'tab-practice';
   let currentCourse = COURSE_CONFIG.SWT301;
 
   function requestedCourse() {
-    const value = new URLSearchParams(window.location.search).get('course');
-    return COURSE_CONFIG[String(value || '').toUpperCase()] || COURSE_CONFIG.SWT301;
+    const raw = String(new URLSearchParams(window.location.search).get('course') || '').trim();
+    const upper = raw.toUpperCase();
+    if (COURSE_CONFIG[upper]) return COURSE_CONFIG[upper];
+    if (raw && SWTApp.customSets?.getSetById) {
+      const custom = SWTApp.customSets.getSetById(raw);
+      if (custom) {
+        return {
+          id: custom.id,
+          code: custom.code || 'CUSTOM',
+          subtitle: (custom.code ? custom.code + ' — ' : '') + custom.title,
+          customSet: custom,
+          isCustom: true
+        };
+      }
+    }
+    return COURSE_CONFIG.SWT301;
   }
 
   function prepareQuestions(rawData) {
@@ -145,6 +159,7 @@
     SWTApp.practice?.onTabActivated(activeTabId);
     SWTApp.exam?.onTabActivated(activeTabId);
     SWTApp.keyword?.onTabActivated(activeTabId);
+    SWTApp.customSets?.onTabActivated?.(activeTabId);
   }
 
   function initTabs() {
@@ -242,18 +257,63 @@
     });
   }
 
+  function refreshCoursePickerOptions() {
+    const { byId, el } = SWTApp.utils;
+    const picker = byId('course-select');
+    if (!picker) return;
+    picker.replaceChildren();
+    [
+      ['SWT301', 'SWT301'],
+      ['PRJ301', 'PRJ301'],
+      ['SSG105', 'SSG105']
+    ].forEach(([val, label]) => {
+      const opt = el('option', '', label);
+      opt.value = val;
+      picker.appendChild(opt);
+    });
+    const customs = SWTApp.customSets?.getAllSets?.() || [];
+    if (customs.length > 0) {
+      const group = document.createElement('optgroup');
+      group.label = 'Đề tự tạo';
+      customs.forEach((s) => {
+        const opt = el('option', '', (s.code ? s.code + ' — ' : '') + s.title);
+        opt.value = s.id;
+        group.appendChild(opt);
+      });
+      picker.appendChild(group);
+    }
+    picker.value = currentCourse.id || currentCourse.code;
+  }
+
+  function switchCourse(courseId, targetTabId) {
+    const targetId = String(courseId || 'SWT301').trim();
+    const curId = currentCourse.id || currentCourse.code;
+    if (targetId === curId) {
+      if (targetTabId) selectTab(targetTabId);
+      return;
+    }
+    const url = new URL(window.location.href);
+    if (!targetId || targetId === 'SWT301') url.searchParams.delete('course');
+    else url.searchParams.set('course', targetId);
+    if (targetTabId && targetTabId !== 'tab-practice') url.searchParams.set('tab', targetTabId);
+    else url.searchParams.delete('tab');
+    window.location.assign(url.toString());
+  }
+
   function initCoursePicker(raw) {
     const { byId, setText } = SWTApp.utils;
+    refreshCoursePickerOptions();
     const picker = byId('course-select');
-    if (picker) {
-      picker.value = currentCourse.code;
+    if (picker && !picker.dataset.boundChange) {
+      picker.dataset.boundChange = 'true';
       picker.addEventListener('change', () => {
-        const url = new URL(window.location.href);
-        if (picker.value === 'SWT301') url.searchParams.delete('course');
-        else url.searchParams.set('course', picker.value);
-        window.location.assign(url.toString());
+        switchCourse(picker.value);
       });
     }
+    byId('topbar-create-set-btn')?.addEventListener('click', () => {
+      selectTab('tab-sets');
+      SWTApp.customSets?.openCreator?.();
+    });
     const subtitle = raw?.meta?.title || currentCourse.subtitle;
     setText('app-subtitle', subtitle);
     setText('exam-setup-title', 'Cấu hình đề thi thử — ' + currentCourse.code);
@@ -263,7 +323,15 @@
 
   function boot() {
     currentCourse = requestedCourse();
-    const raw = window[currentCourse.dataKey] || { meta: {}, questions: [] };
+    const raw = currentCourse.isCustom && currentCourse.customSet
+      ? {
+          meta: {
+            title: (currentCourse.customSet.code ? currentCourse.customSet.code + ' — ' : '') + currentCourse.customSet.title,
+            topics: currentCourse.customSet.topics || []
+          },
+          questions: currentCourse.customSet.questions || []
+        }
+      : (window[currentCourse.dataKey] || { meta: {}, questions: [] });
     questions = prepareQuestions(raw);
 
     applyTheme(SWTApp.storage.getPrefs().theme);
@@ -282,8 +350,17 @@
     SWTApp.practice?.init(questions);
     SWTApp.exam?.init(questions);
     SWTApp.keyword?.init(questions);
-    SWTApp.study?.init(currentCourse.code);
+    SWTApp.study?.init(currentCourse.isCustom ? currentCourse.id : currentCourse.code);
+    SWTApp.customSets?.init?.();
     updateHeaderStats();
+
+    const initialTab = new URLSearchParams(window.location.search).get('tab');
+    if (initialTab && TAB_IDS.includes(initialTab)) {
+      selectTab(initialTab);
+      const cleanUrl = new URL(window.location.href);
+      cleanUrl.searchParams.delete('tab');
+      window.history.replaceState({}, '', cleanUrl.toString());
+    }
 
     if (questions.length === 0) {
       SWTApp.utils.setText('practice-stem', 'Chưa tìm thấy dữ liệu câu hỏi ' + currentCourse.code + '.');
@@ -291,7 +368,13 @@
     }
   }
 
-  SWTApp.app = { selectTab, getQuestions: () => questions.slice(), getCourse: () => ({ ...currentCourse }) };
+  SWTApp.app = {
+    selectTab,
+    switchCourse,
+    refreshCoursePicker: refreshCoursePickerOptions,
+    getQuestions: () => questions.slice(),
+    getCourse: () => ({ ...currentCourse })
+  };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();

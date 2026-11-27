@@ -150,7 +150,18 @@
     if (code === 'SWT301') return getSwtConcepts(q);
     if (code === 'PRJ301') return getPrjConcepts(q);
     if (code === 'SSG105') return getSsgConcepts(q);
-    return [];
+    if (!q) return [];
+    const ansTexts = (q.options || [])
+      .filter((o) => (q.correctKeys || []).includes(o.key))
+      .map((o) => o.text)
+      .join(' · ');
+    const items = [];
+    if (q.explanation) {
+      items.push({ term: q.topic || 'Giải thích', what: q.explanation, points: [] });
+    } else if (ansTexts) {
+      items.push({ term: q.topic || 'Đáp án trọng tâm', what: ansTexts, points: [] });
+    }
+    return items;
   }
 
   function getDistinctionForQuestion(q) {

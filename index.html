@@ -15,24 +15,25 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-43">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-43">
-  <script defer src="data/questions.js?v=multi-course-43"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-43"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-43"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-43"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-43"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-43"></script>
-  <script defer src="data/study-prj301.js?v=multi-course-43"></script>
-  <script defer src="data/study-swt301.js?v=multi-course-43"></script>
-  <script defer src="js/storage.js?v=multi-course-43"></script>
-  <script defer src="js/concept-helper.js?v=multi-course-43"></script>
-  <script defer src="js/practice.js?v=multi-course-43"></script>
-  <script defer src="js/exam.js?v=multi-course-43"></script>
-  <script defer src="js/keyword.js?v=multi-course-43"></script>
-  <script defer src="js/study.js?v=multi-course-43"></script>
-  <script defer src="js/notes.js?v=multi-course-43"></script>
-  <script defer src="js/app.js?v=multi-course-43"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-44">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-44">
+  <script defer src="data/questions.js?v=multi-course-44"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-44"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-44"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-44"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-44"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-44"></script>
+  <script defer src="data/study-prj301.js?v=multi-course-44"></script>
+  <script defer src="data/study-swt301.js?v=multi-course-44"></script>
+  <script defer src="js/storage.js?v=multi-course-44"></script>
+  <script defer src="js/custom-sets.js?v=multi-course-44"></script>
+  <script defer src="js/concept-helper.js?v=multi-course-44"></script>
+  <script defer src="js/practice.js?v=multi-course-44"></script>
+  <script defer src="js/exam.js?v=multi-course-44"></script>
+  <script defer src="js/keyword.js?v=multi-course-44"></script>
+  <script defer src="js/study.js?v=multi-course-44"></script>
+  <script defer src="js/notes.js?v=multi-course-44"></script>
+  <script defer src="js/app.js?v=multi-course-44"></script>
 </head>
 <body>
   <header class="topbar">
@@ -47,6 +48,7 @@
           <option value="PRJ301">PRJ301</option>
         </select>
       </label>
+      <button type="button" id="topbar-create-set-btn" class="btn btn-secondary btn-sm">+ Tạo đề</button>
     </div>
     <div class="progress-pill" aria-label="Tiến độ ôn tập">
       <span class="stat-item">Đã thuộc <strong id="stat-mastered">0/0</strong></span>
@@ -78,6 +80,7 @@
     <button type="button" role="tab" id="tab-keyword" data-panel="panel-keyword" aria-selected="false">Keyword</button>
     <button type="button" role="tab" id="tab-study" data-panel="panel-study" aria-selected="false">Ôn tập kiến thức</button>
     <button type="button" role="tab" id="tab-bank" data-panel="panel-bank" aria-selected="false">Ngân hàng câu hỏi</button>
+    <button type="button" role="tab" id="tab-sets" data-panel="panel-sets" aria-selected="false">Quản lý đề</button>
   </div>
 
   <main class="workspace-main">
@@ -1544,6 +1547,132 @@
             </thead>
             <tbody id="bank-list"></tbody>
           </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel-sets" class="tab-panel" role="tabpanel" aria-labelledby="tab-sets" hidden>
+      <div class="panel-inner">
+        <!-- TRANG QUẢN LÝ ĐỀ -->
+        <div id="sets-dashboard-view" class="sets-dashboard-view">
+          <div class="sets-stats-strip">
+            <div class="sets-stat-box"><span class="sets-stat-label">Tổng bộ đề</span><strong id="sets-stat-total">0</strong></div>
+            <div class="sets-stat-box"><span class="sets-stat-label">Đề tự tạo</span><strong id="sets-stat-custom">0</strong></div>
+            <div class="sets-stat-box"><span class="sets-stat-label">Tổng câu hỏi</span><strong id="sets-stat-questions">0</strong></div>
+            <div class="sets-stat-box"><span class="sets-stat-label">Đã thuộc</span><strong id="sets-stat-mastered">0</strong></div>
+          </div>
+
+          <div class="toolbar sets-toolbar">
+            <label for="sets-search-input" class="sr-only">Tìm bộ đề</label>
+            <input type="search" id="sets-search-input" placeholder="Tìm mã môn, tên bộ đề...">
+            <div id="sets-filter-bar" class="sets-filter-pills" role="group" aria-label="Lọc loại đề">
+              <button type="button" class="distinction-kind-btn is-active" data-sets-filter="all">Tất cả</button>
+              <button type="button" class="distinction-kind-btn" data-sets-filter="custom">Đề tự tạo</button>
+              <button type="button" class="distinction-kind-btn" data-sets-filter="builtin">Có sẵn</button>
+            </div>
+            <div class="toolbar-spacer">
+              <input type="file" id="sets-file-input" accept=".json,.txt,.tsv,.csv" hidden>
+              <button type="button" id="sets-import-file-btn" class="btn btn-secondary btn-sm">Nhập file</button>
+              <button type="button" id="sets-open-creator-btn" class="btn btn-primary btn-sm">+ Tạo đề mới</button>
+            </div>
+          </div>
+
+          <div id="sets-catalog-grid" class="sets-catalog-grid"></div>
+          <div id="sets-catalog-empty" class="card study-empty" hidden>Không có bộ đề phù hợp.</div>
+        </div>
+
+        <!-- TRANG TẠO / SỬA ĐỀ KIỂU QUIZLET -->
+        <div id="sets-editor-view" class="sets-editor-view" hidden>
+          <div class="sets-editor-topbar card">
+            <div class="sets-editor-topbar-left">
+              <button type="button" id="sets-back-dashboard-btn" class="btn btn-ghost btn-sm">← Quản lý đề</button>
+              <h2 id="sets-editor-heading">Tạo bộ đề mới</h2>
+            </div>
+            <div class="sets-editor-topbar-actions">
+              <button type="button" id="set-save-btn" class="btn btn-secondary btn-sm">Lưu đề</button>
+              <button type="button" id="set-save-and-study-btn" class="btn btn-primary btn-sm">Lưu &amp; Học ngay</button>
+            </div>
+          </div>
+
+          <p id="sets-editor-error" class="feedback-box is-wrong" hidden></p>
+
+          <div class="sets-meta-grid card">
+            <label class="field-group">Mã môn
+              <input type="text" id="set-code-input" placeholder="VD: DBI202, MAS291..." maxlength="20">
+            </label>
+            <label class="field-group">Tên bộ đề
+              <input type="text" id="set-title-input" placeholder="VD: Database Systems — Ôn FE">
+            </label>
+            <label class="field-group">Chủ đề mặc định
+              <input type="text" id="set-default-topic-input" value="Tổng hợp" placeholder="VD: Chương 1">
+            </label>
+          </div>
+
+          <div id="qz-options-panel" class="qz-import-card card">
+            <div class="qz-import-header">
+              <strong>Nạp đề nhanh (Quizlet / Trắc nghiệm)</strong>
+              <div class="qz-sample-actions">
+                <input type="file" id="qz-editor-file-input" accept=".txt,.tsv,.csv,.json" hidden>
+                <button type="button" id="qz-sample-mcq-btn" class="btn btn-ghost btn-sm">Mẫu A/B/C/D</button>
+                <button type="button" id="qz-sample-pair-btn" class="btn btn-ghost btn-sm">Mẫu Quizlet (Tab)</button>
+                <button type="button" id="qz-import-file-btn" class="btn btn-ghost btn-sm">Tải từ file</button>
+                <button type="button" id="qz-export-text-btn" class="btn btn-ghost btn-sm">Xuất thẻ ra chữ</button>
+                <button type="button" id="qz-clear-input-btn" class="btn btn-ghost btn-sm">Xóa ô</button>
+              </div>
+            </div>
+
+            <textarea id="qz-import-textarea" class="qz-import-textarea" rows="8" placeholder="Cách 1 (Trắc nghiệm):&#10;Câu hỏi...&#10;*A. Đáp án đúng&#10;B. Đáp án sai&#10;C. Đáp án sai&#10;D. Đáp án sai&#10;&#10;Cách 2 (Quizlet):&#10;Thuật ngữ / Câu hỏi [Tab] Định nghĩa / Đáp án"></textarea>
+
+            <div class="qz-delimiters-grid">
+              <fieldset class="qz-delim-box">
+                <legend>Giữa câu hỏi và đáp án</legend>
+                <label class="qz-radio"><input type="radio" name="qz-term-sep" value="auto" checked> Tự nhận diện</label>
+                <label class="qz-radio"><input type="radio" name="qz-term-sep" value="tab"> Tab</label>
+                <label class="qz-radio"><input type="radio" name="qz-term-sep" value="dash"> Gạch ngang ( - )</label>
+                <label class="qz-radio qz-radio-custom">
+                  <input type="radio" name="qz-term-sep" value="custom">
+                  <input type="text" id="qz-custom-term-sep" placeholder="Tùy chỉnh (VD: >>>)" aria-label="Ký tự tùy chỉnh giữa câu hỏi và đáp án">
+                </label>
+              </fieldset>
+
+              <fieldset class="qz-delim-box">
+                <legend>Giữa các thẻ câu hỏi</legend>
+                <label class="qz-radio"><input type="radio" name="qz-card-sep" value="auto" checked> Tự nhận diện</label>
+                <label class="qz-radio"><input type="radio" name="qz-card-sep" value="blank"> Dòng trống (Enter 2 lần)</label>
+                <label class="qz-radio"><input type="radio" name="qz-card-sep" value="newline"> Xuống dòng</label>
+                <label class="qz-radio"><input type="radio" name="qz-card-sep" value="semicolon"> Chấm phẩy (;)</label>
+                <label class="qz-radio qz-radio-custom">
+                  <input type="radio" name="qz-card-sep" value="custom">
+                  <input type="text" id="qz-custom-card-sep" placeholder="Tùy chỉnh (VD: ===)" aria-label="Ký tự tùy chỉnh giữa các thẻ">
+                </label>
+              </fieldset>
+            </div>
+
+            <div class="qz-switches-row">
+              <label class="switch-control"><input type="checkbox" id="qz-opt-flip" switch> Đảo Câu hỏi ⇄ Đáp án</label>
+              <label class="switch-control"><input type="checkbox" id="qz-opt-automcq" switch checked> Tự tạo 4 lựa chọn A/B/C/D cho thẻ 2 mặt</label>
+              <label class="switch-control"><input type="checkbox" id="qz-opt-stripnum" switch checked> Bỏ số thứ tự đầu câu</label>
+              <label class="switch-control"><input type="checkbox" id="qz-opt-dedupe" switch> Bỏ câu trùng</label>
+            </div>
+
+            <div class="qz-parse-bar">
+              <span id="qz-live-count" class="counter-pill">0 câu tách được</span>
+              <button type="button" id="qz-parse-into-cards-btn" class="btn btn-primary btn-sm" disabled>+ Đưa vào danh sách thẻ</button>
+            </div>
+
+            <div id="qz-live-preview" class="qz-live-preview" hidden></div>
+          </div>
+
+          <div class="sets-draft-section card">
+            <div class="sets-draft-header">
+              <strong id="set-draft-count">0 thẻ trong đề</strong>
+              <div class="action-group">
+                <button type="button" id="set-add-manual-card-btn" class="btn btn-secondary btn-sm">+ Thêm thẻ thủ công</button>
+                <button type="button" id="set-clear-all-cards-btn" class="btn btn-ghost btn-sm btn-danger-subtle">Xóa hết thẻ</button>
+              </div>
+            </div>
+            <div id="set-draft-cards-list" class="set-draft-cards-list"></div>
+          </div>
         </div>
       </div>
     </section>

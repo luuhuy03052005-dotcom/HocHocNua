@@ -3,9 +3,17 @@
 
   const SWTApp = (window.SWTApp = window.SWTApp || {});
   const requestedCourse = new URLSearchParams(window.location.search).get('course');
-  const rawCourse = String(requestedCourse || '').toUpperCase();
-  const COURSE_KEY = rawCourse === 'SSG105' ? 'ssg105' : rawCourse === 'PRJ301' ? 'prj301' : 'swt301';
-  const STORAGE_KEY = COURSE_KEY + '_progress_v1';
+  const rawCourse = String(requestedCourse || '').trim();
+  const upperCourse = rawCourse.toUpperCase();
+  function storageKeyForCourse(codeOrId) {
+    const raw = String(codeOrId || '').trim();
+    const up = raw.toUpperCase();
+    if (!raw || up === 'SWT301') return 'swt301_progress_v1';
+    if (up === 'SSG105') return 'ssg105_progress_v1';
+    if (up === 'PRJ301') return 'prj301_progress_v1';
+    return 'custom_' + raw.toLowerCase().replace(/[^a-z0-9_-]/g, '_') + '_progress_v1';
+  }
+  const STORAGE_KEY = storageKeyForCourse(upperCourse.startsWith('C_') ? rawCourse : upperCourse);
 
   const DEFAULT_PREFS = {
     theme: '',
@@ -319,6 +327,35 @@
       }
       const accuracy = attempts > 0 ? Math.round((Math.max(0, attempts - wrong) / attempts) * 100) : 0;
       return { total: list.length, mastered, learning, unseen, mistakes, starred, totalAttempts: attempts, totalWrong: wrong, accuracy };
+    },
+    getSummaryForCourse(courseId, questions) {
+      const list = Array.isArray(questions) ? questions : [];
+      const key = storageKeyForCourse(courseId);
+      if (key === STORAGE_KEY) return this.getSummary(list);
+      let recs = {};
+      try {
+        const raw = window.localStorage.getItem(key);
+        const parsed = raw ? JSON.parse(raw) : null;
+        if (parsed && parsed.records && typeof parsed.records === 'object') recs = parsed.records;
+      } catch (_) {}
+      let mastered = 0, learning = 0, unseen = 0, mistakes = 0, starred = 0, attempts = 0, wrong = 0;
+      for (let i = 0; i < list.length; i += 1) {
+        const r = sanitizeRecord(recs[String(list[i].id)]);
+        if (r.mastery === 2) mastered += 1;
+        else if (r.mastery === 1) learning += 1;
+        else unseen += 1;
+        if (r.lastWrong) mistakes += 1;
+        if (r.starred) starred += 1;
+        attempts += r.attempts;
+        wrong += r.wrongCount;
+      }
+      const accuracy = attempts > 0 ? Math.round((Math.max(0, attempts - wrong) / attempts) * 100) : 0;
+      return { total: list.length, mastered, learning, unseen, mistakes, starred, totalAttempts: attempts, totalWrong: wrong, accuracy };
+    },
+    removeCourseProgress(courseId) {
+      try {
+        window.localStorage.removeItem(storageKeyForCourse(courseId));
+      } catch (_) {}
     },
     getPrefs() {
       return { ...state.prefs };
