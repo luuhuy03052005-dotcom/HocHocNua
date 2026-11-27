@@ -3813,6 +3813,440 @@ window.SWT301_STUDY = {
     }
   ],
   "roteSheet": {
+    "optionSets": [
+      {
+        "title": "1. Bộ 5 Pha Quy Trình Test (Planning · Analysis & Design · Implementation & Execution · Closure)",
+        "optionsPreview": "Test Analysis and Design | Test Implementation and execution | Test Closure Activities | Evaluating exit criteria and reporting",
+        "eliminate": "Evaluating exit criteria and reporting (luôn sai!)",
+        "rules": [
+          {
+            "cue": "determine the exit criteria",
+            "pick": "Test planning",
+            "qIds": [
+              107
+            ]
+          },
+          {
+            "cue": "Reviewing the test Basis / Designing the test environment",
+            "pick": "Test Analysis and Design",
+            "qIds": [
+              114,
+              131
+            ]
+          },
+          {
+            "cue": "creates test suites / Reporting Discrepancies as incidents",
+            "pick": "Test Implementation and execution",
+            "qIds": [
+              83,
+              165
+            ]
+          },
+          {
+            "cue": "Handover of Testware",
+            "pick": "Test Closure Activities",
+            "qIds": [
+              121
+            ]
+          },
+          {
+            "cue": "not the fundamental test process (thiếu chữ Test ở đầu)",
+            "pick": "None of the others",
+            "qIds": [
+              29
+            ]
+          }
+        ]
+      },
+      {
+        "title": "2. Bộ Tài Liệu Test: Case vs Design vs Procedure Specification (+ Scenario & Suite)",
+        "optionsPreview": "Test Case Specification | Test Design Specification | Test Procedure Specification | None of the others",
+        "eliminate": "Test Design Specification & None of the others (luôn sai!)",
+        "rules": [
+          {
+            "cue": "expected results (hoặc Inputs and expected results)",
+            "pick": "Test Case Specification",
+            "qIds": [
+              74,
+              344
+            ]
+          },
+          {
+            "cue": "steps required to operate (ngay đầu câu — đừng nhìn nhầm chữ test cases cuối câu!)",
+            "pick": "Test Procedure Specification",
+            "qIds": [
+              143
+            ]
+          },
+          {
+            "cue": "end-to-end functionality",
+            "pick": "Test scenario",
+            "qIds": [
+              52
+            ]
+          },
+          {
+            "cue": "grouped into Manageable (and scheduled) units",
+            "pick": "Test Suite",
+            "qIds": [
+              151
+            ]
+          }
+        ]
+      },
+      {
+        "title": "3. Bộ 4 Cấp Độ Test: Unit · Integration · System · Acceptance",
+        "optionsPreview": "Unit testing | Integration testing | System testing | Acceptance testing",
+        "eliminate": "System Testing (chỉ chọn duy nhất khi có chữ 'entire system'!)",
+        "rules": [
+          {
+            "cue": "single unit ... isolated / individual units",
+            "pick": "Unit testing",
+            "qIds": [
+              51,
+              84
+            ]
+          },
+          {
+            "cue": "interfaces and interaction between integrated components",
+            "pick": "Integration testing",
+            "qIds": [
+              130,
+              149
+            ]
+          },
+          {
+            "cue": "terminal modules / lowest-level (leaf) modules",
+            "pick": "Bottom-up integration",
+            "qIds": [
+              155,
+              235
+            ]
+          },
+          {
+            "cue": "testing the entire system",
+            "pick": "System Testing",
+            "qIds": [
+              164
+            ]
+          },
+          {
+            "cue": "meets business requirements / Contract and regulation",
+            "pick": "Acceptance testing",
+            "qIds": [
+              89,
+              111
+            ]
+          }
+        ]
+      },
+      {
+        "title": "4. Bộ Phi Chức Năng & Tải: Non-functional · Performance · Usability · Load · Stress",
+        "optionsPreview": "Functional testing | Non-functional testing | Performance testing | Usability / Load / Stress testing",
+        "eliminate": "Functional testing & Regression testing đứng lẻ (luôn sai!) + Sanity / Smoke / Volume / Recovery / Requirements testing",
+        "rules": [
+          {
+            "cue": "internet banking / reliability, performance, security",
+            "pick": "Non-functional testing",
+            "qIds": [
+              66,
+              234
+            ]
+          },
+          {
+            "cue": "What is NOT test type? HOẶC Which is the non-functional testing",
+            "pick": "Performance testing",
+            "qIds": [
+              12,
+              81
+            ]
+          },
+          {
+            "cue": "a type of non-functional testing?",
+            "pick": "Usability testing.",
+            "qIds": [
+              79
+            ]
+          },
+          {
+            "cue": "varying workloads",
+            "pick": "Load Testing",
+            "qIds": [
+              150
+            ]
+          },
+          {
+            "cue": "limitations have been exceeded",
+            "pick": "Stress Testing",
+            "qIds": [
+              85
+            ]
+          }
+        ]
+      },
+      {
+        "title": "5. Bộ Họ Từ Analysis: Static · Dynamic · Impact · Boundary Value",
+        "optionsPreview": "Static analysis | Dynamic analysis | Memory analysis | Data flow / Coverage / State analysis",
+        "eliminate": "Memory / State / Coverage / Data flow / Trends / Metrics analysis (luôn sai!)",
+        "rules": [
+          {
+            "cue": "memory leak / unassigned pointers",
+            "pick": "Dynamic analysis / Dynamic analysis tool",
+            "qIds": [
+              73,
+              88
+            ]
+          },
+          {
+            "cue": "static analysis NOT find",
+            "pick": "Memory leaks",
+            "qIds": [
+              16
+            ]
+          },
+          {
+            "cue": "static analysis MOST likely to find",
+            "pick": "Unreachable (\"dead\") code",
+            "qIds": [
+              325
+            ]
+          },
+          {
+            "cue": "effect of a change",
+            "pick": "...how much regression testing...",
+            "qIds": [
+              276,
+              335
+            ]
+          },
+          {
+            "cue": "NOT a White box technique?",
+            "pick": "Boundary value analysis",
+            "qIds": [
+              36
+            ]
+          }
+        ]
+      },
+      {
+        "title": "6. Bộ Họp Review & Các Pha Review (Walkthrough · Inspection · Planning · Kick-off)",
+        "optionsPreview": "Walkthrough | Inspection | Technical Review | Error guessing || Planning vs Kick-off",
+        "eliminate": "Walkthrough đứng lẻ 1 mình & Follow up / Individual preparations (luôn sai!)",
+        "rules": [
+          {
+            "cue": "not a static testing technique",
+            "pick": "Error guessing",
+            "qIds": [
+              25,
+              35
+            ]
+          },
+          {
+            "cue": "formal assessment ... trained moderator",
+            "pick": "Inspection",
+            "qIds": [
+              82
+            ]
+          },
+          {
+            "cue": "Peer Reviews are also called as",
+            "pick": "Technical Review",
+            "qIds": [
+              132
+            ]
+          },
+          {
+            "cue": "review planning phase",
+            "pick": "allocating roles (Allocate individual roles)",
+            "qIds": [
+              77,
+              156
+            ]
+          },
+          {
+            "cue": "kick-off phase",
+            "pick": "Explaining the objective",
+            "qIds": [
+              274
+            ]
+          }
+        ]
+      },
+      {
+        "title": "7. Bộ Vai Trò Con Người: Developers · Testers · Management · Moderator · Scribe",
+        "optionsPreview": "Developers | Testers | Analysts | Management || Moderator | Author | Scribe",
+        "eliminate": "Testers đứng lẻ & Analysts đứng lẻ (luôn sai!)",
+        "rules": [
+          {
+            "cue": "debugging / Static analysis tools are used by",
+            "pick": "Developers",
+            "qIds": [
+              99,
+              141
+            ]
+          },
+          {
+            "cue": "don't participate in technical reviews",
+            "pick": "Management",
+            "qIds": [
+              133
+            ]
+          },
+          {
+            "cue": "leads the review ... planning ... running meeting",
+            "pick": "Moderator",
+            "qIds": [
+              148
+            ]
+          },
+          {
+            "cue": "document all the issues, problems and open points",
+            "pick": "Scribe",
+            "qIds": [
+              98
+            ]
+          }
+        ]
+      },
+      {
+        "title": "8. Bộ Kỹ Thuật Thiết Kế Test (EP · BVA · Decision Table · Decision Testing · Coverage)",
+        "optionsPreview": "Equivalence partitioning | Boundary value analysis | Decision table testing | Decision testing | Branch coverage",
+        "eliminate": "Condition coverage đứng lẻ (luôn sai!)",
+        "rules": [
+          {
+            "cue": "input and output coverage / black box design technique?",
+            "pick": "Equivalence partitioning",
+            "qIds": [
+              56,
+              72
+            ]
+          },
+          {
+            "cue": "different combinations of inputs",
+            "pick": "Decision table testing (Black-box)",
+            "qIds": [
+              90
+            ]
+          },
+          {
+            "cue": "not a black box testing technique",
+            "pick": "Decision testing (White-box)",
+            "qIds": [
+              28
+            ]
+          },
+          {
+            "cue": "percentage of decision outcomes",
+            "pick": "Branch coverage",
+            "qIds": [
+              106
+            ]
+          },
+          {
+            "cue": "odd one out (giữa Glass/Clear/Structural/White)",
+            "pick": "Black box testing",
+            "qIds": [
+              76
+            ]
+          }
+        ]
+      },
+      {
+        "title": "9. Bộ Tổ Hợp La Mã (i, ii, iii, iv are true / false)",
+        "optionsPreview": "i, ii, iii are true and iv is false | ii, iii, iv are true and i is false | All of them are true",
+        "eliminate": "ii, iii, iv ARE true and i is false & i, iv are true and ii is false (luôn sai!)",
+        "rules": [
+          {
+            "cue": "Test Lead / Leader",
+            "pick": "i, ii, iii is true and iv is false",
+            "qIds": [
+              193
+            ]
+          },
+          {
+            "cue": "task of a Tester (chú ý chữ IS true)",
+            "pick": "ii, iii, iv is true and i is false",
+            "qIds": [
+              195
+            ]
+          },
+          {
+            "cue": "Formal Review persons / Implementation tasks / Component Testing",
+            "pick": "i, ii, iii are true and iv is false",
+            "qIds": [
+              198,
+              213,
+              231
+            ]
+          },
+          {
+            "cue": "Formal Review / Test Plan Outline",
+            "pick": "i, iii, iv are true and ii is false",
+            "qIds": [
+              196,
+              199
+            ]
+          },
+          {
+            "cue": "Test Closure Activities (câu duy nhất chọn All of them are true!)",
+            "pick": "All of them are true",
+            "qIds": [
+              194
+            ]
+          },
+          {
+            "cue": "Regression testing should be performed",
+            "pick": "w & y are true, v, x & z are false",
+            "qIds": [
+              221
+            ]
+          }
+        ]
+      },
+      {
+        "title": "10. Bộ Không Thuộc Test Plan & Mã Chuẩn Quốc Tế (IEEE / BS7925)",
+        "optionsPreview": "Expected results | Quality plans | Test specification || BS7925-2 | IEEE 829 | IEEE 610",
+        "eliminate": "Test items / Test environments / Schedules (luôn nằm trong Test Plan nên không chọn khi hỏi NOT!)",
+        "rules": [
+          {
+            "cue": "not included in Test Plan (4 lựa chọn)",
+            "pick": "Expected results.",
+            "qIds": [
+              15,
+              34
+            ]
+          },
+          {
+            "cue": "NOT included in Test Plan document (5 lựa chọn)",
+            "pick": "Quality plans",
+            "qIds": [
+              23
+            ]
+          },
+          {
+            "cue": "IEEE 829 test plan ... EXCEPT",
+            "pick": "Test specification",
+            "qIds": [
+              144
+            ]
+          },
+          {
+            "cue": "component test standard",
+            "pick": "BS7925-2",
+            "qIds": [
+              171
+            ]
+          },
+          {
+            "cue": "not a testing standard",
+            "pick": "IEEE610",
+            "qIds": [
+              21
+            ]
+          }
+        ]
+      }
+    ],
     "rows": [
       {
         "mode": "instant",
@@ -6524,7 +6958,7 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 1,
-        "cue": "defines the expected results of a test",
+        "cue": "defines the expected results",
         "pick": "Test case specification.",
         "avoid": "Test design / Test procedure specification",
         "qIds": [
@@ -6714,7 +7148,7 @@ window.SWT301_STUDY = {
       {
         "mode": "glance",
         "chapter": 1,
-        "cue": "steps required to operate the system and exercise test cases",
+        "cue": "steps required to operate (đầu câu)",
         "pick": "Test Procedure Specification",
         "avoid": "Test Case / Test Design Specification",
         "qIds": [
@@ -8000,7 +8434,7 @@ window.SWT301_STUDY = {
     "74": {
       "mode": "glance",
       "chapter": 1,
-      "cue": "defines the expected results of a test",
+      "cue": "defines the expected results",
       "pick": "Test case specification.",
       "avoid": "Test design / Test procedure specification"
     },
@@ -8483,7 +8917,7 @@ window.SWT301_STUDY = {
     "143": {
       "mode": "glance",
       "chapter": 1,
-      "cue": "steps required to operate the system and exercise test cases",
+      "cue": "steps required to operate (đầu câu)",
       "pick": "Test Procedure Specification",
       "avoid": "Test Case / Test Design Specification"
     },

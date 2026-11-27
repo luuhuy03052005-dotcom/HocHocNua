@@ -18,7 +18,7 @@
   let swtChapterFilter = 'all';
   let swtConceptsQuery = '';
   let swtRoteSheet = null;
-  let swtRoteMode = 'instant';
+  let swtRoteMode = 'sets';
   let swtRoteQuery = '';
   let swtRoteChapter = 'all';
   let activeCourseCode = '';
@@ -576,9 +576,46 @@
       btn.classList.toggle('is-active', btn.getAttribute('data-rote-mode') === swtRoteMode);
     });
 
-    if (chapterSel) chapterSel.disabled = (swtRoteMode === 'traps');
+    if (chapterSel) chapterSel.disabled = (swtRoteMode === 'traps' || swtRoteMode === 'sets');
 
     listWrap.replaceChildren();
+
+    if (swtRoteMode === 'sets' && !swtRoteQuery) {
+      const sets = swtRoteSheet.optionSets || [];
+      setText('swt-rote-count', sets.length + ' bộ đáp án');
+      if (emptyEl) emptyEl.hidden = sets.length > 0;
+      const grid = el('div', 'rote-sets-grid');
+      sets.forEach((s) => {
+        const card = el('article', 'rote-set-card');
+        const head = el('div', 'rote-set-head');
+        head.appendChild(el('h3', 'rote-set-title', s.title));
+        head.appendChild(el('div', 'rote-set-preview', 'Bộ đáp án: ' + s.optionsPreview));
+        if (s.eliminate) {
+          const elim = el('div', 'rote-set-elim');
+          elim.append(
+            el('span', 'rote-chip rote-chip-avoid', '❌ Gạch ngay: ' + s.eliminate)
+          );
+          head.appendChild(elim);
+        }
+        card.appendChild(head);
+
+        const rulesWrap = el('div', 'rote-set-rules');
+        (s.rules || []).forEach((r) => {
+          const row = el('div', 'rote-set-rule-row');
+          const left = el('div', 'rote-set-rule-main');
+          const cueChip = el('span', 'rote-chip rote-chip-cue');
+          cueChip.append(el('span', 'rote-chip-prefix', 'Đề có: '), el('strong', '', r.cue));
+          const pickChip = el('mark', 'rote-chip rote-chip-pick', '✅ ' + r.pick);
+          left.append(cueChip, el('span', 'rote-arrow', '→'), pickChip);
+          row.append(left, createQButtons(r.qIds));
+          rulesWrap.appendChild(row);
+        });
+        card.appendChild(rulesWrap);
+        grid.appendChild(card);
+      });
+      listWrap.appendChild(grid);
+      return;
+    }
 
     if (swtRoteMode === 'traps') {
       const traps = (swtRoteSheet.zeroTraps || []).filter((t) => {
@@ -706,7 +743,7 @@
     swtChapterFilter = 'all';
     swtConceptsQuery = '';
     swtRoteSheet = courseCode === 'SWT301' && data?.roteSheet ? data.roteSheet : null;
-    swtRoteMode = 'instant';
+    swtRoteMode = 'sets';
     swtRoteQuery = '';
     swtRoteChapter = 'all';
     distinctionsData = data && Array.isArray(data.distinctions) ? data.distinctions : [];
