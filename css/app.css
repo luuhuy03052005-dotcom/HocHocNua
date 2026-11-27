@@ -95,6 +95,38 @@ select { field-sizing: content; max-inline-size: min(22rem, 100%); }
 #study-search-input { field-sizing: content; width: auto; min-inline-size: min(18rem, 100%); max-inline-size: 100%; flex: 1 1 18rem; }
 #practice-jump-input { field-sizing: content; width: auto; min-inline-size: 5.5rem; max-inline-size: 8rem; }
 #exam-duration-input { field-sizing: content; width: auto; min-inline-size: 5rem; max-inline-size: 7rem; }
+.exam-count-box {
+  display: grid;
+  gap: 0.3rem;
+}
+#exam-question-count-input {
+  inline-size: 100%;
+  min-block-size: 2.25rem;
+}
+.exam-count-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+.exam-preset-chip {
+  border: 1px solid var(--border-hairline);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.exam-preset-chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.exam-preset-chip.is-active {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
 
 .switch-control { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-sm); color: var(--text-secondary); cursor: pointer; user-select: none; }
 input[type="checkbox"][switch] { accent-color: var(--color-accent); margin: 0; inline-size: 1.05rem; block-size: 1.05rem; cursor: pointer; }

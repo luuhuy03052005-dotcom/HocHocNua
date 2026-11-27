@@ -124,11 +124,31 @@
     setText('exam-total-question-count', String(allQuestions.length));
   }
 
+  function getRequestedQuestionCount() {
+    const raw = String(SWTApp.utils.byId('exam-question-count-input')?.value || '').trim();
+    if (!raw) return 0;
+    const n = Number.parseInt(raw, 10);
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  }
+
+  function syncCountPresetChips() {
+    const val = String(SWTApp.utils.byId('exam-question-count-input')?.value || '').trim();
+    document.querySelectorAll('#exam-count-presets [data-exam-count]').forEach((chip) => {
+      chip.classList.toggle('is-active', chip.getAttribute('data-exam-count') === val);
+    });
+  }
+
   function updateRangeSummary() {
     const { setText } = SWTApp.utils;
     const selectedCount = Math.max(0, rangeEnd - rangeStart + 1);
     const eligibleCount = getEligibleQuestions(rangeStart, rangeEnd).length;
+    const limit = getRequestedQuestionCount();
     setText('exam-range-summary', 'Câu ' + rangeStart + ' – ' + rangeEnd);
+    if (limit > 0 && eligibleCount > 0) {
+      const actual = Math.min(limit, eligibleCount);
+      setText('exam-range-count', 'Thi random ' + actual + ' / ' + eligibleCount + ' câu');
+      return;
+    }
     setText(
       'exam-range-count',
       eligibleCount === selectedCount
@@ -174,9 +194,15 @@
     startSelect.replaceChildren(startFrag);
     endSelect.replaceChildren(endFrag);
     rangeStart = 1;
-    rangeEnd = Math.min(50, allQuestions.length);
+    rangeEnd = allQuestions.length;
     startSelect.value = String(rangeStart);
     endSelect.value = String(rangeEnd);
+    const countInput = byId('exam-question-count-input');
+    if (countInput && !countInput.dataset.initialized) {
+      countInput.dataset.initialized = 'true';
+      countInput.value = allQuestions.length > 50 ? '50' : '';
+      syncCountPresetChips();
+    }
     setText('exam-total-question-count', String(allQuestions.length));
     updateRangeSummary();
     updateRangePreview();
@@ -210,9 +236,13 @@
   }
 
   function startExam() {
-    const { byId } = SWTApp.utils;
+    const { byId, shuffle } = SWTApp.utils;
     const mins = Math.min(240, Math.max(1, parseInt(byId('exam-duration-input')?.value || '60', 10) || 60));
-    const pool = getEligibleQuestions(rangeStart, rangeEnd);
+    let pool = getEligibleQuestions(rangeStart, rangeEnd);
+    const limit = getRequestedQuestionCount();
+    if (limit > 0 && limit < pool.length) {
+      pool = shuffle(pool).slice(0, limit);
+    }
     if (!beginExam(pool, mins)) {
       setSetupNotice('Không có câu hỏi nào trong phạm vi khớp nguồn hoặc chủ đề đã chọn.');
     }
@@ -533,6 +563,29 @@
       byId('exam-start-btn')?.addEventListener('click', startExam);
       byId('exam-range-btn')?.addEventListener('click', openRangeDialog);
       byId('exam-apply-range-btn')?.addEventListener('click', applyRange);
+      byId('exam-select-all-range-btn')?.addEventListener('click', () => {
+        const startSelect = byId('exam-start-question');
+        const endSelect = byId('exam-end-question');
+        if (startSelect && endSelect && allQuestions.length > 0) {
+          startSelect.value = '1';
+          endSelect.value = String(allQuestions.length);
+          updateRangePreview();
+        }
+      });
+      byId('exam-question-count-input')?.addEventListener('input', () => {
+        syncCountPresetChips();
+        updateRangeSummary();
+      });
+      byId('exam-count-presets')?.addEventListener('click', (e) => {
+        const chip = e.target.closest('[data-exam-count]');
+        if (!chip) return;
+        const countInput = byId('exam-question-count-input');
+        if (countInput) {
+          countInput.value = chip.getAttribute('data-exam-count') || '';
+          syncCountPresetChips();
+          updateRangeSummary();
+        }
+      });
       byId('exam-start-question')?.addEventListener('change', () => {
         const startSelect = byId('exam-start-question');
         const endSelect = byId('exam-end-question');
