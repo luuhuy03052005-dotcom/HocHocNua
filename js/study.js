@@ -18,7 +18,7 @@
   let swtChapterFilter = 'all';
   let swtConceptsQuery = '';
   let swtRoteSheet = null;
-  let swtRoteMode = 'sets';
+  let swtRoteMode = 'anskw';
   let swtRoteQuery = '';
   let swtRoteChapter = 'all';
   let activeCourseCode = '';
@@ -595,9 +595,81 @@
       btn.classList.toggle('is-active', btn.getAttribute('data-rote-mode') === swtRoteMode);
     });
 
-    if (chapterSel) chapterSel.disabled = (swtRoteMode === 'traps' || swtRoteMode === 'sets');
+    if (chapterSel) chapterSel.disabled = (swtRoteMode === 'traps' || swtRoteMode === 'sets' || swtRoteMode === 'anskw');
 
     listWrap.replaceChildren();
+
+    if (swtRoteMode === 'anskw') {
+      const groups = (swtRoteSheet.answerKeywords || []).map((g) => ({
+        group: g.group,
+        items: (g.items || []).filter((it) => {
+          if (!swtRoteQuery) return true;
+          return normalize([it.answer, ...(it.keywords || []), ...(it.qIds || [])].join(' ')).includes(swtRoteQuery);
+        })
+      })).filter((g) => g.items.length > 0);
+
+      const totalItems = groups.reduce((acc, g) => acc + g.items.length, 0);
+      setText('swt-rote-count', totalItems + ' mục');
+      if (emptyEl) emptyEl.hidden = totalItems > 0;
+      if (!totalItems) return;
+
+      const stack = el('div', 'anskw-groups-stack');
+      groups.forEach((g) => {
+        const block = el('section', 'anskw-group-card');
+        block.appendChild(el('h3', 'anskw-group-title', g.group));
+        const wrap = el('div', 'table-wrapper');
+        const table = el('table', 'data-table shortcut-table rote-table anskw-table');
+        const thead = el('thead');
+        const hr = el('tr');
+        [
+          ['Đáp án / Thuật ngữ', '28%'],
+          ['Keyword có trong đề bài (Đọc thấy là khoanh!)', '54%'],
+          ['Câu luyện', '18%']
+        ].forEach(([lbl, w]) => {
+          const th = el('th', '', lbl);
+          th.style.inlineSize = w;
+          hr.appendChild(th);
+        });
+        thead.appendChild(hr);
+
+        const tbody = el('tbody');
+        g.items.forEach((it) => {
+          const tr = el('tr');
+          const tdAns = el('td');
+          tdAns.appendChild(el('mark', 'rote-chip rote-chip-pick', '✅ ' + it.answer));
+
+          const tdKws = el('td');
+          const kwWrap = el('div', 'anskw-chips-wrap');
+          (it.keywords || []).forEach((kw) => {
+            kwWrap.appendChild(el('span', 'rote-chip rote-chip-cue', kw));
+          });
+          tdKws.appendChild(kwWrap);
+
+          const tdQs = el('td');
+          const qAct = el('div', 'anskw-q-actions');
+          if ((it.qIds || []).length >= 2) {
+            const drillBtn = el('button', 'btn btn-secondary btn-sm anskw-drill-btn', '▶ Luyện (' + it.qIds.length + ')');
+            drillBtn.type = 'button';
+            drillBtn.addEventListener('click', () => {
+              SWTApp.app?.selectTab('tab-practice');
+              SWTApp.practice?.startCustomSet(it.qIds, it.answer);
+            });
+            qAct.appendChild(drillBtn);
+          }
+          qAct.appendChild(createQButtons(it.qIds));
+          tdQs.appendChild(qAct);
+
+          tr.append(tdAns, tdKws, tdQs);
+          tbody.appendChild(tr);
+        });
+        table.append(thead, tbody);
+        wrap.appendChild(table);
+        block.appendChild(wrap);
+        stack.appendChild(block);
+      });
+      listWrap.appendChild(stack);
+      return;
+    }
 
     if (swtRoteMode === 'sets' && !swtRoteQuery) {
       const sets = swtRoteSheet.optionSets || [];
@@ -783,7 +855,7 @@
     swtChapterFilter = 'all';
     swtConceptsQuery = '';
     swtRoteSheet = courseCode === 'SWT301' && data?.roteSheet ? data.roteSheet : null;
-    swtRoteMode = 'sets';
+    swtRoteMode = 'anskw';
     swtRoteQuery = '';
     swtRoteChapter = 'all';
     distinctionsData = data && Array.isArray(data.distinctions) ? data.distinctions : [];
@@ -809,6 +881,9 @@
 
     const familiesSwt = byId('study-word-families-swt301');
     if (familiesSwt) familiesSwt.hidden = (courseCode !== 'SWT301');
+
+    const jumpAnsKwBtn = byId('study-jump-anskw');
+    if (jumpAnsKwBtn) jumpAnsKwBtn.hidden = (courseCode !== 'SWT301');
 
     const jumpRoteBtn = byId('study-jump-rote');
     if (jumpRoteBtn) jumpRoteBtn.hidden = (courseCode !== 'SWT301');
@@ -966,7 +1041,13 @@
         const jumpBtn = event.target.closest('[data-study-jump]');
         if (!jumpBtn) return;
         const target = jumpBtn.getAttribute('data-study-jump');
-        if (target === 'rote') {
+        if (target === 'anskw') {
+          swtRoteMode = 'anskw';
+          renderSwtRote();
+          byId('study-rote-swt301')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (target === 'rote') {
+          swtRoteMode = 'sets';
+          renderSwtRote();
           byId('study-rote-swt301')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else if (target === 'families') {
           byId('study-word-families-swt301')?.scrollIntoView({ behavior: 'smooth', block: 'start' });

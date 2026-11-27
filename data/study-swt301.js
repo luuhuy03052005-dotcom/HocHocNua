@@ -3813,6 +3813,719 @@ window.SWT301_STUDY = {
     }
   ],
   "roteSheet": {
+    "answerKeywords": [
+      {
+        "group": "1. Các Cấp Độ & Loại Testing (Đọc đề thấy chữ vàng ➔ Chọn ngay tên Testing bên trái)",
+        "items": [
+          {
+            "answer": "Unit testing / Component testing",
+            "keywords": [
+              "single unit ... isolated",
+              "individual units or components",
+              "component test -> Statement and branch testing",
+              "standard -> BS7925-2"
+            ],
+            "qIds": [
+              51,
+              84,
+              103,
+              171,
+              247
+            ]
+          },
+          {
+            "answer": "Integration testing",
+            "keywords": [
+              "interfaces and interaction between integrated components",
+              "interfaces between components",
+              "combined with other systems (in the large)"
+            ],
+            "qIds": [
+              130,
+              149,
+              253,
+              338
+            ]
+          },
+          {
+            "answer": "Bottom-up integration",
+            "keywords": [
+              "terminal modules",
+              "lowest-level (leaf) modules"
+            ],
+            "qIds": [
+              155,
+              235
+            ]
+          },
+          {
+            "answer": "Top-down integration testing",
+            "keywords": [
+              "NOT part of system testing"
+            ],
+            "qIds": [
+              37
+            ]
+          },
+          {
+            "answer": "Big-bang",
+            "keywords": [
+              "not an incremental testing approach",
+              "all components at once without prior testing"
+            ],
+            "qIds": [
+              17,
+              269
+            ]
+          },
+          {
+            "answer": "Driver",
+            "keywords": [
+              "calls the function under test",
+              "Supplies inputs",
+              "Test harness & Scaffolding",
+              "control and operate"
+            ],
+            "qIds": [
+              3,
+              58,
+              63,
+              167
+            ]
+          },
+          {
+            "answer": "System Testing",
+            "keywords": [
+              "testing the entire system",
+              "Non-functional and Functional requirements"
+            ],
+            "qIds": [
+              164,
+              343
+            ]
+          },
+          {
+            "answer": "Acceptance testing",
+            "keywords": [
+              "meets business requirements",
+              "Contract and regulation testing",
+              "requirement specification -> User Acceptance Test Cases"
+            ],
+            "qIds": [
+              89,
+              111,
+              161
+            ]
+          },
+          {
+            "answer": "Alpha release / Field testing (Beta)",
+            "keywords": [
+              "early build ... key customers -> Alpha release",
+              "client own locations -> Field testing"
+            ],
+            "qIds": [
+              1,
+              50,
+              145
+            ]
+          },
+          {
+            "answer": "Non-functional testing",
+            "keywords": [
+              "internet banking",
+              "security, performance, reliability, and usability",
+              "how well the system performs"
+            ],
+            "qIds": [
+              66,
+              234,
+              248
+            ]
+          },
+          {
+            "answer": "Performance testing",
+            "keywords": [
+              "What is NOT test type?",
+              "Which is the non-functional testing"
+            ],
+            "qIds": [
+              12,
+              81
+            ]
+          },
+          {
+            "answer": "Usability testing",
+            "keywords": [
+              "a type of non-functional testing?",
+              "user-friendliness"
+            ],
+            "qIds": [
+              79,
+              100
+            ]
+          },
+          {
+            "answer": "Load Testing",
+            "keywords": [
+              "varying workloads",
+              "behaves correctly under load"
+            ],
+            "qIds": [
+              150,
+              245
+            ]
+          },
+          {
+            "answer": "Stress Testing",
+            "keywords": [
+              "limitations have been exceeded",
+              "beyond normal operational capacity"
+            ],
+            "qIds": [
+              85,
+              305
+            ]
+          },
+          {
+            "answer": "Confirmation testing / Re-testing",
+            "keywords": [
+              "confirm ... original defect removed",
+              "confirm ... defect has indeed been fixed",
+              "performing Maintenance Testing -> Re-testing"
+            ],
+            "qIds": [
+              94,
+              166,
+              332
+            ]
+          },
+          {
+            "answer": "Confirmation and regression testing",
+            "keywords": [
+              "change-related testing include"
+            ],
+            "qIds": [
+              62
+            ]
+          },
+          {
+            "answer": "Regression testing (trong câu dài)",
+            "keywords": [
+              "check unchanged areas",
+              "unexpected side effects",
+              "software / environment has changed"
+            ],
+            "qIds": [
+              221,
+              291,
+              350
+            ]
+          }
+        ]
+      },
+      {
+        "group": "2. Họ Analysis, Static Testing & Họp Review",
+        "items": [
+          {
+            "answer": "Static testing / Code review / Inspection",
+            "keywords": [
+              "analyzes code without executing -> Code review",
+              "is a static test -> Code inspection",
+              "examined manually ... not executed",
+              "Missing requirements or design defects"
+            ],
+            "qIds": [
+              64,
+              75,
+              86,
+              237,
+              242
+            ]
+          },
+          {
+            "answer": "Static analysis / Static analysis tool",
+            "keywords": [
+              "Unreachable code",
+              "Checking coding standards",
+              "Enforcement of coding standards",
+              "typically used by -> Developers",
+              "performed by developers -> software model",
+              "NOT find -> Memory leaks"
+            ],
+            "qIds": [
+              16,
+              59,
+              120,
+              141,
+              288,
+              325
+            ]
+          },
+          {
+            "answer": "Dynamic analysis / Dynamic analysis tool",
+            "keywords": [
+              "detect a memory leak",
+              "flag memory leaks and unassigned pointers"
+            ],
+            "qIds": [
+              73,
+              88
+            ]
+          },
+          {
+            "answer": "Impact analysis",
+            "keywords": [
+              "effect of a change",
+              "how much regression testing",
+              "how changes might affect existing system"
+            ],
+            "qIds": [
+              276,
+              309,
+              335
+            ]
+          },
+          {
+            "answer": "Informal review",
+            "keywords": [
+              "Inexpensive way to get some benefit",
+              "Undocumented"
+            ],
+            "qIds": [
+              223,
+              260
+            ]
+          },
+          {
+            "answer": "Walkthrough",
+            "keywords": [
+              "Scenario, Dry Run, Peer Group",
+              "led by the author",
+              "educate participants and gather feedback"
+            ],
+            "qIds": [
+              70,
+              254,
+              279
+            ]
+          },
+          {
+            "answer": "Technical Review (Peer Review)",
+            "keywords": [
+              "Peer Reviews are also called",
+              "don't participate -> Management",
+              "trained moderator and follow a defined process"
+            ],
+            "qIds": [
+              132,
+              133,
+              307
+            ]
+          },
+          {
+            "answer": "Inspection",
+            "keywords": [
+              "formal assessment ... trained moderator",
+              "rules and checklists -> consistency and thoroughness",
+              "EXCEPT -> How much of the code has been covered"
+            ],
+            "qIds": [
+              82,
+              312,
+              336,
+              356
+            ]
+          },
+          {
+            "answer": "Moderator vs Scribe",
+            "keywords": [
+              "leads the review, planning, running meeting, mediates -> Moderator",
+              "document all the issues, problems and open point -> Scribe"
+            ],
+            "qIds": [
+              98,
+              129,
+              148
+            ]
+          },
+          {
+            "answer": "Review Planning vs Kick-off",
+            "keywords": [
+              "planning phase -> Allocate individual roles / Selecting personnel",
+              "kick-off phase -> Explaining the objective"
+            ],
+            "qIds": [
+              77,
+              156,
+              274
+            ]
+          }
+        ]
+      },
+      {
+        "group": "3. Kỹ Thuật Thiết Kế Test (Black-box · White-box · Experience-based)",
+        "items": [
+          {
+            "answer": "Equivalence partitioning (EP)",
+            "keywords": [
+              "input and output coverage",
+              "black box design technique?",
+              "only one value in the range",
+              "valid and invalid partitions",
+              "appropriate to all levels of testing"
+            ],
+            "qIds": [
+              56,
+              72,
+              261,
+              311,
+              324
+            ]
+          },
+          {
+            "answer": "Boundary value analysis (BVA)",
+            "keywords": [
+              "NOT a White box technique?",
+              "on, below and above the edges",
+              "valid boundary"
+            ],
+            "qIds": [
+              36,
+              173,
+              180,
+              181,
+              361
+            ]
+          },
+          {
+            "answer": "Decision table testing",
+            "keywords": [
+              "different combinations of inputs",
+              "Citibank / Silver room"
+            ],
+            "qIds": [
+              90,
+              230
+            ]
+          },
+          {
+            "answer": "Decision testing / Branch coverage",
+            "keywords": [
+              "not a black box testing technique -> Decision testing",
+              "percentage of decision directions / outcomes -> Branch coverage",
+              "all branches in decision points"
+            ],
+            "qIds": [
+              28,
+              93,
+              106,
+              310
+            ]
+          },
+          {
+            "answer": "State transition testing",
+            "keywords": [
+              "NOT a type of non-functional test -> State-Transition",
+              "changes in state",
+              "invalid transition"
+            ],
+            "qIds": [
+              18,
+              228,
+              229,
+              252
+            ]
+          },
+          {
+            "answer": "Use case testing",
+            "keywords": [
+              "Business scenarios",
+              "process flows",
+              "real world / typical use"
+            ],
+            "qIds": [
+              138,
+              186,
+              239,
+              351
+            ]
+          },
+          {
+            "answer": "White-box / Structural Testing",
+            "keywords": [
+              "White Box also called -> Structural Testing",
+              "not mimic real world -> (ii) Structural",
+              "odd one out -> Black box testing",
+              "not white box BS7925-II -> Random testing"
+            ],
+            "qIds": [
+              40,
+              76,
+              125,
+              160
+            ]
+          },
+          {
+            "answer": "Cyclomatic Complexity",
+            "keywords": [
+              "White box",
+              "L - N + 2P",
+              "high cyclometic complexity -> Difficult to test"
+            ],
+            "qIds": [
+              8,
+              105,
+              108,
+              216
+            ]
+          },
+          {
+            "answer": "Error guessing / Experience-based",
+            "keywords": [
+              "not a static testing technique -> Error guessing",
+              "skills, intuition, and experience -> Experience-based",
+              "After more formal techniques",
+              "deriving system tests"
+            ],
+            "qIds": [
+              25,
+              35,
+              92,
+              96,
+              321,
+              322,
+              340
+            ]
+          },
+          {
+            "answer": "Exploratory testing",
+            "keywords": [
+              "plan and execute tests simultaneously",
+              "limited time and no detailed specifications",
+              "dynamic and adapt to new findings"
+            ],
+            "qIds": [
+              272,
+              294,
+              300
+            ]
+          }
+        ]
+      },
+      {
+        "group": "4. Quy Trình Test, Tài Liệu Test, Rủi Ro & Quản Lý Lỗi",
+        "items": [
+          {
+            "answer": "Test Planning",
+            "keywords": [
+              "determine the exit criteria",
+              "Scheduling test analysis and design",
+              "inputs taken from -> Project plan",
+              "NOT included -> Expected results / Quality plans / Test specification"
+            ],
+            "qIds": [
+              15,
+              23,
+              34,
+              107,
+              144,
+              159,
+              281
+            ]
+          },
+          {
+            "answer": "Test Analysis and Design",
+            "keywords": [
+              "Reviewing the test Basis",
+              "Designing the test environment set-up"
+            ],
+            "qIds": [
+              114,
+              131
+            ]
+          },
+          {
+            "answer": "Test Implementation and execution",
+            "keywords": [
+              "creates test suites",
+              "Reporting Discrepancies as incidents",
+              "NOT a part -> Designing the Tests"
+            ],
+            "qIds": [
+              38,
+              83,
+              165,
+              280
+            ]
+          },
+          {
+            "answer": "Test Closure Activities",
+            "keywords": [
+              "Handover of Testware",
+              "analyze what was done",
+              "deliverables, defect analysis, archiving, lessons -> All of them are true"
+            ],
+            "qIds": [
+              121,
+              194,
+              341
+            ]
+          },
+          {
+            "answer": "Test Case / Procedure / Scenario / Suite",
+            "keywords": [
+              "expected results -> Test Case Specification",
+              "steps required to operate -> Test Procedure Specification",
+              "end-to-end functionality -> Test scenario",
+              "grouped into Manageable (and scheduled) -> Test Suite"
+            ],
+            "qIds": [
+              52,
+              74,
+              143,
+              151,
+              344
+            ]
+          },
+          {
+            "answer": "Verification vs Validation",
+            "keywords": [
+              "building the product right / reviews, walkthroughs, inspections -> Verification",
+              "built the right product -> Validation"
+            ],
+            "qIds": [
+              7,
+              53,
+              207,
+              306
+            ]
+          },
+          {
+            "answer": "Failure vs Fault Masking",
+            "keywords": [
+              "visible to end-users / incorrect behavior in operation -> Failure",
+              "Error condition hiding another error condition -> Fault Masking"
+            ],
+            "qIds": [
+              97,
+              268,
+              313,
+              327
+            ]
+          },
+          {
+            "answer": "Project Risk vs Product Risk",
+            "keywords": [
+              "Project risk -> Organizational Factors",
+              "NOT project risk (Product risk) -> Error-prone software delivered"
+            ],
+            "qIds": [
+              26,
+              137,
+              367
+            ]
+          },
+          {
+            "answer": "Severity vs Priority & Incident Report",
+            "keywords": [
+              "Severity -> impact of the defect on the system",
+              "Priority -> urgency",
+              "NOT in incident report -> How to fix / Suggestions",
+              "NOT raised -> Improvements suggested by users"
+            ],
+            "qIds": [
+              14,
+              24,
+              49,
+              67,
+              278
+            ]
+          },
+          {
+            "answer": "Configuration Management (CM)",
+            "keywords": [
+              "implemented -> During test planning",
+              "controlled library -> Configuration Control",
+              "NOT part -> Auditing conformance to IS09001"
+            ],
+            "qIds": [
+              19,
+              95,
+              152,
+              347
+            ]
+          }
+        ]
+      },
+      {
+        "group": "5. Công Cụ Kiểm Thử (Test Tools & Automation)",
+        "items": [
+          {
+            "answer": "Requirements management tools",
+            "keywords": [
+              "stores requirement statements",
+              "checks for consistency",
+              "allow requirements to be traceable"
+            ],
+            "qIds": [
+              87,
+              157
+            ]
+          },
+          {
+            "answer": "Test management tool",
+            "keywords": [
+              "supports traceability, recording of incidents or scheduling",
+              "NOT a feature -> Generating test data"
+            ],
+            "qIds": [
+              11,
+              102
+            ]
+          },
+          {
+            "answer": "Test design tool",
+            "keywords": [
+              "support the creation of test cases"
+            ],
+            "qIds": [
+              91
+            ]
+          },
+          {
+            "answer": "Test execution / Capture-Playback tool",
+            "keywords": [
+              "biggest potential cost saving -> Test execution",
+              "automation of regression -> Capture/Playback / Record/Playback",
+              "easy to run regression tests",
+              "EXCEPT -> Generating expected outputs",
+              "least likely -> User requirements"
+            ],
+            "qIds": [
+              10,
+              65,
+              71,
+              80,
+              109,
+              295
+            ]
+          },
+          {
+            "answer": "Data-driven & Chọn mua Tool mới",
+            "keywords": [
+              "Data-driven -> separate test data from scripts",
+              "want a (new) test tool -> Analyze your needs",
+              "purchased new tool -> A small team"
+            ],
+            "qIds": [
+              168,
+              238,
+              299
+            ]
+          }
+        ]
+      }
+    ],
     "optionSets": [
       {
         "title": "1. Bộ 5 Pha Quy Trình Test (Planning · Analysis & Design · Implementation & Execution · Closure)",
@@ -5696,7 +6409,7 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 4,
         "cue": null,
-        "pick": "Test planning and execution occur simultaneously",
+        "pick": "plan and execute tests simultaneously",
         "avoid": "Ability to strictly adhere to test scripts",
         "qIds": [
           272
@@ -5876,7 +6589,7 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 1,
         "cue": null,
-        "pick": "constructive feedback and respect",
+        "pick": "Providing constructive feedback on defects",
         "avoid": "Minimizing interaction between testers...",
         "qIds": [
           292
@@ -5906,8 +6619,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 6,
         "cue": null,
-        "pick": "Running regression tests",
-        "avoid": "Designing new test cases",
+        "pick": "It is easy to run regression tests",
+        "avoid": "create regression tests",
         "qIds": [
           295
         ]
@@ -6096,8 +6809,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 2,
         "cue": null,
-        "pick": "build confidence in the software's functionality",
-        "avoid": "To gather evidence for a lawsuit / To train the users",
+        "pick": "To build confidence in the application",
+        "avoid": "To detect bugs / lawsuit",
         "qIds": [
           315
         ]
@@ -6146,8 +6859,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 2,
         "cue": null,
-        "pick": "As soon as the software requirements have been approved",
-        "avoid": "After coding is complete",
+        "pick": "When the software requirements have been approved",
+        "avoid": "When the code is complete",
         "qIds": [
           320
         ]
@@ -6156,8 +6869,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 4,
         "cue": null,
-        "pick": "supplement to formal test design techniques",
-        "avoid": "replace formal techniques",
+        "pick": "An appropriate way of deriving system tests",
+        "avoid": "The most appropriate way",
         "qIds": [
           321
         ]
@@ -6176,8 +6889,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 2,
         "cue": null,
-        "pick": "Before the test is executed",
-        "avoid": "After the test is executed",
+        "pick": "Most useful when specified in advance",
+        "avoid": "Never specified in advance",
         "qIds": [
           323
         ]
@@ -6190,6 +6903,16 @@ window.SWT301_STUDY = {
         "avoid": "A black box testing technique used only...",
         "qIds": [
           324
+        ]
+      },
+      {
+        "mode": "instant",
+        "chapter": 3,
+        "cue": null,
+        "pick": "Enforcement of coding standards",
+        "avoid": "Supporting reviews / test harness",
+        "qIds": [
+          325
         ]
       },
       {
@@ -6296,8 +7019,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 4,
         "cue": null,
-        "pick": "tester's experience, knowledge and intuition",
-        "avoid": "Randomly generated test cases",
+        "pick": "Their own experience, intuition, and domain knowledge",
+        "avoid": "Formal specifications",
         "qIds": [
           340
         ]
@@ -6326,8 +7049,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 2,
         "cue": null,
-        "pick": "Non-functional and Functional requirements",
-        "avoid": "Non-functional requirements only not...",
+        "pick": "Non-functional requirements and Functional requirements",
+        "avoid": "only / or",
         "qIds": [
           343
         ]
@@ -6336,8 +7059,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 1,
         "cue": null,
-        "pick": "Inputs and expected results",
-        "avoid": "It is easy to execute / It is unlikely to delay progress",
+        "pick": "The expected outcome is specified before execution",
+        "avoid": "easy to execute",
         "qIds": [
           344
         ]
@@ -6426,8 +7149,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 1,
         "cue": null,
-        "pick": "eliminate every defect prior to release",
-        "avoid": "Determine the productivity of programmers",
+        "pick": "Uncover software errors",
+        "avoid": "Eliminate every error prior to release",
         "qIds": [
           359
         ]
@@ -6496,8 +7219,8 @@ window.SWT301_STUDY = {
         "mode": "instant",
         "chapter": 5,
         "cue": null,
-        "pick": "Skill and staff shortages",
-        "avoid": "Poor software characteristics",
+        "pick": "Organizational Factors",
+        "avoid": "Poor Software / Error Prone software",
         "qIds": [
           367
         ]
@@ -7401,7 +8124,7 @@ window.SWT301_STUDY = {
         "mode": "glance",
         "chapter": 3,
         "cue": "Formal Review / Inspection (loại ii: No Pre Meeting)",
-        "pick": "i, iii, iv are true and ii is false",
+        "pick": "i,iii,iv are true and ii is false",
         "avoid": "Câu có ii đúng",
         "qIds": [
           196
@@ -7745,16 +8468,6 @@ window.SWT301_STUDY = {
         "avoid": "Câu có chữ belittles the coder",
         "qIds": [
           287
-        ]
-      },
-      {
-        "mode": "glance",
-        "chapter": 3,
-        "cue": "static analysis MOST likely to find",
-        "pick": "Unreachable (\"dead\") code",
-        "avoid": "Memory leaks (thuộc câu NOT find)",
-        "qIds": [
-          325
         ]
       },
       {
@@ -9321,7 +10034,7 @@ window.SWT301_STUDY = {
       "mode": "glance",
       "chapter": 3,
       "cue": "Formal Review / Inspection (loại ii: No Pre Meeting)",
-      "pick": "i, iii, iv are true and ii is false",
+      "pick": "i,iii,iv are true and ii is false",
       "avoid": "Câu có ii đúng"
     },
     "197": {
@@ -9853,7 +10566,7 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 4,
       "cue": null,
-      "pick": "Test planning and execution occur simultaneously",
+      "pick": "plan and execute tests simultaneously",
       "avoid": "Ability to strictly adhere to test scripts"
     },
     "273": {
@@ -9993,7 +10706,7 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 1,
       "cue": null,
-      "pick": "constructive feedback and respect",
+      "pick": "Providing constructive feedback on defects",
       "avoid": "Minimizing interaction between testers..."
     },
     "293": {
@@ -10014,8 +10727,8 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 6,
       "cue": null,
-      "pick": "Running regression tests",
-      "avoid": "Designing new test cases"
+      "pick": "It is easy to run regression tests",
+      "avoid": "create regression tests"
     },
     "296": {
       "mode": "instant",
@@ -10154,8 +10867,8 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 2,
       "cue": null,
-      "pick": "build confidence in the software's functionality",
-      "avoid": "To gather evidence for a lawsuit / To train the users"
+      "pick": "To build confidence in the application",
+      "avoid": "To detect bugs / lawsuit"
     },
     "316": {
       "mode": "instant",
@@ -10189,15 +10902,15 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 2,
       "cue": null,
-      "pick": "As soon as the software requirements have been approved",
-      "avoid": "After coding is complete"
+      "pick": "When the software requirements have been approved",
+      "avoid": "When the code is complete"
     },
     "321": {
       "mode": "instant",
       "chapter": 4,
       "cue": null,
-      "pick": "supplement to formal test design techniques",
-      "avoid": "replace formal techniques"
+      "pick": "An appropriate way of deriving system tests",
+      "avoid": "The most appropriate way"
     },
     "322": {
       "mode": "instant",
@@ -10210,8 +10923,8 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 2,
       "cue": null,
-      "pick": "Before the test is executed",
-      "avoid": "After the test is executed"
+      "pick": "Most useful when specified in advance",
+      "avoid": "Never specified in advance"
     },
     "324": {
       "mode": "instant",
@@ -10221,11 +10934,11 @@ window.SWT301_STUDY = {
       "avoid": "A black box testing technique used only..."
     },
     "325": {
-      "mode": "glance",
+      "mode": "instant",
       "chapter": 3,
-      "cue": "static analysis MOST likely to find",
-      "pick": "Unreachable (\"dead\") code",
-      "avoid": "Memory leaks (thuộc câu NOT find)"
+      "cue": null,
+      "pick": "Enforcement of coding standards",
+      "avoid": "Supporting reviews / test harness"
     },
     "326": {
       "mode": "instant",
@@ -10329,8 +11042,8 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 4,
       "cue": null,
-      "pick": "tester's experience, knowledge and intuition",
-      "avoid": "Randomly generated test cases"
+      "pick": "Their own experience, intuition, and domain knowledge",
+      "avoid": "Formal specifications"
     },
     "341": {
       "mode": "instant",
@@ -10350,15 +11063,15 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 2,
       "cue": null,
-      "pick": "Non-functional and Functional requirements",
-      "avoid": "Non-functional requirements only not..."
+      "pick": "Non-functional requirements and Functional requirements",
+      "avoid": "only / or"
     },
     "344": {
       "mode": "instant",
       "chapter": 1,
       "cue": null,
-      "pick": "Inputs and expected results",
-      "avoid": "It is easy to execute / It is unlikely to delay progress"
+      "pick": "The expected outcome is specified before execution",
+      "avoid": "easy to execute"
     },
     "345": {
       "mode": "instant",
@@ -10462,8 +11175,8 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 1,
       "cue": null,
-      "pick": "eliminate every defect prior to release",
-      "avoid": "Determine the productivity of programmers"
+      "pick": "Uncover software errors",
+      "avoid": "Eliminate every error prior to release"
     },
     "360": {
       "mode": "instant",
@@ -10518,8 +11231,8 @@ window.SWT301_STUDY = {
       "mode": "instant",
       "chapter": 5,
       "cue": null,
-      "pick": "Skill and staff shortages",
-      "avoid": "Poor software characteristics"
+      "pick": "Organizational Factors",
+      "avoid": "Poor Software / Error Prone software"
     }
   }
 };

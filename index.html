@@ -15,23 +15,23 @@
   </script>
   <title>Học tập 123 — Ôn tập và thi thử</title>
   <link rel="icon" href="data:,">
-  <link rel="stylesheet" href="css/tokens.css?v=multi-course-41">
-  <link rel="stylesheet" href="css/app.css?v=multi-course-41">
-  <script defer src="data/questions.js?v=multi-course-41"></script>
-  <script defer src="data/questions-ssg105.js?v=multi-course-41"></script>
-  <script defer src="data/questions-prj301.js?v=multi-course-41"></script>
-  <script defer src="data/study-ssg105.js?v=multi-course-41"></script>
-  <script defer src="data/study-ssg105-extra.js?v=multi-course-41"></script>
-  <script defer src="data/study-ssg105-recall.js?v=multi-course-41"></script>
-  <script defer src="data/study-prj301.js?v=multi-course-41"></script>
-  <script defer src="data/study-swt301.js?v=multi-course-41"></script>
-  <script defer src="js/storage.js?v=multi-course-41"></script>
-  <script defer src="js/concept-helper.js?v=multi-course-41"></script>
-  <script defer src="js/practice.js?v=multi-course-41"></script>
-  <script defer src="js/exam.js?v=multi-course-41"></script>
-  <script defer src="js/keyword.js?v=multi-course-41"></script>
-  <script defer src="js/study.js?v=multi-course-41"></script>
-  <script defer src="js/app.js?v=multi-course-41"></script>
+  <link rel="stylesheet" href="css/tokens.css?v=multi-course-42">
+  <link rel="stylesheet" href="css/app.css?v=multi-course-42">
+  <script defer src="data/questions.js?v=multi-course-42"></script>
+  <script defer src="data/questions-ssg105.js?v=multi-course-42"></script>
+  <script defer src="data/questions-prj301.js?v=multi-course-42"></script>
+  <script defer src="data/study-ssg105.js?v=multi-course-42"></script>
+  <script defer src="data/study-ssg105-extra.js?v=multi-course-42"></script>
+  <script defer src="data/study-ssg105-recall.js?v=multi-course-42"></script>
+  <script defer src="data/study-prj301.js?v=multi-course-42"></script>
+  <script defer src="data/study-swt301.js?v=multi-course-42"></script>
+  <script defer src="js/storage.js?v=multi-course-42"></script>
+  <script defer src="js/concept-helper.js?v=multi-course-42"></script>
+  <script defer src="js/practice.js?v=multi-course-42"></script>
+  <script defer src="js/exam.js?v=multi-course-42"></script>
+  <script defer src="js/keyword.js?v=multi-course-42"></script>
+  <script defer src="js/study.js?v=multi-course-42"></script>
+  <script defer src="js/app.js?v=multi-course-42"></script>
 </head>
 <body>
   <header class="topbar">
@@ -369,8 +369,9 @@
           <nav id="study-quick-jump" class="study-quick-jump card" aria-label="Đi nhanh đến phần ôn tập" hidden>
             <span class="study-quick-jump-label">Đi nhanh đến mục:</span>
             <div class="study-quick-jump-actions">
-              <button type="button" class="btn btn-primary btn-sm" data-study-jump="rote" id="study-jump-rote">⚡ Bảng Học Vẹt</button>
-              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="families" id="study-jump-families">🧭 Gỡ rối Analyse &amp; các dạng Test</button>
+              <button type="button" class="btn btn-primary btn-sm" data-study-jump="anskw" id="study-jump-anskw">🔑 Đáp Án : Keyword</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="rote" id="study-jump-rote">🧩 10 Bộ Đáp Án Giống Nhau</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-study-jump="families" id="study-jump-families">🧭 Gỡ rối Analyse &amp; Test</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="concepts" id="study-jump-concepts">📘 Khái niệm 6 chương</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="shortcuts">⚡ Mẹo &amp; Keyword</button>
               <button type="button" class="btn btn-secondary btn-sm" data-study-jump="same-options" id="study-jump-same-options">🎯 Các đáp án giống nhau</button>
@@ -401,7 +402,8 @@
             </div>
 
             <div class="swt-rote-tabs" id="swt-rote-tabs" role="group" aria-label="Chế độ học vẹt">
-              <button type="button" class="distinction-kind-btn is-active" data-rote-mode="sets">🧩 10 Bộ Đáp Án Giống Nhau</button>
+              <button type="button" class="distinction-kind-btn is-active" data-rote-mode="anskw">🔑 Đáp Án : Keyword 1, 2...</button>
+              <button type="button" class="distinction-kind-btn" data-rote-mode="sets">🧩 10 Bộ Đáp Án Giống Nhau</button>
               <button type="button" class="distinction-kind-btn" data-rote-mode="instant">🟢 Khỏi nhìn đề — Thấy là khoanh</button>
               <button type="button" class="distinction-kind-btn" data-rote-mode="glance">🔵 Liếc đề 2 chữ &rarr; Khoanh</button>
               <button type="button" class="distinction-kind-btn" data-rote-mode="standalone">🟡 Đứng lẻ 1 mình mới khoanh</button>
